@@ -1,0 +1,51 @@
+<div fxLayout="row" fxLayoutAlign="space-between center">
+  <div *ngIf="dialogType == 1" mat-dialog-title class="">CREATE NEW CONTRACT</div>
+  <div *ngIf="dialogType == 2" mat-dialog-title class="">EDIT CONTRACT</div>
+  <mat-dialog-actions align="end" class="mb-12">
+    <button mat-button mat-dialog-close style="margin-top:-20px;min-width: 28px !important;" class="p-0">
+      <mat-icon class="s-24 condo-red-text" mat-dialog-close>close</mat-icon>
+    </button>
+  </mat-dialog-actions>
+</div>
+<mat-dialog-content>
+
+
+  <form fxLayout="column" name="userForm" [formGroup]="userForm">
+
+    <div *ngIf="dialogType == 2" class="mt-8" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start center"
+      fxLayoutAlign.xs="start" fxFlex="1 0 auto">
+      <mat-form-field appearance="outline" fxFlex="100" class="px-8">
+        <mat-label>First Name</mat-label>
+        <input matInput formControlName="firstName" required>
+      </mat-form-field>
+    </div>
+
+    <div *ngIf="dialogType == 2" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start center"
+      fxLayoutAlign.xs="start" fxFlex="1 0 auto">
+      <mat-form-field appearance="outline" fxFlex="100" class="px-8">
+        <mat-label>Last Name</mat-label>
+        <input matInput formControlName="lastName" required>
+      </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start center" fxLayoutAlign.xs="start" fxFlex="1 0 auto">
+      <mat-form-field appearance="outline" fxFlex="100" class="px-8">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" required>
+      </mat-form-field>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+      <mat-checkbox appearance="outline" fxFlex="100" class="px-8 condo-gray-text" formControlName="adminRights"
+        (change)="adminCheckboxTriggered($event)">Administrator</mat-checkbox>
+    </div>
+  </form>
+
+  <mat-dialog-actions align="end" class="pb-16">
+    <button *ngIf="dialogType == 1" mat-button class="mat-flat-button mr-8" color="accent" cdkFocusInitial
+      (click)="submitUserData()">SEND REQUEST</button>
+    <button *ngIf="dialogType == 2" mat-button class="mat-flat-button mr-8" color="accent" cdkFocusInitial
+      (click)="submitUserData()">UPDATE INFO</button>
+    <button mat-button class="mat-flat-button fuse-navy-50" mat-dialog-close>CANCEL</button>
+  </mat-dialog-actions>
+
+</mat-dialog-content>

@@ -1,0 +1,206 @@
+<mat-toolbar class="p-0 mat-elevation-z3">
+
+  <div fxFlex fxFill fxLayout="row" fxLayoutAlign="start center">
+
+    <div fxFlex="1 0 auto" fxLayout="row" fxLayoutAlign="start center">
+
+      <button mat-icon-button class="navbar-toggle-button fuse-navy-900" style="border-radius: 0px;"
+        *ngIf="!hiddenNavbar && !rightNavbar" (click)="toggleSidebarOpen('navbar')" fxHide.gt-md>
+        <mat-icon class="secondary-text">menu</mat-icon>
+      </button>
+
+      <div class="toolbar-separator" fxHide *ngIf="!hiddenNavbar && !rightNavbar" fxHide.gt-md></div>
+
+      <div fxLayout="row" fxLayoutAlign="start center" *ngIf="horizontalNavbar">
+        <div class="logo ml-16">
+
+          <img *ngIf="(profileImageUrl == null || profileImageUrl === '')" class="logo-icon"
+            src="assets/images/logos/condo-logo.png">
+
+          <img *ngIf="(profileImageUrl != null && profileImageUrl != '')" class="logo-icon" [src]="profileImageUrl">
+        </div>
+      </div>
+
+      <div *ngIf="this.router.url !='/account/user' && this.router.url !='/account/faq'"
+        class="px-8 px-md-16 condo-red-text font-20 font-weight-600 text-uppercase" fxLayout="row" fxFlex="35">
+        {{currentpage}}
+      </div>
+      <div *ngIf="this.router.url=='/account/user' "
+        class="px-8 px-md-16 condo-red-text font-size-20 font-weight-600 text-uppercase" fxLayout="row" fxFlex="35">
+        USER ACCOUNT
+      </div>
+      <div *ngIf="this.router.url== '/account/faq' "
+        class="px-8 px-md-16 condo-red-text font-size-20 font-weight-600 text-uppercase" fxLayout="row" fxFlex="35">
+        HELP
+      </div>
+
+      <div *ngIf="isSerechBarVisiable" class="px-8 px-md-16 condo-red-text font-size-20 font-weight-600 text-uppercase"
+        fxLayout="row" fxFlex="50" fxHide.xs>
+        <form (keydown.enter)="$event.preventDefault()" class="search-wrapper" fxFlex fxLayout="row"
+          fxLayoutAlign="start center" name="searchForm" [formGroup]="searchForm">
+          <div class="search pr-0" fxLayout="row" fxLayoutAlign="start center">
+
+            <input type="search" #searchInput formControlName="searchInput" (keyup.enter)="search(searchInput.value)"
+              (search)="search(searchInput.value)" placeholder="{{searchBarPlaceholderText}}" fxFlex="100">
+            <button mat-button mat-icon-button matSuffix (click)="clearSearchField($event)" *ngIf="searchInput"
+              class="search-close">
+              <mat-icon class="s-16" style="margin-top:-2px;">close</mat-icon>
+            </button>
+            <button mat-icon-button="" type="submit" aria-label="Search"
+              class="search-btn send-message-button mat-icon-button mat-button-base" style=""><span
+                class="mat-button-wrapper" (click)="search(searchInput.value)">
+                <mat-icon style="margin-top:-6px;"
+                  class="mat-icon notranslate secondary-text material-icons mat-icon-no-color" aria-hidden="true">search
+                </mat-icon>
+              </span>
+            </button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+
+    <div class="" fxFlex="0 1 auto" fxLayout="row" fxLayoutAlign="start center">
+      <button mat-button [matMenuTriggerFor]="userMenu" [matMenuTriggerData]="{user: currentUser.type}"
+        class="user-button">
+        <div fxLayout="row" fxLayoutAlign="start center">
+          <img *ngIf="profileImageUrl != null && profileImageUrl != ''" class="avatar mr-0 mr-sm-16"
+            [src]="profileImageUrl">
+          <div class="" fxLayout="column" fxLayoutAlign="start">
+            <span class="username mr-12 text-left line-height-18" fxHide fxShow.gt-sm>{{currentUser.type}}</span>
+            <span class="username mr-12 condo-gray-text text-left font-size-14 line-height-18">{{userName}}</span>
+            <span class="mr-12 condo-lgray-text text-italic text-left font-size-10">{{userRole}}</span>
+          </div>
+          <mat-icon class="s-16" fxHide.xs>keyboard_arrow_down</mat-icon>
+        </div>
+      </button>
+
+      <mat-menu #userMenu="matMenu" [overlapTrigger]="false">
+        <ng-template matMenuContent let-user="user">
+
+          <button *ngIf="currentUser.userType == 1" mat-menu-item [routerLink]="'/account/user/'">
+            <mat-icon>person</mat-icon>
+            <span>User Account Settings</span>
+          </button>
+
+          <button mat-menu-item class="" (click)="navigateToHelpLink()">
+            <mat-icon>help</mat-icon>
+            <span>Help</span>
+          </button>
+
+
+          <div *ngIf="currentUser.userType == 1">
+            <button *ngFor="let org of organizationList" (click)="onSelectOrganization(org)" mat-menu-item
+              class="active">
+              <mat-icon>photo_filter</mat-icon>
+              <span>{{org.organisationName}}</span>
+            </button>
+          </div>
+
+          <button *ngIf="currentUser.userType == 1" mat-menu-item class="condo-red-text"
+            (click)="openAddClientDialog()">
+            <mat-icon class="condo-red-text">add</mat-icon>
+            <span class="condo-red-text">Register a new Corporation</span>
+          </button>
+
+          <button mat-menu-item class="condo-red" (click)="logout()">
+            <mat-icon>exit_to_app</mat-icon>
+            <span>Logout</span>
+          </button>
+        </ng-template>
+      </mat-menu>
+
+
+      <div *ngIf="currentUser.userType != 3" fxLayoutAlign="center center">
+        <div class="toolbar-separator"></div>
+        <!-- <fuse-search-bar (input)="search($event)" fxHide.lg fxHide.md></fuse-search-bar>
+        <div class="toolbar-separator" fxHide.lg fxHide.md></div> -->
+        <button mat-button fxHide fxShow.gt-xs class="language-button" [matMenuTriggerFor]="languageMenu"
+          (click)="notificationClicked()">
+          <div fxLayout="row" fxLayoutAlign="center center">
+            <mat-icon>notifications</mat-icon>
+          </div>
+          <div *ngIf="unreadMessagesCount > 0" class="unread-count">{{unreadMessagesCount}}</div>
+        </button>
+
+        <mat-menu class="tool-menu" #languageMenu="matMenu" [overlapTrigger]="false">
+          <ul *ngFor="let notification of latestNotifications" class="p-0 my-0">
+
+            <li fxLayout="row" fxLayoutAlign="start space-between">
+              <div class="avatar ng-star-inserted new-project">N</div>
+              <div fxLayout="column" fxFlex="100" fxLayoutAlign="start space-between">
+                <h4 class="m-0 p-0 condo-gray-text">{{notification.title}}</h4>
+                <h5 class="m-0 p-0 condo-gray-text">{{notification.description}}</h5>
+                <h5 class="m-0 p-0 mt-4 text-small condo-gray-text" fxLayout="row" fxLayoutAlign="space-between start">
+                  <div>{{notification.fromUserName}}</div>
+                  <div class="font-size-12 condo-lgray-text"><em>{{notification.notificationDate}}</em></div>
+                </h5>
+              </div>
+            </li>
+          </ul>
+
+          <button (click)="openNotificationDialog()" mat-menu-item class="text-center condo-red-400"
+            style="text-align: center">
+            <span class="">View All Notifications</span>
+          </button>
+        </mat-menu>
+      </div>
+    </div>
+  </div>
+</mat-toolbar>
+
+
+<!-- <li fxLayout="row" fxLayoutAlign="start space-between">                        
+                        <div class="avatar ng-star-inserted new-project">N</div>
+                        <div fxLayout="column" fxFlex="100"  fxLayoutAlign="start space-between">
+                            <h5 class="m-0 p-0 condo-gray-text" >New Project - Asian Paints with tags paint, brush </h5>
+                            <h5 class="m-0 p-0 mt-4 text-small condo-gray-text" fxLayout="row"  fxLayoutAlign="space-between start">
+                                <div>Username</div>
+                                <div class="font-size-12 condo-lgray-text"><em>12/12/2019</em></div>
+                            </h5>
+                        </div>
+                    </li>
+
+                    <li fxLayout="row"  fxLayoutAlign="start space-between">                        
+                        <div class="avatar ng-star-inserted alert">E</div>
+                        <div fxLayout="column" fxFlex="100"  fxLayoutAlign="start space-between">
+                            <h5 class="m-0 p-0 condo-gray-text" >Project name is expiring in 48 hours </h5>
+                            <h5 class="m-0 p-0 mt-4 text-small condo-gray-text" fxLayout="row"  fxLayoutAlign="space-between start">
+                                <div>Username</div>
+                                <div class="font-size-12 condo-lgray-text"><em>12/12/2019</em></div>
+                            </h5>
+                        </div>
+                    </li>
+
+                    <li fxLayout="row" fxLayoutAlign="start space-between">                        
+                        <div class="avatar ng-star-inserted changes">C</div>
+                        <div fxLayout="column" fxFlex="100"  fxLayoutAlign="start space-between">
+                            <h5 class="m-0 p-0 condo-gray-text" >Changes - Asian paints project made changes </h5>
+                            <h5 class="m-0 p-0 mt-4 text-small condo-gray-text" fxLayout="row"  fxLayoutAlign="space-between start">
+                                <div>Username</div>
+                                <div class="font-size-12 condo-lgray-text"><em>12/12/2019</em></div>
+                            </h5>
+                        </div>
+                    </li>
+
+                    <li fxLayout="row" fxLayoutAlign="start space-between">                        
+                        <div class="avatar ng-star-inserted new-project">N</div>
+                        <div fxLayout="column" fxFlex="100"  fxLayoutAlign="start space-between">
+                            <h5 class="m-0 p-0 condo-gray-text" >New Message - received a new message </h5>
+                            <h5 class="m-0 p-0 mt-4 text-small condo-gray-text" fxLayout="row"  fxLayoutAlign="space-between start">
+                                <div>Username</div>
+                                <div class="font-size-12 condo-lgray-text"><em>12/12/2019</em></div>
+                            </h5>
+                        </div>
+                    </li>
+
+                    <li fxLayout="row" fxLayoutAlign="start space-between">                        
+                        <div class="avatar ng-star-inserted new-project">N</div>
+                        <div fxLayout="column" fxFlex="100"  fxLayoutAlign="start space-between">
+                            <h5 class="m-0 p-0 condo-gray-text" >New Review - Review for the project Asian paints </h5>
+                            <h5 class="m-0 p-0 mt-4 text-small condo-gray-text" fxLayout="row"  fxLayoutAlign="space-between start">
+                                <div>Username</div>
+                                <div class="font-size-12 condo-lgray-text"><em>12/12/2019</em></div>
+                            </h5>
+                        </div>
+                    </li> -->

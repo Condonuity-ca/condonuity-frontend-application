@@ -1,0 +1,156 @@
+<div fxLayout="row" fxLayoutAlign="space-between center">
+  <div mat-dialog-title class="pl-12">EDIT CONTACT INFORMATION</div>
+
+  <mat-dialog-actions align="end" class="px-16 mb-12">
+    <button mat-button mat-dialog-close style="margin-top:-30px;min-width: 28px !important;" class="p-0">
+      <mat-icon class="s-24 condo-red-text" mat-dialog-close>close</mat-icon>
+    </button>
+  </mat-dialog-actions>
+</div>
+<mat-dialog-content class="mat-typography">
+  <div class="profile-box info-box general px-12" fxLayout="column">
+    <form fxLayout="column" fxLayoutAlign="start" fxFlex="1 0 auto" name="contactInfoEditform"
+      [formGroup]="contactInfoEditform">
+      <div class="" fxLayout="column">
+        <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start center"
+          fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxFlex="1 0 auto">
+          <mat-form-field appearance="outline" fxFlex.lg="25" fxFlex.md="25" fxFlex.sm="100" fxFlex.xs="100"
+            [ngClass.lg]="'pr-16'" [ngClass.md]="'pr-16'" [ngClass.sm]="'px-0'" [ngClass.xs]="'px-0'">
+            <mat-label>Street Address</mat-label>
+            <input matInput formControlName="streetAddr" required>
+            <mat-error>Mandatory field is required</mat-error>
+            <!-- <span class="condo-tooltip" fxFlex="5" fxLayoutAlign="start top"
+              matTooltip="Notifications for every New Project Posting">?</span> -->
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" fxFlex.lg="25" fxFlex.md="25" fxFlex.sm="100" fxFlex.xs="100"
+            [ngClass.xl]="'px-16'" [ngClass.lg]="'px-16'" [ngClass.md]="'px-16'" [ngClass.sm]="'px-0'" [ngClass.xs]="'px-0'">
+            <mat-label>City</mat-label>
+            <mat-select formControlName="city" (selectionChange)="cityNameUpdated($event.value)">
+              <mat-option *ngFor="let cityInfo of cityProvinceList" [value]="cityInfo">
+                {{cityInfo.city}}
+              </mat-option>
+            </mat-select>
+            <mat-error>Mandatory field is required</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="100" fxFlex.xs="100" class=""
+            [ngClass.xl]="'pl-16'" [ngClass.lg]="'pl-16'" [ngClass.md]="'pl-16'" [ngClass.sm]="'px-0'" [ngClass.xs]="'px-0'">
+            <mat-label>Provinces</mat-label>
+            <input readonly matInput formControlName="province" required>
+          </mat-form-field>
+          <mat-form-field appearance="outline" fxFlex.lg="25" fxFlex.md="25" fxFlex.sm="100" fxFlex.xs="100"
+            [ngClass.xl]="'pl-16'" [ngClass.lg]="'pl-16'" [ngClass.md]="'pl-16'" [ngClass.sm]="'px-0'" [ngClass.xs]="'px-0'">
+            <mat-label>Postal Code</mat-label>
+            <input matInput formControlName="postalCode" required>
+            <mat-error *ngIf="contactInfoEditform.get('postalCode').hasError('required')">
+              {{mandatory}}
+            </mat-error>
+            <mat-error *ngIf="contactInfoEditform.get('postalCode').hasError('pattern')">
+              Postal code must contain 6 digit alphanumeric characters
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start center"
+          fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxFlex="1 0 auto">
+          <mat-form-field appearance="outline" fxFlex.lg="25" fxFlex.md="25" fxFlex.sm="100" fxFlex.xs="100"
+            [ngClass.xl]="'pr-16'" [ngClass.lg]="'pr-16'" [ngClass.md]="'pr-16'" [ngClass.sm]="'px-0'" [ngClass.xs]="'px-0'">
+            <mat-label>Phone Number</mat-label>
+            <input matInput formControlName="phone" required>
+            <mat-error *ngIf="contactInfoEditform.get('phone').hasError('required')">
+              {{mandatory}}
+            </mat-error>
+            <mat-error *ngIf="contactInfoEditform.get('phone').hasError('pattern')">
+              Please Enter a Number
+            </mat-error>
+            <!-- <span class="condo-tooltip" fxFlex="5" fxLayoutAlign="start top"
+              matTooltip="Notifications for every New Project Posting">?</span> -->
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" fxFlex.lg="25" fxFlex.md="25" fxFlex.sm="100" fxFlex.xs="100"
+            [ngClass.xl]="'px-16'" [ngClass.lg]="'px-16'" [ngClass.md]="'px-16'" [ngClass.sm]="'px-0'" [ngClass.xs]="'px-0'">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" required>
+            <mat-error *ngIf="contactInfoEditform.get('email').hasError('required')">
+              {{mandatory}}
+            </mat-error>
+            <mat-error *ngIf="contactInfoEditform.get('email').hasError('pattern')">
+              Please Enter Valid Email ID
+            </mat-error>
+            <!-- <span class="condo-tooltip" fxFlex="5" fxLayoutAlign="start top"
+              matTooltip="Notifications for every New Project Posting">?</span> -->
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" fxFlex.lg="25" fxFlex.md="25" fxFlex.sm="100" fxFlex.xs="100"
+            [ngClass.xl]="'px-16'" [ngClass.lg]="'px-16'" [ngClass.md]="'px-16'" [ngClass.sm]="'px-0'" [ngClass.xs]="'px-0'">
+            <mat-label>Fax</mat-label>
+            <input matInput formControlName="fax">
+            <mat-error *ngIf="contactInfoEditform.get('fax').hasError('pattern')">
+              Fax must be a Number
+            </mat-error>
+            <!-- <span class="condo-tooltip" fxFlex="5" fxLayoutAlign="start top"
+              matTooltip="Notifications for every New Project Posting">?</span> -->
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" fxFlex.lg="25" fxFlex.md="25" fxFlex.sm="100" fxFlex.xs="100"
+            [ngClass.xl]="'pl-16'" [ngClass.lg]="'pl-16'" [ngClass.md]="'pl-16'" [ngClass.sm]="''" [ngClass.xs]="''">
+            <mat-label>Website</mat-label>
+            <input matInput formControlName="website">
+            <mat-error *ngIf="contactInfoEditform.get('website').hasError('pattern')">
+              Please Enter Valid Website name
+            </mat-error>
+            <!-- <span class="condo-tooltip" fxFlex="5" fxLayoutAlign="start top"
+              matTooltip="Notifications for every New Project Posting">?</span> -->
+          </mat-form-field>
+        </div>
+
+
+        <div mat-dialog-title class="condo-gray-text" [ngClass.xl]="'pt-24'" [ngClass.lg]="'pt-24'" [ngClass.md]="'pt-24'"
+          [ngClass.sm]="'pt-0'" [ngClass.xs]="'pt-0'">CONTACT PERSON</div>
+
+        <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start center"
+          fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxFlex="1 0 auto">
+
+          <mat-form-field appearance="outline" fxFlex.lg="25" fxFlex.md="25" fxFlex.sm="100" fxFlex.xs="100"
+            [ngClass.xl]="'pr-16'" [ngClass.lg]="'pr-16'" [ngClass.md]="'pr-16'" [ngClass.sm]="'px-0'" [ngClass.xs]="'px-0'">
+            <mat-label>Contact Name</mat-label>
+            <input matInput formControlName="contactPer">
+            <!-- <span class="condo-tooltip" fxFlex="5" fxLayoutAlign="start top"
+              matTooltip="Notifications for every New Project Posting">?</span> -->
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" fxFlex.lg="25" fxFlex.md="25" fxFlex.sm="100" fxFlex.xs="100" class=""
+            [ngClass.xl]="'px-16'" [ngClass.lg]="'px-16'" [ngClass.md]="'px-16'" [ngClass.sm]="''" [ngClass.xs]="''">
+            <mat-label>Phone</mat-label>
+            <input matInput formControlName="personPhone">
+            <mat-error *ngIf="contactInfoEditform.get('personPhone').hasError('pattern')">
+              Please Enter a Number
+            </mat-error>
+
+            <!-- <span class="condo-tooltip" fxFlex="5" fxLayoutAlign="start top"
+              matTooltip="Notifications for every New Project Posting">?</span> -->
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="100" fxFlex.xs="100" class=""
+            [ngClass.xl]="'pl-16'" [ngClass.lg]="'pl-16'" [ngClass.md]="'pl-16'" [ngClass.sm]="'px-0'" [ngClass.xs]="'px-0'">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="personEmail">
+            <mat-error *ngIf="contactInfoEditform.get('personEmail').hasError('pattern')">
+              Please Enter Valid Email ID
+            </mat-error>
+            <!-- <span class="condo-tooltip" fxFlex="4" fxLayoutAlign="start top"
+              matTooltip="Notifications for every New Project Posting">?</span> -->
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <mat-dialog-actions align="end" class="px-16 mt-4 mb-4">
+    <button [disabled]="contactInfoEditform.invalid" mat-button mat-flat-button mat-accent cdkFocusInitial
+      color="accent" (click)="updateContactDetails()">UPDATE</button>
+    <button mat-button mat-dialog-close class="fuse-navy-50">CANCEL</button>
+  </mat-dialog-actions>
+
+</mat-dialog-content>

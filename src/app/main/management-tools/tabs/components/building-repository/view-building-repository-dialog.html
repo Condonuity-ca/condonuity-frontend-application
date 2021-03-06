@@ -1,0 +1,105 @@
+<div fxLayout="row" fxLayoutAlign="space-between flex-start">
+    <div mat-dialog-title class="" [ngClass.lg]="'pl-12'" [ngClass.md]="'pl-12'" [ngClass.sm]="'pl-12'" [ngClass.xs]="'pl-0'">
+        <div class="h3">                                     
+            <span class="text-boxed condo-text-red h3">{{buildingDetails.unitNumber}}</span>
+            <span class="">{{buildingDetails.unitTypeDisplayText}}</span>
+            <span class="condo-gray-text ml-16">|</span><span class="condo-gray-text ml-16">Status:</span>{{buildingDetails.tenantStatusDisplayText}}
+        </div>                                        
+    </div>
+    <mat-dialog-actions align="end" class="px-16 mb-12">
+        <button mat-button mat-dialog-close style="margin-top:-20px;min-width: 28px !important;" class="p-0"><mat-icon class="s-24 condo-red-text" mat-dialog-close>close</mat-icon></button>    
+    </mat-dialog-actions>
+
+</div>
+<mat-dialog-content class="mat-typography">
+    <div class="profile-box info-box general" fxLayout="column">
+        <div class="pr-16 ml-24 mt-16" fxLayout="column" fxLayoutAlign="start">
+            <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start flex-start" fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxFlex="1 0 auto">                            
+                <div  fxFlex="30" fxFlex.sm="100" fxFlex.xs="100">                        
+                    <div class="h5 condo-gray-text">LIEN</div>                            
+                    <div class="h4 mb-16">{{buildingDetails.lienTypeDisplayText}}</div>                                                                       
+                </div>                            
+                <div  fxFlex="50" fxFlex.sm="100" fxFlex.xs="100">                                                                       
+                    <div class="h5 condo-gray-text">LIEN DATE</div>                                                
+                    <div class="h4 mb-16">
+                        <span>
+                            <span></span><span>{{buildingDetails.lienDisplayDate}}</span> 
+                        </span>
+                    </div>   
+                </div>                            
+            </div>
+            <div class="mt-16" fxLayout="row wrap" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start flex-start" fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxFlex="1 0 auto">                            
+                <div fxFlex="30" fxFlex.sm="100" fxFlex.xs="100">                        
+                    <div class="h5 condo-gray-text">NAME</div>                            
+                    <div class="h4 mb-16">{{buildingDetails.firstName}} {{buildingDetails.lastName}}</div>                                                                       
+                </div> 
+                <div fxFlex="20" fxFlex.sm="100" fxFlex.xs="100">                        
+                    <div class="h5 condo-gray-text">PERSON TYPE</div>                            
+                    <div class="h4 mb-16">{{buildingDetails.personTenantTypeDisplayText}}</div>                                                                       
+                </div>                            
+                <div fxFlex="25" fxFlex.sm="100" fxFlex.xs="100">                        
+                    <div class="h5 condo-gray-text">CONTACT NUMBER</div>                            
+                    <div class="h4 mb-16">{{buildingDetails.contactNumber}}</div>                                                                       
+                </div> 
+                <div fxFlex="25" fxFlex.sm="100" fxFlex.xs="100">                        
+                    <div class="h5 condo-gray-text">EMAIL</div>                            
+                    <div class="h4 mb-16">{{buildingDetails.contactEmail}}</div>                                                                       
+                </div>                                    
+            </div> 
+                                   
+            <div class="mt-16" fxLayout="row wrap" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start flex-start" fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxFlex="1 0 auto">                            
+                <div fxFlex="50" fxFlex.sm="100" fxFlex.xs="100">                        
+                    <div class="h5 condo-gray-text">VEHICLE MAKE/MODEL</div>                            
+                    <div class="h4 mb-16">{{buildingDetails.vehicleMode}}</div>                                                                       
+                </div>                                            
+                <div fxFlex="25" fxFlex.sm="100" fxFlex.xs="100">                        
+                    <div class="h5 condo-gray-text">COLOR</div>                            
+                    <div class="h4 mb-16">{{buildingDetails.color}}</div>                                                                       
+                </div> 
+                <div fxFlex="25" fxFlex.sm="100" fxFlex.xs="100">                        
+                    <div class="h5 condo-gray-text">LICENSE NUMBER</div>                            
+                    <div class="h4 mb-16">{{buildingDetails.licenseNumber}}</div>                                                                       
+                </div>                                    
+            </div>   
+            
+            <div class="mt-16" fxLayout="row wrap" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start flex-start" fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxFlex="1 0 auto">                            
+                <div fxFlex="30" fxFlex.sm="100" fxFlex.xs="100">                        
+                    <div class="h5 condo-gray-text">PET NAME</div>                            
+                    <div class="h4 mb-16">{{buildingDetails.petName}}</div>                                                                       
+                </div>                                            
+                <div fxFlex="50" fxFlex.sm="100" fxFlex.xs="100">                        
+                    <div class="h5 condo-gray-text">PET DESCRIPTION</div>                            
+                    <div class="h4 mb-16">{{buildingDetails.petDescription}}</div>                                                                       
+                </div>                                                   
+            </div> 
+            
+            <div class="mt-16" fxLayout="row wrap" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start flex-start" fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxFlex="1 0 auto">                            
+                <div fxFlex="30" fxFlex.sm="100" fxFlex.xs="100">                        
+                    <div class="h5 condo-gray-text">EMERGENCY CONTACT NAME</div>                            
+                    <div class="h4 mb-16">{{buildingDetails.emergencyContactName}}</div>                                                                       
+                </div>                                            
+                <div fxFlex="40" fxFlex.sm="100" fxFlex.xs="100">                        
+                    <div class="h5 condo-gray-text">EMERGENCY CONTACT NUMBER</div>                            
+                    <div class="h4 mb-16">{{buildingDetails.emergencyContactNumber}}</div>                                                                       
+                </div> 
+                <div fxFlex="30" fxFlex.sm="100" fxFlex.xs="100">                        
+                    <div class="h5 condo-gray-text">CONTACT EMAIL</div>                            
+                    <div class="h4 mb-16">{{buildingDetails.emergencyContactEmail}}</div>                                                                       
+                </div>                                    
+            </div>
+            
+            <div class="mt-16" fxLayout="row wrap" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start flex-start" fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxFlex="1 0 auto">                            
+                <div fxFlex="50" fxFlex.sm="100" fxFlex.xs="100">                        
+                    <div class="h5 condo-gray-text">HANDICAP INFO</div>                            
+                    <div class="h4 mb-16">{{buildingDetails.handicapInfo}}</div>                                                                       
+                </div>                                            
+                <div fxFlex="50" fxFlex.sm="100" fxFlex.xs="100">                        
+                    <div class="h5 condo-gray-text">COMMENTS</div>                            
+                    <div class="h4 mb-16">{{buildingDetails.comments}}</div>                                                                       
+                </div>                                                  
+            </div>
+            
+        </div>
+    </div>
+</mat-dialog-content>
+

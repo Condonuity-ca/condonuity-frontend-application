@@ -1,0 +1,65 @@
+<div fxLayout="row" fxLayoutAlign="space-between center">
+  <div mat-dialog-title class="pl-12">EDIT COMPANY INFO</div>
+
+  <mat-dialog-actions align="end" class="px-16 mb-12">
+    <button mat-button mat-dialog-close style="margin-top:-30px;min-width: 28px !important;" class="p-0">
+      <mat-icon class="s-24 condo-red-text" mat-dialog-close>close</mat-icon>
+    </button>
+  </mat-dialog-actions>
+
+</div>
+<mat-dialog-content class="mat-typography">
+  <div class="profile-box info-box general" fxLayout="column">
+    <form fxLayout="column" fxLayoutAlign="start" fxFlex="1 0 auto" name="comInfoEditform"
+      [formGroup]="comInfoEditform">
+
+
+
+
+      <div fxLayout="row" fxLayout.sm="row" fxLayout.xs="column" fxLayoutAlign="start center" fxLayoutAlign.xs="start"
+        fxFlex="1 0 auto">
+        <mat-form-field appearance="outline" fxFlex="33" [ngClass.xl]="'px-16'" [ngClass.lg]="'px-16'" [ngClass.md]="'px-16'"
+          [ngClass.sm]="'px-16'" [ngClass.xs]="''">
+          <mat-label>Established Date</mat-label>
+          <input matInput [matDatepicker]="establishedDate" formControlName="establishedDate"
+            placeholder="Choose a date" readonly>
+          <mat-datepicker-toggle matSuffix [for]="establishedDate"></mat-datepicker-toggle>
+          <mat-datepicker #establishedDate></mat-datepicker>
+          <mat-error *ngIf="comInfoEditform.get('establishedDate').hasError('required')">
+            {{mandatory}}
+          </mat-error>
+          <!-- <span class="condo-tooltip" fxFlex="3" fxLayoutAlign="start top"  matTooltip="Notifications for every New Project Posting">?</span> -->
+        </mat-form-field>
+
+
+        <mat-form-field appearance="outline" fxFlex="33" class="" [ngClass.xl]="'px-16'" [ngClass.lg]="'px-16'" [ngClass.md]="'px-16'"
+          [ngClass.sm]="'px-16'" [ngClass.xs]="''">
+          <mat-label>Total Employees</mat-label>
+          <input matInput formControlName="totalEmp">
+          <mat-error *ngIf="comInfoEditform.get('totalEmp').hasError('pattern')">
+            Please Enter a Number
+          </mat-error>
+          <!-- <span class="condo-tooltip" fxFlex="3" fxLayoutAlign="start top"  matTooltip="Notifications for every New Project Posting">?</span> -->
+        </mat-form-field>
+
+
+        <mat-form-field appearance="outline" fxFlex="34" [ngClass.xl]="'px-16'" [ngClass.lg]="'px-16'" [ngClass.md]="'px-16'"
+          [ngClass.sm]="'px-16'" [ngClass.xs]="''">
+          <mat-label>Annual Sales</mat-label>
+          <input matInput formControlName="avgYearlySale">
+          <span matPrefix>$&nbsp;</span>
+          <mat-error *ngIf="comInfoEditform.get('avgYearlySale').hasError('pattern')">
+            Please Enter a valid Number
+          </mat-error>
+          <!-- <span class="condo-tooltip" fxFlex="3" fxLayoutAlign="start top"  matTooltip="Notifications for every New Project Posting">?</span> -->
+        </mat-form-field>
+
+      </div>
+    </form>
+  </div>
+  <mat-dialog-actions align="end" class="  mb-0" [ngClass.xl]="'px-16'" [ngClass.lg]="'px-16'" [ngClass.md]="'px-16'" [ngClass.sm]="'px-16'"
+    [ngClass.xs]="''">
+    <button (click)="updateCompanyInfo()" mat-button mat-flat-button mat-accent color="accent">UPDATE</button>
+    <button mat-button mat-dialog-close class="fuse-navy-50">CANCEL</button>
+  </mat-dialog-actions>
+</mat-dialog-content>

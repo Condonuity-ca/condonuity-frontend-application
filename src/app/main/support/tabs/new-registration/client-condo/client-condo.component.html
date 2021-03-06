@@ -1,0 +1,160 @@
+<form fxLayout="column" fxLayoutAlign="start" class="mb-12" name="filterForm" [formGroup]="filterForm">
+
+  <div class="" fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign.sm="start"
+    fxLayoutAlign.xs="start" fxLayoutAlign="space-between center" class="mat-card mat-elevation-z  pt-32 ">
+    <div class="pr-4" fxFlex.lg="100" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100" fxLayout.lg="row"
+      fxLayout.md="row" fxLayout.sm="column" fxLayout.xs="column" [ngClass.lg]="'mx-24 '" [ngClass.md]="'mx-24'"
+      [ngClass.sm]="'ml-32 mr-12'" [ngClass.xs]="'px-12 mr-12'">
+
+      <div class="pr-16 mt-16 condo-gray-text" fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="row"
+        fxLayout.xs="column" fxFlex.lg="57" fxFlex.md="55" fxFlex.sm="57" fxFlex.xs="57" fxLayoutAlign.lg="start top"
+        fxLayoutAlign.md="start top" fxLayoutAlign.sm="start top" fxLayoutAlign.xs="start top">
+        <mat-label class="secondary-text font-weight-600 pt-4" fxFlex.lg="30" fxFlex.md="30" fxFlex.sm="35"
+          fxFlex.xs="100" [ngClass.xs]="'mb-16'">
+          SEARCH CONDO BY: </mat-label>
+        <mat-radio-group aria-label="Select an option" fxFlex.lg="70" fxFlex.md="70" fxFlex.sm="65" fxFlex.xs="100"
+          fxLayout.xs="column">
+          <mat-radio-button [checked]="condoSearchType == 1" appearance="outline" class="pr-16" fxFlex="50"
+            fxFlex.xs="100" [ngClass.xs]="'mb-16'" value=1 (change)="searchTypeChanged($event.value)">Condo Name
+          </mat-radio-button>
+          <mat-radio-button [checked]="condoSearchType == 2" appearance="outline" class="pr-16" fxFlex="50"
+            fxFlex.xs="100" [ngClass.xs]="'mb-16'" value=2 (change)="searchTypeChanged($event.value)">Corporation #
+          </mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+      <mat-form-field appearance="outline" [ngClass.lg]="'pr-16'" [ngClass.md]="'pr-16'" [ngClass.sm]="'pr-16'"
+        [ngClass.xs]="'pr-0'" fxFlex.lg="23" fxFlex.md="25" fxFlex.sm="25">
+        <mat-label *ngIf="condoSearchType == 1">Condo Name</mat-label>
+        <mat-label *ngIf="condoSearchType == 2">Corp. Number#</mat-label>
+        <input matInput formControlName="searchWord">
+      </mat-form-field>
+
+
+      <div class="mat-card mat-elevation-z pb-16" fxFlex.lg="20" fxFlex.md="20" fxFlex.sm="100" fxFlex.xs="100"
+        fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="row" fxLayout.xs="column" fxLayoutAlign.lg="end center"
+        fxLayoutAlign.md="end center" fxLayoutAlign.sm="end end" fxLayoutAlign.xs="end end" [ngClass.lg]="'mr-0'"
+        [ngClass.sm]="'mr-16 mt-0 mb-16'" [ngClass.xs]="'mr-0 mb-20'">
+        <div fxFlex.lg="50" fxFlex.md="50" fxFlex.xs="100">
+          <button mat-button class="mat-flat-button " color="accent" cdkFocusInitial
+            (click)="searchOrg()">SEARCH</button>
+        </div>
+        <div fxFlex.lg="50" fxFlex.md="50" fxFlex.xs="100" [ngClass.xs]="'mt-16 '">
+          <button mat-button class="mat-flat-button condo-red-300 ml-16" cdkFocusInitial
+            (click)="clearCondoSearch()">CLEAR</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="" fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign.sm="start"
+    fxLayoutAlign.xs="start" fxLayoutAlign.lg="space-between center" fxLayoutAlign.md="space-between center"
+    class="mat-card mat-elevation-z  pt-16"
+    style="background:#fafafa;border-left:3px solid #fff;border-right:3px solid #fff">
+
+    <div class="pr-4" fxFlex.lg="100" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100" fxLayout.lg="row"
+      fxLayout.md="row" fxLayout.sm="column" fxLayout.xs="column" [ngClass.lg]="'mx-24 '" [ngClass.md]="'mx-24'"
+      [ngClass.sm]="'ml-24 mr-8'" [ngClass.xs]="'pl-16 mr-12'">
+      <mat-form-field appearance="outline" class="" [ngClass.lg]="'pr-16'" [ngClass.md]="'pr-16'" [ngClass.sm]="'pr-16'"
+        [ngClass.xs]="'pr-0'" fxFlex.lg="40" fxFlex.md="40" fxFlex.sm="100" fxFlex.xs="40">
+        <mat-label>Location</mat-label>
+
+        <mat-chip-list maxLength="1" #cityChipList aria-label="City Selection" formControlName="cityChips">
+          <mat-chip *ngFor="let cityInfo of selectedCities" [selectable]="selectable" [removable]="removable"
+            (removed)="removeCity(cityInfo)">
+            {{cityInfo.cityName}}
+            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+          </mat-chip>
+          <input placeholder="City" #cityInput [formControl]="cityCtrl" formControlName="servicedCities"
+            [matAutocomplete]="cityAuto" [matChipInputFor]="cityChipList"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur">
+        </mat-chip-list>
+        <mat-autocomplete #cityAuto="matAutocomplete" (optionSelected)="selectCity($event)">
+          <mat-option *ngFor="let cityInfo of filteredCities | async" [value]="cityInfo">
+            {{cityInfo.cityName}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" [ngClass.lg]="'pr-16'" [ngClass.md]="'pr-16'" [ngClass.sm]="'pr-16'"
+        [ngClass.xs]="'pr-0'" fxFlex="20" fxFlex.sm="100">
+        <mat-label># of Units</mat-label>
+        <input matInput formControlName="unitsFromNos">
+      </mat-form-field>
+      <div appearance="outline" [ngClass.lg]="'pr-16'" [ngClass.md]="'pr-16'" [ngClass.sm]="'pr-16'"
+        [ngClass.xs]="'pr-0'" fxFlex="5" fxFlex.sm="100" fxLayoutAlign="center center" style="margin-top:-20px;">to
+      </div>
+
+      <mat-form-field appearance="outline" [ngClass.lg]="'pr-16'" [ngClass.md]="'pr-16'" [ngClass.sm]="'pr-16'"
+        [ngClass.xs]="'pr-0'" fxFlex="20" fxFlex.sm="100">
+        <input matInput formControlName="unitsToNos">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" fxFlex.lg="30" fxFlex.md="30" fxFlex.sm="100" fxFlex.xs="50"
+        [ngClass.sm]="'pr-16'" [ngClass.xs]="'pr-0'">
+        <mat-label>Status</mat-label>
+        <mat-select formControlName="accountStatus" (selectionChange)="accountStatusSelected($event.value)">
+          <mat-option value=0>All</mat-option>
+          <mat-option value=1>New</mat-option>
+          <mat-option value=2>Rejected</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </div>
+  </div>
+
+
+  <div class="mat-card mat-elevation-z pb-16" fxFlex="100" fxLayoutAlign="end" fxLayout.sm="row" fxLayout.xs="row"
+    [ngClass.lg]="'mx-0 px-0 pr-28'" [ngClass.md]="'mx-0 px-0 pr-24'" [ngClass.sm]="'mx-0 px-32 mb-16'"
+    [ngClass.xs]="'mx-0 px-16'"
+    style="background:#fafafa;border-left:3px solid #fff;border-right:3px solid #fff;border-bottom:3px solid #fff">
+
+    <div style="" [ngClass.sm]="'ml-8'" [ngClass.xs]="'ml-8'">
+      <button mat-button class="mat-flat-button" color="accent" cdkFocusInitial (click)="filterCondoList()">FILTER
+        CONDO</button>
+    </div>
+    <div style="" [ngClass.sm]="'ml-8'" [ngClass.xs]="'ml-8'">
+      <button mat-button [disabled]="disableClearFilterButton" class="mat-flat-button ml-16" color="accent"
+        (click)="onClickclearFilter()">CLEAR</button>
+    </div>
+  </div>
+</form>
+
+
+<div class="" fxLayout.lg="column" fxLayout.md="column" fxLayout.sm="column" fxLayout.xs="column"
+  fxLayoutAlign="start end" class="mat-card mat-elevation-z  pb-16 " [ngClass.lg]="'px-32 pt-32'"
+  [ngClass.md]="' px-32 pt-32'" [ngClass.sm]="' px-32 pt-32'" [ngClass.xs]="' pt-4'">
+
+  <ngx-datatable fxLayout="column" fxLayoutAlign="start" style="width: 100%" class="material pr-20 cursor"
+    [rows]="condoFilterList" [columnMode]="'reorder'" [footerHeight]="50" [rowHeight]="'50'" [scrollbarH]="true"
+    [scrollbarV]="false" [selectionType]="'single'" [limit]="20" (activate)="viewCondo($event)">
+    <ngx-datatable-column [width]="170" name="Corporation#" prop="corporateNumber"></ngx-datatable-column>
+    <ngx-datatable-column [width]="180" name="Org. Name" prop="organisationName"></ngx-datatable-column>
+    <ngx-datatable-column [width]="110" name="Units#" prop="units"></ngx-datatable-column>
+    <ngx-datatable-column [width]="120" name="City" prop="city"></ngx-datatable-column>
+    <ngx-datatable-column [width]="150" name="Phone Number" prop="phoneNumber"></ngx-datatable-column>
+    <ngx-datatable-column [width]="150" name="Status" prop="status"></ngx-datatable-column>
+    <ngx-datatable-column [width]="190" name="Management Email" prop="managementEmail"></ngx-datatable-column>
+    <ngx-datatable-column [width]="160" name="Registration Date" prop="createdAt">
+      <ng-template ngx-datatable-cell-template let-value="value">
+        {{value | date : 'MM/dd/yyyy'}}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column [width]="150" name="First Name" prop="adminFirstName"></ngx-datatable-column>
+    <ngx-datatable-column [width]="150" name="Last Name" prop="adminLastName"></ngx-datatable-column>
+    <ngx-datatable-column [width]="300" name="Email" prop="adminEmail"></ngx-datatable-column>
+  </ngx-datatable>
+
+  <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+    <div fxLayout="row" fxLayoutAlign="end" fxFlex="1 0 auto">
+      <button mat-raised-button color="primary" class="submit-button mr-16" aria-label="Continue"
+        (click)="ExportTOExcel()">
+        DOWNLOAD
+      </button>
+      <button mat-raised-button color="primary" class="submit-button" aria-label="Continue" (click)="print()">
+        PRINT
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,134 @@
+<div fxLayout="row" fxLayoutAlign="space-between center">
+  <div mat-dialog-title class="pl-12 ">EDIT AMENITIES INFORMATION</div>
+
+  <mat-dialog-actions align="end" class="px-16 mb-12">
+    <button mat-button mat-dialog-close style="margin-top:-20px;min-width: 28px !important;" class="p-0">
+      <mat-icon class="s-24 condo-red-text" mat-dialog-close>close</mat-icon>
+    </button>
+  </mat-dialog-actions>
+
+</div>
+<mat-dialog-content class="mat-typography">
+  <div class="profile-box info-box general p-16" fxLayout="column">
+    <form fxLayout="column" fxLayoutAlign="start" fxFlex="1 0 auto" name="aminityForm" [formGroup]="aminityForm">
+      <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+        <mat-checkbox appearance="outline" fxFlex="15" fxFlex.sm="40" fxFlex.xs="40" class="pr-16"
+          formControlName="gym">Gym</mat-checkbox>
+        <mat-checkbox appearance="outline" fxFlex="30" fxFlex.sm="60" fxFlex.xs="60" class="px-16"
+          formControlName="partyRoom">Party Room</mat-checkbox>
+        <mat-form-field appearance="outline" fxFlex="33" fxFlex.xs="100" class="pr-16 " [ngClass.lg]="'pt-24'"
+          [ngClass.md]="'pt-24'" [ngClass.sm]="'pt-24'">
+          <mat-label>Number of Elevators</mat-label>
+          <mat-select class="account-selection" formControlName="elevatorNos" placeholder="Todo Selection">
+            <mat-option [value]="1">1 </mat-option>
+            <mat-option [value]="2">2 </mat-option>
+            <mat-option [value]="3">3 </mat-option>
+            <mat-option [value]="4">4 </mat-option>
+            <mat-option [value]="5">5 </mat-option>
+            <mat-option [value]="6">6 </mat-option>
+            <mat-option [value]="7">7 </mat-option>
+            <mat-option [value]="8">8 </mat-option>
+            <mat-option [value]="9">9 </mat-option>
+            <mat-option [value]="10">10 </mat-option>
+            <mat-option [value]="11">11 </mat-option>
+            <mat-option [value]="12">12 </mat-option>
+            <mat-option [value]="13">13 </mat-option>
+            <mat-option [value]="14">14 </mat-option>
+            <mat-option [value]="15">15 </mat-option>
+            <mat-option [value]="16">16 </mat-option>
+            <mat-option [value]="17">17 </mat-option>
+            <mat-option [value]="18">18 </mat-option>
+            <mat-option [value]="19">19 </mat-option>
+            <mat-option [value]="20">20 </mat-option>
+
+          </mat-select>
+        </mat-form-field>
+
+      </div>
+
+
+      <div class="mat-card mat-elevation-z" fxLayout="column">
+        <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start center"
+          fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxFlex="1 0 auto" class="pt-16">
+          <mat-checkbox appearance="outline" fxFlex="15" fxFlex.sm="50" fxFlex.xs="50" class="pr-16"
+            (change)="poolStatus($event);" formControlName="pool">Pool</mat-checkbox>
+          <div class="pt-16  pb-16 input-group-bg" fxLayout="row" fxFlex="1 0 auto">
+            <span fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start center"
+              fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxFlex="1 0 auto" formGroupName="poolDetails">
+              <mat-label fxFlex="30" class="px-16 text-bold" [ngClass.sm]="'mb-16'" [ngClass.xs]="'mb-16'">What Kind of
+                pool?</mat-label>
+              <mat-checkbox appearance="outline" fxFlex="15" fxFlex.sm="90" fxFlex.xs="90" class="px-16"
+                formControlName="indoor">Indoor</mat-checkbox>
+              <mat-checkbox appearance="outline" fxFlex="15" fxFlex.sm="90" fxFlex.xs="90" class="px-16"
+                [ngClass.sm]="'mt-16'" [ngClass.xs]="'mt-16'" formControlName="outdoor">Outdoor</mat-checkbox>
+            </span>
+          </div>
+        </div>
+
+        <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start center"
+          fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxFlex="1 0 auto" class="pt-32">
+          <mat-checkbox appearance="outline" fxFlex="15" class="pr-16" (change)="parkingStatus($event);"
+            formControlName="parking">Parking</mat-checkbox>
+          <div class="pt-16 pb-16 input-group-bg" fxLayout="column" fxFlex="100">
+            <span fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start center"
+              fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxFlex="1 0 auto" formGroupName="parkingDetails">
+              <span fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start center"
+                fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" formGroupName="undergound">
+                <mat-checkbox appearance="outline" fxFlex="100" class="px-16"
+                  (change)="assignSpots($event,'Underground');" formControlName="parking">Underground</mat-checkbox>
+                <mat-form-field appearance="outline" fxFlex="1 0 auto" class="px-16" [ngClass.lg]="'pt-24'"
+                  [ngClass.xs]="'mt-16'" *ngIf="!spot.ug">
+                  <mat-label>How may parking spots?</mat-label>
+                  <input matInput formControlName="spots">
+                  <mat-error *ngIf="aminityForm.get('parkingDetails.undergound.spots').hasError('pattern')">
+                    Parking Spots must be a Number
+                  </mat-error>
+                </mat-form-field>
+              </span>
+            </span>
+
+
+            <span fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start center"
+              fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxFlex="1 0 auto" formGroupName="parkingDetails"
+              class="mt-8">
+              <span fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start center"
+                fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" formGroupName="ground">
+                <mat-checkbox appearance="outline" fxFlex="100" class="px-16" (change)="assignSpots($event,'Ground');"
+                  formControlName="parking">Ground Level</mat-checkbox>
+                <mat-form-field appearance="outline" fxFlex="100" class="px-16" [ngClass.lg]="'pt-24'" *ngIf="!spot.gl"
+                  [ngClass.sm]="'mt-16'">
+                  <mat-label>Parking Spots</mat-label>
+                  <input matInput formControlName="spots">
+                  <mat-error *ngIf="aminityForm.get('parkingDetails.ground.spots').hasError('pattern')">
+                    Parking Spots must be a Number
+                  </mat-error>
+                </mat-form-field>
+              </span>
+            </span>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+      <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start center"
+        fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxFlex="1 0 auto" class="mt-32">
+        <mat-form-field appearance="outline" fxFlex="100">
+
+          <mat-label>Other</mat-label>
+          <textarea name="desciption" formControlName="other" matInput type="text" max-rows="4"></textarea>
+        </mat-form-field>
+      </div>
+
+
+    </form>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end" class="pr-24 mb-8">
+  <button mat-button mat-flat-button mat-accent [mat-dialog-close]="aminityForm.value" cdkFocusInitial
+    color="accent">UPDATE</button>
+  <button mat-button mat-dialog-close class="fuse-navy-50">CANCEL</button>
+
+</mat-dialog-actions>

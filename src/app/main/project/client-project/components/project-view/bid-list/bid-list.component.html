@@ -1,0 +1,26 @@
+<mat-accordion displayMode="flat" class="mat-table mat-elevation-z" [multi]="true">
+  <section matSort class="mat-header-row table-font">
+    <span class="mat-header-cell" mat-sort-header="vendorName">Vendor Name</span>
+    <span class="mat-header-cell" mat-sort-header="submissionDate" fxHide.xs>Submission Date</span>
+    <span class="mat-header-cell" mat-sort-header="totalPrice">Tot Price Excl. Tax</span>
+    <span class="mat-header-cell" mat-sort-header="vendorRating" fxHide.xs>Vendor Rating</span>
+    <span class="mat-header-cell" mat-sort-header="startDate">Start Date</span>
+    <span class="mat-header-cell" mat-sort-header="duration" fxHide.xs>Duration</span>
+  </section>
+
+  <span *ngIf="isBidListEmpty" class="mt-16 no_data">{{no_bidlist}}</span>
+  <mat-expansion-panel class="mt-16 mat-elevation-z" *ngFor="let item of displayedRows$ | async">
+    <mat-expansion-panel-header class="mat-row mat-elevation-z table-font">
+      <span class="mat-cell">{{item.organisationName}}</span>
+      <span class="mat-cell" fxHide.xs>{{item.submitDate}}</span>
+      <span class="mat-cell">{{item.totalPrice | currency:'CAD'}}</span>
+      <span class="mat-cell" fxHide.xs>{{item.vendorDisplayRating}}</span>
+      <span class="mat-cell">{{item.projectStartDate}}</span>
+      <span class="mat-cell" fxHide.xs>{{item.vendorProjectDuration}}</span>
+    </mat-expansion-panel-header>
+    <div class="mt-40">
+      <bid-details [bidData]="item" [isProjectAwarded]="isProjectAwarded" (messageToEmit)="selectedBid($event)">
+      </bid-details>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>

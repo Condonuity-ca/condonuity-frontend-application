@@ -1,0 +1,170 @@
+@import "src/@condonuity/scss/fuse";
+
+.search .search-close{display:none;}
+input:focus + .search-close, .search:hover .search-close{display:block;}
+
+.unread-count{
+position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 18px;
+    height: 18px;
+    top: 8px;
+    left: 12px;
+	background:#d84d34;
+	color:#fff;
+    border-radius: 9px;
+    padding: 0 5px;
+    font-size: 11px;
+    text-align: center;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.35);
+	}
+.search-btn{
+border-left:1px solid #ddd;border-radius:0px;
+}
+.search-btn:hover{
+background:#fafafa !important;
+}
+
+
+.mat-menu-panel {
+  max-width: 400px !important;
+}
+
+.avatar {
+  min-width: 32px;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+}
+
+.new-project {
+  background: #effaea;
+  color: #9ed386 !important
+}
+
+.bid-project {
+  background: #fef9e1;
+  color: #d7ba33 !important
+}
+
+.alert {
+  background: #fdeded;
+  color: #e76262 !important
+}
+
+.changes {
+  background: #e0f6f9;
+  color: #32c0d1 !important
+}
+
+.tool-menu ul li {
+  border-bottom: 1px solid #f7f7f7;
+  padding: 20px 20px 16px 16px;
+}
+
+.tool-menu ul li:hover {
+  background: #fbfbfb;
+}
+
+.search-wrapper {
+  border-radius: 4px;
+  overflow: hidden;
+  @include mat-elevation(0);
+  border: 1px solid #ddd;
+
+  .sidebar-toggle {
+    margin: 0 0 0 6px;
+    width: 76px;
+    height: 36px;
+    border-radius: 0;
+    border-right: 1px solid;
+  }
+
+  .search {
+    width: 100%;
+    height: 36px;
+    line-height: 36px;
+    padding: 0 10px;
+
+
+    input {
+      height: 36px;
+      min-height: 36px;
+      max-height: 36px;
+      padding: 0 6px;
+      border: none;
+      font-size: 16px;
+      outline: none;
+    }
+  }
+
+  ::placeholder {
+    color: #97a3b4;
+  }
+}
+
+toolbar {
+  position: relative;
+  display: flex;
+  flex: 0 0 auto;
+  z-index: 4;
+  background: #fff;
+
+  &.below {
+    z-index: 2;
+  }
+
+  .mat-toolbar {
+    position: relative;
+    background: inherit !important;
+    color: inherit !important;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+
+    .logo-icon {
+      width: 38px;
+    }
+  }
+
+  .user-button,
+  fuse-search-bar,
+  .language-button,
+  .chat-panel-toggle-button,
+  .quick-panel-toggle-button {
+    min-width: 64px;
+    height: 64px;
+
+    @include media-breakpoint('xs') {
+      height: 56px;
+    }
+  }
+
+  .navbar-toggle-button {
+    min-width: 56px;
+    height: 64px;
+
+    @include media-breakpoint('xs') {
+      height: 56px;
+    }
+  }
+
+  .toolbar-separator {
+    height: 64px;
+    width: 1px;
+
+    @include media-breakpoint('xs') {
+      height: 56px;
+    }
+  }
+
+  .form-control:focus {
+    outline: 0 !important;
+    border-color: initial;
+    box-shadow: none;
+  }
+}

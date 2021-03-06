@@ -1,0 +1,112 @@
+@import "src/@condonuity/scss/fuse";
+
+.mat-dialog-content {
+  max-height: none !important
+}
+
+user-terms-agreement {
+  .mat-dialog-content {
+    max-height: none !important
+  }
+
+  #mail-confirm {
+    width: 100%;
+    background: url('/assets/images/backgrounds/dark-material-bg.jpg') no-repeat;
+    background-size: cover;
+
+    #mail-confirm-form-wrapper {
+      flex: 1 0 auto;
+      padding: 32px;
+
+      @include media-breakpoint('xs') {
+        padding: 16px;
+      }
+
+      #mail-confirm-form {
+
+        padding: 20px 48px;
+        max-height: 500px;
+        overflow-y: scroll !important;
+        text-align: center;
+        background: #fff;
+        @include mat-elevation(16);
+
+
+        @include media-breakpoint('xl') {
+          padding: 20px 48px;
+          width: 100% !important;
+          max-height: 1400px;
+        }
+
+        @include media-breakpoint('xs') {
+          padding: 16px;
+          width: 100%;
+        }
+
+        .logo {
+          margin: 0 auto 32px auto;
+        }
+
+        .title {
+          font-size: 20px;
+          margin-top: 16px;
+        }
+
+        .subtitle {
+          margin: 16px auto;
+          max-width: 300px;
+          font-size: 15px;
+        }
+
+        .message {
+          font-weight: 600;
+          text-align: center;
+          margin-top: 40px;
+        }
+      }
+    }
+
+    #client-accept-invite-form-wrapper {
+      flex: 1 0 auto;
+      padding: 32px;
+
+      @include media-breakpoint('xs') {
+        padding: 16px;
+      }
+
+      #client-accept-invite-form {
+        max-width: 480px;
+        padding: 48px;
+        text-align: center;
+        background: #fff;
+        @include mat-elevation(16);
+
+        @include media-breakpoint('xs') {
+          padding: 24px;
+          width: 100%;
+        }
+
+        .logo {
+          margin: 0 auto 32px auto;
+        }
+
+        .title {
+          font-size: 20px;
+          margin-top: 16px;
+        }
+
+        .subtitle {
+          margin: 16px auto;
+          max-width: 300px;
+          font-size: 15px;
+        }
+
+        .message {
+          font-weight: 600;
+          text-align: center;
+          margin-top: 40px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,220 @@
+<div id="profile" class="page-layout simple">
+  <div id="about" class="p-8" fxLayout="row wrap">
+
+    <div class="about-content" fxLayout="column" fxFlex="100" fxFlex.gt-sm="100" fxFlex.gt-md="100">
+
+      <div class="" fxLayout="row" fxLayoutAlign="space-between flex-start" class="" [ngClass.xl]="'mt-32 mx-24'" [ngClass.lg]="'mt-32 mx-24'"
+        [ngClass.md]="'mt-32 mx-24'" [ngClass.sm]="'mt-32 mx-12'" [ngClass.xs]="'mt-32 mx-4'">
+        <div class="">
+          <div class="h2 condo-gray-text">Filter By</div>
+        </div>
+      </div>
+      <form fxLayout="column" fxLayoutAlign="start" fxFlex="1 0 auto" name="filterForm" [formGroup]="filterForm"
+        class="mb-32">
+        <div class="" fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="column" fxLayout.xs="column"
+          fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxLayoutAlign="space-between flex-start"
+          class="mat-card mat-elevation-z px-32 pt-32 mt-16" [ngClass.xl]="'mx-24 pb-16'" [ngClass.lg]="'mx-24 pb-16'" [ngClass.md]="'mx-24 pb-16'"
+          [ngClass.sm]="'mx-12 pb-16'" [ngClass.xs]="'mx-4 pb-0'">
+          <div class="" fxFlex.xl="75" fxFlex.lg="75" fxFlex.md="75" fxFlex.sm="100" fxFlex.xs="100" fxLayout.xl="row" fxLayout.lg="row"
+            fxLayout.md="row" fxLayout.sm="column" fxLayout.xs="column">
+
+
+            <mat-form-field appearance="outline" class="pr-16" fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="50"
+              fxFlex.xs="50" [ngClass.xs]="'mb-16'">
+              <mat-label>Tags</mat-label>
+              <mat-chip-list #chipList aria-label="Tag Selection">
+                <mat-chip *ngFor="let tag of selectedTags" [selectable]="selectable" [removable]="removable"
+                  (removed)="remove(tag)">
+                  {{tag.tagName}}
+                  <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                </mat-chip>
+                <input required="required" placeholder="Select Tags" #tagInput [formControl]="tagCtrl"
+                  formControlName="tags" [matAutocomplete]="auto" [matChipInputFor]="chipList"
+                  [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur">
+              </mat-chip-list>
+              <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                <mat-option *ngFor="let tags of filteredTags | async" [value]="tags">
+                  {{tags.tagName}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+
+
+            <mat-form-field appearance="outline" class="pr-16" fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="50"
+              fxFlex.xs="50" [ngClass.xs]="'mb-16'">
+              <mat-label>Service Cities</mat-label>
+
+              <mat-chip-list maxLength="1" #cityChipList aria-label="City Selection" formControlName="cityChips">
+                <mat-chip *ngFor="let cityInfo of selectedCities" [selectable]="selectable" [removable]="removable"
+                  (removed)="removeCity(cityInfo)">
+                  {{cityInfo.cityName}}
+                  <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                </mat-chip>
+                <input placeholder="City" #cityInput [formControl]="cityCtrl" formControlName="servicedCities"
+                  [matAutocomplete]="cityAuto" [matChipInputFor]="cityChipList"
+                  [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur">
+              </mat-chip-list>
+              <mat-autocomplete #cityAuto="matAutocomplete" (optionSelected)="selectCity($event)">
+                <mat-option *ngFor="let cityInfo of filteredCities | async" [value]="cityInfo">
+                  {{cityInfo.cityName}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+          </div>
+
+          <div class="" fxFlex.lg="25" fxFlex.md="25" fxFlex.sm="100" fxFlex.xs="100" fxLayout.lg="row"
+            fxLayout.md="row" fxLayout.sm="row" fxLayout.xs="column" fxLayoutAlign.xl="start space-between" fxLayoutAlign.lg="start space-between"
+            fxLayoutAlign.md="start space-between" fxLayoutAlign.sm="end end" fxLayoutAlign.xs="end end"
+            [ngClass.sm]="'mr-16'" [ngClass.xs]="'mr-16'">
+            <div style="margin-top:-10px;" fxFlex.lg="50" fxFlex.md="50" fxFlex.xs="100">
+              <button mat-button class="mat-flat-button " color="accent" cdkFocusInitial
+                (click)="filterVendorList()">FILTER</button>
+            </div>
+            <div style="margin-top:-10px;" fxFlex.lg="50" fxFlex.md="50" fxFlex.xs="100" [ngClass.xs]="'mt-16 mb-16'">
+              <button [disabled]="disableClearFilterButton" mat-button class="mat-flat-button condo-red-300 ml-16"
+                cdkFocusInitial (click)="onClickclearFilter()">CLEAR FILTER</button>
+            </div>
+          </div>
+
+        </div>
+      </form>
+
+
+      <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="space-between flex-start"
+        fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" class="" [ngClass.xl]="'mt-32 mx-24'" [ngClass.lg]="'mt-32 mx-24'"
+        [ngClass.md]="'mt-32 mx-24'" [ngClass.sm]="'mt-8 mx-12'" [ngClass.xs]="'mt-0 mx-4'"
+        *ngIf="sortedList.length > 0">
+        <div class="" [ngClass.sm]="'mb-16'" [ngClass.xs]="'mb-16'">
+          <div class="h2 condo-gray-text">Sort by {{sortType}}</div>
+        </div>
+        <!-- Edit btn hided for version 1 -->
+        <div fxLayout="row" fxLayout.xs="row wrap">
+          <mat-button-toggle-group value="nearest" fxLayout.xs="row wrap">
+            <div class="condo-sorting" fxFlex.xs="100" fxLayout.xs="row wrap">
+              <mat-button-toggle value="rating" class="mat-stroked-button mat-primary" [ngClass.xl]="'mr-12'" [ngClass.lg]="'mr-12'"
+                [ngClass.md]="'mr-12'" [ngClass.sm]="'mr-12'" [ngClass.xs]="'mb-16 mr-12'" (click)="sortVendors(2)">
+                RATING
+              </mat-button-toggle>
+              <mat-button-toggle value="alphabetical" class="mat-stroked-button mat-primary " [ngClass.xl]="'mr-12'" [ngClass.lg]="'mr-12'"
+                [ngClass.md]="'mr-12'" [ngClass.sm]="'mr-12'" [ngClass.xs]="'mb-16 mr-12'" (click)="sortVendors(3)">
+                ALPHABETICAL
+              </mat-button-toggle>
+
+              <mat-button-toggle *ngIf="currentUser.userType == 1" value="alphabetical"
+                class="mat-stroked-button mat-primary " [ngClass.xl]="'mr-0'" [ngClass.lg]="'mr-0'" [ngClass.md]="'mr-0'"
+                [ngClass.sm]="'mr-12'" [ngClass.xs]="'mb-16 mr-12'" (click)="sortVendors(4)">
+                PREFERRED
+              </mat-button-toggle>
+
+            </div>
+          </mat-button-toggle-group>
+        </div>
+      </div>
+
+
+      <div fxFlex="100" class="mat-card mat-elevation-z p-24  b-r-4 cursor" fxFlex.sm="100" fxFlex.xs="100"
+        [ngClass.xl]="'mx-24 mt-32'" [ngClass.lg]="'mx-24 mt-32'" [ngClass.md]="'mx-24 mt-32'" [ngClass.sm]="'mb-0 mx-12 mt-32'"
+        [ngClass.xs]="'mx-4 mt-24'" *ngFor="let vendor of pageOfItems;let i = index"
+        [ngClass]="{'left-yellow-border': vendor.preferred == true}" (click)='viewVendor(vendor)'>
+        <div class="" fxLayout="column">
+          <div class="mat-card mat-elevation-z" [ngClass.xl]="'mr-24'" [ngClass.lg]="'mr-24'" [ngClass.md]="'mr-24'" [ngClass.xs]="'mr-0'">
+            <div class="" fxLayout="row" fxLayout.sm="column" fxLayoutAlign="start flex-start" fxLayoutAlign.sm="start"
+              fxLayout.xs="column">
+              
+			  <div fxLayout.xs="column" fxLayoutAlign="start flex-start" fxFlex="40" fxFlex.sm="50">
+                <div class="w-80 h-80" [ngClass.xs]="'mb-12'" [ngClass.sm]="'mr-24'">
+                  <img *ngIf="vendor.vendorProfileImageUrl" [src]="vendor.vendorProfileImageUrl"
+                    class="border-radius-100" [ngClass.xs]="'text-flex-start'" src="assets/images/no-pic.jpg"
+                    style="width:80px;height:80px;">
+                  <img *ngIf="vendor.vendorProfileImageUrl == ''" class="border-radius-100" [ngClass.xs]="'text-flex-start'"
+                    src="assets/images/no-pic.jpg" style="width:80px;height:80px;">
+                </div>
+                <div class="pr-16 " fxLayout.sm="column" fxFlex="100" fxFlex.xs="100" [ngClass.xl]="'ml-16'" [ngClass.lg]="'ml-16'"
+                  [ngClass.md]="'ml-16'" [ngClass.sm]="'ml-0'" [ngClass.xs]="'ml-16'">
+                  <div>
+                    <div class="h3 font-weight-600 mt-8 mb-8" [ngClass.xs]="'text-flex-start'">{{vendor.companyName}}</div>
+                    <div class="h4" fxLayoutAlign.xs="flex-start top">
+                      <div fxLayout="row" fxFlex.md="100" class="mt-8" [ngClass.xs]="'text-flex-start'">
+                        <div class="h2 text-bold w-50" [ngClass.xl]="'mr-8'" [ngClass.lg]="'mr-8'" [ngClass.md]="'mr-8'" [ngClass.sm]="'mr-8'"
+                          [ngClass.xs]="'text-flex-start'">{{vendor.rating}}</div>
+                        <div fxLayout="row">
+                          <div *ngFor="let rating of vendor.ratingArray">
+                            <mat-icon *ngIf="rating == 'fullStar'" class="s-24 amber-fg">star</mat-icon>
+                            <mat-icon *ngIf="rating == 'halfStar'" class="s-24 amber-fg">star_half</mat-icon>
+                            <mat-icon *ngIf="rating == 'noStar'" class="s-24" style="color:#d1dbe2">star</mat-icon>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="" fxFlex="30" fxFlex.xs="100" [ngClass.xl]="'ml-24 pr-16'" [ngClass.lg]="'ml-24 pr-16'" [ngClass.md]="'ml-24 pr-16'"
+                [ngClass.xs]="'mt-16 ml-0 pr-0'" [ngClass.sm]="'mt-16 pr-16'">
+                <div>
+                  <div class="h5 condo-gray-text" [ngClass.xs]="'text-flex-start'">GEOGRAPHICAL COVERAGE</div>
+                  <div class="h4" [ngClass.xs]="'text-flex-start'" style="word-break: break-all;">{{vendor.serviceCities}}</div>
+                </div>
+              </div>
+
+              <div class="row wrap" fxLayout="row" fxFlex="30" fxFlex.xs="100" [ngClass.xl]="'ml-24 pr-16'" [ngClass.lg]="'ml-24 pr-16'"
+                [ngClass.md]="'ml-24 pr-16'" [ngClass.xs]="'mt-16 ml-0 pr-0 text-flex-start'" [ngClass.sm]="'mt-16 pr-16'">
+                <div fxFlex="100" [ngClass.xs]="'text-flex-start'">
+                  <div class="h5 condo-gray-text" [ngClass.xs]="'text-flex-start'">LIST OF TAGS</div>
+                  <div class="h4 mt-8" fxLayout="row wrap" [ngClass.xs]="'text-flex-start'" fxLayoutAlign.xs="flex-start top">
+                    <span class="text-boxed mb-8"
+                      *ngFor="let tag of vendor.tags;let i = index">{{tag | uppercase}}</span>
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+			
+			<div class="" fxLayout="row" fxLayout.sm="column" fxLayoutAlign="start flex-start" fxLayoutAlign.sm="start"
+              fxLayout.xs="column">
+			<div *ngIf="currentUser.userType == 1" fxLayout="column" fxFlex="100" fxFlex.sm="100"
+                fxLayoutAlign="end end" fxFlex.xs="100" fxLayout.xs="column" [ngClass.xs]="'mt-24'">
+                <div fxLayout="row" fxFlex.md="100" fxLayoutAlign.md="flex-start">
+                  <div fxLayout="row">
+                    <div fxLayout="row" fxLayoutAlign.sm="flex-start bottom">
+                      <button *ngIf="vendor.isPreferred === 'true'" mat-button class="condo-red-600 border-radius-20"
+                        color="accent" (click)="updateFavoriteVendor($event,2,vendor)">REMOVE
+                        PREFERRED</button>
+
+                      <button *ngIf="vendor.vendorOrganisationId > 0  && vendor.isPreferred !== 'true'" mat-button class="condo-red-700 border-radius-20"
+                        (click)="updateFavoriteVendor($event,1,vendor)">ADD
+                        PREFERRED</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+			  </div>
+			
+			
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="sortedList.length == 0" class="about-content" fxLayout="column" fxFlex="100" fxFlex.gt-sm="50"
+        fxFlex.gt-md="100">
+        <div class="" fxLayout="row" fxLayoutAlign="space-between flex-start"
+          class="mat-card mat-elevation-z px-32 pt-32 pb-16 mt-16" [ngClass.xl]="'mx-24'" [ngClass.lg]="'mx-24'" [ngClass.md]="'mx-24'"
+          [ngClass.sm]="'mx-12'" [ngClass.xs]="'mx-4'">
+          <div class="h2 condo-gray-text">No Vendors Found</div>
+        </div>
+      </div>
+
+      <div class="card-footer pb-0 pt-3 " [ngClass.xl]="'mx-24'" [ngClass.lg]="'mx-24'" [ngClass.md]="'mx-24'" [ngClass.sm]="'mx-12'"
+        [ngClass.xs]="'mx-4'">
+        <jw-pagination [pageSize]="15" [items]="sortedList" (changePage)="onChangePage($event)"></jw-pagination>
+      </div>
+      <div class="card text-flex-start m-3">
+        <div class="card-body">
+          <div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

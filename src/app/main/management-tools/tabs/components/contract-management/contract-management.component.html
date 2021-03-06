@@ -1,0 +1,237 @@
+<!-- <div fxLayout="column" id="timeline">        
+    <form fxLayout="column" fxLayoutAlign="start" fxFlex="1 0 auto" class="mb-0" name="buildingRepoform" [formGroup]="buildingRepoform">
+        <div class="" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxLayoutAlign="space-between center" class="mat-card mat-elevation-z px-8 pt-32 mx-8 mt-16">
+            <div class="" fxFlex.lg="80" fxFlex.md="80" fxFlex.sm="80" fxFlex.xs="100" fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="column" fxLayout.xs="column">
+
+                <mat-form-field appearance="outline" fxFlex="35" class="px-16">
+                    <mat-label>Unit Type</mat-label>
+                    <mat-select class="account-selection" formControlName="unitType"  placeholder="">
+                        <mat-option  value="1">Locker </mat-option>
+                        <mat-option  value="2">Residential </mat-option>
+                        <mat-option  value="3">Parking </mat-option>
+                        <mat-option  value="4">Commercial </mat-option>
+                        <mat-option  value="5">Common Element </mat-option>
+                        <mat-option  value="6">Other </mat-option>
+                    </mat-select>                                           
+                </mat-form-field>    
+
+                <mat-form-field appearance="outline" fxFlex="35" class="px-16">
+                    <mat-label>Person Type</mat-label>
+                    <mat-select class="account-selection" formControlName="personType" placeholder="">
+                        <mat-option  value="1">Owner </mat-option>
+                        <mat-option  value="2">Occupant </mat-option>
+                        <mat-option  value="3">Tenant </mat-option>
+                        <mat-option  value="4">Other </mat-option>
+                    </mat-select>                                           
+                </mat-form-field>        
+
+                  
+            </div>      
+				<div class="" fxFlex.lg="20"  fxFlex.md="20" fxFlex.sm="20" fxFlex.xs="20" fxLayout.sm="row wrap" fxLayout.xs="column" style="margin-top:-10px;" [ngClass.sm]="'mb-16 mr-16'" [ngClass.xs]="'mb-16 mr-16'" fxLayoutAlign.sm="end end" fxLayoutAlign.xs="end end">
+            
+                <button  mat-button class="mat-flat-button condo-red-300 ml-16" cdkFocusInitial >CLEAR FILTER</button>    
+            </div>
+            
+        </div>
+    </form>
+
+</div> -->
+
+
+<div class="">
+
+
+
+  <div fxLayout="column" id="timeline" class="pb-8" [ngClass.xl]="'py-16 px-8'" [ngClass.lg]="'py-16 px-8'" [ngClass.md]="'p-32'"
+    [ngClass.sm]="'p-24'" [ngClass.xs]="'p-16'">
+
+    <div id="profile" class="page-layout simple">
+
+
+      <div fxLayout="row" fxLayoutAlign="end end">
+        <button mat-button class="mr-12 mt-24 mat-button-toggle mat-stroked-button mat-primary active mat-button-toggle-checked mat-button-toggle-appearance-standard"
+        color="accent" (click)="addNewContract()">
+          <mat-icon class="s-16">add</mat-icon> ADD CONTRACT
+        </button>
+      </div>
+
+
+
+      <div class="" fxLayout="row" fxLayoutAlign="space-between center" class="mt-32 ml-12 mr-0 mb-16">
+        <div class="">
+          <div class="h2 condo-gray-text">Sort by {{sortType}}</div>
+        </div>
+        <div fxLayout="row" fxLayout.xs="row wrap">
+          <mat-button-toggle-group value="nearest" fxLayout.xs="row wrap">
+            <div class="condo-sorting" fxFlex.xs="100" fxLayout.xs="row wrap">
+              <mat-button-toggle value="rating" class="mat-stroked-button mat-primary" [ngClass.xl]="'mr-12'" [ngClass.lg]="'mr-12'"
+                [ngClass.md]="'mr-12'" [ngClass.sm]="'mr-12'" [ngClass.xs]="'mb-16 mr-12'" (click)="sortContracts(1)">
+                CONTRACTOR NAME
+              </mat-button-toggle>
+              <mat-button-toggle value="alphabetical" class="mat-stroked-button mat-primary" [ngClass.xl]="'mr-12'" [ngClass.lg]="'mr-12'"
+                [ngClass.md]="'mr-12'" [ngClass.sm]="'mr-12'" [ngClass.xs]="'mb-16 mr-12'" (click)="sortContracts(2)">
+                EXPIRY DATE
+              </mat-button-toggle>
+            </div>
+          </mat-button-toggle-group>
+        </div>
+
+
+      </div>
+
+
+
+      <div id="about" class="" fxLayout="row wrap" [ngClass.xl]="''" [ngClass.lg]="''" [ngClass.md]="''" [ngClass.sm]="''"
+        [ngClass.xs]="''">
+
+        <div class="about-content " fxLayout="column" fxFlex="100" fxFlex.gt-sm="100" fxFlex.gt-md="100">
+
+
+          <div *ngIf="contractList.length == 0" fxFlex="100" fxFlex.xs="100"
+            class="mat-card mat-elevation-z p-32  mr-16 mt-16">
+            <div class="h2 condo-gray-text">
+              No Contracts to List
+            </div>
+          </div>
+
+          <div class="" fxLayout="column" *ngIf="pageOfItems.length > 0 && isDataAvailableToDisplay">
+            <div class="" fxLayout="column" *ngFor="let contract of pageOfItems;let i = index;"
+              [ngClass.xl]="'mb-8 p-12'" [ngClass.lg]="'mb-8 p-12'" [ngClass.md]="'mb-8 p-12'" [ngClass.sm]="'mb-8 p-12'"
+              [ngClass.xs]="'mb-8 p-12'">
+              <div class="shadow" fxLayout="column">
+                <div fxFlex="100" class="mat-card mat-elevation-z p-24 b-r-t-4" style="background: #fafafa"
+                  fxFlex.sm="100" fxFlex.xs="100">
+                  <div class="" fxLayout="column">
+                    <div class="mat-card mat-elevation-z" style="background: transparent">
+                      <div class="" fxLayout="row" fxLayoutAlign="start center" fxLayout.xs="column">
+                        <div class="pr-16" fxFlex="100" fxFlex.xs="100">
+                          <div class="h3 font-weight-600">#{{i+1}} {{contract.vendorName}}</div>
+                        </div>
+                        <div fxLayout="column" fxFlex="50" fxLayoutAlign="end end" fxFlex.xs="100" fxLayout.xs="column"
+                          [ngClass.xs]="'mt-24'">
+                          <div fxLayout="row" fxFlex.md="100">
+                            <button mat-flat-button class="text-bold condo-red-400 cursor mr-16"
+                              (click)="deleteContract(contract, i)">
+                              <mat-icon class="s-16">delete</mat-icon> REMOVE CONTRACT
+                            </button>
+                            <button mat-flat-button class="text-bold condo-red-400 cursor" (click)="editContract(i)">
+                              <mat-icon class="s-16">edit</mat-icon> EDIT CONTRACT
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div fxFlex="100" class="mat-card mat-elevation-z  px-32 mx-12" style="" fxFlex.sm="100" fxFlex.xs="100"
+                  [ngClass.xl]="'py-8'" [ngClass.lg]="'py-8'" [ngClass.md]="'py-8'" [ngClass.sm]="''" [ngClass.xs]="''" fxLayout.lg="row wrap"
+                  fxLayout.md="row wrap" fxLayout.sm="row wrap" fxLayout.xs="row wrap">
+                  <div fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="column" fxLayout.xs="column"
+                    fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxLayoutAlign="start flex-start" fxFlex="1 0 auto"
+                    class="my-16">
+                    <!-- <div fxFlex="100" fxFlex.sm="100" fxFlex.xs="100" [ngClass.sm]="'mb-16'" [ngClass.xs]="'mb-16'">
+                                <div class="h5 condo-gray-text mb-4">VENDOR NAME</div>                                    
+                                <div class="h4">{{contract.vendorName}}</div>                                               
+                            </div> -->
+                    <div fxFlex.xl="25" fxFlex.lg="25" fxFlex.md="25" fxFlex.sm="25" [ngClass.sm]="'mb-16'" [ngClass.xs]="'mb-16'">
+                      <div class="h5 condo-gray-text mb-4">SERVICES</div>
+                      <div class="h4">{{contract.services}}</div>
+                    </div>
+                    <div fxFlex.xl="15" fxFlex.lg="15" fxFlex.md="15" fxFlex.sm="15" [ngClass.sm]="'mb-16'" [ngClass.xs]="'mb-16'">
+                      <div class="h5 condo-gray-text mb-4">TERM</div>
+                      <div class="h4">{{contract.term}}</div>
+                    </div>
+                    <div fxFlex.xl="15" fxFlex.lg="15" fxFlex.md="15" fxFlex.sm="15" [ngClass.sm]="'mb-16'" [ngClass.xs]="'mb-16'">
+                      <div class="h5 condo-gray-text mb-4">TERM UNITS</div>
+                      <div class="h4">{{contract.termDisplayUnit | titlecase}}</div>
+                    </div>
+                    <div fxFlex.xl="15" fxFlex.lg="15" fxFlex.md="15" fxFlex.sm="15" [ngClass.sm]="'mb-16'" [ngClass.xs]="'mb-16'">
+                      <div class="h5 condo-gray-text mb-4">SIGNED DATE</div>
+                      <div class="h4">{{contract.signedDate}}</div>
+                    </div>
+                    <div fxFlex.xl="15" fxFlex.lg="15" fxFlex.md="15" fxFlex.sm="15" [ngClass.sm]="'mb-16'" [ngClass.xs]="'mb-16'">
+                      <div class="h5 condo-gray-text mb-4">EXPIRY DATE</div>
+                      <div class="h4">{{contract.expiryDate}}</div>
+                    </div>
+                    <div fxFlex.xl="15" fxFlex.lg="15" fxFlex.md="15" fxFlex.sm="15">
+                      <div class="h5 condo-gray-text mb-4">RENEWAL</div>
+                      <div class="h4">{{contract.renewal | titlecase}} Renewal</div>
+                    </div>
+                  </div>
+                </div>
+                <div fxFlex="100" class="mat-card mat-elevation-z b-r-b-4  px-32 mx-12" style="" fxFlex.sm="100"
+                  fxFlex.xs="100" [ngClass.xl]="'py-8'" [ngClass.lg]="'py-8'" [ngClass.md]="'py-8'" [ngClass.sm]="'mb-0'" [ngClass.xs]="''">
+                  <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayoutAlign.sm="start"
+                    fxLayoutAlign.xs="start" fxLayoutAlign="start flex-start" fxFlex="1 0 auto" class=""
+                    [ngClass.xl]="'my-16'" [ngClass.lg]="'my-16'" [ngClass.md]="'my-16'" [ngClass.sm]="'mt-0'" [ngClass.xs]="'mt-0'">
+                    <div fxFlex.xl="25" fxFlex.lg="25" fxFlex.md="25" [ngClass.sm]="'mb-16'" [ngClass.xs]="'mb-16'">
+                      <div class="h5 condo-gray-text mb-4">COST</div>
+                      <div class="h4">{{contract.cost | currency:'CAD'}}</div>
+                    </div>
+                    <div fxFlex.xl="15" fxFlex.lg="15" fxFlex.md="15" [ngClass.sm]="'mb-16'" [ngClass.xs]="'mb-16'">
+                      <div class="h5 condo-gray-text mb-4">COST TERM</div>
+                      <div class="h4">{{contract.costTerm | titlecase}}</div>
+                    </div>
+                    <div fxFlex.xl="15" fxFlex.lg="15" fxFlex.md="15" [ngClass.sm]="'mb-16'" [ngClass.xs]="'mb-16'">
+                      <div class="h5 condo-gray-text mb-4">INCLUDING GST?</div>
+                      <div class="h4">{{contract.gstInclusion | titlecase}}</div>
+                    </div>
+                    <div fxFlex.xl="25" fxFlex.lg="25" fxFlex.md="25" [ngClass.sm]="'mb-16'" [ngClass.xs]="'mb-16'">
+                      <div class="h5 condo-gray-text mb-4">CANCELLATION TERM</div>
+                      <div class="h4">{{contract.cancellationTerm}}</div>
+                    </div>
+                    <div fxFlex.xl="25" fxFlex.lg="25" fxFlex.md="25" [ngClass.sm]="'mb-16'" [ngClass.xs]="'mb-16'">
+                      <div class="h5 condo-gray-text mb-4">CANCELLATION UNITS</div>
+                      <div class="h4">{{contract.cancelUnits | titlecase}}</div>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div fxFlex="100" class="mat-card mat-elevation-z b-r-b-4  px-32 mx-12" style="" fxFlex.sm="100"
+                  fxFlex.xs="100" [ngClass.xl]="''" [ngClass.lg]="''" [ngClass.md]="'py-16'" [ngClass.sm]="'mb-32'" [ngClass.xs]="''">
+                  <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayoutAlign.sm="start"
+                    fxLayoutAlign.xs="start" fxLayoutAlign="start flex-start" fxFlex="1 0 auto" [ngClass.xl]="'my-16'" [ngClass.lg]="'my-16'"
+                    [ngClass.md]="'my-16'" [ngClass.sm]="'mt-0'" [ngClass.xs]="'mt-0'" class="">
+
+                    <div fxFlex.xl="25"  fxFlex.lg="25" fxFlex.md="25" [ngClass.sm]="'mb-16'" [ngClass.xs]="'mb-16'">
+                      <div class="h5 condo-gray-text mb-4">EXPECTED INCREASE</div>
+                      <div class="h4">{{contract.expectedIncrease}}</div>
+                    </div>
+
+                    <div fxFlex.xl="75"  fxFlex.lg="75" fxFlex.md="75" fxFlex.sm="100" fxFlex.xs="100" [ngClass.xs]="'mb-16'">
+                      <div class="h5 condo-gray-text mb-4">NOTES</div>
+                      <div class="h4">{{contract.notes}}</div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="card-footer pb-0 pt-3" [ngClass.xl]="'mx-16'" [ngClass.lg]="'mx-16'" [ngClass.md]="'mx-24'" [ngClass.sm]="'mx-12'"
+            [ngClass.xs]="'mx-4'">
+
+            <jw-pagination [pageSize]="15" [items]="contractList" (changePage)="onChangePage($event)">
+            </jw-pagination>
+          </div>
+
+          <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto" class="mt-16 mx-16 mb-16">
+            <div fxLayout="row" fxLayoutAlign="end" fxFlex="1 0 auto">
+              <button mat-raised-button color="primary" class="submit-button mr-16" aria-label="Continue"
+                (click)="exportTOExcel()">
+                DOWNLOAD
+              </button>
+              <button mat-raised-button color="primary" class="submit-button" aria-label="Continue" (click)="print()">
+                PRINT
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

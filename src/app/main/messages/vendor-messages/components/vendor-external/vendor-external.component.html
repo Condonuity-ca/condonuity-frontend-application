@@ -1,0 +1,118 @@
+
+<div fxLayout="column" id="timeline">        
+    <form fxLayout="column" fxLayoutAlign="start" fxFlex="1 0 auto" class="mb-0">
+        <div class="" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxLayoutAlign="space-between center" class="mat-card mat-elevation-z px-8 pt-32 mx-24 mt-16">
+            <div class="" fxFlex="100" fxLayout.sm="column" fxLayout.xs="column">
+                <mat-form-field appearance="outline" class="pr-16" fxFlex="80" fxFlex.xs="100">
+                    <mat-label>Search Threads</mat-label>
+                    <input matInput formControlName="keyword" >                        
+                </mat-form-field>                        
+            </div>                                        
+            <!-- Edit btn hided for version 1 -->
+            <div  style="margin-top:-10px;">
+                <button  mat-button class="mat-flat-button" color="accent" (click)="openCreateThreadExternalDialog()">CREATE THREAD</button>    
+            </div>
+            <!-- Edit btn hided for version 1 -->
+        </div>
+    </form>
+
+</div>
+
+
+<div class="mt-8">
+    <div fxLayout="column" id="timeline" class="pb-32" [ngClass.lg]="'py-16 px-8'" [ngClass.md]="'p-32'" [ngClass.sm]="'p-24'" [ngClass.xs]="'p-16'">
+
+
+         <div fxLayout="row" fxLayout.sm="column"  fxLayout.xs="column" fxLayoutAlign="space-between center" fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" class="mt-16 mx-24"  >
+            <div class="" [ngClass.sm]="'mb-16'" [ngClass.xs]="'mb-16'">
+                <div class="h2 condo-gray-text">Sort by </div>
+            </div>
+            <!-- Edit btn hided for version 1 -->
+            <div fxLayout="row" fxLayout.xs="column">
+                <mat-button-toggle-group value="nearest" fxLayout.xs="row">                        
+                    <div class="condo-sorting" fxLayout.xs="column">                                
+                        <mat-button-toggle value="nearest"  class="mat-stroked-button mat-primary mr-12 active" [ngClass.xs]="'mb-16'"  >
+                            SUBJECT
+                        </mat-button-toggle>
+                        <mat-button-toggle value="rating"  class="mat-stroked-button mat-primary mr-12" [ngClass.xs]="'mb-16'" >
+                            USER
+                        </mat-button-toggle>
+                        <mat-button-toggle value="alphabetical"  class="mat-stroked-button mat-primary" [ngClass.xs]="'mb-16'" >
+                            ALPHABETICAL
+                        </mat-button-toggle>                                                       
+                    </div>
+                </mat-button-toggle-group>      
+            </div>
+        </div>
+
+
+        <div fxLayout="column" >
+            <div fxFlex="70" style="" class="mat-card mat-elevation-z px-24 pb-24 pt-0  mx-24 mt-24 b-r-4 shadow" fxFlex.sm="100" fxFlex.xs="100" [ngClass.sm]="'mb-16'">
+                <div class="" fxLayout="column">
+                    <div class="mat-card mat-elevation-z" [ngClass.lg]="'mr-0'" [ngClass.md]="'mr-24'" [ngClass.xs]="'mr-0'">
+                        <div class="" fxLayout="row" fxLayout.sm="row wrap" fxLayoutAlign="start center"  fxLayout.xs="column">
+                            <div class="w-80 h-80" [ngClass.xs]="'mb-12'">
+                                <img class="border-radius-100" [ngClass.xs]="'text-center'" src="assets/images/no-pic.jpg">
+                            </div>
+                            <div class="pr-16 ml-16" fxLayout="row" fxFlex="100" fxLayoutAlign="start center" fxLayout.xs="column">
+                                <div class="" fxFlex="100" fxFlex.xs="100">                                                      
+
+                                    <div class="" fxLayout="row" fxLayoutAlign="space-between end">                                            
+                                        <div class="h3 font-weight-600" fxLayout="column">Thread name comes here </div>
+                                        <div  class="condo-gray-text" fxLayout="column">
+                                            <div><mat-icon aria-hidden="false" aria-label="current project" class="zoom s-20 mt-24 condo-red-text">perm_identity</mat-icon> Username <span class="ml-8 mr-8">|</span> <mat-icon aria-hidden="false" aria-label="current project" class="zoom s-16 condo-red-text">calendar_today</mat-icon> 23/12/2019 2:30 pm</div>
+
+                                        </div>
+                                    </div>
+                                    <div class="condo-gray-text mt-8 line-height-24">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s Lorem Ipsum has been the industry's standard dummy text ever since the 1500s </div> 
+                                    <div class="condo-gray-text mt-8 line-height-24">
+                                        <span class="mr-24 cursor attachment-icon" style="">Attachment</span> 
+                                        <mat-icon aria-hidden="false" aria-label="current project" class="zoom s-16 mt-16 condo-red-text">comment</mat-icon> 5 Comments
+                                    </div> 
+                                </div>
+
+                            </div>
+                        </div>                                           
+                    </div>
+                </div>
+            </div>
+        </div>
+         
+         <div fxLayout="column" >
+            <div fxFlex="70" style="" class="mat-card mat-elevation-z px-24 pb-24 pt-0  mx-24 mt-24 b-r-4 shadow" fxFlex.sm="100" fxFlex.xs="100" [ngClass.sm]="'mb-16'">
+                <div class="" fxLayout="column">
+                    <div class="mat-card mat-elevation-z" [ngClass.lg]="'mr-0'" [ngClass.md]="'mr-24'" [ngClass.xs]="'mr-0'">
+                        <div class="" fxLayout="row" fxLayout.sm="row wrap" fxLayoutAlign="start center"  fxLayout.xs="column">
+                            <div class="w-80 h-80" [ngClass.xs]="'mb-12'">
+                                <img class="border-radius-100" [ngClass.xs]="'text-center'" src="assets/images/no-pic.jpg">
+                            </div>
+                            <div class="pr-16 ml-16" fxLayout="row" fxFlex="100" fxLayoutAlign="start center" fxLayout.xs="column">
+                                <div class="" fxFlex="100" fxFlex.xs="100">                                                      
+
+                                    <div class="" fxLayout="row" fxLayoutAlign="space-between end">                                            
+                                        <div class="h3 font-weight-600" fxLayout="column">Thread name comes here </div>
+                                        <div  class="condo-gray-text" fxLayout="column">
+                                            <div><mat-icon aria-hidden="false" aria-label="current project" class="zoom s-20 mt-24 condo-red-text">perm_identity</mat-icon> Username <span class="ml-8 mr-8">|</span> <mat-icon aria-hidden="false" aria-label="current project" class="zoom s-16 condo-red-text">calendar_today</mat-icon> 23/12/2019 2:30 pm</div>
+
+                                        </div>
+                                    </div>
+                                    <div class="condo-gray-text mt-8 line-height-24">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s Lorem Ipsum has been the industry's standard dummy text ever since the 1500s </div> 
+                                    <div class="condo-gray-text mt-8 line-height-24">
+                                        <span class="mr-24 cursor attachment-icon">Attachment</span> 
+                                        <mat-icon aria-hidden="false" aria-label="current project" class="zoom s-16 mt-16 condo-red-text">comment</mat-icon> 16 Comments
+                                    </div> 
+                                </div>
+
+                            </div>
+                        </div>                                           
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+</div>

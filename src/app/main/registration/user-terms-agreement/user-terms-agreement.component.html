@@ -1,0 +1,933 @@
+<div id="client-accept-invite" fxLayout="column" *ngIf="existingUser && validUser">
+
+  <div id="client-accept-invite-form-wrapper" fxLayout="column" fxLayoutAlign="center center">
+
+    <div id="client-accept-invite-form" [@animate]="{value:'*',params:{duration:'300ms',y:'100px'}}">
+
+      <div class="logo">
+        <mat-icon class="mat-accent s-82">verified_user</mat-icon>
+      </div>
+      <div class="title text-bold">Thanks for accepting the invite!!</div>
+
+      <div class="subtitle">
+        <p class="line-height-26 condo-gray-text">
+          Now you can access the condo profile with <br> <b class="condo-red-text">{{userEmail}}</b>
+        </p>
+      </div>
+
+      <button mat-flat-button color="accent" class="submit-button register condo-red mt-24 mat-raised-button"
+        aria-label="Proceed" [routerLink]="'/auth/login/'">
+        LOGIN
+      </button>
+    </div>
+  </div>
+
+</div>
+
+
+
+<div *ngIf="!existingUser && validUser" id="mail-confirm" fxLayout="column">
+
+  <div id="mail-confirm-form-wrapper" fxLayout="column" fxLayoutAlign="center center">
+    <h1 class="title text-bold condo-red-text" fxHide>Terms and Conditions of Use</h1>
+    <div id="mail-confirm-form">
+
+      <div mat-dialog-content class="m-0 mat-dialog-content">
+
+
+        <div class="">
+          <img [ngClass.sm]="'text-left'" [ngClass.xs]="'text-center'" src="assets/images/logos/condo-logo.png"
+            style="width:17%;margin-left:-7px; margin-bottom:-20px;">
+          <h1>TERMS AND CONDITIONS OF USE</h1>
+
+          <p class="text-justify">
+            <b> Last Modified: May 18, 2020</b>
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            Nightingales Systems Inc. operating as Condonuity (<b>“Condonuity”, "we", "us"</b> or <b>"our"</b>) is a
+            corporation formed pursuant to the Business Corporations Act, RSO 1990, c B.16 in Ontario, Canada. In
+            consideration for permitting your access to our website and online platform and other good and valuable
+            consideration, you agree as follows:
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            These terms and conditions (the <b>"Terms"</b>) form a legally binding agreement which govern your access to
+            and use of our website, our online platform hosted at <a href="http://condonuity.ca"
+              target="blank">http://condonuity.ca</a>, and if made available our iOS and Android mobile applications.
+            Collectively our website, applications and web platform are referred to in these Terms as the <b>“Condonuity
+              Platform”</b>.
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            THESE TERMS HAVE PROVISIONS WHICH LIMIT OUR LIABILITY AND IMPOSE OBLIGATIONS ON YOU. You must review these
+            Terms carefully before using the Condonuity Platform. You, the user ("you" or "your"), represent and warrant
+            that (i) you are at least 18 years old; and (ii) you have read and understand these Terms and agree to be
+            bound by them.
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            IF YOU ARE USING THE CONDONUITY PLATFORM ON BEHALF OF, OR IN THE EMPLOY OF, AN ORGANIZATION (CORPORATION,
+            TRUST, PARTNERSHIP, ETC.), YOU ARE AGREEING TO THESE TERMS FOR THAT ORGANIZATION AND REPRESENTING AND
+            WARRANTING THAT YOU HAVE THE AUTHORITY TO BIND THAT ORGANIZATION TO THESE TERMS. In such a case, "you" and
+            "your" will also refer to that organization and yourself individually. For greater clarity, both you as an
+            individual and your organization are legally bound by these Terms which form an agreement between you and
+            Nightingales Systems Inc.
+          </p>
+
+          <p class="text-justify">
+            <b> AMENDMENTS </b>
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+
+            As the Condonuity Platform continues to evolve, we may, at any time, revise these Terms and our policies by
+            updating this page or the page hosting the relevant policy. The date of the last version of these Terms is
+            posted above. As you are bound by these Terms each time you use the Condonuity Platform, you are responsible
+            for periodically reviewing the amendments to these Terms and you are deemed to have accepted and agreed to
+            such amendments by accessing and using the Condonuity Platform after such amendments have been posted. If
+            you do not agree with the amendments, you shall immediately stop accessing the Condonuity Platform and
+            terminate your account, subject to the terms provided for herein. We may also undertake to send you an email
+            or display notice of any changes to the Terms or policies in your account.
+          </p>
+          <p class="text-justify">
+            <b> PRIVACY</b>
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            We use personal information you provide us in accordance with our privacy policy, which is incorporated by
+            reference and available online at <a href="http://condonuity.ca/privacy"
+              target="blank">http://condonuity.ca/privacy</a>. By using the Condonuity Platform, you consent to such
+            processing and you represent to us that all information provided by you is accurate.
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            If you use the Condonuity Platform to carry on your own business, you agree that it is your responsibility
+            to ensure you comply with applicable privacy laws on the collection, storage and use of personal information
+            you collect on or as a result of your use of the Condonuity Platform.
+
+          </p>
+          <p class="text-justify">
+            <b> Use of Aggregate Data</b>
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            We shall own, and shall be entitled to use, sell and license, and shall have a perpetual right to use, sell
+            and license, any data gathered or formulated on an aggregate basis, which does not include any personal
+            information or information specific to you or other users.
+          </p>
+          <p class="text-justify">
+            <b> About Our Online Service</b>
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            The Condonuity Platform allows condo corporations and their management teams, representatives and end-users
+            (“<b>Condo(s)</b>”) to connect with various service providers of different expertise, including but not
+            limited to, maintenance, repair, consulting, engineering, building science, cleaning, building management,
+            software and security service providers and their representatives (“Contractor(s)”) for the purpose of
+            accepting bids on and managing various condo projects. The Condonuity Platform does not facilitate the
+            contracting or payment processes between Condos and Contractors. Accordingly, Condos are encouraged to have
+            their own contracts to enter with Contractors, which may be uploaded to the Condonuity Platform for
+            reference and management purposes.
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            As the Condonuity Platform merely connect various users and businesses, your relationship with us is that of
+            an independent contracting party. You are not as an employee of ours and regardless of whether you are
+            acting individually or if you are operating your own business in using the Condonuity Platform, you are not
+            an agent, joint venturer or partner of ours and you hereby waive the application of the Partnerships Act,
+            RSO 1990, c P.5 in Ontario, Canada (where we are based) and any successor or similar legislation in any
+            other jurisdiction. You agree that to the fullest extent permitted by law, no partnership relationship shall
+            exist or be deemed to exist between you and us.
+
+          </p>
+          <p class="text-justify">
+            <b> Establishing an Account </b>
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            To use the Condonuity Platform you will be required to register either a Condo or Contractor account and
+            provide certain personal information as referenced in our privacy policy. Condo account access and creation
+            is subject to the terms of a platform agreement (“<b>Platform Agreement</b>”), which each Condo organization
+            is required to enter in order to grant its employees, contractors, representatives and agents user account
+            access.
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            Regardless of whether you pay for your account directly, indirectly via a Contractor entity, condo
+            corporation or management business, or whether you operate a free account, you agree that access to your
+            account constitutes good and valuable consideration in exchange for agreeing to these Terms our privacy
+            policy and all other documents and policies incorporated by reference.
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            Upon establishing an account, we grant you a non-transferable, non-exclusive license to access the
+            Condonuity Platform in accordance with these Terms. However, we reserve the right to revoke that license and
+            your access to the Condonuity Platform without justification or cause, at any time. We make no
+            representations or warranties as to the ongoing availability of the Condonuity Platform, or your access to
+            it.
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            If you are using the Condonuity Platform as a Contractor, you represent and warrant to us and all other
+            users that your business is (i) duly registered and is lawfully permitted to operate in Canada; and (ii) is
+            capable and lawfully permitted to provide the services it offers on the Condonuity Platform.
+
+          </p>
+          <p class="text-justify">
+            <b> Account Not Transferrable</b>
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            Access to your account is not transferrable and is only intended for you, the individual who established the
+            account, even if your account is paid for or made accessible to you by an organization (such as your
+            employer or other third party) or registered in the name of an organization with which you are affiliated
+            (for example as an owner, director etc.). As a result, you are not permitted to change the name associated
+            with your account.
+
+
+          </p>
+          <p class="text-justify">
+            <b> Account Security</b>
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            Upon setting up an account, you will be required to create a username and password. You are responsible for
+            safeguarding the password you use to access the Condonuity Platform and you agree not to disclose your
+            password to any third-party.
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            You agree to use a unique password for your account which you do not use for any other online service. As we
+            may send password reset notices and links to your email account registered on the Condonuity Platform (i)
+            you are responsible for ensuring that your email address provided to us is accurate; and (ii) you represent
+            and warrant to us, and agree that you will ensure, you are the sole person, at all times, with access to the
+            email account registered in connection with your account.
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            You agree you are responsible for any activity on your account and all correspondence provided to us from
+            any email address or phone number used to register your account, whether or not you authorized that activity
+            or correspondence. You agree that we are, in respect of any instructions or actions taken by a person using
+            your account, entitled to assume that the person is you; the person and/or entity whose name and personal
+            information is registered and associated with the account.
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            You must immediately notify us of any unauthorized use of your account.
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            You must inform us of any changes to your contact details and other information provided to us, including,
+            but not limited to, your email address, address and telephone number.
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            While we and our third party software and technology providers take certain security measures in relation to
+            the Condonuity Platform, you acknowledge that the technical processing and transmission of the Condonuity
+            Platform and related data and information, including your account data and information, is at risk of being
+            hacked or stolen by third parties and will involve transmissions over various networks and devices,
+            including networks and devices not owned or controlled by us. We rely on a number of third parties to make
+            the Condonuity Platform available, including data and web hosting providers. You accept all such risks in
+            using the Condonuity Platform and you agree and acknowledge that in using online platforms, there is always
+            a risk of unauthorized access to and use of your information, including your business and personal
+            information.
+
+          </p>
+          <p class="text-justify">
+            <b> Acceptable Use of the Condonuity Platform</b>
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            In using the Condonuity Platform, you agree, and you represent and warrant to us and all other users of the
+            Platform, that you:
+          </p>
+          <ul style="list-style-type:none;text-align:left" class="line-height-30 condo-gray-text">
+
+            <li>1. Will not use the Condonuity Platform in a way that has any unlawful or fraudulent purpose or effect;
+            </li>
+            <li>2. Will not perform services for (or in conjunction with) others you meet on the Condonuity Platform
+              which have any unlawful or fraudulent purpose of effect;</li>
+            <li>3. Will comply with all applicable laws, rules and regulations; </li>
+            <li>4. Will not use or disclose personally identifiable information belonging to others except (i) with
+              their consent; and (ii) in accordance with applicable privacy laws, rules and regulations;</li>
+            <li>5. Will not upload, copy, distribute, share or otherwise use or generate data or content that is
+              unlawful, obscene, defamatory, libelous, harmful, hateful, harassing, bullying, sexual in nature,
+              threatening, racially or ethnically offensive or abusive, that would violate a third party’s rights or
+              constitute or encourage a criminal offense;</li>
+            <li>6. Will not upload, transmit, disseminate, post, share, store, use any content, data or information,
+              perform any services or do anything that infringes on, or contributes to any infringement of, any
+              intellectual property rights; including copyright, trademark, patent or trade secret rights, whether of
+              ours or any third party;</li>
+            <li>7. Will not disclose your password or transfer your account to any third party, or allow any third party
+              to access your account;</li>
+            <li>8. Will not impersonate any person or entity;</li>
+            <li>9. Will not use any software bot or data scraping techniques that accesses the Condonuity Platform to
+              scrape or pull data for any purpose, whether such data was displayed publicly or not. </li>
+            <li>10. Will not translate, reverse engineer, decompile, disassemble, modify or create derivative works
+              based on the Condonuity Platform and its underlying software code; and</li>
+            <li>11. Will not circumvent, disable, violate or otherwise interfere with any security related feature of
+              the Condonuity Platform.</li>
+          </ul>
+          <p class="text-justify line-height-30 condo-gray-text">
+            We may, but have no obligation to, remove users, suspend or block user accounts from the Condonuity Platform
+            that we determine, in our sole discretion, to have, or which may reasonably appear to have, violated these
+            Terms.
+          </p>
+
+          <p class="text-justify">
+            <b> Fees</b>
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            For Condo organizations to access the Condonuity Platform and create end-user accounts for their staff,
+            managers and agents, they will be required to enter a Platform Agreement. Each Platform Agreement sets out
+            the fees we charge for accessing and using the Condonuity Platform.
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            As a Contractor, we currently do not charge any fees to create an account and access the Condonuity
+            Platform. However, you agree that we reserve the right to charge fees and any applicable taxes in the
+            future. Accordingly, on 30 days’ notice to you via email, we may restrict access to your account until such
+            time as you agree to pay the corresponding fees to access your account.
+
+          </p>
+
+          <p class="text-justify">
+            <b> Taxes</b>
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            You agree and acknowledge that if you are operating a business, offering products or providing services via
+            the Condonuity Platform, you are required to collect and remit sales, income and other taxes to applicable
+            government authorities in connection with the provisions of your goods and services. You agree that we are
+            not responsible for, and shall not be liable in connection with, your failure to collect and remit any and
+            all such taxes. To the extent you earn any income as a result of using the Condonuity Platform, you agree
+            that it shall be your sole responsibility for declaring and paying all taxes associated therewith, including
+            but not limited to sales and income tax, in all applicable jurisdictions. You agree that upon request and
+            subject to applicable laws, we may share (and may be required to share) records related to your income and
+            sales with taxing authorities.
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            You agree to indemnify us against any claims from a government or taxing authority arising from or related
+            to your failure to pay applicable sales, income and any other taxes.
+
+          </p>
+
+          <p class="text-justify">
+            <b> ACCEPTANCE OF RISK AND DISCLAIMERS</b>
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            The Condonuity Platform merely connects you with other users and allows access to public message boards. You
+            accept all risks associated with using the Condonuity Platform, including those arising from interacting and
+            contracting with other users.
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            Our Condonuity Platform is provided "as is" without warranty of any kind, including but not limited to, all
+            implied warranties and conditions of merchantability and fitness for a particular purpose. We hereby
+            disclaim all warranties and conditions of any kind, whether express, implied or statutory.
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            Without limiting any other section of these Terms, you agree that we shall not be responsible for any
+            damages you suffer arising from the acts or omissions, including the negligent acts or omissions, of other
+            users on the Condonuity Platform, our independent contractors, payment processors or third-party service
+            providers.
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            You agree that, while we strive to have the Condonuity Platform error free and uninterrupted, we do not
+            guarantee the absence of errors or interruptions. You agree that we shall not be held liable for any damage
+            such errors or interruptions may cause. We make no representations and grant no warranties as to the uptime
+            or ongoing availability of the Condonuity Platform. We may also perform scheduled maintenance which will
+            result in the Condonuity Platform being unavailable for certain periods of time.
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            While users are required to comply with these Terms, including the acceptable use terms listed above, we
+            make no representations and grant no warranties that other users, who operate independently on the
+            Condonuity Platform, have in fact or will in fact, comply with all such terms.
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            We make no representations and grant no warranties as to the content uploaded, products or services provided
+            by or offered by other users on Condonuity Platform. When you engage with another user of the platform to
+            provide you with products or services, you are engaging with an independent service provider. We have not
+            conducted any background checks or verified the identity of other users or Contractors. Simply by virtue of
+            another user or Contractor being listed on our platform does not constitute our endorsement of that user or
+            Contractor, or that they are trustworthy, or that the products or services they offer are to any particular
+            standard or quality.
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            While other users of the Condonuity Platform provide information to us about themselves, their services and
+            their business or organization, we do not independently verify that information or take measures to confirm
+            the identity of other users in all cases and as such, do not make any representation or warranty that any of
+            the information provided about another user is true or accurate. You are encouraged to undertake your own
+            due diligence on businesses you interact with and conduct business with as a result of the Condonuity
+            Platform.
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            The Condonuity Platform may permit you and other users the ability to review the services of Contractors. To
+            the extent you contribute to such reviews, you agree to provide truthful reviews based on actual experiences
+            in interacting and doing business with such Contractors.
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            If you are a Contractor, you agree and acknowledge that other users may review your services, and you accept
+            all risks associated therewith, including the prospect of receiving negative or unfavorable reviews.
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            If we reasonably believe you or another user has violated these Terms or provided inauthentic or misleading
+            reviews, you agree that we may remove or block them from the Condonuity Platform, in our sole and absolute
+            discretion.
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            You acknowledge and agree that we have no control over and do not guarantee the existence, quality, safety,
+            suitability, or legality of any services made available by another user, Contractor or business on the
+            Condonuity Platform, the truth or accuracy of any user content or any ratings or reviews posted by other
+            users, or the performance or conduct of any other user, Contractor or business.
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            You agree that we shall not be obligated to and accept no liability or responsibility for resolving or
+            managing disputes which may arise between you and any other user or business you engage with as a result of
+            using the Condonuity Platform. If you have a dispute with another user, it is your responsibility to take
+            your own legal action against such user.
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            You agree and acknowledge that there are potential risks, including but not limited to the risk of physical
+            and emotional harm or distress, personal injury, theft of personal property and even death when you connect
+            or interact with someone you meet through the Condonuity Platform, including but not limited to, people you
+            meet or interact with to perform services for you. You and your organization assume all risks associated
+            with dealing with other persons whom you meet, or, come in contact with as a result of using the Condonuity
+            Platform, whether in person or online.
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            If you are a Contractor, you agree and acknowledge that we do not guarantee payments from other users and
+            you are responsible for contracting with and collecting payment from all other users of the platform you
+            provide services to.
+
+          </p>
+
+          <p class="text-justify">
+            <b> Limitation of Our Liability</b>
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            YOU AGREE THAT, TO THE FULLEST EXTENT PERMITTED BY LAW, IN NO EVENT WILL WE, OUR OFFICERS, DIRECTORS,
+            SHAREHOLDERS OR EMPLOYEES, BE LIABLE TO YOU FOR ANY DIRECT, INDIRECT, SPECIAL, INCIDENTAL, PUNITIVE,
+            EXEMPLARY OR CONSEQUENTIAL DAMAGES, HOWSOEVER CAUSED, INCLUDING BY NEGLIGENCE OR OTHERWISE, REGARDLESS OF
+            LEGAL THEORY AND WHETHER OR NOT WE HAVE BEEN WARNED OF THE POSSIBILITY OF SUCH DAMAGES AND WHETHER THOSE
+            DAMAGES WERE FORESEEABLE OR NOT.
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            IF YOU ARE DISSATISFIED WITH THE CONDONUITY PLATFORM, OR DO NOT AGREE WITH ANY PART OF THESE TERMS, OR HAVE
+            ANY OTHER DISPUTE OR CLAIM WITH OR AGAINST US, OUR OFFICERS, DIRECTORS, SHAREHOLDERS OR EMPLOYEES, THEN YOUR
+            SOLE AND EXCLUSIVE REMEDY IS TO DISCONTINUE ACCESSING AND USING THE CONDONUITY PLATFORM.
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            IN ADDITION TO YOUR AGREEMENT TO NOT HOLD THE ABOVE ENTITIES AND PERSONS LIABLE FOR ANY DAMAGES, IN THE
+            EVENT A COURT OR ARBITRATOR OF COMPETENT JURISDICTION DECLINES TO UPHOLD SAID CLAUSE, YOU AGREE THAT IN NO
+            CIRCUMSTANCES SHALL THE AGGREGATE LIABILITY FOR ANY AND ALL CLAIMS RELATING TO OR IN ANY WAY ARISING FROM
+            THE USE OF THE CONDONUITY PLATFORM, OR IN ANY WAY RELATED TO THESE TERMS, BE MORE THAN THE GREATER OF (I)
+            $50.00 OR (II) THE AMOUNTS OWING TO YOU IN CONNECTION WITH A PLATFORM AGREEMENT (IF APPLICABLE), TO THE
+            EXTENT YOUR PLATFORM AGREEMENT PERMITS YOU TO TERMINATE YOUR ACCOUNT ACCESS AND BE REPAID FOR ANY UNUSED
+            PORTION OF AN ANNUAL OR MONTHLY FEE.
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            YOU AGREE AND ACKNOWLEDGE THAT WE WOULD NOT ENTER INTO THIS AGREEMENT OR GRANT ACCESS TO THE CONDONUITY
+            PLATFORM WITHOUT THESE RESTRICTIONS AND LIMITATIONS ON OUR LIABILITY.
+
+          </p>
+
+          <p class="text-justify">
+            <b> Indemnification </b>
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            You agree to indemnify us, our employees, shareholders, directors and officers, and to defend and hold each
+            of them harmless, from any and all claims and liabilities (including reasonable legal fees) which may arise
+            from (i) your violation of these Terms or any policy incorporated by reference; (ii) your violation of any
+            third-party right; (iii) any breach of a representation or warranty made by you to us, either in these
+            Terms, privacy policy or otherwise; (iv) any claim for damages suffered by another user of our service which
+            you caused or contributed to; and (v) any claim or penalties imposed on us arising from or related to your
+            failure to collect or pay any applicable taxes on amounts you earn from using the Condonuity Platform.
+          </p>
+
+          <p class="text-justify">
+            <b> Proprietary Rights </b>
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            The Condonuity Platform contains open source and public domain content, licenced content as well as
+            proprietary content owned by us and by third parties. You are not permitted to copy, use or distribute any
+            content (including but not limited to text, software code, images, trademarks, videos and audio) on the
+            Condonuity Platform without the express consent of the owner.
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            All rights, title and interest in and to the Condonuity Platform are and will remain the exclusive property
+            of Nightingales Systems Inc. and our licensors.
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            The Condonuity Platform and all content thereon are protected by copyright, trademark and other laws of
+            Canada, the United States and foreign countries. You agree not to reproduce, modify or prepare derivative
+            works, distribute, sell, transfer, publicly display, publicly perform, transmit, or otherwise use the
+            Condonuity Platform or any content thereon, without our express written consent.
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            You are not permitted to use any trademark or trade name of Nightingales Systems Inc., including our logo,
+            without our express permission.
+
+          </p>
+
+          <p class="text-justify">
+            <b> Your Content</b>
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            The Condonuity Platform permits you and other users the ability to upload and post content ("<b>User
+              Content</b>"). To the extent you created it and are the owner thereof, we claim no ownership interest in
+            your User Content. However, you agree that we may, in our sole and absolute discretion, remove your content,
+            with or without reason or justification.
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            In connection with your User Content, you represent and warrant that you own or have the necessary licenses,
+            rights, consents and/or permissions to use and authorize us to use your User Content in the manner
+            contemplated by the Condonuity Platform. You hereby grant us a non-exclusive, transferable, sub-licensable,
+            royalty-free, worldwide license to use any of your User Content that you post or upload to the Condonuity
+            Platform in order to facilitate the ordinary use of the Condonuity Platform.
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            We do not consider proposals or ideas, including without limitation ideas for new products, features,
+            technologies, promotions, product names, feedback and suggested improvements you provide us
+            (“<b>Feedback</b>”) to be confidential information. If you send any Feedback to us, you acknowledge and
+            agree that we shall not be under any obligation of confidentiality with respect to the Feedback and nothing
+            in these Terms limits or restricts our right to independently use, develop, evaluate, or market products or
+            services, whether incorporating the Feedback or otherwise.
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            Where you access your account as a result of an employer or other third party who pays for your account
+            access, you shall have no reasonable expectation as to the privacy of your account as between you and said
+            employer or third party and the electronic messages and information within your account. Accordingly, you
+            should not use your account for any personal communications.
+
+          </p>
+
+          <p class="text-justify">
+            <b> Copyright Notice</b>
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            If you believe that your copyrighted work has been copied in a way that constitutes copyright infringement
+            and is accessible on the Condonuity Platform, please notify us at info@condonuity.ca. While we take no
+            responsibility for any user who breaches your copyright or other intellectual property rights, we may, in
+            our sole discretion and without liability, undertake to attempt to contact the infringer on your behalf
+            and/or cancel the infringer's account.
+          </p>
+
+          <p class="text-justify">
+            <b> Linked Sites</b>
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            Whether or not we are affiliated with websites or third-party vendors that may be linked to the Condonuity
+            Platform, you agree that we are not responsible for their content. Internet links found on the Condonuity
+            Platform, whether posted by us, another user or other third party, are not an endorsement and we do not
+            represent or warrant the accuracy or truth of the contents, or endorse the products, services or information
+            found on said websites. You access those links and corresponding websites at your own risk.
+          </p>
+
+          <p class="text-justify">
+            <b> Law of the Contract (Governing Law) and Jurisdiction</b>
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            These Terms, all documents incorporated by reference and your relationship with us shall be governed by,
+            construed and enforced in accordance with the laws of the Province of Ontario, Canada, and any Canadian
+            federal laws applicable therein, as such laws are applied to agreements entered into and to be performed
+            entirely within such province.
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            Aside from any claims or disputes for the failure to pay our fees or other outstanding amounts owing to us
+            which fall entirely within the jurisdiction of the Small Claims Court in Ontario, Canada:
+          </p>
+          <ul style="list-style-type:none;text-align:left;" class="line-height-30 condo-gray-text">
+            <li>1. If any dispute, controversy or claim arising out of or in any way connected to these Terms, between
+              you and us, occurs, whether relating to the application, interpretation, enforcement, performance, breach,
+              implementation or validity of these Terms or otherwise (including any schedules or documents incorporated
+              by reference), you agree to resolve the dispute by arbitration at ADR Chambers using the ADR Chambers
+              Expedited Arbitration Rules <a href="https://adrchambers.com/expedited-arbitration/rules/"
+                target="blank">(https://adrchambers.com/expedited-arbitration/rules/)</a>. You agree that the ADR
+              Chambers Expedited Arbitration Rules give you a fair opportunity to present your case and respond to the
+              case of the other side. The arbitration shall be held in Toronto, Ontario (or at the discretion of the
+              arbitrator, electronically or in writing) and shall proceed in accordance with the provisions of the
+              Arbitration Act (Ontario). Judgment upon the award rendered by the arbitrator may be entered in any court
+              having jurisdiction. There will be no appeal from the decision of the arbitrator on questions of fact,
+              law, or mixed fact and law; and</li>
+
+            <li>2. If, for any reason, the above arbitration provision is not applicable, or not enforceable, for any
+              reasons, you agree to resolve any and all disputes arising from or in any way related to these Terms in a
+              court of competent jurisdiction in Ontario, Canada, including any applicable Canadian Federal Courts
+              therein. </li>
+          </ul>
+
+
+
+          <p class="text-justify">
+            <b> Severability </b>
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            If any provision of these Terms are found to be unlawful, void, or for any reason unenforceable, then that
+            provision shall be deemed severable from this agreement and shall not affect the validity and enforceability
+            of any remaining provisions.
+          </p>
+
+          <p class="text-justify">
+            <b> No Construction Against Drafter</b>
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            If an ambiguity or question of intent arises with respect to any provision of these Terms, the Terms shall
+            be construed as if drafted jointly by the parties and no presumption or burden of proof will arise favouring
+            or disfavouring either party by virtue of authorship of any of the provisions.
+          </p>
+
+          <p class="text-justify">
+            <b> Waiver of Class Proceedings and Trial By Jury</b>
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            To the extent permitted by law, you hereby waive your right to participate in any class action lawsuits
+            against us, our contractors, employees, shareholders, successors, assigns and directors. To the extent
+            permitted by law, you further waive any right to a trial by jury, should such a right exist, in relation to
+            any legal dispute connected to or in any way arising out of these Terms.
+          </p>
+
+          <p class="text-justify">
+            <b> Incorporation by Reference</b>
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            All policies referred to in these Terms or anywhere on the Condonuity Platform are hereby incorporated by
+            reference, including but not limited to our Privacy Policy.
+          </p>
+
+          <p class="text-justify">
+            <b> Termination</b>
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            Subject to the terms of an applicable Platform Agreement, you can stop using the Condonuity Platform at any
+            time. Please contact us to learn more about terminating your account. Notwithstanding your decision to
+            delete your account or nor longer use the Condonuity Platform, you agree to pay all fees and taxes as set
+            out in these Terms and any applicable Platform Agreement.
+            We also reserve the right to suspend your account or access to the Condonuity Platform at any time, with or
+            without reason or cause, and with or without notice.
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            The cancellation, suspension or termination of access to the Condonuity Platform shall not terminate this
+            agreement. In particular, and without limiting the generality of the foregoing, any provision concerning the
+            limitation of our liability, your indemnification obligations, settling disputes (including the jurisdiction
+            and choice of law) shall remain binding.
+
+          </p>
+
+          <p class="text-justify">
+            <b> Assignment of this Agreement</b>
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            These Terms shall enure to the benefit of and is binding upon the parties and their respective successors
+            and permitted assigns. You agree that we may assign this agreement to any successor or assignee, whether
+            pursuant to the purchase of the Condonuity Platform by a third party, the transfer of control of
+            Nightingales Systems Inc. or otherwise.
+          </p>
+
+          <p class="text-justify">
+            <b> Right to Seek Injunction</b>
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            Violation of these Terms may cause us irreparable harm and, therefore, you agree that we will be entitled to
+            seek extraordinary relief including, but not limited to, temporary restraining orders, preliminary
+            injunctions and permanent injunctions without the necessity of posting a bond or other security, in addition
+            to and without prejudice to any other rights or remedies that we may have for a breach of these Terms.
+          </p>
+
+          <p class="text-justify">
+            <b> Waiver</b>
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            Our failure to enforce any right or provision of these Terms will not be deemed a waiver of such right or
+            provision.
+          </p>
+
+          <p class="text-justify">
+            <b> New Features</b>
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            Any new features that augment or enhance the current the Condonuity Platform, including the release of new
+            versions, new products or services, tools and resources, shall be subject to these Terms.
+          </p>
+
+
+
+        </div>
+
+
+
+
+
+
+
+        <div class="">
+
+
+          <h1 style="border-top:1px solid #ccc;padding-top:20px;">PRIVACY POLICY</h1>
+          <p class="text-justify">
+            <b> Last Modified: May 18, 2020</b>
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            Nightingales Systems Inc. operating as Condonuity (<b>“Condonuity”, "we", "us"</b> or <b>"our"</b>) is a
+            corporation formed pursuant to the Business Corporations Act, RSO 1990, c B.16 in Ontario, Canada. Further
+            to our terms of use (<a href="http://condonuity.ca/terms" target="blank">http://condonuity.ca/terms</a>)
+            (the “Terms”), this Privacy Policy sets out how we collect, store and use personal information and cookies.
+            Unless otherwise indicated, any capitalized terms in this Privacy Policy have the same meaning attributed to
+            them in our Terms.
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            By agreeing to our Terms or by using the Condonuity Platform, you consent to the collection and use of
+            personal information in accordance with this Privacy Policy, which we may update from time to time.
+          </p>
+
+          <p class="text-justify">
+            <b> PART I: COLLECTION OF PERSONAL INFORMATION</b>
+          </p>
+
+          <p class="text-justify">
+            <b> The Personal Information of Other Individuals</b>
+          </p>
+
+          <p class="text-justify line-height-30 condo-gray-text">
+            To the extent you (or your users) provide us with, or upload data that includes the personal information of
+            another individual, you represent and warrant that you have that individual’s consent to provide us with
+            their information to use in accordance with this Privacy Policy and our Terms. If you do not have their
+            consent, you agree not to upload or provide us with any such personal information.
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            To establish an account with us or use the Condonuity Platform, we may collect the following personal
+            information:
+          </p>
+          <ul style="text-align:left" class="line-height-30 condo-gray-text">
+
+            <li> Full name; </li>
+            <li> Business name(s); </li>
+            <li> Billing Address;</li>
+            <li> Email address;</li>
+            <li> Phone number;</li>
+            <li> Comments, feedback, reviews and other information you elect to upload or provide on Condonuity
+              Platform; </li>
+            <li> Internet Protocol (IP) address and corresponding location data;</li>
+            <li> To the extent they include any personal information in them, we may also collect, documents which
+              indicate the legal status of a condominium corporation, vendor or their names, such as:</li>
+            <ul class="line-height-30 condo-gray-text">
+
+              <li> Periodic Information Certificate; </li>
+              <li> Condominium Declaration;</li>
+              <li> Business registration documents (incorporation certificates, master business licenses etc.); and
+              </li>
+              <li> Business cards;</li>
+            </ul>
+            <li> Website statistics and analytics data regarding your use of the Condonuity Platform;</li>
+            <li> Profile photos (where you elect to upload them); and</li>
+            <li> All other information you provide on the Condonuity Platform or otherwise.</li>
+          </ul>
+          <p class="text-justify">
+            <b> Payment Processing </b>
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+
+            While we do not currently accept credit cards, we may elect to do so in the future. As a result, we may
+            collect credit card and payment information from you via a third-party payment processor. Although we may
+            host their forms on our website, when you provide your payment details, you are providing them to the
+            applicable payment processor. You acknowledge that our third-party payment processors may have their own
+            agreements and privacy practices which apply to you.
+          </p>
+          <p class="text-justify">
+            <b> PART II: THE USE OF PERSONAL INFORMATION</b>
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            We do not sell personal information to third-parties. However, we may use personal information to:
+          </p>
+
+          <ul style="text-align:left" class="line-height-30 condo-gray-text">
+
+            <li> Facilitate the operation of the Condonuity Platform, including sharing or providing access to personal
+              information to Third-Party Providers, see below for details; </li>
+            <li> Bill and collect money owed to us; </li>
+            <li> Verify your contact information;</li>
+            <li> Provide user support or to support and improve the Condonuity Platform;</li>
+            <li> Communicate with you about your account;</li>
+            <li> Send or display informational and promotional materials, including advertisements, from us, our
+              partners, Vendors, advertisers or third parties to you. You may unsubscribe from such communications at
+              any time; </li>
+            <li> Pursue available legal remedies to us and to prosecute or defend a court, arbitration or similar
+              proceeding;</li>
+            <li> To meet legal requirements or seek legal advice from a lawyer in connection with your use of the
+              Condonuity Platform; and</li>
+            <li> To enforce compliance with our Terms and applicable laws, rules and regulations.</li>
+
+          </ul>
+
+
+          <p class="text-justify">
+            <b> PART III: THE DISCLOSURE OF PERSONAL INFORMATION</b>
+          </p>
+          <p class="text-justify">
+            <b> Sharing Personal Information and Content if Required by Law</b>
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            We may share personal information and any content collected, uploaded or provided to us if required by law,
+            such as in response to a subpoena, court order or other legal process in any jurisdiction. If we are
+            required by law to make any disclosure of your personal information or content, we may, but are not
+            obligated to, provide you with written notice of such disclosure, if permitted by law.
+          </p>
+          <p class="text-justify">
+            <b> Sharing Personal Information to Cooperate with Investigations and Law Enforcement</b>
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            Absent a court order, subpoena or other legal requirement to disclose personal information or content in our
+            possession or control, you agree that we may also share personal information and content you upload or which
+            is associated with your account to cooperate with law enforcement authorities in the investigation of any
+            criminal matter if we reasonably believe doing so is necessary or beneficial in protecting your safety, or
+            the safety of any third-party.
+          </p>
+          <p class="text-justify">
+            <b> Sharing Personal Information with Third-Party Providers</b>
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            Our suppliers, partners, independent contractors (collectively “<b>Third-Party Providers</b>”) and/or
+            employees, may have access to, or be shared personal information to use in connection with one or more of
+            the purposes for which the information was collected.
+
+          </p>
+
+          <p class="text-justify line-height-30 condo-gray-text">
+            Our Third-Party Providers may have access to personal information in providing services to us, or providing
+            you with access to the Condonuity Platform. We may use a variety of Third-Party Providers in order to host
+            the Condonuity Platform and facilitate its ordinary use, including for example, hosting servers which store
+            personal information. For example, as of the last date this Privacy Policy was updated, our data hosting
+            providers include Microsoft Corporation and their affiliated and related entities. For more information on
+            their privacy practices please see <a href="https://privacy.microsoft.com/en-gb/privacystatement"
+              target="blank">https://privacy.microsoft.com/en-gb/privacystatement</a>.
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            We also use Google LLC together with their affiliated entities worldwide, in order to use Google Analytics.
+            For details, visit <a href="https://analytics.google.com/analytics/web/"
+              target="blank">https://analytics.google.com/analytics/web/</a>.
+          </p>
+          <p class="text-justify">
+            <b> Your Personal Information May Not Be Stored in Canada</b>
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            As we may have servers, Third-Party Providers, employees and other parties we share your personal
+            information with in locations both inside and outside of Canada, your personal information may become
+            subject to foreign laws and foreign legal proceedings.
+          </p>
+          <p class="text-justify">
+            <b> Sharing Personal Information if Our Business, Website or Service is Acquired</b>
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            We may share personal information with our successors (if our business, the Condonuity Platform is acquired
+            by another legal entity) or any assignee of our assets relating to the Condonuity Platform. Disclosure in
+            such circumstances is governed by the Personal Information Protection and Electronic Documents Act, SC 2000,
+            c 5 in Canada.
+
+          </p>
+          <p class="text-justify">
+            <b> Disclaimer and Warning About Sharing Personal Information Online</b>
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            YOU ACKNOWLEDGE THAT WHEN SHARING PERSONAL INFORMATION ONLINE, THERE IS ALWAYS A RISK OF DATA BREACHES,
+            INCLUDING DATA BREACHES IN WHICH THIRD PARTIES UNLAWFULLY ACCESS OUR SYSTEMS, OR THE SYSTEMS OF OUR
+            THIRD-PARTY PROVIDERS, WHICH STORE PERSONAL INFORMATION.
+
+
+          </p>
+
+          <p class="text-justify line-height-30 condo-gray-text">
+            WHILE WE TAKE MEASURES TO PROTECT PERSONAL INFORMATION, YOU AGREE THAT, TO THE FULLEST EXTENT PERMITTED BY
+            LAW, IN NO EVENT WILL WE, OUR AFFILIATES, OFFICERS, DIRECTORS, SHAREHOLDERS, EMPLOYEES, CONTRACTORS, AGENTS,
+            THIRD-PARTY PROVIDERS OR LICENSORS BE LIABLE, HOWSOEVER CAUSED, INCLUDING BY WAY OF NEGLIGENCE, FOR THE LOSS
+            OR THEFT OF YOUR PERSONAL INFORMATION OR ANY DAMAGES CAUSED AS A RESULT THEREOF, SO LONG AS WE WERE NOT
+            DIRECTLY AND GROSSLY NEGLIGENT IN THE PROTECTION OF SAID INFORMATION.
+          </p>
+
+          <p class="text-justify line-height-30 condo-gray-text">
+            <b>Retention of Your Personal Information</b>
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            We keep your personal information for as long as it is required for the purpose for which it was collected.
+            There is no single retention period applicable to the various types of personal information collected.
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            <b>PART IV: Our Use of Cookies</b>
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            By using the Condonuity Platform, you consent to our use of cookies. This cookies policy explains what
+            cookies are, how we use them and how Third-Party Providers may also use cookies on, or in connection with
+            the Condonuity Platform.
+
+          </p>
+          <p class="text-justify">
+            <b> What are Cookies?</b>
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            Cookies are small text files sent to and automatically downloaded by your web browser (assuming you have
+            cookies enabled) when you visit our Website. A cookie file is stored in your web browser and allows the
+            Condonuity Platform and Third-Party Providers we use to recognize you, track your activity across our and
+            other websites and is usually used in conjunction with logging your IP address.
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            Cookies can be "persistent" or "session" cookies. Persistent cookies remain on your computer (in your
+            browser files) or mobile device when you go offline, while session cookies are deleted as soon as you close
+            your web browser.
+          </p>
+
+          <p class="text-justify">
+            <b> Can you block the use of Cookies?</b>
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            Most web browsers allow you to disable the use of cookies. However, the Condonuity Platform or certain
+            components thereof may not operate properly, and you may not be able to access and use the Condonuity
+            Platform if you disable cookies.
+          </p>
+
+          <p class="text-justify">
+            <b> Can you delete Cookies once downloaded?</b>
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            Most web browsers also permit you to delete cookies. This is typically done via your web browser’s settings,
+            which vary depending on which web browser you use. For details on managing cookies settings using:
+          </p>
+
+          <ul style="text-align:left;word-break: break-all;" class="line-height-30 condo-gray-text">
+
+            <li>Chrome - https://support.google.com/accounts/answer/32050; </li>
+            <li>Firefox - https://support.mozilla.org/en-US/kb/delete-cookies-remove-info-websites-stored;</li>
+            <li>Safari - https://support.apple.com/guide/safari/manage-cookies-and-website-data-sfri11471/mac; and </li>
+            <li>For any other web browser, please visit your web browser's official web pages.</li>
+
+          </ul>
+
+
+          <p class="text-justify">
+            <b> How we use Cookies</b>
+          </p>
+          <p class="text-justify line-height-30 condo-gray-text">
+            Our use of cookies is primarily to analyze how you use the Condonuity Platform, for instance which pages you
+            visit most often and where you found our website online. This helps us better understand your user
+            experience and other statistics which we may use to provide a better user experience in future updates. For
+            example, cookies are used in connection with our use of Google LLC’s Google Analytics. For more information
+            on Google Analytics and how cookies are used by Google Analytics, see Google LLC’s information page at <a
+              href="https://developers.google.com/analytics/devguides/collection/analyticsjs/cookie-usage"
+              target="blank" style="word-break: break-all;">https://developers.google.com/analytics/devguides/collection/analyticsjs/cookie-usage</a>.
+          </p>
+
+
+        </div>
+
+
+
+      </div>
+<div class="terms mt-24 mb-16" fxLayout.xl="row" fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="row" fxLayout.xs="column wrap" fxLayoutAlign.xl="center center" fxLayoutAlign.lg="center center" fxLayoutAlign.md="center center" fxLayoutAlign.sm="start start" fxLayoutAlign.xs="start start">
+      
+        <mat-checkbox #terms aria-label="Accept" name="terms" required (change)="termsAgree(terms.checked);">
+          <span class="font-weight-600 condo-red-text">Accept Terms & Conditions</span>
+        </mat-checkbox>
+
+        <mat-checkbox #policy aria-label="Accept" name="policy" required (change)="privacyAgree(policy.checked);"
+          class="m-l-40" style="" [ngClass.xs]="'mt-32'">
+          <span class="font-weight-600 condo-red-text">Accept Privacy Policy</span>
+        </mat-checkbox>
+      </div>
+
+      <button mat-flat-button color="accent" class="submit-button mt-16" aria-label="Proceed"
+        [disabled]="!agreeTerms || !agreePrivacy" (click)="acceptInvitation()">Register</button>
+      <button mat-flat-button color="accent" class="submit-button mt-16 ml-16" aria-label="Proceed"
+        [routerLink]="'/auth/login'" (click)="clearRegisterData()">
+        Cancel</button>
+    </div>
+  </div>
+
+</div>
+
+<div id="mail-confirm" fxLayout="column" *ngIf="!validUser">
+  <div id="mail-confirm-form-wrapper" fxLayout="column" fxLayoutAlign="center center">
+    <div id="mail-confirm-form">
+      <div class="logo">
+        <mat-icon class="mat-accent s-96">error_outline</mat-icon>
+      </div>
+      <div class="title">Hi there! Your link has been expired!!</div>
+      <!-- <div class="message">
+        <a class="link" [routerLink]="'/register/mail-confirm/'">Click to Re-send Mail</a>
+      </div> -->
+    </div>
+  </div>
+</div>

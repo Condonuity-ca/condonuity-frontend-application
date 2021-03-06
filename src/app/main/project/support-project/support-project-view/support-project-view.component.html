@@ -1,0 +1,29 @@
+<div id="profile" class="page-layout simple tabbed">
+  <div id="about" class="" fxLayout="row wrap" [ngClass.lg]="'p-24'" [ngClass.md]="'p-24'" [ngClass.sm]="'p-16'"
+    [ngClass.xs]="'p-8'">
+
+    <div fxLayout="row" fxFlex.md="100" class="text-right">
+      <a class="cursor text-right" [routerLink]="['/projects/support']"> <span class="font-weight-600">
+          <mat-icon aria-hidden="false" aria-label="current project" class="zoom s-16 condo-red-text">arrow_back
+          </mat-icon> BACK TO PROJECT MANAGEMENT
+        </span></a>
+    </div>
+
+    <div class="" fxLayout="column" fxLayoutAlign="start" fxFlex="100">
+      <project-posting></project-posting>
+    </div>
+
+    <div *ngIf="bidStatus > 0" class="" fxLayout="column" fxLayoutAlign="start" fxFlex="100">
+      <div class="pr-16 mt-40 mb-24">
+        <div class="h2 condo-gray-text">Bid Submission Info</div>
+      </div>
+
+      <div *ngIf="bidStatus == 1" fxLayout="column" fxLayoutAlign="start" fxFlex="100">
+        <bid-creation></bid-creation>
+      </div>
+      <div *ngIf="bidStatus != 1" class="" fxLayout="column" fxLayoutAlign="start" fxFlex="100">
+        <bid-information></bid-information>
+      </div>
+    </div>
+  </div>
+</div>

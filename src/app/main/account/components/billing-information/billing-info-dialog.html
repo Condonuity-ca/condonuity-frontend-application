@@ -1,0 +1,89 @@
+<div fxLayout="row" fxLayoutAlign="space-between flex-start">
+  <div mat-dialog-title class="pl-12">BILLING ADDRESS</div>
+
+  <mat-dialog-actions align="end" class="px-16  mb-12">
+    <button mat-button mat-dialog-close style="margin-top:-15px;min-width: 28px !important;" class="p-0">
+      <mat-icon class="s-24 condo-red-text" mat-dialog-close>close</mat-icon>
+    </button>
+  </mat-dialog-actions>
+
+</div>
+<mat-dialog-content class="mat-typography">
+  <div class="profile-box info-box general" fxLayout="column">
+    <form fxLayout="column" class="px-16" fxLayoutAlign="start" fxFlex="1 0 auto" name="billingForm"
+      [formGroup]="billingForm">
+
+      <div class="profile-box info-box general" fxLayout="column">
+
+        <div fxLayout="row" fxLayoutAlign="start flex-start" fxFlex="1 0 auto">
+
+          <mat-form-field appearance="outline" fxFlex="50" class="pr-16">
+            <mat-label>Street Adress</mat-label>
+            <input matInput formControlName="streetAddress">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" fxFlex="50" class="pl-16">
+            <mat-label>City</mat-label>
+            <input matInput formControlName="city">
+          </mat-form-field>
+
+        </div>
+        <div fxLayout="row" fxLayoutAlign="start flex-start" fxFlex="1 0 auto">
+
+          <mat-form-field appearance="outline" fxFlex="50" class="pr-16">
+            <mat-label>Province</mat-label>
+            <!-- <input matInput  formControlName="province"> -->
+            <mat-select class="account-selection" formControlName="province" placeholder="Province">
+              <mat-option value="Alberta">Alberta </mat-option>
+              <mat-option value="British Columbia">British Columbia </mat-option>
+              <mat-option value="New Brunswick">New Brunswick </mat-option>
+              <mat-option value="Newfoundland">Newfoundland </mat-option>
+              <mat-option value="Saskatchewan">Saskatchewan </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" fxFlex="50" class="pl-16">
+            <mat-label>Postal Code</mat-label>
+            <input matInput formControlName="postalCode">
+          </mat-form-field>
+        </div>
+      </div>
+      <div mat-dialog-title class="mt-12">PAYMENT DETAILS</div>
+      <div class="profile-box info-box general" fxLayout="column">
+
+        <div fxLayout="row" fxLayoutAlign="start flex-start" fxFlex="1 0 auto">
+
+          <mat-form-field appearance="outline" fxFlex="50" class="pr-16">
+            <mat-label>Name on Credit Card</mat-label>
+            <input matInput formControlName="cardName">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" fxFlex="50" class="pl-16">
+            <mat-label>Credit Card Number</mat-label>
+            <input matInput formControlName="cardNumber">
+          </mat-form-field>
+
+        </div>
+        <div fxLayout="row" fxLayoutAlign="start flex-start" fxFlex="1 0 auto">
+
+          <mat-form-field appearance="outline" fxFlex="50" class="pr-16">
+            <mat-label>Expiry Date</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="expiryDate" placeholder="Choose a date" readonly>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" fxFlex="50" class="pl-16">
+            <mat-label>Security Code</mat-label>
+            <input matInput formControlName="securityCode">
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end" class="pr-16 pb-16">
+  <button mat-button class="mat-flat-button" color="accent" [mat-dialog-close]="billingForm.value" cdkFocusInitial
+    (click)="editCorporation()">UPDATE</button>
+  <button mat-button mat-dialog-close mat-flat-button class="fuse-navy-50">CANCEL</button>
+</mat-dialog-actions>

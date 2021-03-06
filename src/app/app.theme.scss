@@ -1,0 +1,919 @@
+// -----------------------------------------------------------------------------------------------------
+// @ Custom color maps for Fuse
+// -----------------------------------------------------------------------------------------------------
+/* Page transition while moving from one page to another. Use the class page-transition-top */
+
+
+::-webkit-scrollbar {
+  width: 12px !important;
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3) !important;
+  border-radius: 10px !important;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px !important;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5) !important;
+}
+
+
+.ps__rail-y {
+  display: none !important
+}
+
+.pre-icon {
+  margin-top: -19px;
+  position: absolute;
+  margin-left: -12px;
+}
+
+.page-transition-top {
+  -webkit-animation-name: example;
+  /* Safari 4.0 - 8.0 */
+  -webkit-animation-duration: 1s;
+  /* Safari 4.0 - 8.0 */
+  -webkit-animation-fill-mode: forwards;
+  /* Safari 4.0 - 8.0 */
+  animation-name: example;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes example {
+  from {
+    top: -60px;
+  }
+
+  to {
+    top: 0px;
+  }
+}
+
+@keyframes example {
+  from {
+    top: -60px;
+  }
+
+  to {
+    top: 0px;
+  }
+}
+
+/* Page transition ends */
+/* Icon Zooming */
+.zoom {
+  transition: transform .2s;
+  /* Animation */
+}
+
+.mat-tab-label:hover .zoom {
+  transform: scale(1.3);
+  /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+
+.icon-animation {
+  transition: transform .2s;
+  transform: scale(1.3);
+}
+
+/* Icon Zooming Ends */
+
+.myapp-no-padding-dialog .mat-dialog-container {
+  padding: 0;
+
+}
+
+.ngx-datatable.material.single-selection .datatable-body-row.active .datatable-row-group {
+  background: #f0f0f0 !important
+}
+
+/* Sidebar icons animation */
+.nav-link:hover .mat-icon {
+  animation: shake 3s cubic-bezier(.36, .07, .19, .97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+@keyframes shake {
+
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+/* Sidebar icons animation ends*/
+
+.mat-button-toggle-button {
+  padding: 0px 8px !important;
+}
+
+//.mat-button-toggle-label-content,.mat-button-toggle-appearance-standard .mat-button-toggle-label-content {padding:0px 12px !important;}
+.shadow {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 -1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.shadow1 {
+  box-shadow: 0 -1px 3px 0 rgba(0, 0, 0, 0.1), 0 2px 6px 0 rgba(0, 0, 0, 0.06);
+}
+
+.attachment-icon {
+  background: #f0efed;
+  padding: 6px 14px;
+  border-radius: 50px;
+}
+
+.error {
+  background: #d84d34 !important;
+  color: #fff !important;
+}
+
+.error .mat-button-wrapper {
+  color: #fff !important;
+}
+
+$condo-white-text: #ffffff;
+$condo-red-text: #d84d34;
+$condo-gray-text: #97a3b4;
+$condo-lgray-text: #c7cace;
+$condo-aaa-gray-text: #aaaaaa;
+$condo-gray-heading: #373f49;
+$condo-dred-text: #9e3724;
+
+.condo-red-text {
+  color: $condo-red-text;
+}
+
+.condo-gray-text {
+  color: $condo-gray-text !important;
+}
+
+.condo-lgray-text {
+  color: $condo-lgray-text !important;
+}
+
+.condo-aaa-gray-text {
+  color: $condo-aaa-gray-text !important;
+}
+
+.condo-white-text {
+  color: $condo-white-text !important;
+}
+
+.condo-gray-heading {
+  color: $condo-gray-heading !important;
+}
+
+.condo-dred-text {
+  color: $condo-dred-text !important;
+}
+
+.condo-lower {
+  text-transform: lowercase !important;
+}
+
+
+.download-btns {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  transition: 1s;
+}
+
+.download-btns:hover {
+  border: 1px solid #d84d34;
+  background: #ffcfc6;
+  color: $condo-red-text !important;
+}
+
+.download-btns a {
+  color: $condo-red-text !important;
+}
+
+.download-btns:hover a {
+  color: $condo-white-text !important;
+}
+
+.h3 {
+  word-break: break-all;
+}
+
+//body{word-break: break-all;}
+
+.text-success,
+.text-danger {
+  display: block !important;
+  margin-left: 28px;
+  margin-bottom: 20px;
+}
+
+.text-success {
+  color: #28a745 !important;
+}
+
+.text-danger {
+  color: #dc3545 !important;
+}
+
+.text-success i {
+  color: #28a745 !important;
+  position: absolute;
+  margin-left: -28px;
+  margin-top: -2px;
+}
+
+.text-danger i {
+  color: #dc3545 !important;
+  position: absolute;
+  margin-left: -28px;
+  margin-top: -2px;
+}
+
+$fuse-white: (500: white,
+  contrast: (500: $dark-primary-text));
+
+$fuse-black: (500: black,
+  contrast: (500: $light-primary-text,
+  ));
+$condo-red: (100: #f9f9f9,
+  200: #fafafa,
+  300: #fafafa,
+  400: #fce6e2,
+  500: #d84d34,
+  600: #feae0f,
+  700: #03c60c,
+  800: #fc5638,
+  contrast: (100: #d84d34,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: #d84d34,
+    500: $light-primary-text,
+    600: #fff,
+    700: #fff,
+    800: #fff,
+  ));
+
+$fuse-navy: (50: #ECECEE,
+  100: #C5C6CB,
+  200: #9EA1A9,
+  300: #7D818C,
+  400: #5C616F,
+  500: #3C4252,
+  600: #353A48,
+  700: #363f49,
+  800: #262933,
+  900: #252d36,
+  A100: #C5C6CB,
+  A200: #9EA1A9,
+  A400: #5C616F,
+  A700: #2D323E,
+  contrast: (50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $light-primary-text,
+    400: $light-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $light-primary-text,
+    A400: $light-primary-text,
+    A700: $light-primary-text,
+  ));
+
+// Generate Fuse color classes for custom palettes
+$custom_palettes: (fuse-white: $fuse-white,
+  fuse-black: $fuse-black,
+  fuse-navy: $fuse-navy,
+  condo-red: $condo-red);
+
+@include fuse-color-classes($custom_palettes);
+
+// -----------------------------------------------------------------------------------------------------
+// @ Typography
+// -----------------------------------------------------------------------------------------------------
+
+// Angular Material typography
+$typography: mat-typography-config($font-family: 'Lato, sans-serif',
+
+  $title: mat-typography-level(20px, 32px, 500),
+  $body-2: mat-typography-level(14px, 24px, 500),
+  $button: mat-typography-level(14px, 14px, 500),
+  $input: mat-typography-level(16px, 1.125, 400) // line-height must be unitless !!!
+);
+
+// Setup the typography
+@include angular-material-typography($typography);
+
+// -----------------------------------------------------------------------------------------------------
+// @ Component theming
+// -----------------------------------------------------------------------------------------------------
+
+// Import app and page component themes here to enable theming for them
+@import "src/app/layout/components/chat-panel/chat-panel.theme";
+@import "src/app/layout/components/toolbar/toolbar.theme";
+@import "src/app/main/registration/register/register.theme";
+@import "src/app/main/registration/mail-confirm/mail-confirm.theme";
+@import "src/app/main/registration/terms-agreement/terms-agreement.theme";
+@import "src/app/main/registration/corp-register/corp-register.theme";
+@import "src/app/main/registration/create-password/create-password.theme";
+
+// Define a mixin for easier access
+@mixin components-theme($theme) {
+
+  // Layout components
+  @include chat-panel-theme($theme);
+  @include toolbar-theme($theme);
+  @include register-theme($theme);
+  @include mail-confirm-theme($theme);
+  @include terms-agreement-theme($theme);
+  @include corp-register-theme($theme);
+  @include create-password-theme($theme);
+
+
+
+}
+
+// -----------------------------------------------------------------------------------------------------
+// @ Define the default theme
+// -----------------------------------------------------------------------------------------------------
+
+// Define the primary, accent and warn palettes
+$default-primary-palette: mat-palette($fuse-navy);
+$default-accent-palette: mat-palette($condo-red, 500);
+$default-warn-palette: mat-palette($mat-red);
+
+// Create the Material theme object
+$theme: mat-light-theme($default-primary-palette, $default-accent-palette, $default-warn-palette);
+
+// Add ".theme-default" class to the body to activate this theme.
+// Class name must start with "theme-" !!!
+body.theme-default {
+
+  // Create an Angular Material theme from the $theme map
+  @include angular-material-theme($theme);
+
+  // Apply the theme to the Fuse Core
+  @include fuse-core-theme($theme);
+
+  // Apply the theme to the user components
+  @include components-theme($theme);
+
+  // Generate Fuse color classes for primary, accent and warn colors
+  $palettes: (primary: $default-primary-palette,
+      accent: $default-accent-palette,
+      warn: $default-warn-palette);
+
+  @include fuse-color-classes($palettes);
+}
+
+// -----------------------------------------------------------------------------------------------------
+// @ Define a yellow light theme
+// -----------------------------------------------------------------------------------------------------
+
+// Define the primary, accent and warn palettes
+$yellow-light-theme-primary-palette: mat-palette($fuse-navy, 600, 400, 700);
+$yellow-light-theme-accent-palette: mat-palette($mat-yellow, 600, 400, 700);
+$yellow-light-theme-warn-palette: mat-palette($mat-red);
+
+// Create the Material theme object
+$yellow-light-theme: mat-light-theme($yellow-light-theme-primary-palette, $yellow-light-theme-accent-palette, $yellow-light-theme-warn-palette);
+
+// Add ".theme-yellow-light" class to the body to activate this theme.
+// Class name must start with "theme-" !!!
+body.theme-yellow-light {
+
+  // Generate the Angular Material theme
+  @include angular-material-theme($yellow-light-theme);
+
+  // Apply the theme to the Fuse Core
+  @include fuse-core-theme($yellow-light-theme);
+
+  // Apply the theme to the user components
+  @include components-theme($yellow-light-theme);
+
+  // Generate Fuse color classes for primary, accent and warn colors
+  $palettes: (primary: $yellow-light-theme-primary-palette,
+      accent: $yellow-light-theme-accent-palette,
+      warn: $yellow-light-theme-warn-palette);
+
+  @include fuse-color-classes($palettes);
+}
+
+// -----------------------------------------------------------------------------------------------------
+// @ Define a blue-gray dark theme
+// -----------------------------------------------------------------------------------------------------
+
+// Define the primary, accent and warn palettes
+$blue-gray-dark-theme-primary-palette: mat-palette($mat-blue);
+$blue-gray-dark-theme-accent-palette: mat-palette($mat-blue-gray);
+$blue-gray-dark-theme-warn-palette: mat-palette($mat-red);
+
+// Create the Material theme object
+$blue-gray-dark-theme: mat-dark-theme($blue-gray-dark-theme-primary-palette, $blue-gray-dark-theme-accent-palette, $blue-gray-dark-theme-warn-palette);
+
+// Add ".theme-blue-gray-dark" class to the body to activate this theme.
+// Class name must start with "theme-" !!!
+body.theme-blue-gray-dark {
+
+  // Generate the Angular Material theme
+  @include angular-material-theme($blue-gray-dark-theme);
+
+  // Apply the theme to the Fuse Core
+  @include fuse-core-theme($blue-gray-dark-theme);
+
+  // Apply the theme to the user components
+  @include components-theme($blue-gray-dark-theme);
+
+  // Generate Fuse color classes for primary, accent and warn colors
+  $palettes: (primary: $blue-gray-dark-theme-primary-palette,
+      accent: $blue-gray-dark-theme-accent-palette,
+      warn: $blue-gray-dark-theme-warn-palette);
+
+  @include fuse-color-classes($palettes);
+}
+
+// -----------------------------------------------------------------------------------------------------
+// @ Define a pink dark theme
+// -----------------------------------------------------------------------------------------------------
+
+// Define the primary, accent and warn palettes
+$pink-dark-theme-primary-palette: mat-palette($mat-pink);
+$pink-dark-theme-accent-palette: mat-palette($mat-pink);
+$pink-dark-theme-warn-palette: mat-palette($mat-red);
+
+// Create the Material theme object
+$pink-dark-theme: mat-dark-theme($pink-dark-theme-primary-palette, $pink-dark-theme-accent-palette, $pink-dark-theme-warn-palette);
+
+// Add ".theme-pink-dark" class to the body to activate this theme.
+// Class name must start with "theme-" !!!
+body.theme-pink-dark {
+
+  // Generate the Angular Material theme
+  @include angular-material-theme($pink-dark-theme);
+
+  // Apply the theme to the Fuse Core
+  @include fuse-core-theme($pink-dark-theme);
+
+  // Apply the theme to the user components
+  @include components-theme($pink-dark-theme);
+
+  // Generate Fuse color classes for primary, accent and warn colors
+  $palettes: (primary: $pink-dark-theme-primary-palette,
+      accent: $pink-dark-theme-accent-palette,
+      warn: $pink-dark-theme-warn-palette);
+
+  @include fuse-color-classes($palettes);
+}
+
+
+.mat-dialog-title {
+  font-size: 16px !important;
+  font-weight: 600;
+  color: $condo-gray-heading;
+}
+
+.upload-button {
+  background: #fcfcfc;
+  padding: 20px;
+  border: 1px dashed #ccc;
+}
+
+.upload-button h4:last-child {
+  margin-bottom: 0px;
+}
+
+.upload-button h4 {
+  word-break: break-all;
+}
+
+.cursor {
+  cursor: pointer;
+}
+
+body.theme-default .mat-form-field-appearance-outline .mat-form-field-outline-thick {
+  color: #97a3b4;
+}
+
+body.theme-default {
+  background: #f0f0f0 !important;
+}
+
+
+
+.mat-form-field-appearance-outline .mat-form-field-infix {
+  padding: 0.6em 0 0.8em 0;
+}
+
+.mat-form-field-label-wrapper {
+  top: -17px;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-prefix {
+  top: -1px !important;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-suffix {
+  top: 0.20em !important;
+}
+
+.mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+  font-size: 17px !important;
+  color: #97a3b4;
+}
+
+body.theme-default .mat-form-field.mat-focused .mat-form-field-label {
+  color: #97a3b4;
+}
+
+body.theme-default .mat-input-element:disabled,
+body.theme-default .mat-form-field-type-mat-native-select.mat-form-field-disabled .mat-form-field-infix::after {
+  color: #646464
+}
+
+body.theme-default .mat-form-field-appearance-outline.mat-form-field-disabled .mat-form-field-outline {
+  background: #f7f7f7
+}
+
+.mat-checkbox-label {
+  color: $condo-gray-text;
+}
+
+.mat-menu-content:not(:empty) {
+  padding-bottom: 0px !important;
+  padding-top: 0px !important;
+}
+
+.mat-expanded .mat-expansion-indicator {
+  color: $condo-red-text;
+}
+
+body.theme-default .mat-expansion-panel-header-description,
+body.theme-default .mat-expansion-indicator::after {
+  color: inherit
+}
+
+.mat-expansion-indicator::after {
+  padding: 6px !important;
+  margin-top: -12px !important
+}
+
+.mat-dialog-content {
+  padding-top: 12px !important;
+}
+
+body.theme-default .mat-button-toggle-group-appearance-standard {
+  border: 0px solid #ccc;
+}
+
+body.theme-default .mat-button-toggle-checked {
+  background: #fce6e2;
+  color: $condo-red-text !important;
+  border-color: $condo-red-text !important;
+}
+
+
+/* Logo change fold and unfold starts */
+.logo-sink {
+  display: none;
+}
+
+.unfolded .logo-sink {
+  display: none !important;
+}
+
+.folded .logo {
+  display: none !important;
+}
+
+.folded .logo-sink {
+  display: block !important;
+}
+
+.unfolded .logo {
+  display: block !important;
+}
+
+.folded.unfolded .logo-sink {
+  display: none !important;
+}
+
+/* Logo change fold and unfold ends */
+
+.upload-btn {
+  background: #ffeae6;
+  padding: 15px 20px;
+}
+
+.upload-btn:hover {
+  background: #f2d8d3;
+  padding: 15px 20px;
+}
+
+.input-group-bg {
+  background: #f9f9f9 !important;
+  border: 1px solid #ebeced !important;
+}
+
+.message-box {
+  border: none !important;
+  border-radius: 4px;
+}
+
+.b-r-4 {
+  border-radius: 4px;
+}
+
+.b-r-b-4 {
+  border-radius: 0px 0px 4px 4px;
+}
+
+.b-r-t-4 {
+  border-radius: 4px 4px 0px 0px;
+}
+
+#timeline {
+  background: #fff;
+}
+
+.mat-tab-label {
+  height: 50px !important;
+  padding: 39px 50px 34px 50px !important;
+  border-top: 0px solid !important;
+  border: 1px solid #f0f0f0;
+  background: #fafafa;
+  opacity: 1 !important;
+  width: 100%;
+}
+
+.mat-tab-label:last-child {
+  border-right: 0px solid !important;
+}
+
+.mat-tab-label-active {
+  background: #fff;
+}
+
+.mat-tab-label-content {
+  font-size: 18px;
+  color: $condo-gray-text;
+  text-transform: uppercase;
+}
+
+body.theme-default .mat-tab-group.mat-primary .mat-ink-bar {
+  background-color: #fff !important;
+}
+
+.mat-tab-label-active .mat-tab-label-content {
+  color: $condo-red-text;
+  font-weight: 600;
+}
+
+.mat-tab-label.mat-tab-label-active {
+  border: none !important
+}
+
+.mat-tab-header {
+  border-bottom: 0px !important
+}
+
+body.theme-default ngx-datatable.material {
+  box-shadow: none !important;
+}
+
+.datatable-header-cell-label {
+  font-weight: 600;
+  color: #373f49;
+}
+
+.datatable-body-cell-label {
+  color: $condo-gray-text
+}
+
+.sort-btn {
+  color: $condo-red-text
+}
+
+.bg-transparent {
+  background: transparent !important;
+}
+
+.bg-white {
+  background: #fff;
+}
+
+.bg-fafafa {
+  background: #fafafa !important;
+}
+
+.font-20 {
+  font-size: 20px;
+
+  @include media-breakpoint('xs') {
+    font-size: 14px;
+  }
+}
+
+.height-200 {
+  height: 200px !important;
+}
+
+.mat-tooltip {
+  font-size: 14px !important;
+  line-height: 24px;
+}
+
+h5,
+.h5 {
+  font-size: 14px;
+}
+
+h4,
+.h4 {
+  font-size: 16px;
+}
+
+h3,
+.h3 {
+  font-size: 18px;
+
+  @include media-breakpoint('xs') {
+    font-size: 14px;
+
+  }
+}
+
+.ngx-datatable.material .datatable-body .datatable-body-row .datatable-body-cell {
+  font-size: 16px
+}
+
+.delete-icon {
+  border-radius: 100%;
+  padding: 8px 25px 25px 9px;
+  background: #d84d34;
+  color: #fff;
+  margin-top: -10px;
+  cursor: pointer
+}
+
+body {
+
+  @include media-breakpoint('xl') {
+    font-size: 20px;
+    line-height: 28px;
+  }
+}
+
+.header-label {
+  align-items: flex-start
+}
+
+
+.attachment-icon {
+  @include media-breakpoint('xl') {
+    padding: 6px 14px;
+    font-size: 18px !important;
+  }
+}
+
+.font-size-12 {
+  @include media-breakpoint('xl') {
+    font-size: 16px !important;
+  }
+}
+
+.h5 {
+  @include media-breakpoint('xl') {
+    font-size: 18px;
+    margin-bottom: 2px;
+  }
+}
+
+.h4 {
+  @include media-breakpoint('xl') {
+    font-size: 20px;
+
+  }
+}
+
+.h2 {
+  @include media-breakpoint('xl') {
+    font-size: 24px;
+
+  }
+}
+
+.font-size-16 {
+  @include media-breakpoint('xl') {
+    font-size: 20px;
+
+  }
+}
+
+.mat-button {
+  @include media-breakpoint('xl') {
+    font-size: 16px;
+
+  }
+}
+
+.page-item.disabled .page-link,
+.page-item.disabled .page-link {
+  @include media-breakpoint('xl') {
+    font-size: 20px !important;
+
+  }
+}
+
+vertical-layout-1 .text-boxed {
+  @include media-breakpoint('xl') {
+    font-size: 13px !important;
+    padding: 4px 12px !important;
+
+  }
+}
+
+.mat-expansion-panel-header,
+.mat-list-base .mat-list-item {
+  @include media-breakpoint('xl') {
+    font-size: 20px !important;
+
+  }
+}
+
+.line-height-26 {
+  @include media-breakpoint('xl') {
+    line-height: 30px !important;
+
+  }
+}
+
+.line-height-60 {
+  @include media-breakpoint('xs') {
+    line-height: 20px !important;
+
+  }
+}
+
+
+.mat-toolbar-single-row {
+  @include media-breakpoint('xs') {
+    height: auto !important;
+  }
+
+  @include media-breakpoint('sm') {
+    height: auto !important;
+  }
+}
+
+.footer-content {
+  @include media-breakpoint('xs') {
+    margin-bottom: 0px !important;
+  }
+}
+
+
+@media print {
+
+  md-content {
+    overflow: visible !important;
+  }
+
+  html,
+  body {
+    height: max-content !important;
+    overflow: visible !important;
+  }
+
+
+  //   .pageBreak {
+  //     page-break-after: always !important;
+  //   }
+
+  .mat-expansion-panel-content {
+    overflow: visible !important;
+    display: block !important;
+    visibility: visible !important;
+    height: auto !important;
+  }
+}

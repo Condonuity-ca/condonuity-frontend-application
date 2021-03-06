@@ -1,0 +1,32 @@
+<div id="profile" class="page-layout simple tabbed">
+  <div id="about" class="mt-8" fxLayout="row wrap" [ngClass.xl]="'p-32'" [ngClass.lg]="'p-32'" [ngClass.md]="'p-24'" [ngClass.sm]="'p-24'"
+    [ngClass.xs]="'p-8'">
+    <div class="" fxLayout="column" fxLayoutAlign="start" fxFlex="100">
+      <mat-tab-group selectedIndex={{selectedTabIndex}} (selectedTabChange)="changeTab($event)" dynamicHeight>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon aria-hidden="false" aria-label="create project" class="mr-8 zoom">note_add</mat-icon>
+            <span>CREATE PROJECT</span>
+          </ng-template>
+          <create-project *ngIf="selectedTabIndex === 0" (messageToEmit)="getMessage($event)"></create-project>
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon aria-hidden="false" aria-label="current project" class="mr-8 zoom">list_alt</mat-icon>
+            <span>CURRENT PROJECTS</span>
+          </ng-template>
+          <project-listing *ngIf="selectedTabIndex === 1"></project-listing>
+        </mat-tab>
+
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon aria-hidden="false" aria-label="project history" class="mr-8 zoom">history</mat-icon>
+            <span>PROJECTS HISTORY</span>
+          </ng-template>
+          <app-projects-history *ngIf="selectedTabIndex === 2"></app-projects-history>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+
+</div>

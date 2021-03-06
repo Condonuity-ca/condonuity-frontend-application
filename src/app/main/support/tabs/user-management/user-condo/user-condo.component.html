@@ -1,0 +1,134 @@
+<form fxLayout="column" class="mb-32" [ngClass.lg]="'mx-0'" [ngClass.md]="'mx-0'" [ngClass.sm]="'mx-0'"
+  [ngClass.xs]="'mx-0'" [formGroup]="condoUserform">
+  <div class="" fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign.sm="start"
+    fxLayoutAlign.xs="start" fxLayoutAlign="space-between center" class="mat-card mat-elevation-z  pt-32 ">
+    <div class="pr-4" fxFlex.lg="100" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100" fxLayout.lg="row"
+      fxLayout.md="row" fxLayout.sm="column" fxLayout.xs="column" [ngClass.lg]="'mx-24 '" [ngClass.md]="'mx-24'"
+      [ngClass.sm]="'ml-32 mr-12'" [ngClass.xs]="'px-12 mr-12'">
+
+      <div class="pr-16 mt-16 condo-gray-text" fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="row"
+        fxLayout.xs="column" fxFlex="70" fxLayoutAlign.lg="start top" fxLayoutAlign.md="start top"
+        fxLayoutAlign.sm="start top" fxLayoutAlign.xs="start top" formGroupName="contractType">
+        <mat-label class="secondary-text font-weight-600 pt-4" fxFlex.lg="35" fxFlex.md="35" fxFlex.sm="35"
+          fxFlex.xs="100" [ngClass.xs]="'mb-16'">
+          SEARCH CONDO BY: </mat-label>
+        <mat-radio-group aria-label="Select an option" fxFlex.lg="65" fxFlex.md="65" fxFlex.sm="65" fxFlex.xs="100"
+          fxLayout.xs="column">
+          <mat-radio-button [checked]="condoSearchType == 1" appearance="outline" class="pr-16" fxFlex="50"
+            fxFlex.xs="100" [ngClass.xs]="'mb-16'" value=1 (change)="searchTypeChanged($event.value)">Condo Name
+          </mat-radio-button>
+          <mat-radio-button [checked]="condoSearchType == 2" appearance="outline" class="pr-16" fxFlex="50"
+            fxFlex.xs="100" [ngClass.xs]="'mb-16'" value=2 (change)="searchTypeChanged($event.value)">Corporation #
+          </mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+      <mat-form-field *ngIf="condoSearchType == 1" appearance="outline" class="" [ngClass.lg]="'pr-16'"
+        [ngClass.md]="'pr-16'" [ngClass.sm]="'pr-16'" [ngClass.xs]="'pr-0'" fxFlex.lg="30" fxFlex.md="40" fxFlex.sm="50"
+        fxFlex.xs="100">
+        <mat-label>Condo Name</mat-label>
+
+        <mat-chip-list maxLength="1" #cityChipList aria-label="City Selection" formControlName="cityChips">
+          <mat-chip *ngFor="let condo of selectedCondos" [selectable]="selectable" [removable]="removable"
+            (removed)="removeCondo(condo)">
+            {{condo.organisationName}}
+            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+          </mat-chip>
+          <input [disabled]="isInputDisabled" placeholder="Condo Name" #condoInput [formControl]="condoCtrl"
+            formControlName="condos" [matAutocomplete]="cityAuto" [matChipInputFor]="cityChipList"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur">
+        </mat-chip-list>
+        <mat-autocomplete #cityAuto="matAutocomplete" (optionSelected)="selectCondo($event)">
+          <mat-option *ngFor="let condo of filteredCondos | async" [value]="condo">
+            {{condo.organisationName}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+
+      <mat-form-field *ngIf="condoSearchType == 2" appearance="outline" class="" [ngClass.lg]="'pr-16'"
+        [ngClass.md]="'pr-16'" [ngClass.sm]="'pr-16'" [ngClass.xs]="'pr-0'" fxFlex.lg="30" fxFlex.md="40" fxFlex.sm="50"
+        fxFlex.xs="100">
+        <mat-label>Corp. Number#</mat-label>
+
+        <mat-chip-list maxLength="1" #cityChipList aria-label="City Selection" formControlName="cityChips">
+          <mat-chip *ngFor="let condo of selectedCondos" [selectable]="selectable" [removable]="removable"
+            (removed)="removeCondo(condo)">
+            {{condo.corporateNumber}}
+            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+          </mat-chip>
+          <input [disabled]="isInputDisabled" placeholder="Corporate Number" #condoInput [formControl]="condoCtrl"
+            formControlName="condos" [matAutocomplete]="cityAuto" [matChipInputFor]="cityChipList"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur">
+        </mat-chip-list>
+        <mat-autocomplete #cityAuto="matAutocomplete" (optionSelected)="selectCondo($event)">
+          <mat-option *ngFor="let condo of filteredCondos | async" [value]="condo">
+            {{condo.corporateNumber}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+
+    </div>
+  </div>
+</form>
+
+<div style="margin-top:-10px;" fxLayoutAlign="end end" class="mb-16">
+  <button [disabled]="isInputDisabled == false" mat-button class="mat-flat-button" color="accent"
+    (click)="openNewUserDialog()">ADD CLIENT USER</button>
+</div>
+
+<form class="" fxLayout="column" fxLayoutAlign="start" name="condoUserform" [formGroup]="condoUserform">
+  <mat-accordion class="example-headers-align mat-elevation-z expanded" multi>
+
+    <mat-expansion-panel class="mt-0 mat-elevation-z" expanded>
+      <mat-expansion-panel-header class="condo-red-300">
+        <mat-panel-title class="h3 font-weight-600">
+          USER LIST
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <div class="mat-card mat-elevation-z pt-4 mr-24 project-list">
+        <div class="mt-8 p-0 bg-white" fxLayout="row wrap">
+          <ngx-datatable fxLayout="column" fxLayoutAlign="start" style="width: 100%" class="material pr-20"
+            [rows]="userDetails" [columnMode]="'force'" [footerHeight]="50" [rowHeight]="'auto'" [scrollbarH]="true"
+            [selectionType]="'checkbox'" [limit]="10" [limit]="10">
+            <ngx-datatable-column name="First Name" prop="firstName"></ngx-datatable-column>
+            <ngx-datatable-column name="Last Name" prop="lastName"></ngx-datatable-column>
+            <ngx-datatable-column name="Email" [sortable]="false"></ngx-datatable-column>
+            <ngx-datatable-column name="Role" prop="clientUserType">
+              <ng-template ngx-datatable-cell-template let-value="value">
+                <span *ngIf="value == 1"> Manager</span>
+                <span *ngIf="value == 2">Assistant Manager</span>
+                <span *ngIf="value == 3">Board Member</span>
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Administrator" prop="userRole">
+              <ng-template ngx-datatable-cell-template let-value="value">
+                <span *ngIf="value == 2"> No</span>
+                <span *ngIf="value == 1">Yes</span>
+              </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="Status" prop="userAccountStatus">
+              <ng-template ngx-datatable-cell-template let-value="value">
+                <span *ngIf="value == 0" class="condo-gray-text"> Invited</span>
+                <span *ngIf="value == 1" class="condo-red-text"> Active</span>
+              </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="Actions" [sortable]="false" prop="clientId">
+              <ng-template ngx-datatable-cell-template let-value="value">
+                <a class="cursor condo-gray-text" (click)="openEditUserDialog(value)">
+                  <mat-icon class="s-20">edit</mat-icon>
+                </a>
+                <a (click)="openDeleteConfirmationDialog(value)" class="ml-8 cursor">
+                  <mat-icon class="s-20">delete_outline</mat-icon>
+                </a>
+              </ng-template>
+            </ngx-datatable-column>
+          </ngx-datatable>
+        </div>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+</form>

@@ -1,0 +1,100 @@
+<div>
+  <project-info></project-info>
+</div>
+<div *ngIf="awardingDetails" class="mat-card mat-elevation-z p-32 mt-32">
+  <div class="mb-24" fxLayout="row" fxLayoutAlign="space-between center">
+    <div class="mt-16">
+      <div class="h3 font-weight-600 mb-8">AWARD DECISION
+      </div>
+      <!-- <span class="condo-gray-text">Select which vendor you'd like to award the project. You may edit the default
+        information with the actual agreed terms.</span> -->
+    </div>
+  </div>
+
+  <div class="mt-32" fxLayout="column" fxLayoutAlign="start">
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start center" fxLayoutAlign.xs="start" fxFlex="1 0 auto">
+      <div fxFlex="40" fxFlex.xs="100">
+        <div class="h5 condo-gray-text">VENDOR NAME</div>
+        <div class="h4 mb-16">{{awardingDetails.vendorOrganisationName}}</div>
+      </div>
+      <div fxFlex="20" fxFlex.xs="100">
+        <div class="h5 condo-gray-text">TOTAL PRICE</div>
+        <div class="h4 mb-16">
+          {{awardingDetails.totalPrice | currency:'CAD'}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="" fxLayout="column" fxLayoutAlign="start" [ngClass.xl]="'mt-24'" [ngClass.lg]="'mt-24'" [ngClass.md]="'mt-24'"
+    [ngClass.sm]="'mt-24'" [ngClass.xs]="'mt-8'">
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start center" fxLayoutAlign.xs="start" fxFlex="1 0 auto">
+      <div fxFlex="40" fxFlex.xs="100">
+        <div class="h5 condo-gray-text">START DATE</div>
+        <div class="h4 mb-16">{{awardingDetails.startDate}}</div>
+      </div>
+      <div fxFlex="20" fxFlex.xs="100">
+        <div class="h5 condo-gray-text">DURATION</div>
+        <div class="h4 mb-16">
+          {{awardingDetails.duration}}
+        </div>
+      </div>
+      <div fxFlex="20" fxFlex.xs="100">
+        <div class="h5 condo-gray-text">AWARD DATE</div>
+        <div class="h4 mb-16">
+          {{awardingDetails.awardDate}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="" fxLayout="column" fxLayoutAlign="start" [ngClass.xl]="'mt-24'" [ngClass.lg]="'mt-24'" [ngClass.md]="'mt-24'"
+    [ngClass.sm]="'mt-24'" [ngClass.xs]="'mt-8'">
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start center" fxLayoutAlign.xs="start" fxFlex="1 0 auto">
+      <div fxFlex="40" fxFlex.xs="100">
+        <div class="h5 condo-gray-text">COMMENTS</div>
+        <div class="h4 mb-16">{{awardingDetails.comments}}</div>
+      </div>
+    </div>
+  </div>
+  <div>
+
+    <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" class="my-24" fxLayoutAlign="space-between center"
+      fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxFlex="1 0 auto">
+      <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" class="mt-16" fxLayoutAlign="space-between center"
+        fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxFlex="1 0 auto">
+        <div fxFlex="100" fxFlex.xs="100" class="upload-button" [ngClass.xl]="'mr-16'" [ngClass.lg]="'mr-16'" [ngClass.md]="'mr-16'"
+          [ngClass.sm]="'mb-24'" [ngClass.xs]="'mb-24'">
+          <div fxLayout="row">
+            <div class="h5 condo-gray-text mb-24" fxFlex="100">SUPPORTING IMAGES & DOCS</div>
+          </div>
+          <div fxLayout="row" class="mb-12">
+            <div class="h4 line-height-28 mb-8" fxLayout="row" fxLayoutAlign="text-left center" fxFlex="1 0 auto">
+              <div>
+                <div *ngFor="let attachment of awardingDetails.attachments" class="" fxLayout="column"
+                  (click)="attachmentClicked(attachment)">
+                  <div>
+                    <mat-icon class="s-16 font-weight-600 mat-icon mr-8" style="vertical-align: center">photo_library
+                    </mat-icon> <a class="cursor">{{attachment.fileName}}</a> <span
+                      class="condo-gray-text ml-16">{{attachment.fileSize}}</span>
+                  </div>
+                </div>
+                <div *ngIf="awardingDetails.attachments.length == 0" class="" fxLayout="row">
+                  <div class="condo-gray-text text-italic text-center">No files available</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-16" fxLayout="row" fxLayoutAlign="end ">
+      <div>
+        <button mat-flat-button color="primary" class="submit-button mr-16 donot_print" (click)="editAwardee()"
+          aria-label="Continue">
+          EDIT
+        </button>
+      </div>
+    </div>
+  </div>

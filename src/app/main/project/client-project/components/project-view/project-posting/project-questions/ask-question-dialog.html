@@ -1,0 +1,31 @@
+<div fxLayout="row" fxLayoutAlign="space-between center">
+  <div mat-dialog-title class="pl-12 ">ASK A QUESTION</div>
+
+  <mat-dialog-actions align="end" class="px-16 mb-12">
+    <button mat-button mat-dialog-close style="margin-top:-20px;min-width: 28px !important;" class="p-0">
+      <mat-icon class="s-24 condo-red-text" mat-dialog-close>close</mat-icon>
+    </button>
+  </mat-dialog-actions>
+</div>
+<mat-dialog-content class="mat-typography">
+  <div class="px-16" fxLayout="column">
+    <form fxLayout="column" fxLayoutAlign="start" fxFlex="1 0 auto" name="questionCreationForm"
+      [formGroup]="questionCreationForm">
+
+
+      <div fxLayout="row" fxLayoutAlign="start center">
+        <mat-form-field appearance="outline" fxFlex="100">
+          <textarea matInput formControlName="question" placeholder="Ask Your Question related to the Project Here"
+            required>
+                    </textarea>
+        </mat-form-field>
+      </div>
+
+    </form>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end" class="px-16 pb-16">
+  <button mat-button mat-flat-button mat-accent [disabled]="questionCreationForm.invalid" (click)="postQuestion()"
+    cdkFocusInitial color="accent">SUBMIT</button>
+  <button mat-button mat-dialog-close class="fuse-navy-50">CANCEL</button>
+</mat-dialog-actions>

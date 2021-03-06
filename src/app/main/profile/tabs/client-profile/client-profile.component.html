@@ -1,0 +1,350 @@
+<div id="profile" class="page-layout simple tabbed">
+  <div id="about" class="pb-32" fxLayout="row wrap" fxFlex="100" [ngClass.xl]="'pt-16 pr-32 pl-32'" [ngClass.lg]="'pt-16 pr-32 pl-32'"
+    [ngClass.md]="'pt-16 pr-32 pl-32'" [ngClass.sm]="'px-16'" [ngClass.xs]="'pr-16 pl-16'">
+    <div class="about-content" fxLayout="column" fxFlex="100" fxFlex.gt-sm="100" fxFlex.gt-md="100" class="mt-24">
+      <div fxLayout="column" fxFlex="100" fxLayoutAlign="end end" fxLayoutAlign.xs="start" fxFlex.xs="100"
+        fxLayout.xs="column" class="mt-0 mb-8" [ngClass.xs]="'mt-16'">
+        <div *ngIf="screenPath.sourceScreen== 'condoBrowser' ">
+          <div fxLayout="row" fxFlex.md="100" *ngIf="this.router.url=='/browseCondos/view' ">
+            <a class="cursor" [routerLink]="['/browseCondos']"> <span class="font-weight-600">
+                <mat-icon aria-hidden="false" aria-label="current project" class="zoom s-16 condo-red-text">arrow_back
+                </mat-icon> BACK TO BROWSE CONDOS
+              </span></a>
+          </div>
+        </div>
+        <div *ngIf="screenPath.sourceScreen== 'others' ">
+          <div fxLayout="row" fxFlex.md="100">
+            <a class="cursor" [routerLink]="['/projects/vendor']"> <span class="font-weight-600">
+                <mat-icon aria-hidden="false" aria-label="current project" class="zoom s-16 condo-red-text">arrow_back
+                </mat-icon> BACK TO MY PROJECTS
+              </span></a>
+          </div>
+        </div>
+        <div *ngIf="screenPath.sourceScreen== 'supportUser' ">
+          <div fxLayout="row" fxFlex.md="100">
+            <a class="cursor" [routerLink]="['/support/newRegistration']"> <span class="font-weight-600">
+                <mat-icon aria-hidden="false" aria-label="current project" class="zoom s-16 condo-red-text">arrow_back
+                </mat-icon> BACK TO NEW REGISTRATION
+              </span></a>
+          </div>
+        </div>
+        <div *ngIf="screenPath.sourceScreen== 'supportClient' ">
+          <div fxLayout="row" fxFlex.md="100">
+            <a class="cursor" [routerLink]="['/support/clientManagement']"> <span class="font-weight-600">
+                <mat-icon aria-hidden="false" aria-label="current project" class="zoom s-16 condo-red-text">arrow_back
+                </mat-icon> BACK TO CLIENT MANAGEMENT
+              </span></a>
+          </div>
+        </div>
+        <div *ngIf="screenPath.sourceScreen== 'CondoView' ">
+          <div fxLayout="row" fxFlex.md="100">
+            <a class="cursor" [routerLink]="['/marketplace']"> <span class="font-weight-600">
+                <mat-icon aria-hidden="false" aria-label="current project" class="zoom s-16 condo-red-text">arrow_back
+                </mat-icon> BACK TO MARKETPLACE
+              </span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="profileData != null" class="about-content" fxLayout="column" fxFlex="100" fxFlex.gt-sm="100"
+      fxFlex.gt-md="100">
+      <mat-accordion class="example-headers-align mat-elevation-z expanded" multi>
+        <mat-expansion-panel class=" mat-elevation-z" expanded [ngClass.lg]="'mt-24'" [ngClass.md]="'mt-24'"
+          [ngClass.sm]="''" [ngClass.xs]="''">
+          <mat-expansion-panel-header class="condo-red-300">
+            <mat-panel-title class="h3 font-weight-600">
+              CORPORATION INFORMATION
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="mat-card mat-elevation-z pt-32">
+            <div *ngIf="!viewOnly || currentUser.userType == 3" class="text-right" [ngClass.sm]="'pr-12'">
+              <a class="text-bold condo-red-text h5 cursor" (click)="openCorporationInfoDialog()">
+                <mat-icon class="s-16">edit</mat-icon> EDIT
+              </a>
+            </div>
+
+            <div fxLayout="column">
+              <div fxFlex="100" fxLayout="row" class="mat-card mat-elevation-z"
+                style="border-bottom:1px solid #ccc;margin-bottom:15px;" fxFlex.sm="100" fxFlex.xs="100"
+                [ngClass.lg]="'p-0 mt-16'" [ngClass.md]="'p-0 mt-16'" [ngClass.sm]="'p-0 mb-8 mr-8 mt-0'"
+                [ngClass.xs]="'p-4 mt-8'">
+                <div *ngIf="profileData != null" class="" fxFlex="100" fxLayout="row">
+                  <div class="mat-card mat-elevation-z" fxFlex="100">
+
+                    <div class="" fxLayout="row" fxLayoutAlign="start flex-start" fxLayout.xs="column">
+                      <div class="h-80 w-80" [ngClass.xs]="'mb-12 '">
+                        <div class="img-hover">
+                          <img [src]="profileImgUrl" *ngIf="profileImgUrl" class="" style="width:80px;height:80px">
+                        </div>
+                      </div>
+                      <div class="" fxFlex="70" fxFlex.xs="100" [ngClass.lg]="'pr-16 ml-24'"
+                        [ngClass.md]="'pr-16 ml-24'" [ngClass.sm]="'pr-16 ml-24'" [ngClass.xs]="''">
+                        <div class="h2 text-bold" [ngClass.xs]="'text-flex-start'">
+                          {{profileData.organisation.organisationName}}
+                        </div>
+                        <div class="h5 font-weight-600 cursor mt-12 condo-red-text" fxLayout.xs="column"
+                          [ngClass.xs]="'mt-4 text-flex-start'">{{profileData.organisation.corporateNumber}}</div>
+                        <div *ngIf="currentUser.userType == 3" class="h5 font-weight-600 cursor mt-8 "
+                          fxLayout.xs="column" [ngClass.xs]="'mt-4 text-flex-start'">
+                          <div *ngIf="currentProfileMode == 1 && accountStatus == 0">Status: <span
+                              class="condo-green-text">Active</span></div>
+                          <div *ngIf="currentProfileMode == 1 && accountStatus == 1">Status: <span
+                              class="condo-red-text">Inactive</span></div>
+                        </div>
+                      </div>
+
+                      <div *ngIf="currentProfileMode == 1 && accountStatus == 1 && currentUser.userType == 3"
+                        class="pr-0" fxFlex="30" fxFlex.xs="100">
+                        <div style="" fxLayout="row wrap" fxLayoutAlign="end end" class="mt-16">
+                          <button mat-button class="mat-flat-button condo-red-700"
+                            (click)="updateUserAccountStatus(1)">ACTIVATE</button>
+                        </div>
+                      </div>
+
+                      <div *ngIf="currentProfileMode == 1 && accountStatus == 0 && currentUser.userType == 3"
+                        class="pr-0" fxFlex="30" fxFlex.xs="100">
+                        <div style="" fxLayout="row wrap" fxLayoutAlign="end end" class="mt-16">
+                          <button mat-button class="mat-flat-button" color="accent"
+                            (click)="updateUserAccountStatus(2)">DEACTIVATE</button>
+                        </div>
+                      </div>
+
+
+                      <div *ngIf="currentProfileMode == 0 && accountStatus == 1 && currentUser.userType == 3"
+                        class="pr-0" fxFlex="30" fxFlex.xs="50">
+                        <div style="" fxLayout="row wrap" fxLayoutAlign="end end" class="mt-16 ">
+                          <button mat-button class="mat-flat-button condo-red-700 mr-16"
+                            (click)="updateUserAccountStatus(3)">APPROVE</button>
+
+                          <button *ngIf="accountApprovalStatus == 0" mat-button class="mat-flat-button" color="accent"
+                            (click)="updateUserAccountStatus(4)">DECLINE</button>
+                        </div>
+                      </div>
+
+                      <div *ngIf="currentProfileMode == 0 && accountStatus == 0 && currentUser.userType == 3"
+                        class="pr-0" fxFlex="30" fxFlex.xs="100">
+                        <div style="" fxLayout="row wrap" fxLayoutAlign="end end" class="mt-16">
+                          <div class="h5 font-weight-600 cursor mt-12 condo-green-text"
+                            [ngClass.xs]="'mt-4 text-flex-start'">APPROVED</div>
+                        </div>
+                      </div>
+
+                      <div *ngIf="currentProfileMode == 0 && accountStatus == 2 && currentUser.userType == 3"
+                        class="pr-0" fxFlex="30" fxFlex.xs="100">
+                        <div style="" fxLayout="row wrap" fxLayoutAlign="end end" class="mt-16">
+                          <div class="h5 font-weight-600 cursor mt-12 condo-green-text"
+                            [ngClass.xs]="'mt-4 text-flex-start'">DECLINED</div>
+                        </div>
+                      </div>
+
+                    </div>
+                    <div class="h2 pt-16 mb-16"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div fxLayout="row" fxLayout.xs="column" class="my-16" [ngClass.xs]="'mb-0'" fxLayoutAlign.xs="start"
+                fxLayoutAlign="start flex-start" fxFlex="1 0 auto">
+                <div fxFlex="30" fxFlex.xs="90" [ngClass.xs]="'mb-16'">
+                  <div class="h5 condo-gray-text mb-4">ADDRESS</div>
+                  <div class="h4">{{profileData.organisation.address}}</div>
+                </div>
+
+                <div fxFlex="20" fxFlex.xs="90" [ngClass.xs]="'mb-16'">
+                  <div class="h5 condo-gray-text mb-4">CITY</div>
+                  <div class="h4">{{profileData.organisation.city}}</div>
+                </div>
+
+                <div fxFlex="20" fxFlex.xs="90" [ngClass.xs]="'mb-16'">
+                  <div class="h5 condo-gray-text mb-4">PROVINCE</div>
+                  <div class="h4">{{profileData.organisation.province}}</div>
+                </div>
+
+                <div fxFlex="20" fxFlex.xs="90">
+                  <div class="h5 condo-gray-text mb-4">POSTAL CODE</div>
+                  <div class="h4">{{profileData.organisation.postalCode}}</div>
+                </div>
+              </div>
+
+
+              <div fxLayout="row" fxLayout.xs="column" class="my-16" [ngClass.xs]="'mb-0'" fxLayoutAlign.xs="start"
+                fxLayoutAlign="start flex-start" fxFlex="1 0 auto">
+                <div fxFlex="30" fxFlex.xs="90" [ngClass.xs]="'mb-16'">
+                  <div class="h5 condo-gray-text mb-4">PHONE NUMBER</div>
+                  <div class="h4">{{profileData.organisation.phoneNumber}}</div>
+                </div>
+
+                <div fxFlex="20" fxFlex.xs="90">
+                  <div class="h5 condo-gray-text mb-4">FAX</div>
+                  <div class="h4">{{profileData.organisation.faxNumber}}</div>
+                </div>
+              </div>
+
+              <div fxLayout="row" fxLayout.xs="column" class="my-16" fxLayoutAlign.xs="start"
+                fxLayoutAlign="start flex-start" fxFlex="1 0 auto">
+                <div fxFlex="30" fxFlex.xs="90" [ngClass.xs]="'mb-16'">
+                  <div class="h5 condo-gray-text mb-4">GENERAL EMAIL</div>
+                  <div class="h4"><a
+                      href="mailto:{{profileData.organisation.generalEmail}}">{{profileData.organisation.generalEmail}}</a>
+                  </div>
+                </div>
+
+                <div fxFlex="40" fxFlex.md="40" fxFlex.sm="50" fxFlex.xs="90" [ngClass.xs]="'mb-16'">
+                  <div class="h5 condo-gray-text mb-4">MANAGEMENT EMAIL</div>
+                  <div class="h4"><a
+                      href="mailto:{{profileData.organisation.managementEmail}}">{{profileData.organisation.managementEmail}}</a>
+                  </div>
+                </div>
+
+                <div fxFlex="40" fxFlex.sm="40" fxFlex.xs="90">
+                  <div class="h5 condo-gray-text mb-4">BOARD EMAIL</div>
+                  <div class="h4"><a
+                      href="mailto:{{profileData.organisation.boardEmail}}">{{profileData.organisation.boardEmail}}</a>
+                  </div>
+                </div>
+              </div>
+
+
+              <div *ngIf="shouldShowOrgAttachments == true" fxLayout="column">
+                <div class="h5 condo-gray-text" [ngClass.lg]="'mt-24'" [ngClass.md]="'mt-24'" [ngClass.sm]="'mt-24'"
+                  [ngClass.xs]="'mt-8'" fxFlex="100">UPLOADED FILES</div>
+              </div>
+
+
+              <div *ngIf="profileData != null && shouldShowOrgAttachments == true" fxLayout.lg="row" fxLayout.md="row"
+                fxLayout.sm="row" fxLayout.xs="column" class="my-16" fxLayoutAlign.xs="start"
+                fxLayoutAlign.lg="space-between flex-start" fxLayoutAlign.md="space-between flex-start"
+                fxLayoutAlign.sm="space-between flex-start" fxFlex="1 0 auto">
+
+                <div fxFlex.lg="100" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100" fxLayout.lg="row" fxLayout.md="row"
+                  fxLayout.sm="row" fxLayout.xs="column" class="upload-button">
+
+                  <div fxLayout="row" class="mb-12">
+                    <div class="h4 line-height-28 mb-8" fxLayout="row" fxLayoutAlign="flex-start flex-start" fxFlex="1 0 auto">
+
+                      <div>
+                        <div *ngFor="let docAttachment of profileData.registrationFiles" class="" fxLayout="column"
+                          (click)="fileClicked(docAttachment)">
+                          <div>
+                            <mat-icon class="s-16 font-weight-600 mat-icon mr-8" style="vertical-align: flex-start">
+                              file_copy</mat-icon> <a class="cursor">{{docAttachment.fileName}}</a> <span
+                              class="condo-gray-text ml-16">{{docAttachment.fileSize}}</span>
+                          </div>
+                        </div>
+                        <div *ngIf="profileData.registrationFiles.length == 0" class="" fxLayout="row">
+                          <div class="condo-gray-text text-italic text-flex-start">No documents available</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </mat-expansion-panel>
+
+        <mat-expansion-panel class="mt-24 mat-elevation-z">
+          <mat-expansion-panel-header class="condo-red-300">
+            <mat-panel-title class="h3 font-weight-600">
+              ADDITIONAL INFORMATION
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="mat-card mat-elevation-z pt-32">
+            <div *ngIf="!viewOnly" class="text-right">
+              <a class="text-bold condo-red-text h5 cursor" (click)="openOtherDialog()">
+                <mat-icon class="s-16">edit</mat-icon> EDIT
+              </a>
+            </div>
+            <div fxLayout="column">
+              <div fxLayout="row" fxLayout.xs="column" class="my-16" [ngClass.xs]="'mb-0'" fxLayoutAlign="start flex-start"
+                fxLayoutAlign.xs="start" fxFlex="1 0 auto">
+                <div fxFlex="30" fxFlex.xs="90" [ngClass.xs]="'mb-16'">
+                  <div class="h5 condo-gray-text mb-4">NO OF UNITS</div>
+                  <div class="h4">{{profileData.organisation.units}}</div>
+                </div>
+
+                <div fxFlex="20" fxFlex.sm="90" fxFlex.xs="90">
+                  <div class="h5 condo-gray-text mb-4">NO OF VOTING UNITS</div>
+                  <div class="h4">{{profileData.organisation.votingUnits}}</div>
+                </div>
+              </div>
+
+
+              <div fxLayout="row" fxLayout.xs="column" class="my-16" [ngClass.xs]="'mb-0'" fxLayoutAlign="start flex-start"
+                fxLayoutAlign.xs="start" fxFlex="1 0 auto">
+                <div fxFlex="30" fxFlex.xs="90" [ngClass.xs]="'mb-16'">
+                  <div class="h5 condo-gray-text mb-4">DATE OF REGISTRATION</div>
+                  <div class="h4">{{profileData.organisation.registrationDate | date: 'dd/MM/yyyy'}}</div>
+                </div>
+
+                <div fxFlex="20" fxFlex.sm="40" fxFlex.xs="90">
+                  <div class="h5 condo-gray-text mb-4">MANAGEMENT COMPANY</div>
+                  <div class="h4">{{profileData.organisation.managementCompany}}</div>
+                </div>
+              </div>
+
+              <div fxLayout="row" fxLayout.xs="column" class="my-16" [ngClass.xs]="'mb-0'" fxLayoutAlign="start flex-start"
+                fxLayoutAlign.xs="start" fxFlex="1 0 auto">
+                <div fxFlex="30" fxFlex.xs="90" [ngClass.xs]="'mb-16'">
+                  <div class="h5 condo-gray-text mb-4">MANAGER NAME</div>
+                  <div class="h4">{{profileData.organisation.managerName}}</div>
+                </div>
+
+                <div fxFlex="30" fxFlex.md="30" fxFlex.sm="40" fxFlex.xs="90" [ngClass.xs]="'mb-16'">
+                  <div class="h5 condo-gray-text mb-4">MANAGER EMAIL</div>
+                  <div class="h4"><a
+                      href="mailto:{{profileData.organisation.managerEmail}}">{{profileData.organisation.managerEmail}}</a>
+                  </div>
+                </div>
+
+                <div fxFlex="40" fxFlex.sm="50" fxFlex.xs="90">
+                  <div class="h5 condo-gray-text mb-4">MANAGER PHONE NUMBER</div>
+                  <div class="h4">{{profileData.organisation.managerPhone}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-expansion-panel>
+
+
+        <mat-expansion-panel class="mt-24 mat-elevation-z">
+          <mat-expansion-panel-header class="condo-red-300">
+            <mat-panel-title class="h3 font-weight-600">
+              AMENITIES INFORMATION
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="mat-card mat-elevation-z pt-32">
+            <div *ngIf="!viewOnly" class="text-right">
+              <a class="text-bold condo-red-text h5 cursor" (click)="openAminitiesDialog()">
+                <mat-icon class="s-16">edit</mat-icon> EDIT
+              </a>
+            </div>
+            <div fxLayout="column">
+
+              <div fxLayout="row wrap" fxLayout.xs="column" class="my-16" [ngClass.xs]="'mb-0'"
+                fxLayoutAlign="start flex-start" fxLayoutAlign.xs="start" fxFlex="1 0 auto">
+
+                <div *ngFor="let aminity of profileData.clientAmenities" fxFlex="20" fxFlex.sm="33" fxFlex.xs="90"
+                  [ngClass.lg]="'mb-32'" [ngClass.md]="'mb-32'" [ngClass.sm]="'mb-32'" [ngClass.xs]="'mb-24'">
+                  <div class="h5 condo-gray-text mb-4 text-flex-start"><img class="border-radius-100"
+                      src="{{aminity.amenityLogo}}"></div>
+                  <div class="h4 text-flex-start condo-gray-text mt-8">{{aminity.amenityName}}</div>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+
+      <!-- <div style="" fxLayout="row wrap" fxLayoutAlign="end end" class="mt-16">
+        <button mat-button class="mat-flat-button" color="accent">ACTIVATE</button>
+      </div> -->
+
+    </div>
+  </div>
+
+</div>

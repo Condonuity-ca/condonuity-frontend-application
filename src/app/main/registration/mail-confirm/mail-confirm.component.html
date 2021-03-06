@@ -1,0 +1,44 @@
+<div id="mail-confirm" fxLayout="column">
+
+  <div id="mail-confirm-form-wrapper" fxLayout="column" fxLayoutAlign="center center">
+
+    <div id="mail-confirm-form" [@animate]="{value:'*',params:{duration:'300ms',y:'100px'}}">
+
+      <div class="logo">
+        <mat-icon class="mat-accent s-96">email</mat-icon>
+      </div>
+
+      <div class="title text-bold">Confirm your email address!</div>
+
+      <div *ngIf="type == 'register'" class="subtitle">
+        <p class="line-height-26 condo-gray-text">
+          A confirmation e-mail has been sent to <b class="condo-red-text word-break">{{email.email}}</b>
+        </p>
+        <p class="mt-24 condo-gray-text line-height-24 word-break">
+          Check your email and click on the link to confirm your email address
+        </p>
+      </div>
+      <div *ngIf="type == 'reset'" class="subtitle">
+        <p class="line-height-26 condo-gray-text">
+          A confirmation e-mail has been sent to <b class="condo-red-text word-break">{{email.email}}</b>
+        </p>
+        <p class="mt-24 condo-gray-text line-height-24 word-break">
+          Check your email and click on the link to reset your password
+        </p>
+      </div>
+
+      <!-- <a mat-button class="mat-raised-button text-bold mat-accent"  color="accent" [routerLink]="'/auth/login'"> -->
+      <a *ngIf="type == 'register'" mat-button class="mat-raised-button text-bold mat-accent mt-24" color="accent"
+        [routerLink]="'/auth/login'">
+        Back to Login Page
+      </a>
+      <a *ngIf="type == 'reset'" mat-button class="mat-raised-button text-bold mat-accent mt-24" color="accent"
+        [routerLink]="'/auth/login'">
+        Back to Login Page
+      </a>
+
+    </div>
+
+  </div>
+
+</div>

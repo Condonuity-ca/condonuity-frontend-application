@@ -1,0 +1,81 @@
+<div *ngFor="let qa of qaList" fxLayout="column" fxLayoutAlign="start">
+
+  <mat-expansion-panel *ngIf="qa.answer != null && qa.question != null" [expanded]="allExpandState"
+    class="condo-gray-text line-height-60 mb-16">
+    <mat-expansion-panel-header>
+      <mat-panel-title fxLayout="row" fxLayoutAlign="start center">
+        <mat-icon class="mr-12 s-20 secondary-text">help_outline</mat-icon>
+        {{qa.question}}
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div>
+      <div *ngIf="qa.answer != null" fxLayout="row" fxLayoutAlign="start center">
+        <p class="condo-red-text font-size-16" fxFlex="90">{{qa.answer}}</p>
+      </div>
+
+      <div *ngIf="qa.answer == null" fxLayout="row" fxLayoutAlign="start center">
+        <p class="condo-gray-text font-size-16" fxFlex="90">No answer yet</p>
+      </div>
+    </div>
+  </mat-expansion-panel>
+
+  <!-- <div *ngIf="show">
+        <form fxLayout="column" fxLayoutAlign="start" name="12" class="mt-16" [formGroup]="12">
+          <div class="" fxLayout="row" fxLayout.xs="column" fxLayoutAlign.xs="start" fxLayoutAlign="start bottom"
+            fxFlex="1 0 auto">
+            <mat-form-field appearance="outline" fxFlex="45" fxFlex.xs="100" class="" [ngClass.lg]="'pr-16'"
+              [ngClass.md]="'pr-16'" [ngClass.sm]="'pr-16'" [ngClass.xs]="''">
+              <mat-label>Submit your answer here</mat-label>
+              <textarea matInput formControlName="description" required></textarea>
+            </mat-form-field>
+
+            <div fxFlex="40">
+              <button mat-flat-button color="primary" class="submit-button" aria-label="Continue"
+                [ngClass.lg]="'mr-16 mt-4'" [ngClass.md]="'mr-16'" [ngClass.sm]="'mr-16'" [ngClass.xs]="'mb-16'">
+                SUBMIT
+              </button>
+            </div>
+          </div>
+        </form>
+      </div> -->
+
+
+
+  <!-- <mat-expansion-panel [expanded]="allExpandState" class="condo-gray-text line-height-60">
+    <mat-expansion-panel-header>
+        <mat-panel-title fxLayout="row" fxLayoutAlign="start center">
+            <mat-icon class="mr-12 s-20 secondary-text">help_outline</mat-icon>
+            Is parking available in the building?
+        </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div>               
+        <form fxLayout="column" fxLayoutAlign="start" name="12" class="mt-24" [formGroup]="12">
+            <div class="" fxLayout="row" fxLayout.xs="column" fxLayoutAlign.xs="start" fxLayoutAlign="start bottom" fxFlex="1 0 auto">
+                <mat-form-field appearance="outline" fxFlex="45" fxFlex.xs="100" class="" [ngClass.lg]="'pr-16'" [ngClass.md]="'pr-16'" [ngClass.sm]="'pr-16'" [ngClass.xs]="''">
+                    <mat-label>Submit your answer here</mat-label>
+                    <textarea matInput formControlName="description" required>
+                    </textarea>
+                </mat-form-field>
+
+                    <div fxFlex="40">
+                    <button mat-flat-button color="primary" class="submit-button" aria-label="Continue" [ngClass.lg]="'mr-16 mt-4'" [ngClass.md]="'mr-16'" [ngClass.sm]="'mr-16'" [ngClass.xs]="'mb-16'">
+                            SUBMIT
+                    </button>                        
+                </div>   
+            </div>
+        </form>
+    </div>
+    </mat-expansion-panel> -->
+</div>
+
+<div *ngIf="currentUser.userType == 2 && currentProjectStage != 2" class="" fxLayout="row" fxLayoutAlign="end">
+  <div class="">
+    <button mat-flat-button class="submit-button condo-red-400" aria-label="Continue" (click)="openAskQuestionDialog()">
+      ASK A QUESTION
+    </button>
+  </div>
+</div>
+
+<div *ngIf="qaList != null && qaList.length == 0" class="" fxLayout="row">
+  <div class="condo-gray-text text-italic text-center">No questions yet</div>
+</div>

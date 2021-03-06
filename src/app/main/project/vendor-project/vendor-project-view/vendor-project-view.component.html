@@ -1,0 +1,38 @@
+
+<div id="profile" class="page-layout simple tabbed">
+  <div id="about" class="" fxLayout="row wrap" [ngClass.xl]="'p-24'" [ngClass.lg]="'p-24'" [ngClass.md]="'p-24'" [ngClass.sm]="'p-16'"
+    [ngClass.xs]="'p-8'">
+
+    <div class="" fxLayout="column" fxLayoutAlign="start" fxFlex="100">
+      <vendor-view></vendor-view>
+    </div>
+
+    <div class="" fxLayout="column" fxLayoutAlign="start" fxFlex="100">
+      <project-posting></project-posting>
+    </div>
+
+
+    <div  *ngIf="currentUser.userType == 2" class="" fxLayout="column" fxLayoutAlign="start" fxFlex="100"
+      id="info-banner">
+      <div class="" fxLayout="row" fxLayoutAlign="space-between center" class="mt-32 pt-8" style="background:#fce6e2 ">
+        <div class="">
+          <div class="h2" style="margin-left:10px">Bid Submission Info</div>
+        </div>
+        <div fxLayout="row" fxHide>
+          <div class="text-animation">
+            Submit your bid here
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="bidStatus == 1" fxLayout="column" fxLayoutAlign="start" fxFlex="100">
+        <bid-creation></bid-creation>
+      </div>
+
+      <div *ngIf="bidStatus != 1" class="" fxLayout="column" fxLayoutAlign="start" fxFlex="100">
+        <bid-information></bid-information>
+      </div>
+
+    </div>
+  </div>
+</div>

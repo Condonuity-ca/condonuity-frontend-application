@@ -1,0 +1,163 @@
+<div id="timeline" class="px-24" fxLayout="row wrap">
+
+  <!-- <div class="" fxLayout="column"> -->
+  <div fxLayout="column" fxLayoutAlign="start" fxFlex="1 0 auto">
+    <div fxLayout="column" fxFlex="100" fxFlex.gt-sm="100" fxFlex.gt-md="100" class="">
+      <div>
+        <div class="" fxLayout="row" fxLayoutAlign="space-between center">
+          <div class="pr-16">
+            <div class="h3 font-weight-600">DATE INFORMATION</div>
+          </div>
+          <div fxLayout="row">
+            <div appearance="outline" class="px-16 mt-32 p-24 ">
+              <span class="condo-red-400 px-32 py-16 font-size-18 font-weight-500">TOTAL :
+                {{totalEst | currency:'CAD' }} </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div fxLayout="row" fxLayout.xs="column" class="mb-16" fxLayoutAlign="start center" fxLayoutAlign.xs="start"
+      fxFlex="1 0 auto">
+      <div fxFlex="20" fxFlex.xs="100" [ngClass.xs]="'mb-24'">
+        <div class="h5 condo-gray-text mb-4">AVAILABLE START DATE</div>
+        <div class="h4">{{bidData.availableStartDate}}</div>
+      </div>
+      <div fxFlex="20" fxFlex.sm="30" fxFlex.xs="100" [ngClass.xs]="'mb-24'">
+        <div class="h5 condo-gray-text mb-4">END DATE</div>
+        <div class="h4">{{bidData.endDate}}</div>
+      </div>
+    </div>
+    <mat-divider class="my-16"></mat-divider>
+    <div class="mt-16" fxLayout="row" fxLayoutAlign="space-between center">
+      <div class="pr-16">
+        <div class="h3 font-weight-600">ITEMS SUMMARY</div>
+      </div>
+    </div>
+    <div fxLayout="column" *ngFor="let item of bidData.itemSummary">
+      <div fxLayout="row" fxLayout.xs="column" class="my-16" fxLayoutAlign="start center" fxLayoutAlign.xs="start"
+        fxFlex="1 0 auto">
+        <div fxFlex="30" fxFlex.xs="100" [ngClass.xs]="'mb-24'">
+          <div class="h5 condo-gray-text mb-4">ITEM DESCRIPTION</div>
+          <div class="h4">{{item.itemDesc}}</div>
+        </div>
+        <div fxFlex="20" fxFlex.sm="30" fxFlex.xs="100" [ngClass.xs]="'mb-24'">
+          <div class="h5 condo-gray-text mb-4">QUANTITY</div>
+          <div class="h4">{{item.quantity}}</div>
+        </div>
+        <div fxFlex="20" fxFlex.sm="30" fxFlex.xs="100" [ngClass.xs]="'mb-24'">
+          <div class="h5 condo-gray-text mb-4">UNIT</div>
+          <div class="h4">{{item.unit}}</div>
+        </div>
+        <div fxFlex="20" fxFlex.sm="30" fxFlex.xs="100" [ngClass.xs]="'mb-24'">
+          <div class="h5 condo-gray-text mb-4">PRICE</div>
+          <div class="h4">{{item.price}}</div>
+        </div>
+        <div appearance="outline" fxFlex="35" class="px-16">
+          <span class="font-size-18 condo-red-text">{{item.quantity * item.price | currency:'CAD' }} </span>
+        </div>
+      </div>
+    </div>
+    <mat-divider class="my-16"></mat-divider>
+    <div class="mt-16" fxLayout="row" fxLayoutAlign="space-between center">
+      <div class="pr-16">
+        <div class="h3 font-weight-600">LABOUR SUMMARY</div>
+      </div>
+    </div>
+    <div fxLayout="column" *ngFor="let labour of bidData.labourSummary">
+
+      <div fxLayout="row" fxLayout.xs="column" class="my-16" fxLayoutAlign="start center" fxLayoutAlign.xs="start"
+        fxFlex="1 0 auto">
+        <div fxFlex="30" fxFlex.xs="100" [ngClass.xs]="'mb-24'">
+          <div class="h5 condo-gray-text mb-4">ITEM DESCRIPTION</div>
+          <div class="h4">{{labour.itemDesc}}</div>
+        </div>
+        <div fxFlex="20" fxFlex.sm="30" fxFlex.xs="100" [ngClass.xs]="'mb-24'">
+          <div class="h5 condo-gray-text mb-4">QUANTITY</div>
+          <div class="h4">{{labour.quantity}}</div>
+        </div>
+        <div fxFlex="20" fxFlex.sm="30" fxFlex.xs="100" [ngClass.xs]="'mb-24'">
+          <div class="h5 condo-gray-text mb-4">UNIT</div>
+          <div class="h4">{{labour.unit}}</div>
+        </div>
+        <div fxFlex="20" fxFlex.sm="30" fxFlex.xs="100" [ngClass.xs]="'mb-24'">
+          <div class="h5 condo-gray-text mb-4">PRICE</div>
+          <div class="h4">{{labour.price}}</div>
+        </div>
+        <div appearance="outline" fxFlex="35" class="px-16">
+          <span class="font-size-18 condo-red-text">{{labour.quantity * labour.price | currency:'CAD' }}</span>
+        </div>
+      </div>
+    </div>
+    <mat-divider class="my-16"></mat-divider>
+    <div class="mt-16" fxLayout="row" fxLayoutAlign="space-between center">
+      <div class="pr-16">
+        <div class="h3 font-weight-600">OTHER INFORMATION</div>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayout.xs="column" class="my-16" fxLayoutAlign="start center" fxLayoutAlign.xs="start"
+      fxFlex="1 0 auto">
+
+      <div fxFlex="30" fxFlex.xs="100" [ngClass.xs]="'mb-24'">
+        <div class="h5 condo-gray-text mb-4">START DATE</div>
+        <div class="h4">{{bidData.estStartDate}}</div>
+      </div>
+      <div fxFlex="20" fxFlex.sm="30" fxFlex.xs="100" [ngClass.xs]="'mb-24'">
+        <div class="h5 condo-gray-text mb-4">END DATE</div>
+        <div class="h4">{{bidData.estEndDate}}</div>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayout.xs="column" class="my-16" fxLayoutAlign="start center" fxLayoutAlign.xs="start"
+      fxFlex="1 0 auto">
+
+      <div fxFlex="30" fxFlex.xs="100" [ngClass.xs]="'mb-24'">
+        <div class="h5 condo-gray-text mb-4">IN SCOPE</div>
+        <div class="h4">{{bidData.inScope}}</div>
+      </div>
+      <div fxFlex="20" fxFlex.sm="30" fxFlex.xs="100" [ngClass.xs]="'mb-24'">
+        <div class="h5 condo-gray-text mb-4">OUT OF SCOPE</div>
+        <div class="h4">{{bidData.outOfScope}}</div>
+      </div>
+      <div fxFlex="30" fxFlex.xs="100" [ngClass.xs]="'mb-24'">
+        <div class="h5 condo-gray-text mb-4">PREREQUISITE</div>
+        <div class="h4">{{bidData.prerequisite}}</div>
+      </div>
+      <div fxFlex="20" fxFlex.sm="30" fxFlex.xs="100" [ngClass.xs]="'mb-24'">
+        <div class="h5 condo-gray-text mb-4">WHY CHOOSE ME</div>
+        <div class="h4">{{bidData.whyChooseMe}}</div>
+      </div>
+    </div>
+
+    <div fxLayout="row" fxFlex="100" class="mt-16">
+      <div class="h5 condo-gray-text mb-16">SUPPORTING DOCUMENTS</div>
+    </div>
+
+    <div fxLayout="row" fxLayout.xs="column" class="" fxLayoutAlign="start center" fxLayoutAlign.xs="start"
+      fxFlex="1 0 auto">
+      <div fxFlex="100" fxFlex.xs="100" [ngClass.xs]="'mb-24'">
+        <div fxLayout="row" fxLayout.xs="column" class="mb-16" fxLayoutAlign.xs="start"
+          fxLayoutAlign="space-between center" fxFlex="1 0 auto">
+          <div fxFlex="100" class="upload-button mr-16">
+            <div fxLayout="row" fxLayout.xs="column" fxFlex="33" fxFlex.sm="50" fxFlex.xs="100" class="">
+              <div class="h4 line-height-28" fxLayout="row" fxLayoutAlign="start">
+                <div class="w-60 h-60 mr-16">
+                  <img class="border-radius-80" src="assets/images/no-pic.jpg">
+                </div>
+                <div>
+                  <div class="" fxLayout="column">
+                    <div><a class="cursor">Doc4</a></div>
+                    <div class="condo-gray-text">23.3MB</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- </div> -->
+</div>

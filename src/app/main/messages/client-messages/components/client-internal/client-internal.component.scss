@@ -1,0 +1,221 @@
+@import "src/@condonuity/scss/fuse";
+
+
+
+
+
+.pagination {
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+.pagination {
+    display: -ms-flexbox;
+    display: flex;
+    padding-left: 0;
+    list-style: none;
+    border-radius: .25rem;
+}
+.page-item.disabled .page-link {
+    color: #97a3b4 ;
+    pointer-events: none;
+    font-size:13px;
+    background-color: #fff;
+    border-color: #dee2e6;
+    cursor: pointer !important;
+}
+
+.page-item:first-child .page-link {
+    margin-left: 0;
+    border-top-left-radius: .25rem;
+    border-bottom-left-radius: .25rem;
+}
+
+a:not([href]):not([tabindex]) {
+    color: inherit;
+    text-decoration: none;
+    
+}
+
+.page-link {
+    position: relative;
+    display: block;
+    padding: 1rem 1rem !important;
+    margin-left: -1px;
+    line-height: 0.5;
+    color: #007bff;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+}
+.page-link:hover {
+    z-index: 2;
+    color: #d84d34;
+    text-decoration: none;
+    background-color: #e9ecef;
+    border-color: #dee2e6;
+}
+
+a:hover {
+    color: #0056b3;
+    text-decoration: none !important;
+    cursor: pointer !important;
+}
+
+.page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color: #d84d34;
+    border-color: #d84d34;
+}
+
+
+
+.mat-checkbox-inner-container{width:24px !important; height:24px !important;}
+.condo-sorting .mat-button-toggle-label-content{line-height: 28px !important; padding: 0px !important;}
+.active .mat-button-toggle-label-content{}
+body.theme-default .mat-button-toggle-appearance-standard{background: transparent;}
+body.theme-default .mat-button-toggle-checked.mat-button-toggle-appearance-standard{background: #fce6e2;}
+.mat-button-toggle-checked .mat-button-toggle-label-content{color: #d84d34  !important;}
+.mat-button-toggle-appearance-standard .mat-button-toggle-label-content{color:#97a3b4 }
+.attachment-icon{padding:2px 14px;}
+.custom-icon{position:absolute;margin-left:-20px;margin-top:-1px}
+client-internal {
+
+    #about {
+
+        .about-content {
+
+            .general {
+
+                .location {
+
+                    mat-icon {
+                        line-height: 13px !important;
+                    }
+                }
+            }
+
+            .work {
+
+                .job {
+
+                    .company {
+                        padding: 0 16px 0 0;
+                        font-weight: 600;
+                    }
+                }
+            }
+        }
+
+        .about-sidebar {
+            padding-left: 32px;
+
+            @include media-breakpoint('sm') {
+                padding: 8px
+            }
+
+            .friends {
+
+                .content {
+
+                    .friend {
+                        padding: 4px;
+
+                        img {
+                            border-radius: 4px;
+                        }
+                    }
+                }
+            }
+
+            .groups {
+
+                .content {
+
+                    .group {
+                        margin-bottom: 24px;
+
+                        &:last-child {
+                            margin-bottom: 0;
+                        }
+
+                        .logo {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            width: 48px;
+                            height: 48px;
+                            font-size: 21px;
+                            line-height: normal;
+                            border-radius: 50%;
+                            margin-right: 16px;
+                        }
+
+                        .name {
+                            font-weight: 600;
+                            font-size: 15px;
+                        }
+
+                        .members {
+                            margin-top: 8px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // Profile boxes
+    .profile-box {
+        border-radius: 4px;
+        overflow: hidden;
+        margin-bottom: 16px;
+        @include mat-elevation(2);
+
+        header {
+            padding: 16px;
+
+            .title {
+                font-size: 17px;
+                color: #d84d34;
+            }
+
+            .more {
+                cursor: pointer;
+            }
+        }
+
+        .content {
+            padding: 16px;
+        }
+
+        footer {
+            padding: 8px;
+            border-top: 1px solid;
+        }
+
+        &.info-box {
+
+            .info-line {
+                margin-bottom: 24px;
+
+                .title {
+                    font-size: 15px;
+                    font-weight: 600;
+                    padding-bottom: 4px;
+                }
+
+                .info {
+
+                }
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+
+    .mat-grid-tile .mat-figure{
+        display: inherit !important;
+    }
+}

@@ -1,0 +1,130 @@
+<div fxLayout="row" fxLayoutAlign="space-between center">
+  <div *ngIf="isEditMode === false" mat-dialog-title class="pl-12 ">NEW PORTFOLIO</div>
+  <div *ngIf="isEditMode" mat-dialog-title class="pl-12 ">UPDATE PORTFOLIO</div>
+
+  <mat-dialog-actions align="end" class="px-16 mb-12">
+    <button mat-button mat-dialog-close style="margin-top:-30px;min-width: 28px !important;" class="p-0">
+      <mat-icon class="s-24 condo-red-text" mat-dialog-close>close</mat-icon>
+    </button>
+  </mat-dialog-actions>
+</div>
+
+<mat-dialog-content class="mat-typography">
+  <div class="profile-box info-box general px-12" fxLayout="column">
+    <form fxLayout="column" fxLayoutAlign="start" fxFlex="1 0 auto" name="portfolioForm" [formGroup]="portfolioForm">
+      <div fxLayout="column" fxLayoutAlign="start" fxFlex="1 0 auto" class="pt-12">
+        <div fxLayout="row" fxLayout.sm='column' fxLayout.xs='column' fxLayoutAlign.sm='start' fxLayoutAlign.xs='start'
+          fxLayoutAlign="start center" fxFlex="1 0 auto">
+          <mat-form-field appearance="outline" fxFlex="33" fxFlex.sm='90' fxFlex.xs='90' [ngClass.xl]="'px-16'" [ngClass.lg]="'px-16'" [ngClass.md]="'px-16'" [ngClass.sm]="'px-16'" [ngClass.xs]="'px-0'">
+            <mat-label>Project Name</mat-label>
+            <input matInput formControlName="projectName" required>
+            <mat-error>Mandatory field is required</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" fxFlex="33" fxFlex.sm='90' fxFlex.xs='90' [ngClass.xl]="'px-16'" [ngClass.lg]="'px-16'" [ngClass.md]="'px-16'" [ngClass.sm]="'px-16'" [ngClass.xs]="'px-0'">
+            <mat-label>City</mat-label>
+            <mat-select formControlName="city">
+              <mat-option *ngFor="let city of cityNames" [value]="city">{{city}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" fxFlex="33" fxFlex.sm='90' fxFlex.xs='90' [ngClass.xl]="'px-16'" [ngClass.lg]="'px-16'" [ngClass.md]="'px-16'" [ngClass.sm]="'px-16'" [ngClass.xs]="'px-0'">
+            <mat-label>Client</mat-label>
+            <input matInput formControlName="client" required>
+            <mat-error>Mandatory field is required</mat-error>
+          </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayout.sm='column' fxLayout.xs='column' fxLayoutAlign.sm='start' fxLayoutAlign.xs='start'
+          fxLayoutAlign="start center" fxFlex="1 0 auto">
+          <mat-form-field appearance="outline" fxFlex="99" fxFlex.sm='90' fxFlex.xs='90' [ngClass.xl]="'px-16'" [ngClass.lg]="'px-16'" [ngClass.md]="'px-16'" [ngClass.sm]="'px-16'" [ngClass.xs]="'px-0'">
+            <mat-label>Description</mat-label>
+            <textarea name="description" formControlName="description" matInput type="text" max-rows="4"
+              class="line-height-28"></textarea>
+          </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayout.sm='column' fxLayout.xs='column' fxLayoutAlign.sm='start' fxLayoutAlign.xs='start'
+          fxLayoutAlign="start center" fxFlex="1 0 auto">
+          <mat-form-field appearance="outline" fxFlex="33" fxFlex.sm='90' fxFlex.xs='90' [ngClass.xl]="'px-16'" [ngClass.lg]="'px-16'" [ngClass.md]="'px-16'" [ngClass.sm]="'px-16'" [ngClass.xs]="'px-0'">
+            <mat-label>Duration Days</mat-label>
+            <input matInput formControlName="duration" required>
+            <mat-error *ngIf="portfolioForm.get('duration').hasError('required')">Mandatory field is required
+            </mat-error>
+            <mat-error *ngIf="portfolioForm.get('duration').hasError('pattern')">
+              Please Enter a valid Number
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline" fxFlex="33" fxFlex.sm='90' fxFlex.xs='90' [ngClass.xl]="'px-16'" [ngClass.lg]="'px-16'" [ngClass.md]="'px-16'" [ngClass.sm]="'px-16'" [ngClass.xs]="'px-0'">
+            <mat-label>Completion Date</mat-label>
+            <input matInput [matDatepicker]="projPicker" formControlName="projDate" placeholder="Choose a date" readonly>
+            <mat-datepicker-toggle matSuffix [for]="projPicker"></mat-datepicker-toggle>
+            <mat-datepicker #projPicker></mat-datepicker>
+            <mat-error>Mandatory field is required</mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline" fxFlex="33" fxFlex.sm='90' fxFlex.xs='90' [ngClass.xl]="'px-16'" [ngClass.lg]="'px-16'" [ngClass.md]="'px-16'" [ngClass.sm]="'px-16'" [ngClass.xs]="'px-0'">
+            <mat-label>Cost</mat-label>
+            <input matInput formControlName="cost">
+            <span matPrefix>$&nbsp;</span>
+
+            <!-- <mat-error *ngIf="portfolioForm.get('cost').hasError('required')">Mandatory field is required</mat-error> -->
+            <!-- <mat-error *ngIf="portfolioForm.get('cost').hasError('pattern')">
+                            Please Enter a valid Number
+                       </mat-error>  -->
+          </mat-form-field>
+        </div>
+
+        <div class="px-16" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign.sm="start"
+          fxLayoutAlign.xs="start" fxLayoutAlign="space-between center" [ngClass.sm]="'px-16'" [ngClass.xs]="'px-16'">
+          <div class="mt-8" [ngClass.xl]="'pr-16 mb-32'" [ngClass.lg]="'pr-16 mb-32'" [ngClass.md]="'pr-16 mb-32'" [ngClass.sm]="'mb-32'"
+            [ngClass.xs]="'mb-16'">
+            <div class="h3 font-weight-600">UPLOAD YOUR DOCUMENTS
+            </div>
+            <div class="condo-gray-text mt-8">
+              Upload any supporting certificates, recognition, pictures, etc...
+            </div>
+          </div>
+        </div>
+
+        <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start top" fxLayoutAlign.sm="start"
+          fxLayoutAlign.xs="start" fxFlex="1 0 auto"  [ngClass.xl]="'px-16'" [ngClass.lg]="'px-16'" [ngClass.md]="'px-16'" [ngClass.sm]="'px-16'" [ngClass.xs]="'px-0'">
+          <div class="file-uploader" appearance="outline" fxFlex="80" fxFlex.sm="100" fxFlex.xs="100"
+            class="upload-button">
+            <div fxLayout="column">
+              <span appearance="outline" fxFlex="100" class="px-0">
+                <input formControlName="docUploader" hidden type="file" (change)="appendDocumentFiles($event)" multiple
+                  #fileInput accept="application/pdf,image/*" />
+                <button color="accent" class="mat-flat-button bg-transparent" (click)="fileInput.click()"
+                  aria-label="Add file" [@animate]="{value:'*', params:{delay:'300ms',scale:'0.2'}}">
+                  <span class="condo-red-text  h4"><strong>
+                      <mat-icon class="s-16 font-weight-600 mat-icon" style="vertical-align: center">add_circle
+                      </mat-icon>
+                      Click here to Add Files
+                    </strong></span>
+                </button>
+              </span>
+              <div *ngFor="let docFile of docFileList; index as i" fxFlex="100">
+                <h4 class="mt-16 ml-16"><span class="condo-red-text mr-6" title="Remove File"
+                    (click)="removeDocAttachment(i)">
+                    <mat-icon class="s-16 cursor" style="vertical-align: middle">remove_circle_outline</mat-icon>
+                  </span> {{docFile.name}} - <span class="condo-gray-text">{{docFile.formatedSize}}</span> </h4>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div fxLayout="column" class="mt-12 px-16" [ngClass.sm]="'px-16'" [ngClass.xs]="'px-4'">
+          <div class="h5 condo-gray-text"> <span class="condo-red-text">*</span>
+            Supported files are images and pdfs
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <mat-dialog-actions align="end" class="mb-4 mt-12 px-16" [ngClass.sm]="'px-16'" [ngClass.xs]="'px-16'">
+    <button *ngIf="isEditMode === false" mat-button mat-flat-button mat-accent color="accent"
+      [disabled]="portfolioForm.invalid" (click)="submitPortfolio()">CREATE</button>
+    <button *ngIf="isEditMode" mat-button mat-flat-button mat-accent color="accent" [disabled]="portfolioForm.invalid"
+      (click)="submitPortfolio()">UPDATE</button>
+    <button mat-button mat-dialog-close class="fuse-navy-50">CANCEL</button>
+  </mat-dialog-actions>
+</mat-dialog-content>

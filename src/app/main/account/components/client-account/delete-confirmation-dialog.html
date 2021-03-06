@@ -1,0 +1,18 @@
+<div fxLayout="row" fxLayoutAlign="space-between center">
+  <div mat-dialog-title class="">PLEASE CONFIRM</div>
+  <mat-dialog-actions align="end" class="mb-12">
+    <button mat-button mat-dialog-close style="margin-top:-15px;min-width: 28px !important;" class="p-0">
+      <mat-icon class="s-24 condo-red-text" mat-dialog-close>close</mat-icon>
+    </button>
+  </mat-dialog-actions>
+</div>
+
+<mat-dialog-content class="">
+  <!-- <div class="profile-box info-box general" fxLayout="column"> -->
+  <p class="text-center mb-32 condo-gray-text">Do you want to Delete the user from this account?</p>
+  <!-- </div> -->
+</mat-dialog-content>
+<mat-dialog-actions align="center" class="pb-16 mr-16">
+  <button mat-button class="mat-flat-button" color="accent" (click)="confimUserDelete()" cdkFocusInitial>DELETE</button>
+  <button mat-button mat-dialog-close mat-flat-button class="fuse-navy-50">CANCEL</button>
+</mat-dialog-actions>

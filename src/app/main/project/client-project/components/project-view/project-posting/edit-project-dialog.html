@@ -1,0 +1,324 @@
+<div fxLayout="row" fxLayoutAlign="space-between center">
+  <div mat-dialog-title class="pl-12 ">EDIT PROJECT INFORMATION</div>
+
+  <mat-dialog-actions align="end" class="px-16 mb-4">
+    <button mat-button mat-dialog-close style="margin-top:-20px;min-width: 28px !important;" class="p-0">
+      <mat-icon class="s-24 condo-red-text" mat-dialog-close>close</mat-icon>
+    </button>
+  </mat-dialog-actions>
+</div>
+
+<mat-dialog-content class="mat-typography">
+  <div class="profile-box info-box general p-0" fxLayout="column">
+    <div>
+
+      <div fxLayout="column" id="timeline" class="" [ngClass.xl]="'px-16'" [ngClass.lg]="'px-16'" [ngClass.md]="'p-16'" [ngClass.sm]="'p-24'"
+        [ngClass.xs]="'p-16'">
+        <div class="" fxLayout="row" fxLayoutAlign="space-between center">
+          <div class="pr-16 mt-0" [ngClass.xl]="'mb-32'" [ngClass.lg]="'mb-32'" [ngClass.md]="'mb-32'" [ngClass.sm]="'mb-32'"
+            [ngClass.xs]="'mb-16'">
+            <div class="h3 font-weight-600">PROJECT IDENTIFIERS
+            </div>
+            <div class="condo-gray-text mt-8">
+              Choose a title that's short and descriptive and assign all possible tag words to ensure your project gets
+              the
+              most attention and visibility.
+            </div>
+          </div>
+        </div>
+
+        <form fxLayout="column" fxLayoutAlign="start" name="projectForm" [formGroup]="projectForm">
+
+          <div class="">
+
+            <div formGroupName="projIdentifiers" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start top"
+              fxLayoutAlign.xs="start">
+
+              <mat-form-field appearance="outline" fxFlex.xl="35" fxFlex.lg="35" fxFlex.md="35" fxFlex.sm="50" fxFlex.xs="100" class=""
+                [ngClass.xl]="'pr-16'" [ngClass.lg]="'pr-16'" [ngClass.md]="'pr-16'" [ngClass.sm]="'pr-16'" [ngClass.xs]="''">
+                <mat-label>Project Name</mat-label>
+                <input matInput formControlName="projName" required>
+                <mat-error>Mandatory field is required</mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="pr-16" fxFlex.xl="65" fxFlex.lg="65" fxFlex.md="65" fxFlex.sm="50"
+                fxFlex.xs="50">
+                <mat-label>Tags</mat-label>
+                <mat-chip-list #chipList aria-label="Tag Selection">
+                  <mat-chip *ngFor="let tag of selectedTags" [selectable]="selectable" [removable]="removable"
+                    (removed)="remove(tag)">
+                    {{tag.tagName}}
+                    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                  </mat-chip>
+                  <input placeholder="Select Tags" #tagInput [formControl]="tagCtrl" formControlName="tags"
+                    [matAutocomplete]="auto" [matChipInputFor]="chipList"
+                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur">
+                </mat-chip-list>
+                <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                  <mat-option *ngFor="let tags of filteredTags | async" [value]="tags">
+                    {{tags.tagName}}
+                  </mat-option>
+                </mat-autocomplete>
+                <mat-error>Mandatory field is required</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <mat-divider class="" [ngClass.xl]="'mb-32 mt-4'" [ngClass.lg]="'mb-32 mt-4'" [ngClass.md]="'mb-32 mt-12'" [ngClass.sm]="'mb-32 mt-16'"
+            [ngClass.xs]="'mb-16 mt-6'"></mat-divider>
+
+          <div class="" [ngClass.xl]="'pr-16 mb-32'" [ngClass.lg]="'pr-16 mb-32'" [ngClass.md]="'pr-16 mb-32'" [ngClass.sm]="'pr-16 mb-32'"
+            [ngClass.xs]="'mb-16'">
+            <div class="h3 font-weight-600">PROJECT DETAILS</div>
+            <div class="condo-gray-text mt-8">
+              Enter as much as possible in an itemized fasion to make bidding easier on your Projects.
+            </div>
+          </div>
+
+
+          <div fxLayout="row wrap" fxLayout.xs="column" formGroupName="projDetails" fxLayoutAlign="start center"
+            fxLayoutAlign.xs="start" fxFlex="1 0 auto">
+
+            <mat-form-field appearance="outline" fxFlex.xl="25" fxFlex.lg="25" fxFlex.md="25" fxFlex.sm="50" fxFlex.xs="100" class=""
+              [ngClass.xl]="'pr-16'" [ngClass.lg]="'pr-16'" [ngClass.md]="'pr-16'" [ngClass.sm]="'pr-16'" [ngClass.xs]="''">
+              <mat-label>Bid End date</mat-label>
+              <input matInput [matDatepicker]="bidPicker" [min]="bidEndDateMin" formControlName="bidEndDate"
+                placeholder="Choose a date" (dateChange)="dateChanged($event, 1)" required readonly>
+              <mat-error>Mandatory field is required</mat-error>
+              <mat-datepicker-toggle matSuffix [for]="bidPicker"></mat-datepicker-toggle>
+              <mat-datepicker #bidPicker></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" fxFlex.xl="25" fxFlex.lg="25" fxFlex.md="25" fxFlex.sm="50" fxFlex.xs="100" class=""
+              [ngClass.xl]="'px-16'" [ngClass.lg]="'px-16'" [ngClass.md]="'px-16'" [ngClass.sm]="'pl-16'" [ngClass.xs]="''">
+              <mat-label>Project Start Date</mat-label>
+              <input matInput [matDatepicker]="startPicker" [min]="projectStartDateMin" formControlName="projStartDate"
+                placeholder="Choose a date" (dateChange)="dateChanged($event, 2)" readonly>
+              <mat-error>Mandatory field is required</mat-error>
+              <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+              <mat-datepicker #startPicker></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field appearance="outline" fxFlex.xl="25" fxFlex.lg="25" fxFlex.md="25" fxFlex.sm="50" fxFlex.xs="100" class=""
+              [ngClass.xl]="'px-16'" [ngClass.lg]="'px-16'" [ngClass.md]="'px-16'" [ngClass.sm]="'pr-16'" [ngClass.xs]="''">
+              <mat-label>Project Deadline</mat-label>
+              <input matInput [matDatepicker]="endPicker" [min]="projectStartDeadLinMin" formControlName="projEndDate"
+                placeholder="Choose a date" (dateChange)="dateChanged($event, 3)" readonly>
+              <mat-error>Mandatory field is required</mat-error>
+              <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+              <mat-datepicker #endPicker></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field appearance="outline" fxFlex.xl="25" fxFlex.lg="25" fxFlex.md="25" fxFlex.sm="50" fxFlex.xs="100" class=""
+              [ngClass.xl]="'pl-16'" [ngClass.lg]="'pl-16'" [ngClass.md]="'pl-16'" [ngClass.sm]="'pl-16'" [ngClass.xs]="''">
+              <mat-label>Estimated Budget</mat-label>
+              <input matInput formControlName="estimatedBudget">
+            </mat-form-field>
+          </div>
+
+          <mat-divider class="" [ngClass.xl]="'mb-32 mt-12'" [ngClass.lg]="'mb-32 mt-12'" [ngClass.md]="'mb-32 mt-12'" [ngClass.sm]="'mb-32 mt-16'"
+            [ngClass.xs]="'mb-16 mt-0'"></mat-divider>
+
+          <div class="pr-16 condo-gray-text" fxLayout="row" fxLayout.xs="column" formGroupName="contractType">
+            <mat-label class="secondary-text font-weight-600 pt-4" fxFlex="15" fxFlex.xs="100" [ngClass.xs]="'mb-16'">
+              CONTRACT
+              TYPE: </mat-label>
+            <mat-radio-group aria-label="Select an option" fxLayout.xs="column">
+              <mat-radio-button [checked]="isFixedCost" appearance="outline" class="pr-16" fxFlex="30" fxFlex.xs="100"
+                [ngClass.xs]="'mb-16'" value="2" (change)="contractChanged($event.value)">Fixed Cost</mat-radio-button>
+              <mat-radio-button [checked]="isTimeAndMaterial" appearance="outline" class="pr-16" fxFlex="40"
+                fxFlex.xs="100" [ngClass.xs]="'mb-16'" value="3" (change)="contractChanged($event.value)">Time &
+                Material</mat-radio-button>
+
+              <mat-radio-button [checked]="isAnnualContract" appearance="outline" class="pr-16" fxFlex="30"
+                fxFlex.xs="100" [ngClass.xs]="'mb-8'" value="1" (change)="contractChanged($event.value)">Annual Contract
+              </mat-radio-button>
+            </mat-radio-group>
+          </div>
+
+
+          <div class="" formArrayName="itemDetails" fxLayout="column" fxLayoutAlign="start" fxFlex="1 0 auto"
+            class="mt-24">
+            <div class="" *ngFor="let itemsDetail of projectForm.get('itemDetails')['controls'] ; let itemIndex = index"
+              [formGroupName]="itemIndex" fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="start center"
+              fxLayoutAlign.xs="start" fxFlex="1 0 auto">
+              <mat-label class="" fxFlex="15"></mat-label>
+              <mat-form-field appearance="outline" fxFlex="30" fxFlex.sm="85" fxFlex.xs="100" class=""
+                [ngClass.xl]="'pr-16'" [ngClass.lg]="'pr-16'" [ngClass.md]="'pr-16'" [ngClass.sm]="'pr-16'" [ngClass.xs]="''">
+                <mat-label>Item Description</mat-label>
+                <input matInput formControlName="itemDescription">
+              </mat-form-field>
+              <mat-label class="" fxFlex="15" fxHide.lg fxHide.md></mat-label>
+              <mat-form-field appearance="outline" fxFlex="15" fxFlex.sm="40" fxFlex.xs="100" class=""
+                [ngClass.xl]="'px-16'" [ngClass.lg]="'px-16'" [ngClass.md]="'px-16'" [ngClass.sm]="'pr-16'" [ngClass.xs]="''">
+                <mat-label>Quantity</mat-label>
+                <input matInput formControlName="quantity">
+              </mat-form-field>
+              <mat-form-field appearance="outline" fxFlex="15" fxFlex.sm="45" fxFlex.xs="100" class=""
+                [ngClass.xl]="'px-16'" [ngClass.lg]="'px-16'" [ngClass.md]="'px-16'" [ngClass.sm]="'px-16'" [ngClass.xs]="''">
+                <mat-label>Units</mat-label>
+                <input matInput formControlName="units">
+              </mat-form-field>
+              <mat-label class="" fxFlex="15" fxHide.xl fxHide.lg fxHide.md></mat-label>
+              <button mat-flat-button color="accent" class="" [ngClass.xl]="'ml-8'" [ngClass.lg]="'ml-8'" [ngClass.md]="'ml-8'"
+                [ngClass.sm]="'ml-0 mb-16'" [ngClass.xs]="''" style="margin-top:-10px;" (click)="removeItem(itemIndex)">
+                REMOVE ITEM
+              </button>
+            </div>
+          </div>
+
+          <div fxLayout="row" class="" [ngClass.xl]="'mb-32 mt-16'" [ngClass.lg]="'mb-32 mt-16'" [ngClass.md]="'mb-32 mt-16'"
+            [ngClass.sm]="'mb-16 mt-16'" [ngClass.xs]="'mb-16 mt-4'">
+            <mat-label class="" fxFlex="15" fxHide.xs></mat-label>
+            <button mat-flat-button class="condo-red-100 h5 cursor" (click)="openItemDialog()">
+              <mat-icon class="s-16">add</mat-icon> <span class="font-weight-600">ADD ITEM</span>
+            </button>
+          </div>
+
+          <div class="" fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign.xs="start" fxLayoutAlign="start center"
+            fxFlex="1 0 auto">
+            <mat-label class="" fxFlex="15"></mat-label>
+            <mat-form-field appearance="outline" fxFlex="85" fxFlex.sm="85" fxFlex.xs="100" class=""
+              [ngClass.lg]="'pr-16'" [ngClass.md]="'pr-16'" [ngClass.sm]="'pr-0'" [ngClass.xs]="''"
+              matTooltip="Describe your project with as much details as possible. We also recommed adding individual scope items by using the +Add Item button above"
+              matTooltipPosition="above">
+              <mat-label>Description</mat-label>
+              <textarea matInput formControlName="description" required class="height-200">
+                    </textarea>
+              <mat-error>Mandatory field is required</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="" fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign.xs="start" fxLayoutAlign="start center"
+            fxFlex="1 0 auto">
+            <mat-label class="" fxFlex="15"></mat-label>
+            <mat-form-field appearance="outline" fxFlex="85" fxFlex.sm="85" fxFlex.xs="100" class=""
+              [ngClass.xl]="'pr-16'" [ngClass.lg]="'pr-16'" [ngClass.md]="'pr-16'" [ngClass.sm]="'pr-0'" [ngClass.xs]="''" matTooltip="Please add any required special
+          conditions for the contractor, such as hours of allowed work, access conditions, noise control, cleaningess,
+          etc.." matTooltipPosition="above">
+              <mat-label>Special Conditions</mat-label>
+              <textarea matInput formControlName="specialConditions" class="height-200">
+                    </textarea>
+            </mat-form-field>
+          </div>
+
+
+
+
+
+          <mat-divider [ngClass.xl]="'mb-16 mt-12'" [ngClass.lg]="'mb-16 mt-12'" [ngClass.md]="'mb-32 mt-12'" [ngClass.sm]="'mb-32 mt-16'"
+            [ngClass.xs]="'mb-16 mt-0'"></mat-divider>
+
+
+
+          <div class="" fxLayout="row" fxLayoutAlign="space-between center">
+            <div class="pr-16 mt-8" [ngClass.xl]="'mb-32'" [ngClass.lg]="'mb-32'" [ngClass.md]="'mb-32'" [ngClass.sm]="'mb-32'"
+              [ngClass.xs]="'mb-16'">
+              <div class="h3 font-weight-600">UPLOAD YOUR DOCUMENTS</div>
+              <div class="condo-gray-text mt-8">
+                Upload any detailed descriptions, specifications, quantities, pictures, etc... to help contractors
+                submit accurate bids.
+              </div>
+            </div>
+          </div>
+
+          <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start top" fxLayoutAlign.xs="start" fxFlex="1 0 auto">
+            <div class="file-uploader" appearance="outline" fxFlex="70" fxFlex.sm="60" fxFlex.xs="100"
+              class="upload-button">
+              <div fxLayout="column">
+                <span appearance="outline" fxFlex="100" class="px-0">
+                  <input hidden type="file" (change)="appendDocumentFiles($event)" multiple #fileInput
+                    accept="application/pdf,image/*" />
+                  <button color="accent" class="mat-flat-button bg-transparent" (click)="fileInput.click()"
+                    aria-label="Add file" [@animate]="{value:'*', params:{delay:'300ms',scale:'0.2'}}">
+                    <span class="condo-red-text  h4"><strong>
+                        <mat-icon class="s-16 font-weight-600 mat-icon" style="vertical-align: center">add_circle
+                        </mat-icon>
+                        Click here to Add Files
+                      </strong></span>
+                  </button>
+                </span>
+                <div *ngFor="let docFile of docFileList; index as i" fxFlex="100">
+                  <h4 class="mt-16 ml-16"><span class="condo-red-text mr-6" title="Remove File"
+                      (click)="removeDocAttachment(i)">
+                      <mat-icon class="s-16 cursor" style="vertical-align: middle">remove_circle_outline</mat-icon>
+                    </span> {{docFile.name}} - <span class="condo-gray-text">{{docFile.formatedSize}}</span> </h4>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div fxLayout="column" class=" mt-12">
+            <div class="h5 condo-gray-text"> <span class="condo-red-text">*</span>
+              Supported files are images and pdfs
+            </div>
+          </div>
+
+          <mat-divider class="" [ngClass.xl]="'mb-32 mt-32'" [ngClass.lg]="'mb-32 mt-32'" [ngClass.md]="'mb-32 mt-32'" [ngClass.sm]="'mb-32 mt-32'"
+            [ngClass.xs]="'mb-12 mt-16'"></mat-divider>
+
+          <div class="" fxLayout="row" fxLayoutAlign="space-between center">
+            <div class="pr-16">
+              <div class="h3 font-weight-600">OTHER INFORMATION</div>
+            </div>
+          </div>
+
+          <div fxLayout="row" fxLayout.xs="column" class="mt-32" formGroupName="otherInfo" fxLayoutAlign="start center"
+            fxLayoutAlign.xs="start">
+
+            <mat-label fxFlex="40" fxFlex.sm="60" fxFlex.xs="100" [ngClass.xs]="'mb-16'">DO YOU REQUIRE INSURANCE
+              CONFIRMATION?</mat-label>
+            <mat-radio-group class="condo-gray-text" fxFlex="40" fxFlex.xs="100" aria-label="Select an option"
+              formControlName="insureanceConfirm">
+              <mat-radio-button [checked]="projectInfo.insuranceRequired == 1" class="" value="1">Yes</mat-radio-button>
+              <mat-radio-button [checked]="projectInfo.insuranceRequired != 1" class="ml-32" value="2">No
+              </mat-radio-button>
+            </mat-radio-group>
+          </div>
+
+          <div fxLayout="row" formGroupName="otherInfo" fxLayoutAlign="start" fxFlex="1 0 auto" class="mt-24">
+            <mat-checkbox appearance="outline" formControlName="preferredVendorsOnly">
+              Publish to Preferred Contractors Only
+            </mat-checkbox>
+          </div>
+
+          <div fxLayout="column" fxFlex="100" fxFlex.gt-sm="100" fxFlex.gt-md="100" class="mt-40 ">
+            <div>
+              <div class="" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center"
+                fxLayoutAlign.xs="start">
+                <div class="" [ngClass.xl]="'pr-16'" [ngClass.lg]="'pr-16'" [ngClass.md]="'pr-16'" [ngClass.sm]="'pr-16'"
+                  [ngClass.xs]="'mb-16'">
+                  <button mat-flat-button color="accent" *ngIf="functionType == 2" class="submit-button"
+                    aria-label="Continue" [routerLink]="'/projects/client/viewProjects'">
+                    CANCEL
+                  </button>
+                </div>
+
+
+                <div class="text-right mr-8" fxLayout="row" fxLayoutAlign="end end" align="end">
+                  <button mat-flat-button color="primary" (click)="saveProject()"
+                    [disabled]="projectForm.invalid || selectedTags.length === 0" class="submit-button"
+                    aria-label="Continue" [ngClass.xl]="'mr-16'" [ngClass.lg]="'mr-16'" [ngClass.md]="'mr-16'" [ngClass.sm]="'mr-16'"
+                    [ngClass.xs]="'mb-16'">
+                    SAVE
+                  </button>
+                  <button mat-flat-button color="primary" (click)="publishProject()"
+                    [disabled]="projectForm.invalid || selectedTags.length === 0" class="submit-button"
+                    aria-label="Continue">
+                    PUBLISH
+                  </button>
+                  <!-- [mat-dialog-close]="aminityForm.value" -->
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </form>
+
+      </div>
+    </div>
+
+  </div>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end" class="pr-24">
+
+</mat-dialog-actions>

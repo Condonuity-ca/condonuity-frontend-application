@@ -1,0 +1,147 @@
+<div fxLayout="row" fxLayoutAlign="space-between center">
+  <div mat-dialog-title class="pl-12">USER INFORMATION</div>
+
+  <mat-dialog-actions align="end" class="px-16 mb-12">
+    <button mat-button mat-dialog-close style="margin-top:-20px;min-width: 28px !important;" class="p-0">
+      <mat-icon class="s-24 condo-red-text" mat-dialog-close>close</mat-icon>
+    </button>
+  </mat-dialog-actions>
+
+</div>
+<mat-dialog-content class="mat-typography">
+  <div class="profile-box info-box general mt-0" fxLayout="column">
+
+    <div fxLayout="column" id="timeline" class="py-0 px-4 content" #content>
+
+
+
+
+      <div fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="row" fxLayout.xs="column">
+
+        <div fxFlex.lg="80" fxFlex.md="70" fxFlex.sm="80" fxFlex.xs="100" fxLayout.lg="row" fxLayout.md="row"
+          fxLayout.sm="row" fxLayout.xs="column" class="mat-card mat-elevation-z" [ngClass.lg]="'p-16 mt-16'"
+          [ngClass.md]="'p-32 mt-16'" [ngClass.xs]="'p-4'">
+          <div class="" fxFlex="100" fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="row" fxLayout.xs="column">
+            <div class="mat-card mat-elevation-z" fxFlex="100">
+
+              <div class="" fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="row" fxLayout.xs="column"
+                fxLayoutAlign.lg="start center" fxLayoutAlign.md="start center" fxLayoutAlign.sm="start center"
+                fxLayoutAlign.xs="center center">
+
+                <div class="img-hover-vendor" [ngClass.xs]="'mb-12 '">
+                  <img class="border-radius-100 w-80 h-80" src="assets/images/no-pic.jpg"
+                    style="width:80px;height:80px;">
+
+
+                  <!-- <img class="border-radius-100 w-80 h-80"
+                src="assets/images/no-pic.jpg"> -->
+                </div>
+
+                <div class="" [ngClass.lg]="'pr-16 ml-24'" [ngClass.md]="'pr-16 ml-24'" [ngClass.sm]="'mt-12 ml-16'"
+                  [ngClass.xs]="''" fxFlex="50" fxFlex.xs="100" [ngClass.xs]="'text-center mt-12'"
+                  fxlayout.lg="row wrap" fxlayout.md="row wrap" fxlayout.sm="column wrap" fxlayout.xs="column">
+                  <div class="h2 text-bold" [ngClass.xs]="'text-center'">test
+                  </div>
+
+                  <div class=" h5" fxlayout="row wrap" fxlayoutalign="start center">
+                    <div class="mt-8 font-size-16" fxLayout="row wrap" [ngClass.xs]="'text-center'"><span
+                        class="condo-gray-text mr-8">Email:</span> test
+                    </div>
+                  </div>
+
+                  <div class=" h5" fxlayout="row wrap" fxlayoutalign="start center">
+                    <div class="mt-8 font-size-16" fxLayout="row wrap" [ngClass.xs]="'text-center'"><span
+                        class="condo-gray-text mr-8">Phone:</span> test
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+
+              </div>
+
+
+
+
+            </div>
+          </div>
+        </div>
+
+        <div fxFlex.lg="20" fxFlex.md="30" fxFlex.sm="20" fxFlex.xs="100" fxLayout.lg="row" fxLayout.md="row"
+          fxLayout.sm="row" fxLayout.xs="column" fxlayoutalign.lg="end end" fxlayoutalign.md="end end"
+          fxlayoutalign.sm="end end" fxlayoutalign.xs="center" class="" fxFlex.sm="100" fxFlex.xs="100"
+          [ngClass.lg]="'p-16 mt-16'" [ngClass.md]="'p-32 mt-16'" [ngClass.sm]="'p-16 mb-8 mr-8 mt-0'"
+          [ngClass.xs]="'p-16 mt-8'">
+
+
+          <div fxlayoutalign.lg="end end" fxlayoutalign.md="end end" fxlayoutalign.sm="space-between center"
+            fxlayoutalign.xs="center center" [ngClass.xs]="'text-center'">
+            <button mat-button class="mat-flat-button condo-red-700" [ngClass.xs]="'text-center'">ACTIVATE</button>
+          </div>
+
+        </div>
+      </div>
+
+
+
+
+
+
+      <div class="mt-24 px-12">
+        <h4>CORPORATION ACCOUNTS</h4>
+      </div>
+
+      <div class="px-12">
+        <div class="mt-16 mb-16" fxLayout="column">
+          <div fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="row" fxLayout.xs="column"
+            fxLayoutAlign.lg="start center" fxLayoutAlign.md="start center" fxLayoutAlign.sm="start center"
+            fxLayoutAlign.xs="center center" fxFlex="1 0 auto" class="mb-32">
+            <div><img class="avatar mr-0 mr-sm-16" src="assets/images/no-pic.jpg"></div>
+            <div fxLayout="column" fxFlex="60">
+              <div class="pr-16 font-weight-600 font-size-16" [ngClass.xs]="'text-center'">
+                Organisation Name
+              </div>
+              <div class="condo-gray-text font-weight-300" [ngClass.xs]="'text-center'">
+                Role
+              </div>
+            </div>
+            <div class="px-16 condo-gray-text" fxFlex="30" [ngClass.xs]="'text-center'">
+              05/08/2020 - Present
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="px-12">
+        <div class="mt-16 mb-16" fxLayout="column">
+          <div fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="row" fxLayout.xs="column"
+            fxLayoutAlign.lg="start center" fxLayoutAlign.md="start center" fxLayoutAlign.sm="start center"
+            fxLayoutAlign.xs="center center" fxFlex="1 0 auto" class="mb-32">
+            <div><img class="avatar mr-0 mr-sm-16" src="assets/images/no-pic.jpg"></div>
+            <div fxLayout="column" fxFlex="60">
+              <div class="pr-16 font-weight-600 font-size-16" [ngClass.xs]="'text-center'">
+                Organisation Name
+              </div>
+              <div class="condo-gray-text font-weight-300" [ngClass.xs]="'text-center'">
+                Role
+              </div>
+            </div>
+            <div class="px-16 condo-gray-text" fxFlex="30" [ngClass.xs]="'text-center'">
+              05/08/2020 - Present
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <mat-dialog-actions align="end" class="px-16 mt-0 mb-4">
+    <button mat-button mat-dialog-close class="fuse-navy-50">CANCEL</button>
+  </mat-dialog-actions>
+
+</mat-dialog-content>

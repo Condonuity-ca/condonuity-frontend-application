@@ -1,0 +1,181 @@
+<div id="profile" class="page-layout simple tabbed">
+  <div id="about" class="" fxLayout="row wrap" [ngClass.xl]="'p-24'" [ngClass.lg]="'p-24'" [ngClass.md]="'p-24'" [ngClass.sm]="'p-16'"
+    [ngClass.xs]="'p-8'">
+
+    <div class="about-content" fxLayout="column" fxFlex="100" fxFlex.gt-sm="100" fxFlex.gt-md="100">
+
+      <mat-accordion class="example-headers-align mat-elevation-z  expanded" multi>
+        <mat-expansion-panel class="mt-24 mat-elevation-z" expanded>
+          <mat-expansion-panel-header class="condo-red-300">
+            <mat-panel-title class="h3 font-weight-600">
+              USER ACCOUNT INFO
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <div class="mat-card mat-elevation-z pt-16">
+            <div>
+              <div fxFlex="100" fxLayout="column" class="mat-card mat-elevation-z  " fxFlex.sm="100" fxFlex.xs="100"
+                [ngClass.xl]="'p-16 mt-16'" [ngClass.lg]="'p-16 mt-16'" [ngClass.md]="'p-32 mt-16'" [ngClass.sm]="'p-16 mb-8 mr-8 mt-0'"
+                [ngClass.xs]="'p-16 mt-8'">
+                <div class="" fxFlex="100" fxLayout="row">
+                  <div class="mat-card mat-elevation-z" fxFlex="100">
+
+                    <div class="" fxLayout="row" fxLayoutAlign="start center" fxLayout.sm="column" fxLayout.xs="column">
+
+                      <div class="img-hover-vendor" [ngClass.xs]="'mb-12 '">
+                        <img *ngIf="profileImageUrl == null || profileImageUrl === '' "
+                          class="border-radius-100 w-80 h-80" src="assets/images/no-pic.jpg">
+                        <img *ngIf="profileImageUrl != null && profileImageUrl != ''" [src]="profileImageUrl"
+                          class="border-radius-100 w-80 h-80">
+                      </div>
+
+                      <div class="" fxFlex="50" fxFlex.xs="100" [ngClass.xl]="'pr-16 ml-24'" [ngClass.lg]="'pr-16 ml-24'" [ngClass.md]="'pr-16 ml-24'" [ngClass.sm]="'text-center mt-12'"
+                        [ngClass.xs]="'text-center mt-12'" fxlayout="row wrap">
+                        <div class="h2 text-bold">{{currentUser.firstName}} {{currentUser.lastName}}
+                        </div>
+
+                        <div class=" h5" fxlayout="row wrap" fxlayoutalign="start center" [ngClass.xs]="'text-center'">
+                          <div class="mt-8 font-size-16" fxLayout="row wrap" [ngClass.xs]="'text-center'"><span
+                              class="condo-gray-text mr-8" [ngClass.xs]="'text-center'">User:</span> {{currentUser.email}}
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="" fxFlex="20" fxFlex.xs="100" fxlayout="row wrap" [ngClass.lg]="'pr-16'"
+                        [ngClass.md]="'pr-16'" [ngClass.sm]="'mt-12'" [ngClass.xs]="'mt-12'">
+                        <div class="h5 condo-gray-text" [ngClass.sm]="'text-center'" [ngClass.xs]="'text-center'">PHONE
+                          NUMBER</div>
+                        <div class="h4 mb-16" [ngClass.sm]="'text-center'" [ngClass.xs]="'text-center'">
+                          {{currentUser.phone}}</div>
+                      </div>
+
+                      <div class="pr-4 text-right" [ngClass.xl]="'ml-24'" [ngClass.lg]="'ml-24'" [ngClass.md]="'ml-24'" [ngClass.sm]="'ml-24'" [ngClass.xs]="'ml-0'" fxFlex="30" fxFlex.xs="100" fxlayout.lg="row wrap"
+                        fxlayout.md="row wrap" fxlayout.sm="column" fxlayout.xs="column">
+                        <button mat-flat-button color="primary" class="text-bold condo-red-text h5 cursor mb-12 "
+                          [ngClass.xl]="'mr-12'" [ngClass.lg]="'mr-12'" [ngClass.md]="'mr-12'" [ngClass.sm]="'mr-12'"
+                          [ngClass.xs]="'mr-8 mb-12'" (click)="openUserInfoDialog()">
+                          EDIT
+                        </button>
+
+                        <button mat-flat-button color="accent" class="text-bold h5 cursor" style=""
+                          (click)="openPasswordDialog()">
+                          CHANGE PASSWORD
+                        </button>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </mat-expansion-panel>
+
+
+        <mat-expansion-panel class="mt-24 mat-elevation-z" expanded>
+          <mat-expansion-panel-header class="condo-red-300">
+            <mat-panel-title class="h3 font-weight-600">
+              CORPORATION ACCOUNTS
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <div class="mat-card mat-elevation-z pt-32" fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="column"
+            fxLayout.xs="column" fxLayoutAlign="start" fxFlex="1 0 auto">
+            <div class="" fxLayout="column" fxLayoutAlign="start end" fxHide>
+              <button mat-flat-button class="text-bold h5 cursor condo-red-400 "
+                (click)="openUserCorporationAccountDialog()">
+                <span class="font-weight-600">VIEW HISTORY</span>
+              </button>
+            </div>
+
+            <div *ngIf="organizationList.length > 0" fxLayout.xl="row wrap" fxLayout.lg="row wrap" fxLayout.md="row wrap" fxLayout.sm="column"
+              fxLayout.xs="column" fxLayoutAlign.xl="start start" fxLayoutAlign.lg="start start">
+              <div class="mt-16 mb-16" fxLayoutAlign="start center" fxFlex="100" fxLayout.xl="row" fxLayout.lg="row" fxLayout.md="row"
+                fxLayout.sm="row" fxLayout.xs="column" *ngFor="let org of organizationList">
+
+                <div *ngIf="org.organisationLogo === null || org.organisationLogo === ''" fxLayout="column">
+                  <img class="avatar mr-0 mr-sm-16" src="assets/images/no-pic.jpg"></div>
+                <div *ngIf="org.organisationLogo" fxLayout="column">
+                  <img class="avatar mr-0 mr-sm-16" [src]="org.organisationLogo"></div>
+
+
+                <div fxFlex="43" fxLayout="column">
+                  <div class="" [ngClass.lg]="'pr-16 font-weight-600 font-size-16'"
+                    [ngClass.md]="'pr-16 font-weight-600 font-size-16'"
+                    [ngClass.sm]="'pr-16 font-weight-600 font-size-16'"
+                    [ngClass.xs]="'text-center mt-16 font-weight-600 font-size-16'">
+                    {{org.organisationName}}
+                  </div>
+                  <div class="condo-gray-text font-weight-300" [ngClass.xs]="'text-center'">
+                    {{org.userCurrentRole}}
+                  </div>
+                </div>
+                <div fxLayout="column" class="px-16 condo-gray-text" fxLayout="" fxFlex="30"
+                  [ngClass.xs]="'text-center mt-16'">
+                  {{org.userTenure}}
+                </div>
+
+                <div fxLayout="column" [ngClass.xs]="'text-center mt-16'" fxFlex="30">
+
+                  <mat-radio-group *ngIf="org.isPrimary === 'false'" aria-label="Select an option"
+                    class="condo-gray-text">
+                    <mat-radio-button class="mr-16" value="1" (change)="defaultOrgChanged(org)">
+                      Make as Default</mat-radio-button>
+                  </mat-radio-group>
+                  <div *ngIf="org.isPrimary === 'true'" class="condo-red-text ml-20"> Default Organisation</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+
+      <div class="mat-card mat-elevation-z p-48 pt-32 mr-4 mt-16" fxHide>
+        <mat-divider></mat-divider>
+        <div class="">
+          <div class="mt-32 mb-32" fxLayout="row" fxLayoutAlign="space-between center">
+            <div class="pr-16">
+              <div class="h3 font-weight-600 mt-8">NOTIFICATIONS SETTINGS
+              </div>
+              <div class="condo-gray-text">
+                Manage your Notification settings.
+              </div>
+            </div>
+            <div fxLayout="row">
+              <button mat-flat-button class="text-bold condo-red-400 h5 cursor">
+                <mat-icon class="s-16">save</mat-icon> <span class="font-weight-600">SAVE</span>
+              </button>
+            </div>
+          </div>
+
+
+          <div class="pr-16 condo-gray-text" fxLayout="row">
+            <mat-checkbox class="px-16" fxFlex="23">New Project Post <span class="condo-tooltip"
+                matTooltip="Notifications for every New Project Posting">?</span></mat-checkbox>
+            <mat-checkbox class="px-16" fxFlex="23">Account Changes <span class="condo-tooltip"
+                matTooltip="Notifications for every Condo Amount Changes">?</span></mat-checkbox>
+            <mat-checkbox class="px-16" fxFlex="23">Project Awarded <span class="condo-tooltip"
+                matTooltip="Notifications when project award info is changed">?</span></mat-checkbox>
+            <mat-checkbox class="px-16" fxFlex="23">Question & Answer <span class="condo-tooltip"
+                matTooltip="Notifications whenever a project question or Answer is added or changed">?</span>
+            </mat-checkbox>
+          </div>
+
+          <div class="pr-16 mt-32 condo-gray-text" fxLayout="row">
+            <mat-checkbox fxFlex="23" class="px-16">Review Changes <span class="condo-tooltip"
+                matTooltip="Notifications when the Vendor Review is added or changed">?</span></mat-checkbox>
+            <mat-checkbox fxFlex="23" class="px-16">New Bid <span class="condo-tooltip"
+                matTooltip="Notifications for any New bid submitted on a Project">?</span></mat-checkbox>
+            <mat-checkbox fxFlex="23" class="px-16">Bidding End <span class="condo-tooltip"
+                matTooltip="Notifications for when a project bidding phase is about to end">?</span></mat-checkbox>
+            <mat-checkbox fxFlex="23" class="px-16">Annual Contract Expiration <span class="condo-tooltip"
+                matTooltip="Notifications for any listed annual contract that's about to expire">?</span></mat-checkbox>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>

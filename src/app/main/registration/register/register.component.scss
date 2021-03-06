@@ -1,0 +1,168 @@
+@import "src/@condonuity/scss/fuse";
+body.theme-default .mat-button-toggle-group-appearance-standard .mat-button-toggle + .mat-button-toggle{border-left:1px solid #d84d34;}
+.toggle-border{border:1px solid #d84d34  !important;}
+
+.mat-button-toggle-appearance-standard .mat-button-toggle-label-content{
+@include media-breakpoint('xl') {
+                padding:0 21px !important;
+            }
+	@include media-breakpoint('xs') {
+                padding:0 0px !important;
+            }		
+}
+
+.mat-button-toggle-appearance-standard .mat-button-toggle-label-content{
+@include media-breakpoint('xl') {line-height:70px !important}
+}
+
+register {
+
+    #register {
+        width: 100%;
+        background: url('/assets/images/backgrounds/dark-material-bg.jpg') no-repeat;
+        background-size: cover;
+
+        #register-form-wrapper {
+            flex: 1 0 auto;
+            padding: 32px;
+
+            @include media-breakpoint('xs') {
+                padding: 16px;
+            }
+
+            #register-form {
+                width: 384px;
+                max-width: 384px;
+                padding: 32px;
+                text-align: center;
+                @include mat-elevation(16);
+
+                @include media-breakpoint('xs') {
+                    padding: 24px 10px;
+                    width: 100%;
+                }
+				
+				@include media-breakpoint('xl') {
+                    width: 540px;
+                max-width: 540px;
+                }
+
+                .logo {
+                    width: 227px;
+                    margin: 2px auto;
+                }
+
+                .title {
+                    font-size: 20px;
+                    margin: 0px 0 50px 0;
+                }
+
+                form {
+                    width: 100%;
+                    text-align: left;
+
+                    mat-form-field {
+                        width: 100%;
+                    }
+
+                    mat-checkbox {
+                        margin: 0;
+                    }
+
+                    .terms {
+                        margin: 16px 0 32px 0;
+
+                        a {
+                            font-size: 16px;
+                            margin-left: 4px;
+                        }
+                    }
+
+                    .submit-button {
+                        width: 220px;
+                        margin: 16px auto;
+                        display: block;
+
+                        @include media-breakpoint('xs') {
+                            width: 90%;
+                        }
+                    }
+                }
+
+                .register {
+                    margin: 32px auto 24px auto;
+                    font-weight: 600;
+
+                    .text {
+                        margin-right: 8px;
+                    }
+                }
+
+                .separator {
+                   font-size: 15px;
+                    font-weight: 600;
+                    margin: 38px auto 15px auto;
+                    position: relative;
+                    overflow: hidden;
+                    width: 300px;
+
+@include media-breakpoint('xs') {
+                        margin: 34px 38px 12px -12px;
+                    }
+
+                    .text {
+                        display: inline-flex;
+                        position: relative;
+                        padding: 0 8px;
+                        z-index: 9999;
+                        color:#646464;
+
+                        &:before, &:after {
+                            content: '';
+                            display: block;
+                            width: 30px;
+                            position: absolute;
+                            top: 10px;
+                            border-top: 1px solid;
+                        }
+
+                        &:before {
+                            right: 100%;
+                        }
+
+                        &:after {
+                            left: 100%;
+                        }
+                    }
+                }
+
+                button {
+
+                    &.login,
+                    &.facebook {
+                        width: 192px;
+                        text-transform: none;
+                        color: #FFFFFF;
+                        font-size: 16px;
+                        
+                    }
+
+                    @include media-breakpoint('xs') {
+                        width: 80%;
+                    }
+
+                    &.login {
+                        background-color: #fff;
+                        margin-bottom: 8px;
+                        margin-top:20px;
+                        color:#d84d34;                       
+                    }
+
+                    &.facebook {
+                        background-color: rgb(63, 92, 154);
+                    }
+                }
+            }
+        }
+    }
+}

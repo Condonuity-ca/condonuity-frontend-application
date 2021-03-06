@@ -1,0 +1,92 @@
+<form fxLayout="column" fxLayoutAlign="start" class="mb-32" [ngClass.lg]="'mx-0'" [ngClass.md]="'mx-0'"
+  [ngClass.sm]="'mx-0'" [ngClass.xs]="'mx-0'">
+  <div class="" fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign.sm="start"
+    fxLayoutAlign.xs="start" fxLayoutAlign="space-between center" class="mat-card mat-elevation-z  pt-32 ">
+    <div class="pr-4" fxFlex.lg="100" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100" fxLayout.lg="row"
+      fxLayout.md="row" fxLayout.sm="column" fxLayout.xs="column" [ngClass.lg]="'mx-24 '" [ngClass.md]="'mx-24'"
+      [ngClass.sm]="'ml-32 mr-8'" [ngClass.xs]="'ml-24 mr-12'">
+
+      <mat-form-field appearance="outline" class="" [ngClass.lg]="'pr-16'" [ngClass.md]="'pr-16'" [ngClass.sm]="'pr-16'"
+        [ngClass.xs]="'pr-0'" fxFlex.lg="40" fxFlex.md="40" fxFlex.sm="50" fxFlex.xs="40">
+        <mat-label>Search Contractor</mat-label>
+
+        <mat-chip-list maxLength="1" #cityChipList aria-label="City Selection" formControlName="cityChips">
+          <mat-chip *ngFor="let vendor of selectedVendors" [selectable]="selectable" [removable]="removable"
+            (removed)="removeVendor(vendor)">
+            {{vendor.companyName}}
+            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+          </mat-chip>
+          <input formControlName="vendors" [disabled]="isInputDisabled" placeholder="Contractor Name" #vendorInput
+            [formControl]="vendorCtrl" [matAutocomplete]="cityAuto" [matChipInputFor]="cityChipList"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur">
+        </mat-chip-list>
+        <mat-autocomplete #cityAuto="matAutocomplete" (optionSelected)="selectCondo($event)">
+          <mat-option *ngFor="let vendor of filteredVendors | async" [value]="vendor">
+            {{vendor.companyName}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+  </div>
+</form>
+
+<div style="margin-top:-10px;" fxLayoutAlign="end end" class="mb-16">
+
+  <button [disabled]="isInputDisabled == false" mat-button class="mat-flat-button ml-12" color="accent"
+    (click)="openAddUserDialog()">ADD VENDOR
+    USER</button>
+</div>
+
+<form class="" fxLayout="column" fxLayoutAlign="start" name="vendorUserDetailform" [formGroup]="vendorUserDetailform"
+  (ngSubmit)="submitVendor()">
+  <mat-accordion class="example-headers-align mat-elevation-z expanded" multi>
+    <mat-expansion-panel class="mt-0 mat-elevation-z" expanded>
+      <mat-expansion-panel-header class="condo-red-300">
+        <mat-panel-title class="h3 font-weight-600">
+          USER LIST
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+
+      <div class="mat-card mat-elevation-z pt-4 mr-24 project-list">
+
+        <div class="mt-8 p-0 bg-white" fxLayout="row wrap">
+          <ngx-datatable fxLayout="column" fxLayoutAlign="start" style="width: 100%" class="material pr-20"
+            [rows]="userDetails" [columnMode]="'force'" [footerHeight]="50" [rowHeight]="'auto'" [scrollbarH]="true"
+            [selectionType]="'checkbox'" [limit]="10">
+            <ngx-datatable-column [width]="130" name="First Name" prop="firstName"></ngx-datatable-column>
+            <ngx-datatable-column [width]="130" name="Last Name" prop="lastName"></ngx-datatable-column>
+            <ngx-datatable-column [width]="140" name="Email" [sortable]="false"></ngx-datatable-column>
+            <ngx-datatable-column [width]="70" name="Role" prop="role"></ngx-datatable-column>
+
+            <ngx-datatable-column name="Administrator" prop="admin" [width]="100">
+              <ng-template ngx-datatable-cell-template let-value="value">
+                <span *ngIf="value == false"> No</span>
+                <span *ngIf="value == true">Yes</span>
+              </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="Status" prop="accountStatus" [width]="60">
+              <ng-template ngx-datatable-cell-template let-value="value">
+                <span *ngIf="value == 0" class="condo-gray-text"> Invited</span>
+                <span *ngIf="value == 1" class="condo-red-text"> Active</span>
+              </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="Actions" [sortable]="false" prop="userId" [width]="100">
+              <ng-template ngx-datatable-cell-template let-value="value">
+                <a class="cursor condo-gray-text" (click)="openEditUserDialog(value)">
+                  <mat-icon class="s-20">edit</mat-icon>
+                </a>
+                <a class="ml-8 " (click)="openDeleteConfirmationDialog(value)">
+                  <mat-icon class="s-20">delete_outline</mat-icon>
+                </a>
+              </ng-template>
+            </ngx-datatable-column>
+          </ngx-datatable>
+
+        </div>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+</form>

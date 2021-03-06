@@ -1,0 +1,174 @@
+<div fxLayout="row" fxLayoutAlign="space-between center">
+  <div class="h3 font-weight-600">PROJECT PREVIEW</div>
+  <mat-dialog-actions align="end" class="mb-12">
+    <button mat-button mat-dialog-close style="margin-top:-15px;min-width: 28px !important;" class="p-0">
+      <mat-icon class="s-24 condo-red-text" mat-dialog-close>close</mat-icon>
+    </button>
+  </mat-dialog-actions>
+</div>
+
+<mat-dialog-content class="tool-menu">
+
+  <div class="" fxLayout="column" fxLayoutAlign="start">
+    <!-- <div class="mb-16" fxLayout="row" fxLayoutAlign="space-between center">
+      <div class="mt-32">
+        <div class="h3 font-weight-600">PROJECT DETAILS
+        </div>
+      </div>
+    </div> -->
+
+    <div class="mt-24" fxLayout="row wrap" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start center"
+      fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxFlex="1 0 auto">
+      <div fxFlex="40" fxFlex.sm="100" fxFlex.xs="100">
+        <div class="h5 condo-gray-text">PROJECT NAME</div>
+        <div class="h4 mb-16">{{currentProject.projectName}}</div>
+      </div>
+      <div fxFlex="40" fxFlex.sm="100" fxFlex.xs="100">
+        <div class="h5 condo-gray-text">TAG WORDS</div>
+        <div class="h4 mb-16">
+          <span>
+            <span>{{currentProject.tags}}</span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="mt-24" fxLayout="row wrap" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start center"
+      fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxFlex="1 0 auto">
+      <div fxFlex="20" fxFlex.sm="100" fxFlex.xs="100">
+        <div class="h5 condo-gray-text">PROJECT POST DATE</div>
+        <div class="h4 mb-16">{{currentProject.projectStartDate}}</div>
+      </div>
+      <div fxFlex="20" fxFlex.sm="100" fxFlex.xs="100">
+        <div class="h5 condo-gray-text">BID END DATE</div>
+        <div class="h4 mb-16">{{currentProject.bidEndDate}}</div>
+      </div>
+      <div fxFlex="20" fxFlex.sm="100" fxFlex.xs="100">
+        <div class="h5 condo-gray-text">PROJECT START DATE</div>
+        <div class="h4 mb-16">{{currentProject.projectStartDate}}</div>
+      </div>
+      <div fxFlex="20" fxFlex.sm="100" fxFlex.xs="100">
+        <div class="h5 condo-gray-text">PROJECT DEADLINE</div>
+        <div class="h4 mb-16">{{currentProject.projectCompletionDeadline}}</div>
+      </div>
+      <div fxFlex="20" fxFlex.sm="100" fxFlex.xs="100">
+        <div class="h5 condo-gray-text">ESTIMATED BUDGET</div>
+        <div class="h4 mb-16">{{currentProject.estimatedBudget | currency:'CAD'}}</div>
+      </div>
+    </div>
+  </div>
+
+  <mat-divider class="mt-24"></mat-divider>
+  <div class="mb-16" fxLayout="row" fxLayoutAlign="space-between center">
+    <div class="mt-32">
+      <div class="h3 font-weight-600">CONTRACT DETAILS
+      </div>
+    </div>
+  </div>
+
+
+  <div class="" fxLayout="column" fxLayoutAlign="start">
+    <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+      <div fxFlex="40">
+        <div class="h5 condo-gray-text">CONTRACT TYPE</div>
+        <div class="h4 mb-16">{{currentProject.contractType}}</div>
+      </div>
+    </div>
+
+    <div class="mt-24" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start center" fxLayoutAlign.xs="start"
+      fxFlex="1 0 auto">
+      <div fxFlex="40" fxFlex.sm="70" fxFlex.xs="100">
+        <div class="h5 condo-gray-text">ITEM DESCRIPTION</div>
+      </div>
+      <div fxFlex="20" fxFlex.xs="100">
+        <div class="h5 condo-gray-text">QUANTITY</div>
+      </div>
+      <div fxFlex="20" fxFlex.xs="100">
+        <div class="h5 condo-gray-text">UNIT</div>
+      </div>
+    </div>
+
+    <div class="mt-24" *ngFor="let item of currentProject.projectProducts" fxLayout="row" fxLayout.xs="column"
+      fxLayoutAlign="start center" fxLayoutAlign.xs="start" fxFlex="1 0 auto">
+      <div fxFlex="40" fxFlex.sm="70" fxFlex.xs="100">
+        <div class="h4 mb-8">{{item.description}}</div>
+      </div>
+      <div fxFlex="20" fxFlex.xs="100">
+        <div class="h4 mb-8">{{item.quantity}}</div>
+      </div>
+      <div fxFlex="20" fxFlex.xs="100">
+        <div class="h4 mb-8">{{item.unit}}</div>
+      </div>
+    </div>
+
+
+    <div class="mt-24" fxLayout="column" fxLayoutAlign="start" fxFlex="1 0 auto">
+      <div fxFlex="80">
+        <div class="h5 condo-gray-text">DESCRIPTION</div>
+        <div class="h4 mb-8">{{currentProject.description}}</div>
+      </div>
+      <div fxFlex="80" class="mt-24">
+        <div class="h5 condo-gray-text">SPECIAL CONDITIONS</div>
+        <div class="h4 mb-8">{{currentProject.specialConditions}}</div>
+      </div>
+    </div>
+  </div>
+
+  <mat-divider class="mt-24"></mat-divider>
+  <div class="mb-16" fxLayout="row" fxLayoutAlign="space-between center">
+    <div class="mt-32">
+      <div class="h3 font-weight-600">OTHER INFORMATION
+      </div>
+    </div>
+  </div>
+
+
+  <div class="" fxLayout="column" fxLayoutAlign="start">
+    <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+      <div fxFlex="40">
+        <div class="h5 condo-gray-text">INSURANCE CONFIRMATION</div>
+        <div class="h4 mb-16">{{currentProject.insuranceRequired}}</div>
+      </div>
+
+      <div fxFlex="40" fxFlex.sm="100" fxFlex.xs="100">
+        <div class="h5 condo-gray-text">PUBLISH TO PREFERRED VENDORS</div>
+        <div class="h4 mb-8">{{currentProject.postType == 2 ? 'Yes': 'No'}}</div>
+      </div>
+    </div>
+  </div>
+  <div>
+
+    <div fxLayout="column" fxLayout.sm="column" fxLayout.xs="column" class="mt-16" fxLayoutAlign="start"
+      fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxFlex="1 0 auto">
+      <!-- Images Section Starts -->
+      <div fxFlex="100" fxFlex.xs="100" class="upload-button mb-16" [ngClass.lg]="''" [ngClass.md]="'mr-16'"
+        [ngClass.sm]="'mb-24'" [ngClass.xs]="'mb-24'">
+        <div fxLayout="row">
+          <div class="h5 condo-gray-text mb-24" fxFlex="100">SUPPORTING DOCS</div>
+        </div>
+        <div fxLayout="row" class="mb-12">
+          <div class="h4 line-height-28 mb-8" fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+            <div>
+              <div *ngFor="let docFile of docFileList" class="" fxLayout="column">
+                <div>
+                  <mat-icon class="s-16 font-weight-600 mat-icon mr-8" style="vertical-align: center">file_copy
+                  </mat-icon> <a class="cursor">{{docFile.name}}</a> <span
+                    class="condo-gray-text ml-16">{{docFile.formatedSize}}</span>
+                </div>
+              </div>
+              <div *ngIf="docFileList != null && docFileList.length == 0" class="" fxLayout="row">
+                <div class="condo-gray-text text-italic text-center">No documents available</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</mat-dialog-content>
+<mat-dialog-actions align="center" class="pb-16 mr-16">
+  <button mat-button mat-dialog-close mat-flat-button class="condo-red-500">CLOSE</button>
+</mat-dialog-actions>

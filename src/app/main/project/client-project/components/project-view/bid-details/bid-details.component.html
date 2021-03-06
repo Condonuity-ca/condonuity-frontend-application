@@ -1,0 +1,249 @@
+<div class="" fxLayout="column">
+
+
+  <div class="" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center" fxLayoutAlign.xs="start">
+    <div class="" fxLayout.xs="column" fxLayoutAlign.xs="start">
+      <div class="h4 condo-gray-text">OPENED BY
+      </div>
+      <div class="h4">
+        {{bidData?.openedBy}}
+      </div>
+    </div>
+    <div fxLayout.xs="column" fxLayoutAlign="end center" fxLayoutAlign.xs="start">
+      <span class="h3 font-weight-600 mr-24" [ngClass.xs]="'my-16'">
+        BID #{{bidData?.id}}
+      </span>
+      <button mat-flat-button class="submit-button condo-red-400 cursor mat-flat-button" aria-label="Continue">
+        {{bidData?.bidPrice | currency:'CAD'}}
+      </button>
+    </div>
+  </div>
+
+  <div class="about-content " fxLayout="column" fxFlex="30" fxFlex.md="30" fxFlex.sm="100" fxFlex.xs="100">
+
+    <div class="mat-card  mat-elevation-z bg-transparent" [ngClass.xl]="'mr-24 mt-24'" [ngClass.lg]="'mr-24 mt-24'" [ngClass.md]="'mr-24 mt-24'"
+      [ngClass.sm]="'mr-24 mt-24'" [ngClass.xs]="'mt-16'">
+      <h2 class=" mb-24 h3 font-weight-600" [ngClass.xl]="'mt-32'" [ngClass.lg]="'mt-32'" [ngClass.md]="'mt-32'" [ngClass.sm]="'mt-32'"
+        [ngClass.xs]="''">ITEMS SUMMARY</h2>
+
+      <div class="" fxLayout="row" fxLayout.xs="column">
+        <div fxFlex="40" fxFlex.xs="100" [ngClass.xs]="'mb-16'">
+          <div class="h5 pb-0 condo-gray-text">ITEM DESCRIPTION</div>
+        </div>
+
+        <div fxFlex="15" fxFlex.xs="100" [ngClass.xs]="'mb-16'">
+          <div class="h5 condo-gray-text">QUANTITY</div>
+        </div>
+
+        <div fxFlex="15" fxFlex.xs="100" [ngClass.xs]="'mb-16'">
+          <div class="h5 condo-gray-text">UNIT</div>
+        </div>
+
+        <div fxFlex="15" fxFlex.xs="100" [ngClass.xs]="'mb-16'">
+          <div class="h5 condo-gray-text">PRICE</div>
+        </div>
+
+        <div fxFlex="15" fxFlex.xs="100" [ngClass.xs]="'mb-16'">
+          <div class="h5 condo-gray-text">TOTAL</div>
+        </div>
+
+      </div>
+
+
+      <div class="mt-8" style="border-bottom: 1px solid #f0f0f0"  fxLayout="row" fxLayout.xs="column" *ngFor="let item of bidItems">
+        <div fxFlex="40" fxFlex.xs="100" [ngClass.xs]="'mb-16'">
+          <div class="h4 mb-8">{{item.description}}</div>
+        </div>
+        <div fxFlex="15" fxFlex.xs="100" [ngClass.xs]="'mb-16'">
+          <div class="h4 mb-8">{{item.quantity}}</div>
+        </div>
+        <div fxFlex="15" fxFlex.xs="100" [ngClass.xs]="'mb-16'">
+          <div class="h4 mb-8">{{item.unit}}</div>
+        </div>
+        <div fxFlex="15" fxFlex.xs="100" [ngClass.xs]="'mb-16'">
+          <div class="h4 mb-8">{{item.price | currency:'CAD'}}</div>
+        </div>
+        <div fxFlex="15" fxFlex.xs="100" [ngClass.xs]="'mb-16'">
+          <div class="h4 mb-8">{{item.totalPrice | currency:'CAD'}}</div>
+        </div>
+      </div>
+
+
+      <!-- <div class="mt-8" style="border-bottom: 1px solid #f0f0f0" fxLayout="row" fxLayout.xs="column" *ngFor="let item of bidItems">
+        <div fxFlex="40" fxFlex.xs="100" [ngClass.xs]="'mb-16'">
+          <div class="h4 mb-8">{{item.description}}</div>
+        </div>
+        <div fxFlex="15" fxFlex.xs="100" [ngClass.xs]="'mb-16'">
+          <div class="h4 mb-8">{{item.quantity}}</div>
+        </div>
+        <div fxFlex="15" fxFlex.xs="100" [ngClass.xs]="'mb-16'">
+          <div class="h4 mb-8">{{item.unit}}</div>
+        </div>
+        <div fxFlex="15" fxFlex.xs="100" [ngClass.xs]="'mb-16'">
+          <div class="h4 mb-8">{{item.price | currency:'CAD'}}</div>
+        </div>
+        <div fxFlex="15" fxFlex.xs="100" [ngClass.xs]="'mb-16'">
+          <div class="h4 mb-8">{{item.totalPrice | currency:'CAD'}}</div>
+        </div>
+      </div> -->
+
+      <div *ngIf="bidItems.length == 0" class="mt-16 text-center" fxLayout="row">
+          <div class="condo-gray-text text-italic text-center">No items available</div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <div class="about-content" fxLayout="column" fxFlex="30" fxFlex.md="30" fxFlex.sm="100" fxFlex.xs="100"
+    [ngClass.xs]="'mt-8'">
+
+    <div class="mat-card mat-elevation-z bg-transparent" [ngClass.xl]="'mr-24'" [ngClass.lg]="'mr-24'" [ngClass.md]="'mr-24'"
+      [ngClass.sm]="'mr-24'" [ngClass.xs]="'mr-8'">
+      <h2 class=" mb-24 h3 font-weight-600" [ngClass.xl]="'mt-32'" [ngClass.lg]="'mt-32'" [ngClass.md]="'mt-32'" [ngClass.sm]="'mt-32'"
+        [ngClass.xs]="'mt-16'">LABOUR SUMMARY</h2>
+
+      <div class="mt-8" fxLayout="row" fxLayout.xs="column">
+        <div fxFlex="40" fxFlex.xs="100" [ngClass.xs]="'mb-16'">
+          <div class="h5 pb-0 condo-gray-text">ITEM DESCRIPTION</div>
+        </div>
+
+        <div fxFlex="15" fxFlex.xs="100" [ngClass.xs]="'mb-16'">
+          <div class="h5 condo-gray-text">QUANTITY</div>
+        </div>
+
+        <div fxFlex="15" fxFlex.xs="100" [ngClass.xs]="'mb-16'">
+          <div class="h5 condo-gray-text">UNIT</div>
+        </div>
+        <div fxFlex="15" fxFlex.xs="100" [ngClass.xs]="'mb-16'">
+          <div class="h5 condo-gray-text">PRICE</div>
+        </div>
+
+        <div fxFlex="15" fxFlex.xs="100" [ngClass.xs]="'mb-16'">
+          <div class="h5 condo-gray-text">TOTAL</div>
+        </div>
+
+      </div>
+
+      <div class="mt-8" fxLayout="row" fxLayout.xs="column" *ngFor="let item of bidLaborItmes">
+        <div fxFlex="40" fxFlex.xs="100" [ngClass.xs]="'mb-16'">
+          <div class="h4 mb-8">{{item.description}}</div>
+        </div>
+
+        <div fxFlex="15" fxFlex.xs="100" [ngClass.xs]="'mb-16'">
+          <div class="h4 mb-8">{{item.quantity}}</div>
+        </div>
+
+        <div fxFlex="15" fxFlex.xs="100" [ngClass.xs]="'mb-16'">
+          <div class="h4 mb-8">{{item.unit}}</div>
+        </div>
+        <div fxFlex="15" fxFlex.xs="100" [ngClass.xs]="'mb-16'">
+          <div class="h4 mb-8">{{item.price | currency:'CAD'}}</div>
+        </div>
+
+        <div fxFlex="15" fxFlex.xs="100" [ngClass.xs]="'mb-16'">
+          <div class="h4 mb-8">{{item.totalPrice | currency:'CAD'}}</div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="bidLaborItmes.length == 0" class="mt-16 text-center" fxLayout="row">
+      <div class="condo-gray-text text-italic text-center">No labour summary available</div>
+    </div>
+
+  </div>
+
+  <div class="about-content" fxLayout="column" fxFlex="30" fxFlex.md="30" fxFlex.sm="100" fxFlex.xs="100"
+    [ngClass.xs]="'mt-16'">
+
+    <div class="mat-card mat-elevation-z bg-transparent" [ngClass.xl]="'mr-24'" [ngClass.lg]="'mr-24'" [ngClass.md]="'mr-24'"
+      [ngClass.sm]="'mr-24'" [ngClass.xs]="'mr-8'">
+      <h2 class="mb-24 h3 font-weight-600" [ngClass.xl]="'mt-32'" [ngClass.lg]="'mt-32'" [ngClass.md]="'mt-32'" [ngClass.sm]="'mt-32'"
+        [ngClass.xs]="'mt-16'">OTHER INFORMATION</h2>
+      <div class="" fxLayout="row" fxLayout.xs="column">
+
+        <div fxFlex="50" fxFlex.xs="100" [ngClass.xs]="'mb-16'">
+          <div class="h5 pb-0 condo-gray-text">START DATE</div>
+          <h3 class="mt-4 mb-0">{{bidData?.vendorStartDate}}</h3>
+        </div>
+
+        <div fxFlex="50" fxFlex.xs="100" [ngClass.xs]="'mb-16'">
+          <div class="h5 condo-gray-text">DURATION</div>
+          <h3 class="mt-4 mb-0">{{bidData?.vendorProjectDuration}}</h3>
+        </div>
+
+      </div>
+      <div class="" fxLayout="row" fxLayout.xs="column" [ngClass.xl]="'mt-24'" [ngClass.lg]="'mt-24'" [ngClass.md]="'mt-24'"
+        [ngClass.sm]="'mt-24'" [ngClass.xs]="'mt-8'">
+
+        <div fxFlex="50" fxFlex.xs="100" [ngClass.xs]="'mb-16'">
+          <div class="h5 pb-0 condo-gray-text">IN SCOPE</div>
+          <h3 class="mt-4 mb-0">{{bidData?.inScope}}</h3>
+        </div>
+
+        <div fxFlex="50" fxFlex.xs="100" [ngClass.xs]="'mb-16'">
+          <div class="h5 condo-gray-text">OUT OF SCOPE</div>
+          <h3 class="mt-4 mb-0">{{bidData?.outOfScope}}</h3>
+        </div>
+
+      </div>
+      <div class="" fxLayout="row" fxLayout.xs="column" [ngClass.xl]="'mt-24'" [ngClass.lg]="'mt-24'" [ngClass.md]="'mt-24'"
+        [ngClass.sm]="'mt-24'" [ngClass.xs]="'mt-8'">
+
+        <div fxFlex="50" fxFlex.xs="100" [ngClass.xs]="'mb-16'">
+          <div class="h5 pb-0 condo-gray-text">PREREQUSITE</div>
+          <h3 class="mt-4 mb-0">{{bidData?.preRequisite}}</h3>
+        </div>
+
+        <div fxFlex="50" fxFlex.xs="100" [ngClass.xs]="'mb-16'">
+          <div class="h5 condo-gray-text">WHY CHOOSE ME</div>
+          <h3 class="mt-4 mb-0">{{bidData?.reasonForChoose}}</h3>
+        </div>
+
+      </div>
+
+      <div class="" fxLayout="row" fxLayout.xs="column" [ngClass.xl]="'mt-24'" [ngClass.lg]="'mt-24'" [ngClass.md]="'mt-24'"
+        [ngClass.sm]="'mt-24'" [ngClass.xs]="'mt-8'">
+        <div fxFlex="30" fxFlex.xs="100">
+          <div class="h5 pb-0 condo-gray-text">SUPPORTING IMAGES & DOCS</div>
+        </div>
+      </div>
+    </div>
+
+    <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" class="mt-16" fxLayoutAlign="space-between center"
+      fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxFlex="1 0 auto">
+      <div fxFlex="100" fxFlex.xs="100" class="upload-button" [ngClass.xl]="'mr-16'" [ngClass.lg]="'mr-16'" [ngClass.md]="'mr-16'"
+        [ngClass.sm]="'mb-24'" [ngClass.xs]="'mb-24'">
+        <div fxLayout="row" class="mb-12">
+          <div class="h4 line-height-28 mb-8" fxLayout="row" fxLayoutAlign="text-left center" fxFlex="1 0 auto">
+            <div>
+              <div *ngFor="let attachment of bidData.bidFiles" class="" fxLayout="column"
+                (click)="attachmentClicked(attachment)">
+                <div>
+                  <mat-icon class="s-16 font-weight-600 mat-icon mr-8" style="vertical-align: center">photo_library
+                  </mat-icon> <a class="cursor">{{attachment.fileName}}</a> <span
+                    class="condo-gray-text ml-16">{{attachment.fileSize}}</span>
+                </div>
+              </div>
+
+              <div *ngIf="bidData.bidFiles.length == 0" class="" fxLayout="row">
+                <div class="condo-gray-text text-italic text-center">No files available</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="!isProjectAwarded" class="mt-16 mb-16" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="end"
+      fxLayoutAlign.xs="start">
+      <div fxLayout.xs="column" fxLayoutAlign="end center" fxLayoutAlign.xs="start">
+        <button mat-flat-button color="primary" class="submit-button" aria-label="Continue" [ngClass.xl]="''" [ngClass.lg]="''"
+          [ngClass.md]="''" [ngClass.sm]="''" [ngClass.xs]="'mb-16'" (click)="selectVendor()" class="donot_print">
+          AWARD TO CONTRACTOR
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div>

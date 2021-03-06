@@ -1,0 +1,78 @@
+<div fxLayout="column" id="timeline" class="py-24 px-32 content " #content>
+  <div class="mb-32" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center" fxLayoutAlign.xs="start">
+    <div class="pr-16">
+      <div class="h3 font-weight-600">PROJECT INFORMATION AND DETAILS
+      </div>
+    </div>
+  </div>
+
+  <div class="" fxLayout="column" fxLayoutAlign="start">
+    <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start center" fxLayoutAlign.sm="start"
+      fxLayoutAlign.xs="start" fxFlex="1 0 auto">
+      <div fxFlex="40" fxFlex.sm="100" fxFlex.xs="100">
+        <div class="h5 condo-gray-text">PROJECT ID</div>
+        <div class="h4 mb-16 condo-red-text">{{projectInfo.projectId}}</div>
+      </div>
+      <div fxFlex="30" fxFlex.sm="100" fxFlex.xs="100">
+        <div class="h5 condo-gray-text">STATUS</div>
+        <div class="h4 mb-16 condo-red-text">{{projectInfo.statusMessage}}</div>
+      </div>
+    </div>
+
+    <div class="mt-24" fxLayout="row wrap" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start center"
+      fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxFlex="1 0 auto">
+      <div fxFlex="40" fxFlex.sm="100" fxFlex.xs="100">
+        <div class="h5 condo-gray-text">PROJECT NAME</div>
+        <div class="h4 mb-16">{{projectInfo.projectName}}</div>
+      </div>
+      <div fxFlex="20" fxFlex.sm="100" fxFlex.xs="100">
+        <div class="h5 condo-gray-text">LOCATION</div>
+        <div class="h4 mb-16">{{projectInfo.city}}</div>
+      </div>
+      <div fxFlex="40" fxFlex.sm="100" fxFlex.xs="100">
+        <div class="h5 condo-gray-text">TAG WORDS</div>
+        <div class="h4 mb-16">
+          <span *ngFor='let tag of projectInfo.tags;let i =index'>
+            <span *ngIf="i>0">,</span><span>{{tag.tagName}}</span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-24" fxLayout="row wrap" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start center"
+      fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxFlex="1 0 auto">
+      <div fxFlex="20" fxFlex.sm="100" fxFlex.xs="100">
+        <div class="h5 condo-gray-text">PROJECT POST DATE</div>
+        <div class="h4 mb-16">{{projectInfo.formattedProjectPostedDate}}</div>
+      </div>
+      <div fxFlex="20" fxFlex.sm="100" fxFlex.xs="100">
+        <div class="h5 condo-gray-text">BID END DATE</div>
+        <div class="h4 mb-16">{{projectInfo.formattedbidEndDate}}</div>
+      </div>
+      <div fxFlex="20" fxFlex.sm="100" fxFlex.xs="100">
+        <div class="h5 condo-gray-text">PROJECT START DATE</div>
+        <div class="h4 mb-16">{{projectInfo.formattedprojectStartDate}}</div>
+      </div>
+      <div fxFlex="20" fxFlex.sm="100" fxFlex.xs="100">
+        <div class="h5 condo-gray-text">PROJECT DEADLINE</div>
+        <div class="h4 mb-16">{{projectInfo.formattedprojectCompletionDeadline}}</div>
+      </div>
+
+      <div fxFlex="20" fxFlex.sm="100" fxFlex.xs="100">
+        <div class="h5 condo-gray-text">ESTIMATED BUDGET</div>
+        <div class="h4 mb-16">{{projectInfo.estimatedBudget | currency:'CAD'}}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="" fxLayout="column" fxLayoutAlign="start">
+    <div fxFlex="25" fxLayoutAlign="end" fxLayoutAlign.xs="start" class="donot_print">
+      <!-- <button mat-flat-button color="primary" class="submit-button mr-16 noprint" aria-label="Continue" (click)="print()">
+        DOWNLOAD
+      </button> -->
+      <button mat-flat-button color="primary" class="submit-button noprint" aria-label="Continue" (click)="print()">
+        PRINT
+      </button>
+    </div>
+  </div>
+</div>

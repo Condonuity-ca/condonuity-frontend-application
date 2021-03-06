@@ -1,0 +1,582 @@
+<div id="register" fxLayout="column">
+  <div id="register-form-wrapper" fxLayout="column" fxLayoutAlign="center center">
+    <div id="register-form" class="bg-white" [@animate]="{value:'*',params:{duration:'300ms',y:'100px'}}">
+      <!-- 
+                   <div class="about-content" fxLayout="column" fxFlex="100" fxFlex.gt-sm="100" fxFlex.gt-md="100">
+
+            <div class="h2 mb-24 text-bold">Register New Vendor</div>
+
+            <vendor-profile></vendor-profile>
+</div> -->
+      <div class="h2 mb-24 text-bold condo-gray-text">New Contractor Registration</div>
+      <mat-vertical-stepper class="mat-elevation-z" [linear]="true">
+
+        <mat-step [stepControl]="vendorInfoForm">
+          <form fxLayout="column" [formGroup]="vendorInfoForm">
+
+            <ng-template matStepLabel>CONTRACTOR INFORMATION</ng-template>
+
+            <div class="mat-card mat-elevation-z pt-32 mr-24">
+              <div fxLayout="column">
+                <div fxLayout.xl="row" fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="row" fxLayout.xs="column"
+                  fxLayoutAlign="start center" fxFlex="1 0 auto" class="mb-40">
+                  <div class="w-70" style="width:90px;">
+                    <img *ngIf="imgURL == null" class="border-radius-100" style="width:70px;height:70px"
+                      src="assets/images/no-pic.jpg">
+                    <img [src]="imgURL" class="border-radius-100" *ngIf="imgURL">
+                  </div>
+
+                  <span appearance="outline" class="" [ngClass.xs]="'mt-32'">
+                    <div class="file-uploader font-size-20">
+
+                      <style>
+                        #file {
+                          display: none;
+                        }
+
+                      </style>
+                      <label class="condo-red-text  h5 font-weight-600 upload-btn ml-16 cursor mr-16">
+                        UPLOAD PHOTO<input #file type="file" accept='image/*' (change)="preview(file.files)" id="file">
+                      </label>
+                    </div>
+                  </span>
+
+                  <div [ngClass.xs]="'mt-32'">
+                    <span class="condo-gray-text">Max 2MB</span>
+                  </div>
+
+                </div>
+
+                <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto" class="pt-16">
+                  <!-- <mat-form-field appearance="outline" fxFlex="50" class="pr-8">
+                    <mat-label>Company Name</mat-label>
+                    <input matInput formControlName="vendorName" required>
+                  </mat-form-field> -->
+
+                  <mat-form-field appearance="outline" class="" [ngClass.lg]="'pr-16'" [ngClass.md]="'pr-16'"
+                    [ngClass.sm]="'pr-16'" [ngClass.xs]="'pr-0'" fxFlex.lg="40" fxFlex.md="40" fxFlex.sm="50"
+                    fxFlex.xs="100">
+                    <mat-label>Company Name *</mat-label>
+
+                    <mat-chip-list maxLength="1" #vendorChipList aria-label="City Selection"
+                      ormControlName="vendorChips">
+                      <mat-chip *ngFor="let vendor of selectedVendors" [selectable]="selectable" [removable]="removable"
+                        (removed)="removeVendor(vendor)">
+                        {{vendor.companyName}}
+                        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                      </mat-chip>
+                      <input formControlName="vendors" [disabled]="isVendorInputDisabled" placeholder="Contractor Name"
+                        #vendorInput [formControl]="vendorCtrl" [matAutocomplete]="vendorAuto"
+                        [matChipInputFor]="vendorChipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                        [matChipInputAddOnBlur]="addOnBlur">
+                    </mat-chip-list>
+                    <mat-autocomplete #vendorAuto="matAutocomplete" (optionSelected)="selectVendor($event)">
+                      <mat-option *ngFor="let vendor of filteredVendors | async" [value]="vendor">
+                        {{vendor.companyName}}
+                      </mat-option>
+                    </mat-autocomplete>
+                  </mat-form-field>
+                </div>
+
+
+
+                <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+
+
+                  <!-- <mat-form-field appearance="outline" fxFlex="100">
+                    <mat-label>Tags *</mat-label>
+                    <mat-chip-list #chipList aria-label="Tag Selection" formControlName="tagChips">
+                      <mat-chip *ngFor="let tag of selectedTags" [selectable]="selectable" [removable]="removable"
+                        (removed)="remove(tag)">
+                        {{tag.tagName}}
+                        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                      </mat-chip>
+                      <input placeholder="Select Tags" #tagInput [formControl]="tagCtrl" formControlName="tags"
+                        [matAutocomplete]="auto" [matChipInputFor]="chipList"
+                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                        (focusout)="tagInputFocusOut()">
+                    </mat-chip-list>
+                    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                      <mat-option *ngFor="let tags of filteredTags | async" [value]="tags">
+                        {{tags.tagName}}
+                      </mat-option>
+                    </mat-autocomplete>
+                    <mat-error>Minimum 1 valid tag is required</mat-error>
+
+                  </mat-form-field> -->
+
+
+                  <mat-form-field appearance="outline" fxFlex="100">
+                    <mat-label>Tags *</mat-label>
+
+                    <mat-chip-list #chipList aria-label="Tag Selection">
+                      <mat-chip *ngFor="let tag of selectedTags" [selectable]="selectable" [removable]="removable"
+                        (removed)="remove(tag)">
+                        {{tag.tagName}}
+                        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                      </mat-chip>
+                      <input #tagInput placeholder="Select Tags" [formControl]="tagCtrl" formControlName="tags"
+                        [matAutocomplete]="auto" [matChipInputFor]="chipList"
+                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                        (focusout)="tagInputFocusOut()">
+                    </mat-chip-list>
+                    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event);">
+                      <mat-option *ngFor="let tags of filteredTags | async" [value]="tags">
+                        {{tags.tagName}}
+                      </mat-option>
+                    </mat-autocomplete>
+
+                    <mat-error>Minimum 1 valid tag is required</mat-error>
+                  </mat-form-field>
+
+                </div>
+
+
+                <div fxLayout.xl="row" fxLayout.xl="row" fxLayout.xl="row" fxLayout.xl="row" fxLayout.xs="column"
+                  fxLayoutAlign="start center" fxFlex="1 0 auto" class="">
+                  <mat-form-field appearance="outline" fxFlex="50" class="pr-8">
+                    <mat-label>Serviced Cities *</mat-label>
+
+                    <mat-chip-list maxLength="1" #cityChipList aria-label="City Selection" formControlName="cityChips">
+                      <mat-chip *ngFor="let cityInfo of selectedCities" [selectable]="selectable"
+                        [removable]="removable" (removed)="removeCity(cityInfo)">
+                        {{cityInfo.city}}
+                        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                      </mat-chip>
+                      <input placeholder="City" #cityInput [formControl]="cityCtrl" formControlName="servicedCities"
+                        [matAutocomplete]="cityAuto" [matChipInputFor]="cityChipList"
+                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur">
+                    </mat-chip-list>
+                    <mat-autocomplete #cityAuto="matAutocomplete" (optionSelected)="selectCity($event)">
+                      <mat-option *ngFor="let cityInfo of filteredCities | async" [value]="cityInfo">
+                        {{cityInfo.city}}
+                      </mat-option>
+                    </mat-autocomplete>
+                  </mat-form-field>
+
+                  <mat-form-field appearance="outline" fxFlex="50" [ngClass.xl]="'pl-16'" [ngClass.lg]="'pl-16'"
+                    [ngClass.md]="'pl-16'" [ngClass.sm]="'pl-16'" [ngClass.xs]="'pl-0'">
+                    <mat-label>Serviced Provinces</mat-label>
+                    <input readonly matInput formControlName="serviceProvinces" required>
+                  </mat-form-field>
+
+                </div>
+
+
+                <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+                  <mat-form-field appearance="outline" fxFlex="100">
+                    <mat-label>Description</mat-label>
+                    <textarea name="description" formControlName="description" matInput type="text" max-rows="4"
+                      required="required" class="height-200"></textarea>
+                    <mat-error>Description about company is mandatory</mat-error>
+                  </mat-form-field>
+                </div>
+
+                <div fxLayout.xl="row" fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="row" fxLayout.xs="column"
+                  fxLayoutAlign="start center" fxFlex="1 0 auto">
+                  <mat-form-field appearance="outline" fxFlex="33" fxFlex.xs="100">
+                    <mat-label>Date Established</mat-label>
+                    <input matInput readonly [matDatepicker]="picker" formControlName="establishDate"
+                      placeholder="Choose a date" required="required">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                    <mat-error>Establishment date is required</mat-error>
+                  </mat-form-field>
+
+                  <mat-form-field appearance="outline" fxFlex="33" fxFlex.xs="100" [ngClass.xl]="'px-16'"
+                    [ngClass.lg]="'px-16'" [ngClass.md]="'px-16'" [ngClass.sm]="'px-16'" [ngClass.xs]="'px-0'">
+                    <mat-label>Total Employees</mat-label>
+                    <input type="number" matInput formControlName="totalEmp">
+                    <mat-error *ngIf="vendorInfoForm.get('totalEmp').hasError('pattern')">
+                      Enter a Number
+                    </mat-error>
+                  </mat-form-field>
+
+                  <mat-form-field appearance="outline" fxFlex="34" fxFlex.xs="100" class="">
+                    <mat-label>Yearly Sales</mat-label>
+                    <input type="number" matInput formControlName="yearSales" class="">
+                    <span matPrefix class="">$&nbsp;</span>
+                    <mat-error *ngIf="vendorInfoForm.get('yearSales').hasError('pattern')">
+                      Please Enter a valid Number
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <!-- <div class="" fxLayout="row" fxLayout.xs="column" fxLayoutAlign.xs="start" fxLayoutAlign="space-between center">
+                                <div class="pr-16">                
+                                    <div class="h3 font-weight-600">UPLOAD YOUR DOCUMENTS</div>
+                                    <div class="condo-gray-text mt-8">
+                                            Upload all supporting documents like business card, certifications and recognitions to let the condo reach you faster. 
+                                    </div>
+                                </div>
+                            </div> -->
+
+                <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start center" fxLayoutAlign.xs="start"
+                  fxFlex="1 0 auto" class="mt-32">
+                  <div class="" fxFlex="100" fxFlex.xs="100" class=" font-weight-500 condo-gray-text">
+                    SUPPORTING DOCUMENTS AND IMAGES
+                  </div>
+                </div>
+
+                <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start top" fxLayoutAlign.xs="start"
+                  fxFlex="1 0 auto">
+                  <div class="file-uploader" appearance="outline" fxFlex="64" fxFlex.xs="100" class="upload-button">
+                    <div fxLayout="column">
+                      <span appearance="outline" fxFlex="100" [ngClass.xl]="'px-16'" [ngClass.lg]="'px-16'"
+                        [ngClass.md]="'px-16'" [ngClass.sm]="'px-16'" [ngClass.xs]="'px-0'">
+                        <input formControlName="docUploader" hidden type="file" accept="application/pdf,image/*"
+                          (change)="appendDocumentFiles($event)" multiple #fileInput />
+                        <button color="accent" class="mat-flat-button p-0 bg-transparent"
+                          (click)="fileInput.value='';fileInput.click()" aria-label="Add file"
+                          [@animate]="{value:'*', params:{delay:'300ms',scale:'0.2'}}">
+                          <span class="condo-red-text h4"><strong>
+                              <mat-icon class="s-16 font-weight-600 mat-icon" style="vertical-align: center">add_circle
+                              </mat-icon> Click here to Add Files
+                            </strong></span>
+                        </button>
+                      </span>
+                      <div *ngFor="let docFile of docFileList; index as i" fxFlex="100">
+                        <h4 class="mt-12 ml-16"><span class="condo-red-text mr-6" title="Remove File"
+                            (click)="removeDocAttachment(i)">
+                            <mat-icon class="s-16 cursor" style="vertical-align: middle">remove_circle_outline
+                            </mat-icon>
+                          </span> {{docFile.name}} - <span class="condo-gray-text">{{docFile.formatedSize}}</span> </h4>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <mat-error *ngIf="vendorInfoForm.get('docUploader').hasError('required')">
+                  * File Upload is Mandatory
+                </mat-error>
+
+                <div fxLayout="column" class=" mt-12">
+                  <div class="h5 condo-gray-text">
+                    <span class="condo-red-text">*</span> Upload a copy of the business card (or your business
+                    registration documents) as a proof of representation, Our registration team will contact you for
+                    verification purposes before activating your profile.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="end" class="mr-24">
+              <button mat-raised-button matStepperNext type="button" color="accent" [disabled]="vendorInfoForm.invalid || docFileList.length === 0 || selectedTags.length == 0
+               || selectedCities.length == 0 || !isValidVendorName">
+                NEXT</button>
+            </div>
+          </form>
+        </mat-step>
+
+
+        <mat-step [stepControl]="contactInfoForm">
+
+          <form fxLayout="column" [formGroup]="contactInfoForm">
+
+            <ng-template matStepLabel>CONTACT INFORMATION</ng-template>
+
+            <div class="mat-card mat-elevation-z pt-32 mr-24">
+
+              <div class="" fxLayout="column">
+
+                <div fxLayout.xl="row" fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="row" fxLayout.xs="column"
+                  fxLayoutAlign="start center" fxFlex="1 0 auto">
+                  <mat-form-field appearance="outline" fxFlex="50" fxFlex.xs="100" [ngClass.xl]="'pr-16'"
+                    [ngClass.lg]="'pr-16'" [ngClass.md]="'pr-16'" [ngClass.sm]="'pr-16'" [ngClass.xs]="'pr-0'">
+                    <mat-label>Company Legal Name</mat-label>
+                    <input matInput formControlName="compLegalName" required>
+                    <mat-error>Mandatory field is required</mat-error>
+                  </mat-form-field>
+                </div>
+
+                <div fxLayout.xl="row" fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="row" fxLayout.xs="column"
+                  fxLayoutAlign="start center" fxFlex="1 0 auto">
+                  <mat-form-field appearance="outline" fxFlex="25" fxFlex.xs="100" [ngClass.xl]="'pr-16'"
+                    [ngClass.lg]="'pr-16'" [ngClass.md]="'pr-16'" [ngClass.sm]="'pr-16'" [ngClass.xs]="'pr-0'">
+                    <mat-label>Street Address</mat-label>
+                    <input matInput formControlName="streetAddr" required>
+                    <mat-error>Mandatory field is required</mat-error>
+                  </mat-form-field>
+
+                  <mat-form-field appearance="outline" fxFlex="25" fxFlex.xs="100" [ngClass.xl]="'pr-16'"
+                    [ngClass.lg]="'pr-16'" [ngClass.md]="'pr-16'" [ngClass.sm]="'pr-16'" [ngClass.xs]="'pr-0'">
+                    <mat-label>City</mat-label>
+                    <mat-select formControlName="city" (selectionChange)="cityNameUpdated($event.value)">
+                      <mat-option *ngFor="let cityInfo of cityProvinceListClone" [value]="cityInfo">{{cityInfo.city}}
+                      </mat-option>
+                    </mat-select>
+                    <mat-error>Mandatory field is required</mat-error>
+                  </mat-form-field>
+
+                  <mat-form-field appearance="outline" fxFlex="25" fxFlex.xs="100" [ngClass.xl]="'pr-16'"
+                    [ngClass.lg]="'pr-16'" [ngClass.md]="'pr-16'" [ngClass.sm]="'pr-16'" [ngClass.xs]="'pr-0'">
+                    <mat-label>Province</mat-label>
+                    <input readonly matInput formControlName="province" required>
+                    <mat-error>Mandatory field is required</mat-error>
+                  </mat-form-field>
+
+                  <mat-form-field appearance="outline" fxFlex="25" fxFlex.xs="100" class="">
+                    <mat-label>Postal Code</mat-label>
+                    <input matInput formControlName="postalCode" required>
+                    <mat-error *ngIf="contactInfoForm.get('postalCode').hasError('required')">Mandatory field is
+                      required</mat-error>
+                    <mat-error *ngIf="contactInfoForm.get('postalCode').hasError('pattern')">
+                      Postal code must contain 6 digit alphanumeric characters
+                    </mat-error>
+                  </mat-form-field>
+
+                </div>
+
+                <div fxLayout.xl="row" fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="row" fxLayout.xs="column"
+                  fxLayoutAlign="start center" fxFlex="1 0 auto">
+                  <mat-form-field appearance="outline" fxFlex="25" fxFlex.xs="100" [ngClass.xl]="'pr-16'"
+                    [ngClass.lg]="'pr-16'" [ngClass.md]="'pr-16'" [ngClass.sm]="'pr-16'" [ngClass.xs]="'pr-0'">
+                    <mat-label>Phone Number</mat-label>
+                    <input matInput formControlName="phone" required>
+                    <mat-error *ngIf="contactInfoForm.get('phone').hasError('required')">Mandatory field is required
+                    </mat-error>
+                    <mat-error *ngIf="contactInfoForm.get('phone').hasError('pattern')">
+                      Please Enter a Number
+                    </mat-error>
+                  </mat-form-field>
+
+                  <mat-form-field appearance="outline" fxFlex="25" fxFlex.xs="100" [ngClass.xl]="'pr-16'"
+                    [ngClass.lg]="'pr-16'" [ngClass.md]="'pr-16'" [ngClass.sm]="'pr-16'" [ngClass.xs]="'pr-0'">
+                    <mat-label>Email</mat-label>
+                    <input matInput formControlName="email" required>
+                    <mat-error *ngIf="contactInfoForm.get('email').hasError('required')">Mandatory field is required
+                    </mat-error>
+                    <mat-error *ngIf="contactInfoForm.get('email').hasError('pattern')">
+                      Please Enter Valid Email ID
+                    </mat-error>
+                  </mat-form-field>
+
+                  <mat-form-field appearance="outline" fxFlex="25" fxFlex.xs="100" [ngClass.xl]="'pr-16'"
+                    [ngClass.lg]="'pr-16'" [ngClass.md]="'pr-16'" [ngClass.sm]="'pr-16'" [ngClass.xs]="'pr-0'">
+                    <mat-label>Fax</mat-label>
+                    <input matInput formControlName="fax">
+                    <mat-error *ngIf="contactInfoForm.get('fax').hasError('pattern')">
+                      Fax must be Number
+                    </mat-error>
+                  </mat-form-field>
+
+                  <mat-form-field appearance="outline" fxFlex="25" fxFlex.xs="100" class="">
+                    <mat-label>Website</mat-label>
+                    <input matInput formControlName="website">
+                    <mat-error *ngIf="contactInfoForm.get('website').hasError('pattern')">
+                      Please Enter a Valid Website Name
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+
+                <div fxLayout.xl="row" fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="row" fxLayout.xs="column"
+                  fxLayoutAlign="start center" fxFlex="1 0 auto">
+
+                  <mat-form-field appearance="outline" fxFlex="25" fxFlex.xs="100" [ngClass.xl]="'pr-16'"
+                    [ngClass.lg]="'pr-16'" [ngClass.md]="'pr-16'" [ngClass.sm]="'pr-16'" [ngClass.xs]="'pr-0'">
+                    <mat-label>Contact Person</mat-label>
+                    <input matInput formControlName="contactPerson">
+                  </mat-form-field>
+
+                  <mat-form-field appearance="outline" fxFlex="25" fxFlex.xs="100" [ngClass.xl]="'pr-16'"
+                    [ngClass.lg]="'pr-16'" [ngClass.md]="'pr-16'" [ngClass.sm]="'pr-16'" [ngClass.xs]="'pr-0'">
+                    <mat-label>Contact Phone Number</mat-label>
+                    <input matInput formControlName="contactPhone">
+                    <mat-error *ngIf="contactInfoForm.get('contactPhone').hasError('pattern')">
+                      Phone Number must be a Number
+                    </mat-error>
+                  </mat-form-field>
+
+                  <mat-form-field appearance="outline" fxFlex="50" class="">
+                    <mat-label>Contact Email</mat-label>
+                    <input matInput formControlName="contactEmail">
+                    <mat-error *ngIf="contactInfoForm.get('contactEmail').hasError('pattern')">
+                      Please Enter Valid Email ID
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+
+            <div fxLayout.xl="row" fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="row" fxLayout.xs="row"
+              fxLayoutAlign="end" class="" [ngClass.xl]="'mr-24'" [ngClass.lg]="'mr-24'" [ngClass.md]="'mr-24'"
+              [ngClass.sm]="'mr-24'" [ngClass.xs]="'mr-24'">
+              <button [ngClass.xl]="'mr-16'" [ngClass.lg]="'mr-16'" [ngClass.md]="'mr-16'" [ngClass.sm]="'mr-16'"
+                [ngClass.xs]="'mr-16'" mat-raised-button matStepperPrevious type="button" color="accent">
+                PREVIOUS
+              </button>
+              <button mat-raised-button matStepperNext type="button" color="accent"
+                [disabled]="contactInfoForm.invalid">
+                NEXT
+              </button>
+            </div>
+          </form>
+        </mat-step>
+
+
+        <mat-step [stepControl]="insuranceForm">
+          <form fxLayout="column" [formGroup]="insuranceForm">
+            <ng-template matStepLabel>INSURANCE, SERVICES AND CERTIFICATIONS</ng-template>
+            <div class="mat-card mat-elevation-z pt-12 mr-24">
+
+              <div fxLayout="column" class="">
+                <div class="mat-card mat-elevation-z mb-32" fxLayout="column">
+                  <div fxLayout.xl="row" fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="row" fxLayout.xs="column"
+                    fxLayoutAlign.xl="start center" fxLayoutAlign.lg="start center" fxLayoutAlign.md="start center"
+                    fxLayoutAlign.sm="start center" fxLayoutAlign.xs="start start" fxFlex="1 0 auto" class="pt-16">
+                    <mat-checkbox appearance="outline" fxFlex="15" fxFlex.xs="100" [ngClass.xl]="'px-16'"
+                      [ngClass.lg]="'px-16'" [ngClass.md]="'px-16'" [ngClass.sm]="'px-16'" [ngClass.xs]="''"
+                      (change)="manageInsurance($event)" formControlName="insured">Insured</mat-checkbox>
+                    <div class="pt-16 input-group-bg" fxLayout.xl="row" fxLayout.lg="row" fxLayout.md="row"
+                      fxLayout.sm="row" fxLayout.xs="column" fxFlex="1 0 auto">
+
+                      <mat-form-field appearance="outline" fxFlex="33" fxFlex.xs="100" [ngClass.xl]="'px-16'"
+                        [ngClass.lg]="'px-16'" [ngClass.md]="'px-16'" [ngClass.sm]="'px-16'" [ngClass.xs]="'px-4'">
+                        <mat-label>Insurance Company</mat-label>
+                        <input matInput formControlName="insuranceCompany" required="isInsuranceAvailable">
+                        <mat-error *ngIf="insuranceForm.get('insuranceCompany').hasError('required')">
+                          Insurance company name required
+                        </mat-error>
+                      </mat-form-field>
+
+                      <mat-form-field appearance="outline" fxFlex="33" fxFlex.xs="100" [ngClass.xl]="'px-16'"
+                        [ngClass.lg]="'px-16'" [ngClass.md]="'px-16'" [ngClass.sm]="'px-16'" [ngClass.xs]="'px-4'">
+                        <mat-label>Liability</mat-label>
+                        <input type="number" matInput formControlName="liability" required="isInsuranceAvailable">
+                        <mat-error *ngIf="insuranceForm.get('liability').hasError('required')">
+                          Liablity can't be empty
+                        </mat-error>
+                      </mat-form-field>
+
+                      <mat-form-field appearance="outline" fxFlex="33" fxFlex.xs="100" [ngClass.xl]="'px-16'"
+                        [ngClass.lg]="'px-16'" [ngClass.md]="'px-16'" [ngClass.sm]="'px-16'" [ngClass.xs]="'px-4'">
+                        <mat-label>Expiry Date</mat-label>
+                        <input matInput [matDatepicker]="expPicker" formControlName="expiryDate"
+                          placeholder="Choose a date" required="isInsuranceAvailable" readonly>
+                        <mat-datepicker-toggle matSuffix [for]="expPicker"></mat-datepicker-toggle>
+                        <mat-datepicker #expPicker></mat-datepicker>
+                        <mat-error *ngIf="insuranceForm.get('expiryDate').hasError('required')">
+                          Please provide insurance expiry date
+                        </mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+                  <div fxLayout.xl="row" fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="row" fxLayout.xs="column"
+                    fxLayoutAlign.xl="start center" fxLayoutAlign.lg="start center" fxLayoutAlign.md="start center"
+                    fxLayoutAlign.sm="start center" fxLayoutAlign.xs="start start" fxFlex="1 0 auto" class="pt-32">
+                    <mat-checkbox appearance="outline" fxFlex="15" fxFlex.xs="100" class="px-16"
+                      (change)="bondChanged($event)" formControlName="bonded">Bonded</mat-checkbox>
+                  </div>
+
+                  <div fxLayout.xl="row" fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="row" fxLayout.xs="column"
+                    fxLayoutAlign.xl="start center" fxLayoutAlign.lg="start center" fxLayoutAlign.md="start center"
+                    fxLayoutAlign.sm="start center" fxLayoutAlign.xs="start start" fxFlex="1 0 auto" class="pt-16">
+                    <mat-checkbox appearance="outline" fxFlex="15" [ngClass.xl]="'px-16'" [ngClass.lg]="'px-16'"
+                      [ngClass.md]="'px-16'" [ngClass.sm]="'px-16'" [ngClass.xs]="''" (change)="manageWsib($event)"
+                      formControlName="wsib">WSIB</mat-checkbox>
+
+                    <div class="pt-16 input-group-bg" fxLayout="row" fxFlex="40" fxFlex.xs="100">
+                      <mat-form-field appearance="outline" fxFlex="60" [ngClass.xl]="'px-16'" [ngClass.lg]="'px-16'"
+                        [ngClass.md]="'px-16'" [ngClass.sm]="'px-16'" [ngClass.xs]="'px-4'">
+                        <mat-label>WSIB</mat-label>
+                        <input matInput formControlName="wsibId">
+                        <mat-error>Mandatory field is required</mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div fxLayout.xl="row" fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="row" fxLayout.xs="column"
+                  fxLayoutAlign="start center" fxFlex="1 0 auto">
+
+                  <mat-form-field appearance="outline" fxFlex="40" fxFlex.xs="100"
+                    matTooltip="Insert values separate by commas so that they appear numbered on the screen"
+                    matTooltipPosition="above">
+                    <mat-label>Services</mat-label>
+                    <input matInput formControlName="services">
+
+                    <mat-error>Mandatory field is required</mat-error>
+                  </mat-form-field>
+
+                  <!--  <a mat-button class="mat-flat-button condo-red-100 text-bold condo-red-100 ml-12"  fxFlex="15" style="margin-top:-10px;">
+                                    <mat-icon class="s-16" >add_circle</mat-icon><span class="font-weight-600 font-size-12"> ADD SERVICE</span>
+                                </a>-->
+
+                  <mat-form-field appearance="outline" fxFlex="40" fxFlex.xs="100" [ngClass.xl]="'pl-16'"
+                    [ngClass.lg]="'pl-16'" [ngClass.md]="'pl-16'" [ngClass.sm]="'pl-16'" [ngClass.xs]="''"
+                    matTooltip="Insert values separate by commas so that they appear numbered on the screen"
+                    matTooltipPosition="above">
+                    <mat-label>Licenses</mat-label>
+                    <input matInput formControlName="lisences">
+                    <mat-error>Mandatory field is required</mat-error>
+                  </mat-form-field>
+                </div>
+                <div fxLayout.xl="row" fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="row" fxLayout.xs="column"
+                  fxLayoutAlign="start center" fxFlex="1 0 auto">
+
+                  <mat-form-field appearance="outline" fxFlex="40" fxFlex.xs="100"
+                    matTooltip="Insert values separate by commas so that they appear numbered on the screen"
+                    matTooltipPosition="above">
+                    <mat-label>Memberships</mat-label>
+                    <input matInput formControlName="memberships">
+                    <mat-error>Mandatory field is required</mat-error>
+                  </mat-form-field>
+
+                  <mat-form-field appearance="outline" fxFlex="40" fxFlex.xs="100" [ngClass.xl]="'pl-16'"
+                    [ngClass.lg]="'pl-16'" [ngClass.md]="'pl-16'" [ngClass.sm]="'pl-16'" [ngClass.xs]="''"
+                    matTooltip="Insert values separate by commas so that they appear numbered on the screen"
+                    matTooltipPosition="above">
+                    <mat-label>Products</mat-label>
+                    <input matInput formControlName="products">
+                    <mat-error>Mandatory field is required</mat-error>
+                  </mat-form-field>
+                </div>
+                <div fxLayout.xl="row" fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="row" fxLayout.xs="column"
+                  fxLayoutAlign="start center" fxFlex="1 0 auto"
+                  matTooltip="Insert values separate by commas so that they appear numbered on the screen"
+                  matTooltipPosition="above">
+
+                  <mat-form-field appearance="outline" fxFlex="40" fxFlex.xs="100">
+                    <mat-label>Brands</mat-label>
+                    <input matInput formControlName="brands">
+                    <mat-error>Mandatory field is required</mat-error>
+                  </mat-form-field>
+
+
+                </div>
+              </div>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="end" class="mr-24">
+              <button class="mr-8" mat-raised-button matStepperPrevious type="button" color="accent">
+                PREVIOUS
+              </button>
+              <button mat-raised-button matStepperNext type="button" color="accent"
+                (click)='registerVendorOrganisation()'>
+                FINISH
+              </button>
+            </div>
+
+          </form>
+
+        </mat-step>
+
+      </mat-vertical-stepper>
+      <div fxLayout="row" class="mt-16" fxLayoutAlign="center center">
+        <button mat-raised-button color="accent" class="submit-button" aria-label="Cancel" [routerLink]="'/auth/login'"
+          (click)="clearRegisterData()">
+          CANCEL
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- <pre>{{vendorInfoForm.get('vendors').valid}}</pre>
+<pre>{{vendorInfoForm.get('tags').valid}}</pre>
+<pre>{{vendorInfoForm.get('servicedCities').valid}}</pre>
+<pre>{{vendorInfoForm.get('docUploader').valid}}</pre> -->

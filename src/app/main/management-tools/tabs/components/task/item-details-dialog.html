@@ -1,0 +1,42 @@
+<div fxLayout="row" fxLayoutAlign="space-between flex-start">
+  <div mat-dialog-title class="pl-12 ">ADD ITEM DETAILS</div>
+
+  <mat-dialog-actions align="end" class="px-16 mb-12">
+    <button mat-button mat-dialog-close style="margin-top:-20px;min-width: 28px !important;" class="p-0">
+      <mat-icon class="s-24 condo-red-text" mat-dialog-close>close</mat-icon>
+    </button>
+  </mat-dialog-actions>
+</div>
+<mat-dialog-content class="mat-typography">
+  <div class="px-16" fxLayout="column">
+    <form fxLayout="column" name="addItems" [formGroup]="addItems">
+
+      <div class="" fxLayout="row" fxLayout.xs="column" fxLayoutAlign.xs="start" fxLayoutAlign="start flex-start"
+        fxFlex="1 0 auto">
+        <mat-form-field appearance="outline" fxFlex="100">
+          <mat-label>Item Details</mat-label>
+          <input matInput formControlName="itemDescription">
+        </mat-form-field>
+      </div>
+
+      <div class="" fxLayout="row" fxLayout.xs="column" fxLayoutAlign.xs="start" fxLayoutAlign="start flex-start"
+        fxFlex="1 0 auto">
+        <mat-form-field appearance="outline" fxFlex="50" fxFlex.xs="100" class="pr-16">
+          <mat-label>Units</mat-label>
+          <input matInput formControlName="units">
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex="50" fxFlex.xs="100" class="">
+          <mat-label>Quantity</mat-label>
+          <input matInput formControlName="quantity">
+        </mat-form-field>
+      </div>
+
+
+    </form>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end" class="px-16 mb-0 pb-0">
+  <button mat-button mat-flat-button mat-accent [mat-dialog-close]="addItems.value" [disabled]="addItems.invalid"
+    color="accent">ADD ITEM</button>
+  <button mat-button mat-dialog-close class="fuse-navy-50" cdkFocusInitial>CANCEL</button>
+</mat-dialog-actions>

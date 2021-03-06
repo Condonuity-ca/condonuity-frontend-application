@@ -1,0 +1,135 @@
+<div fxLayout="row" fxLayoutAlign="space-between center">
+  <div mat-dialog-title class="pl-12">EDIT CORPORATION INFORMATION</div>
+
+  <mat-dialog-actions align="end" class="px-16 mb-12">
+    <button mat-button mat-dialog-close style="margin-top:-20px;min-width: 28px !important;" class="p-0">
+      <mat-icon class="s-24 condo-red-text" mat-dialog-close>close</mat-icon>
+    </button>
+  </mat-dialog-actions>
+
+</div>
+<mat-dialog-content class="mat-typography">
+  <div class="profile-box info-box general mt-16" fxLayout="column">
+    <form fxLayout="column" fxLayoutAlign="start" fxFlex="1 0 auto" name="corpEditform" [formGroup]="corpEditform">
+
+      <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start center"
+        fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxFlex="1 0 auto">
+        <mat-form-field appearance="outline" fxFlex="60" class="px-16">
+          <mat-label>Corporation Name</mat-label>
+          <input matInput formControlName="corpName" required="required">
+
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" fxFlex="40" class="px-16">
+          <mat-label>Corporation Number</mat-label>
+          <input matInput formControlName="corpNumber" required="required">
+
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start center"
+        fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxFlex="1 0 auto">
+
+        <mat-form-field appearance="outline" fxFlex="25" class="px-16">
+          <mat-label>Address</mat-label>
+          <input matInput formControlName="address" required="required">
+
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" fxFlex="25" class="px-16">
+          <mat-label>City</mat-label>
+          <input matInput formControlName="city" required="required" autocomplete="none">
+
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex="25" class="px-16">
+          <mat-label>Province</mat-label>
+          <input matInput formControlName="province" required="required" autocomplete="none">
+
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" fxFlex="25" class="px-16">
+          <mat-label>Postal Code</mat-label>
+          <input matInput formControlName="postalCode" required="required">
+
+
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start center" fxLayoutAlign.xs="start" fxFlex="1 0 auto">
+
+        <mat-form-field appearance="outline" fxFlex="50" class="px-16">
+          <mat-label>Phone Number</mat-label>
+          <input matInput formControlName="phoneNumber" required="required">
+
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" fxFlex="50" class="px-16">
+          <mat-label>Fax</mat-label>
+          <input matInput formControlName="fax">
+
+        </mat-form-field>
+
+      </div>
+      <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start center"
+        fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxFlex="1 0 auto">
+
+        <mat-form-field appearance="outline" fxFlex="50" class="px-16">
+          <mat-label>General Email</mat-label>
+          <input matInput formControlName="generalEmail" required class="condo-lower">
+
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" fxFlex="50" class="px-16">
+          <mat-label>Management Email</mat-label>
+          <input matInput formControlName="managementEmail" class="condo-lower">
+
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" fxFlex="50" class="px-16">
+          <mat-label>Board Email</mat-label>
+          <input matInput formControlName="boardEmail" class="condo-lower">
+
+        </mat-form-field>
+
+      </div>
+
+      <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start center"
+        fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxFlex="1 0 auto" class="upload-button ml-18 mr-18" style="">
+
+        <span appearance="outline" fxFlex="50" class="px-16">
+          <div class="file-uploader font-size-20">
+            <input hidden type="file" accept="application/pdf,image/*" multiple>
+            <button color="accent" class="mat-flat-button " aria-label="Add file"
+              [@animate]="{value:'*', params:{delay:'300ms',scale:'0.2'}}">
+              <span class="condo-red-text  h4"><strong>
+                  <mat-icon class="s-16 font-weight-600 mat-icon" style="vertical-align: center">add_circle</mat-icon>
+                  Click here to Add Files
+                </strong></span>
+            </button>
+          </div>
+        </span>
+        <div fxFlex="50" [ngClass.sm]="'px-24'" [ngClass.xs]="'px-24'">
+
+          <h4><span class="condo-red-text mr-6" title="Remove File">
+              <mat-icon class="s-16 cursor" style="vertical-align: middle">remove_circle_outline</mat-icon>
+            </span> sample.png </h4>
+        </div>
+      </div>
+
+
+      <div fxLayout="column" class="mx-16 mt-12">
+        <div class="h5 condo-gray-text">
+          <span class="condo-red-text">*</span> Please upload legal documentation showing the most recent elected board
+          member names, and assigned property management company. Our registration team will contact you for
+          verification purposes before activating your profile.
+        </div>
+        <div class="h5 condo-gray-text">
+          Supported files are images and pdfs
+        </div>
+      </div>
+
+    </form>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end" class="px-16 mt-24 mb-12">
+  <button mat-button class="mat-flat-button" color="accent" cdkFocusInitial (click)="update()">UPDATE</button>
+  <button mat-button mat-dialog-close class="fuse-navy-50">CANCEL</button>
+</mat-dialog-actions>

@@ -1,0 +1,248 @@
+<div fxLayout="row" fxLayoutAlign="space-between center">
+  <div *ngIf="isEditMode == false" mat-dialog-title class="pl-12">NEW BUILDING REPOSITORY</div>
+  <div *ngIf="isEditMode == true" mat-dialog-title class="pl-12">UPDATE BUILDING REPOSITORY</div>
+
+  <mat-dialog-actions align="end" class="px-16 mb-12">
+    <button mat-button mat-dialog-close style="margin-top:-20px;min-width: 28px !important;" class="p-0">
+      <mat-icon class="s-24 condo-red-text" mat-dialog-close>close</mat-icon>
+    </button>
+  </mat-dialog-actions>
+
+</div>
+<mat-dialog-content class="mat-typography">
+  <div class="profile-box info-box general" fxLayout="column">
+    <form fxLayout="column" fxLayoutAlign="start" fxFlex="1 0 auto" name="createBuildingRepositoryform"
+      [formGroup]="createBuildingRepositoryform">
+
+      <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start center"
+        fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxFlex="1 0 auto" class="">
+        <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start center"
+          fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxFlex="33">
+          <mat-form-field appearance="outline" fxFlex="100" class="px-16">
+            <mat-label>Unit Number</mat-label>
+            <input matInput formControlName="unitNumber" required="required">
+            <mat-error>Please Enter a Number</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start center"
+          fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxFlex="33">
+          <mat-form-field appearance="outline" fxFlex="100" class="px-16">
+            <mat-label>Unit Type</mat-label>
+            <mat-select class="account-selection" formControlName="unitType" required="required" placeholder=""
+              (selectionChange)="unitTypeUpdated($event.value)">
+              <mat-option value="1">Locker </mat-option>
+              <mat-option value="2">Residential </mat-option>
+              <mat-option value="3">Parking </mat-option>
+              <mat-option value="4">Commercial </mat-option>
+              <mat-option value="5">Common Element </mat-option>
+              <mat-option value="6">Other </mat-option>
+            </mat-select>
+            <mat-error>Mandatory field is required</mat-error>
+          </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start center"
+          fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxFlex="34">
+          <mat-form-field appearance="outline" fxFlex="100" class="px-16">
+            <mat-label>Status</mat-label>
+            <mat-select class="account-selection" formControlName="status" required="required" placeholder=""
+              (selectionChange)="statusUpdated($event.value)">
+              <mat-option value="1">Owner Occupied </mat-option>
+              <mat-option value="2">Leased </mat-option>
+              <mat-option value="3">Vacant </mat-option>
+              <mat-option value="4">Other </mat-option>
+            </mat-select>
+            <mat-error>Mandatory field is required</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start center"
+        fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxFlex="1 0 auto" class="">
+        <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start center"
+          fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxFlex="50">
+          <mat-form-field appearance="outline" fxFlex="100" class="px-16">
+            <mat-label>First Name / Last Name</mat-label>
+            <input matInput formControlName="firstName" required="required">
+            <mat-error>Mandatory field is required</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start center"
+          fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxFlex="50">
+          <mat-form-field appearance="outline" fxFlex="100" class="px-16">
+            <mat-label>Person Type</mat-label>
+            <mat-select class="account-selection" formControlName="personType" required="required" placeholder=""
+              (selectionChange)="personTypeUpdated($event.value)">
+              <mat-option value="1">Owner </mat-option>
+              <mat-option value="2">Occupant </mat-option>
+              <mat-option value="3">Tenant </mat-option>
+              <mat-option value="4">Other </mat-option>
+            </mat-select>
+            <mat-error>Mandatory field is required</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start center"
+        fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxFlex="1 0 auto" class="">
+        <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start center"
+          fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxFlex="50">
+          <mat-form-field appearance="outline" fxFlex="100" class="px-16">
+            <mat-label>Lien</mat-label>
+            <mat-select class="account-selection" formControlName="lien" placeholder=""
+              (selectionChange)="lienUpdated($event.value)">
+              <mat-option value="1">Yes</mat-option>
+              <mat-option value="2">No</mat-option>
+              <mat-option value="3">Other</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start center"
+          fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxFlex="50">
+          <mat-form-field appearance="outline" fxFlex="100" class="px-16">
+            <mat-label>Date of Lien</mat-label>
+            <input matInput [matDatepicker]="lienDate" formControlName="lienDate" placeholder="Choose a date" readonly>
+            <mat-datepicker-toggle matSuffix [for]="lienDate"></mat-datepicker-toggle>
+            <mat-datepicker #lienDate></mat-datepicker>
+            <mat-error>Date format is invalid</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+
+
+      <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start center"
+        fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxFlex="1 0 auto" class="">
+        <mat-form-field appearance="outline" fxFlex="100" class="px-16">
+          <mat-label>Comments</mat-label>
+          <textarea formControlName="comments" matInput type="text" max-rows="6" style="height:50px;"></textarea>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start center"
+        fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxFlex="1 0 auto" class="">
+        <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start center"
+          fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxFlex="50">
+          <mat-form-field appearance="outline" fxFlex="100" class="px-16">
+            <mat-label>Contact Number</mat-label>
+            <input matInput formControlName="contactNumber">
+            <mat-error>Please Enter 10 digit Mobile Number</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start center"
+          fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxFlex="50">
+          <mat-form-field appearance="outline" fxFlex="100" class="px-16">
+            <mat-label>Contact Email</mat-label>
+            <input matInput formControlName="contactEmail">
+            <mat-error> Please enter a valid email address</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start center"
+        fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxFlex="1 0 auto" class="">
+        <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start center"
+          fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxFlex="50">
+          <mat-form-field appearance="outline" fxFlex="100" class="px-16">
+            <mat-label>Vehicle Make / Model</mat-label>
+            <input matInput formControlName="vehicleMake">
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start center"
+          fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxFlex="20">
+          <mat-form-field appearance="outline" fxFlex="100" class="px-16">
+            <mat-label>Color</mat-label>
+            <input matInput formControlName="vechileColor">
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start center"
+          fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxFlex="30">
+          <mat-form-field appearance="outline" fxFlex="100" class="px-16">
+            <mat-label>Licence Number</mat-label>
+            <input matInput formControlName="licenceNumber">
+          </mat-form-field>
+        </div>
+      </div>
+
+
+      <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start center"
+        fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxFlex="1 0 auto" class="">
+        <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start center"
+          fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxFlex="50">
+          <mat-form-field appearance="outline" fxFlex="100" class="px-16">
+            <mat-label>Pet Name</mat-label>
+            <input matInput formControlName="petName">
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start center"
+          fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxFlex="50">
+          <mat-form-field appearance="outline" fxFlex="100" class="px-16">
+            <mat-label>Pet Description</mat-label>
+            <textarea formControlName="petDescription" matInput type="text" max-rows="6"
+              style="height:50px;"></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start center"
+        fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxFlex="1 0 auto" class="">
+        <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start center"
+          fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxFlex="50">
+          <mat-form-field appearance="outline" fxFlex="100" class="px-16">
+            <mat-label>Emergency Contact Name</mat-label>
+            <input matInput formControlName="emergencyContactName">
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start center"
+          fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxFlex="50">
+          <mat-form-field appearance="outline" fxFlex="100" class="px-16">
+            <mat-label>Contact Number</mat-label>
+            <input matInput formControlName="emergencyContactNumber">
+            <mat-error>Please Enter 10 digit Mobile Number</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start center"
+        fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxFlex="1 0 auto" class="">
+        <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start center"
+          fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxFlex="50">
+          <mat-form-field appearance="outline" fxFlex="100" class="px-16">
+            <mat-label>Contact Email</mat-label>
+            <input matInput formControlName="emergencyEmail">
+            <mat-error> Please enter a valid email address</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start center"
+          fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxFlex="50">
+          <mat-form-field appearance="outline" fxFlex="100" class="px-16">
+            <mat-label>Handicap Info</mat-label>
+            <input matInput formControlName="handicapInfo">
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+  </div>
+  <mat-dialog-actions align="end" class="mb-0 pb-0 pr-8">
+    <button *ngIf="isEditMode == true" [disabled]="createBuildingRepositoryform.invalid" mat-button mat-flat-button
+      mat-accent color="accent" (click)="submitBuildingDetails()">UPDATE</button>
+    <button *ngIf="isEditMode == false" [disabled]="createBuildingRepositoryform.invalid" mat-button mat-flat-button
+      mat-accent color="accent" (click)="submitBuildingDetails()">CREATE</button>
+    <button mat-button mat-dialog-close class="fuse-navy-50">CANCEL</button>
+  </mat-dialog-actions>
+</mat-dialog-content>
+
+
+ <!-- <pre>{{createBuildingRepositoryform.get('unitNumber').valid}}</pre>
+<pre>{{createBuildingRepositoryform.get('unitType').valid}}</pre>
+<pre>{{createBuildingRepositoryform.get('status').valid}}</pre> 
+<pre>{{createBuildingRepositoryform.get('firstName').valid}}</pre>
+<pre>{{createBuildingRepositoryform.get('personType').valid}}</pre> -->

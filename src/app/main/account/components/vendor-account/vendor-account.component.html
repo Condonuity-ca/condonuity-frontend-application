@@ -1,0 +1,255 @@
+<div id="profile" class="page-layout simple">
+  <div id="about" class="" fxLayout="row wrap" [ngClass.xl]="'p-24'" [ngClass.lg]="'p-24'" [ngClass.md]="'p-24'" [ngClass.sm]="'p-16'"
+    [ngClass.xs]="'p-8'">
+    <div class="about-content" fxLayout="column" fxFlex="100" fxFlex.gt-sm="100" fxFlex.gt-md="100">
+      <div fxFlex="100" class="mat-card mat-elevation-z  pt-32 mt-16" [ngClass.xl]="'p-40'" [ngClass.lg]="'p-40'" [ngClass.md]="'p-40'"
+        [ngClass.sm]="'p-24'" [ngClass.xs]="'p-24'">
+        <div class="" fxLayout="column">
+          <div class="" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center"
+            fxLayoutAlign.xs="start" class="mb-32">
+            <div class="">
+              <div class="h3 font-weight-600" [ngClass.xs]="'mb-16'">ACCOUNT DETAILS</div>
+            </div>
+            <!-- <div fxLayout="row" fxLayout.xs="column" class="pointer">
+                            <a class="text-bold condo-red-text h5 cursor" (click)="openAccountDialog()">
+                                <mat-icon class="s-16">edit</mat-icon> CHANGE PASSWORD
+                            </a>        
+                        </div> -->
+          </div>
+
+
+          <div class="mat-card mat-elevation-z pt-16">
+            <div>
+              <div fxFlex="100" fxLayout="column" class="mat-card mat-elevation-z  " fxFlex.sm="100" fxFlex.xs="100"
+                [ngClass.xl]="'p-16 mt-16'" [ngClass.lg]="'p-16 mt-16'" [ngClass.md]="'p-32 mt-16'" [ngClass.sm]="'p-16 mb-8 mr-8 mt-0'"
+                [ngClass.xs]="'p-16 mt-8'">
+                <div class="" fxFlex="100" fxLayout="row">
+                  <div class="mat-card mat-elevation-z" fxFlex="100">
+
+                    <div class="" fxLayout="row" fxLayoutAlign="start center" fxLayout.sm="column" fxLayout.xs="column">
+
+                      <div class="img-hover-vendor" [ngClass.xs]="'mb-12 '">
+                        <img
+                          *ngIf="currentVendorUser.profileImageUrl == null || currentVendorUser.profileImageUrl === '' "
+                          class="border-radius-100 w-80 h-80" src="assets/images/no-pic.jpg">
+                        <img
+                          *ngIf="currentVendorUser.profileImageUrl != null && currentVendorUser.profileImageUrl != ''"
+                          [src]="currentVendorUser.profileImageUrl" class="border-radius-100 w-80 h-80">
+                      </div>
+
+                      <div class="pr-16 ml-24" fxFlex="50" fxFlex.xs="100" [ngClass.sm]="'text-center mt-12'"
+                        [ngClass.xs]="'text-center mt-12'" fxlayout="row wrap">
+                        <div class="h2 text-bold">{{currentVendorUser.firstName}}
+                          {{currentVendorUser.lastName}}
+                        </div>
+
+                        <div class=" h5" fxlayout="row wrap" fxlayoutalign="start center">
+                          <div class="mt-8 font-size-16" fxLayout="row wrap text-center"><span
+                              class="condo-gray-text  text-center" style="text-align:center">User:</span> {{currentVendorUser.email}}
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="" fxFlex="20" fxFlex.xs="100" fxlayout="row wrap" [ngClass.xl]="'pr-16'" [ngClass.lg]="'pr-16'"
+                        [ngClass.md]="'pr-16'" [ngClass.sm]="'mt-12'" [ngClass.xs]="'mt-12'">
+                        <div class="h5 condo-gray-text" [ngClass.sm]="'text-center'" [ngClass.xs]="'text-center'">PHONE
+                          NUMBER</div>
+                        <div class="h4 mb-16" [ngClass.sm]="'text-center'" [ngClass.xs]="'text-center'">
+                          {{currentVendorUser.phone}}</div>
+                      </div>
+
+                      <div class="" fxFlex="30" fxFlex.xs="100" fxlayout.xl="row wrap" fxlayout.lg="row wrap"
+                        fxlayout.md="row wrap" fxlayout.sm="column" fxlayout.xs="column" [ngClass.xl]="'text-right pr-4 ml-24 '" [ngClass.lg]="'text-right pr-4 ml-24 '" [ngClass.md]="'text-right pr-4 ml-24 '" [ngClass.sm]="'text-right pr-4 ml-24 '"
+                          [ngClass.xs]="'text-center'">
+                        <button mat-flat-button color="primary" class="text-bold condo-red-text h5 cursor mb-12 "
+                          [ngClass.xl]="'mr-12'" [ngClass.lg]="'mr-12'" [ngClass.md]="'mr-12'" [ngClass.sm]="'mr-12'"
+                          [ngClass.xs]="'mb-12 mr-4'" (click)="openUserInfoDialog()">
+                          EDIT
+                        </button>
+
+                        <button mat-flat-button color="accent" class="text-bold h5 cursor" style=""
+                          (click)="openPasswordDialog()">
+                          CHANGE PASSWORD
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+          <!-- <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start center" fxLayoutAlign.xs="start" fxFlex="1 0 auto">
+                        <div fxFlex="30" fxFlex.sm="60" fxFlex.xs="100" [ngClass.xs]="'mb-16'">
+                            <div class="h5 condo-gray-text mb-4">USER NAME</div>                                    
+                            <div class="h4">{{currentVendorUser.email}}</div>                                               
+                        </div>
+                        <div fxFlex="30" fxFlex.sm="40" fxFlex.xs="100">
+                            <div class="h5 condo-gray-text mb-4">PASSWORD</div>                                    
+                            <div class="h4">*******</div>                                               
+                        </div>
+                    </div>                         -->
+        </div>
+      </div>
+
+
+      <!-- Account Details Portion Ends -->
+
+      <div class="" fxLayout="row" fxLayoutAlign="space-between center" class="mt-32 mb-16">
+        <div class="">
+          <div class="h2 condo-gray-text">User Management</div>
+        </div>
+        <div fxLayout="row">
+          <button *ngIf="currentVendorUser.userRole == 1" mat-flat-button class="text-bold condo-red-400 cursor"
+            (click)="openAddUserDialog()">
+            <mat-icon class="s-16">add</mat-icon> ADD NEW USER
+          </button>
+        </div>
+      </div>
+      <div class="" fxLayout="column">
+        <!-- <ngx-datatable class="material" [rows]="userDetails" [columnMode]="'force'" [headerHeight]="48"
+          [footerHeight]="56" [rowHeight]="'auto'" [scrollbarH]="true" [selectionType]="'checkbox'" [limit]="10"> -->
+
+                  <ngx-datatable fxLayout="column" fxLayoutAlign="start" style="width: 100%" class="material pr-20" [rows]="userDetails"
+    [columnMode]="'force'" [footerHeight]="50" [rowHeight]="'auto'" [scrollbarH]="true" [selectionType]="'checkbox'"
+    [limit]="10">
+          <ngx-datatable-column [width]="130" name="First Name" prop="firstName"></ngx-datatable-column>
+          <ngx-datatable-column [width]="130" name="Last Name" prop="lastName"></ngx-datatable-column>
+          <ngx-datatable-column [width]="200" name="Email" [sortable]="false"></ngx-datatable-column>
+          <ngx-datatable-column [width]="70" name="Role" prop="role"></ngx-datatable-column>
+
+          <ngx-datatable-column name="Administrator" prop="admin" [width]="100">
+            <ng-template ngx-datatable-cell-template let-value="value">
+              <span *ngIf="value == false"> No</span>
+              <span *ngIf="value == true">Yes</span>
+            </ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column name="Status" prop="accountStatus" [width]="60">
+            <ng-template ngx-datatable-cell-template let-value="value">
+              <span *ngIf="value == 0" class="condo-gray-text"> Invited</span>
+              <span *ngIf="value == 1" class="condo-red-text"> Active</span>
+            </ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column *ngIf="currentVendorUser.userRole == 1" name="Actions" [sortable]="false" prop="userId"
+            [width]="100">
+            <ng-template ngx-datatable-cell-template let-value="value">
+              <a class="cursor condo-gray-text" (click)="openEditUserDialog(value)">
+                <mat-icon class="s-20">edit</mat-icon>
+              </a>
+              <a class="cursor ml-8" (click)="openDeleteConfirmationDialog(value)">
+                <mat-icon class="s-20">delete_outline</mat-icon>
+              </a>
+            </ng-template>
+          </ngx-datatable-column>
+        </ngx-datatable>
+      </div>
+
+      <!-- Billing Info Portion Starts -->
+      <billing-information [billInfo]="billInfo"></billing-information>
+      <!-- Billing Info Portion Ends -->
+
+
+      <!-- Notification Section Hided for version1  -->
+      <!-- <div class="" fxLayout="row" fxLayoutAlign="space-between center" class="mt-32 mb-16" fxHide>
+                <div class="">
+                    <div class="h2 condo-gray-heading">Accounts Notifiactions Settings</div>
+                </div>
+            </div>
+            <div class="mat-card mat-elevation-z p-48 pt-32 mr-16" fxLayout="column" fxHide>
+                <div class="" fxLayout="row" fxLayoutAlign="space-between center" class="mt-32 mr-8">
+                    <div class="">
+                        <div class="h2 text-bold">PRIMARY EMAIL</div>
+                    </div>
+                    <div fxLayout="row" style="cursor: pointer">
+                        <button mat-flat-button class="text-bold condo-red-400 h5 cursor"  (click)="submitApproval()">
+                            <mat-icon class="s-16">save</mat-icon> SAVE
+                        </button>           
+                    </div>
+                </div>
+                <div class="condo-gray-text">Select and edit notification settings for the primary address on the account.</div>
+                <form fxLayout="column" fxLayoutAlign="start" fxFlex="1 0 auto" name="approvalProcessForm" [formGroup]="approvalProcessForm">
+                    <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto" formGroupName="primaryEmail" fxHide>
+                        <mat-form-field appearance="outline" fxFlex="33" class="px-16">
+                            <mat-label>Email</mat-label>
+                            <input matInput formControlName="email" >
+                        </mat-form-field>
+                        <mat-checkbox appearance="outline" formControlName="admin" class="px-16" >Administrator </mat-checkbox>     
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0" class="mt-32">
+                        <span fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto" formGroupName="primaryEmail">
+                            <span fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto" class="condo-gray-text" >
+                                <mat-checkbox appearance="outline" formControlName="marketPotential" class="px-16" fxFlex="23">Marketplace Potential <span class="condo-tooltip" matTooltip="Notifications for every New Project posted matching by Profile">?</span></mat-checkbox>     
+                                <mat-checkbox appearance="outline" formControlName="newReviews" class="px-16" fxFlex="23">New Reviews <span class="condo-tooltip" matTooltip="Notifications for every New Review on my Profile">?</span></mat-checkbox>  
+                                <mat-checkbox appearance="outline" formControlName="newMessages" class="px-16" fxFlex="23" >New Messages <span class="condo-tooltip" matTooltip="Notifications for every New Message recieved in my Inbox">?</span></mat-checkbox>  
+                                <mat-checkbox appearance="outline" formControlName="accountChanges" class="px-16" fxFlex="23" >Account Changes <span class="condo-tooltip" matTooltip="Notifications for any Account Changes">?</span></mat-checkbox>  
+                            </span>
+                        </span>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0" formGroupName="primaryEmail" class="mt-24">
+                        <span fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto" >
+                            <span fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto" class="condo-gray-text">
+                                <mat-checkbox appearance="outline" formControlName="projectChanges" class="px-16" fxFlex="23">My Project Changes <span class="condo-tooltip" matTooltip="Notifications for any change on projects in My Projects">?</span></mat-checkbox>     
+                                <mat-checkbox appearance="outline" formControlName="expiringPotentials" class="px-16" fxFlex="23">Expiring Potentials <span class="condo-tooltip" matTooltip="Notifications for any Unsubmitted projects nearing Expiration">?</span></mat-checkbox>  
+                                <mat-checkbox appearance="outline" formControlName="questionsAnswers" class="px-16" fxFlex="23">Questions & Answer <span class="condo-tooltip" matTooltip="Notifications for any question or answer is posted on one of my Projects">?</span></mat-checkbox>  
+                                <mat-checkbox appearance="outline" formControlName="bidsPotentials" class="px-16" fxFlex="23">Bids on Potential <span class="condo-tooltip" matTooltip="Notifications for any new bid submitted by a competitor for one of my Projects">?</span></mat-checkbox>  
+                            </span>
+                        </span>
+                    </div>
+                    <mat-divider class="mt-48"></mat-divider>
+                    <div class="" fxLayout="row" fxLayoutAlign="space-between center" class="mt-32 mr-8">
+                        <div class="">
+                            <div class="h2 text-bold">SECONDARY EMAIL</div>
+                        </div>                    
+                    </div>
+                    <div class="condo-gray-text">Select and edit notification settings for the secondary address on the account.</div>
+                    <div class="" fxLayout="column" formArrayName="secEmailsGroup" class="mt-32">
+                        <div class="mb-32 mt-18 bottom-divider"  fxLayout="column" *ngFor="let approve of approvalProcessForm.get('secEmailsGroup')['controls'] ; let approveIndex = index" [formGroupName]="approveIndex">
+                             <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+                                <mat-form-field appearance="outline" fxFlex="33" class="px-16">
+                                    <mat-label>Email</mat-label>
+                                    <input matInput formControlName="email" >
+                                </mat-form-field>
+                                <button mat-button class="mat-flat-button fuse-navy-600" (click)="removeUser(approveIndex)">REMOVE</button>
+                                <mat-checkbox appearance="outline" formControlName="admin" class="px-16" >Administrator </mat-checkbox>     
+                            </div>
+                            <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0">
+                                <span fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto" >
+                                    <span fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto" class="condo-gray-text">
+                                        <mat-checkbox appearance="outline" formControlName="marketPotential" class="px-16" fxFlex="23"  >Marketplace Potential <span class="condo-tooltip" matTooltip="Notifications for every New Project posted matching by Profile">?</span></mat-checkbox>     
+                                        <mat-checkbox appearance="outline" formControlName="newReviews" class="px-16" fxFlex="23">New Reviews <span class="condo-tooltip" matTooltip="Notifications for every New Review on my Profile">?</span></mat-checkbox>  
+                                        <mat-checkbox appearance="outline" formControlName="newMessages" class="px-16" fxFlex="23">New Messages <span class="condo-tooltip" matTooltip="Notifications for every New Message recieved in my Inbox">?</span></mat-checkbox>  
+                                        <mat-checkbox appearance="outline" formControlName="accountChanges" class="px-16" fxFlex="23">Account Changes <span class="condo-tooltip" matTooltip="Notifications for any Account Changes">?</span></mat-checkbox>  
+                                    </span>
+                                </span>
+                            </div>
+                            <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0" class="mt-32">
+                                <span fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto" >
+                                    <span fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto" class="condo-gray-text">
+                                        <mat-checkbox appearance="outline" formControlName="projectChanges" class="px-16" fxFlex="23">My Project Changes <span class="condo-tooltip" matTooltip="Notifications for any change on projects in My Projects">?</span></mat-checkbox>     
+                                        <mat-checkbox appearance="outline" formControlName="expiringPotentials" class="px-16" fxFlex="23">Expiring Potentials <span class="condo-tooltip" matTooltip="Notifications for any Unsubmitted projects nearing Expiration">?</span></mat-checkbox>  
+                                        <mat-checkbox appearance="outline" formControlName="questionsAnswers" class="px-16" fxFlex="23">Questions & Answer <span class="condo-tooltip" matTooltip="Notifications for any question or answer is posted on one of my Projects">?</span></mat-checkbox>  
+                                        <mat-checkbox appearance="outline" formControlName="bidsPotentials" class="px-16" fxFlex="23">Bids on Potential <span class="condo-tooltip" matTooltip="Notifications for any new bid submitted by a competitor for one of my Projects">?</span></mat-checkbox>  
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>                    
+                    <div fxLayout="row">
+                        <button mat-flat-button class="text-bold condo-red-400 h5 cursor font-weight-600"  (click)="openAddUserDialog()">
+                            <mat-icon class="s-24">add</mat-icon> ADD EMAIL
+                        </button>        
+                    </div>
+                </form>
+            </div> -->
+      <!-- Notification Section Hided for version1  -->
+
+
+    </div>
+  </div>
+</div>

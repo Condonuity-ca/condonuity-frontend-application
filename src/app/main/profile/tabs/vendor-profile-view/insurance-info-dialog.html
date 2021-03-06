@@ -1,0 +1,143 @@
+<div fxLayout="row" fxLayoutAlign="space-between center">
+  <div mat-dialog-title class="pl-12 ">EDIT INSURANCE, SERVICES AND CERTIFICATIONS</div>
+  <mat-dialog-actions align="end" class="px-16 mb-12">
+    <button mat-button mat-dialog-close style="margin-top:-30px;min-width: 28px !important;" class="p-0">
+      <mat-icon class="s-24 condo-red-text" mat-dialog-close>close</mat-icon>
+    </button>
+  </mat-dialog-actions>
+</div>
+<mat-dialog-content class="mat-typography">
+  <div class="profile-box info-box general px-12" fxLayout="column">
+    <form fxLayout="column" fxLayoutAlign="start" fxFlex="1 0 auto" name="insuranceInfoEditform"
+      [formGroup]="insuranceInfoEditform">
+      <div fxLayout="column" class="">
+        <div class="mat-card mat-elevation-z mb-32" fxLayout="column">
+          <!-- Insured Portion Starts -->
+          <div fxLayout="row" fxLayout.sm='column' fxLayout.xs='column' fxLayoutAlign.sm='start'
+            fxLayoutAlign.xs='start' fxLayoutAlign="start center" fxFlex="1 0 auto" class="pt-16">
+            <mat-checkbox appearance="outline" fxFlex="15" class="px-16" (change)="manageInsurance($event)"
+              formControlName="insured">Insured</mat-checkbox>
+            <div class="pt-16 input-group-bg" fxLayout="row" fxLayout.sm='column' fxLayout.xs='column'
+              fxFlex="1 0 auto">
+              <mat-form-field appearance="outline" fxFlex="33" fxFlex.sm='90' fxFlex.xs='90' [ngClass.xs]="'px-16'"
+                class="px-16">
+                <mat-label>Insurance Company</mat-label>
+                <input matInput formControlName="insuranceCompany">
+                <mat-error>Mandatory field is required</mat-error>
+              </mat-form-field>
+              <mat-form-field appearance="outline" fxFlex="33" fxFlex.sm='90' fxFlex.xs='90' [ngClass.xs]="'px-16'"
+                class="px-16">
+                <mat-label>Liablity</mat-label>
+                <input type="number" matInput formControlName="liability">
+                <span matPrefix>$&nbsp;</span>
+
+                <mat-error>Mandatory field is required</mat-error>
+              </mat-form-field>
+              <mat-form-field appearance="outline" fxFlex="33" fxFlex.sm='90' fxFlex.xs='90' [ngClass.xs]="'px-16'"
+                class="px-16">
+                <mat-label>Expiry Date</mat-label>
+                <input matInput [matDatepicker]="expPicker" formControlName="expiryDate" placeholder="Choose a date" readonly>
+                <mat-datepicker-toggle matSuffix [for]="expPicker"></mat-datepicker-toggle>
+                <mat-datepicker #expPicker></mat-datepicker>
+                <mat-error>Mandatory field is required</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <!-- Insured Portion Ends -->
+
+          <!-- Bonded Portion Starts -->
+          <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto" class="pt-32 pb-12">
+            <mat-checkbox appearance="outline" fxFlex="15" class="px-16" formControlName="bonded"
+              (change)="bondChanged($event)">Bonded</mat-checkbox>
+          </div>
+          <!-- Bonded Portion Ends -->
+
+          <!-- WSIB Portion Starts -->
+          <div fxLayout="row" fxLayout.sm='column' fxLayout.xs='column' fxLayoutAlign="start center"
+            fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxFlex="1 0 auto" class="pt-16">
+            <mat-checkbox appearance="outline" fxFlex="15" fxFlex.sm='90' fxFlex.xs='90' class="px-16"
+              (change)="wsibChanged($event)" required formControlName="wsib">WSIB</mat-checkbox>
+            <div class="pt-16 input-group-bg" fxLayout="row" fxFlex="40" fxFlex.sm='90' fxFlex.xs='90'>
+              <mat-form-field appearance="outline" fxFlex="60" class="px-16">
+                <mat-label>WSIB</mat-label>
+                <input matInput formControlName="wsibId">
+                <mat-error>Mandatory field is required</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+
+        <div fxLayout="row" fxLayout.sm='column' fxLayout.xs='column' fxLayoutAlign.sm="start" fxLayoutAlign.xs="start"
+          fxLayoutAlign="start center" fxFlex="1 0 auto">
+          <mat-form-field appearance="outline" fxFlex="34" fxFlex.sm='99' fxFlex.xs='99' matTooltip="Insert values separate by commas so that they appear numbered on the screen"
+          matTooltipPosition="above">
+            <mat-label>Services</mat-label>
+            <input matInput formControlName="services">
+            <!-- <span class="condo-tooltip" fxFlex="5" fxLayoutAlign="start top"
+              matTooltip="Notifications for every New Project Posting">?</span> -->
+          </mat-form-field>
+          <a mat-button class="mat-flat-button condo-red-100 text-bold condo-red-100 ml-12" fxFlex="15" fxHide
+            style="margin-top:-10px;">
+            <mat-icon class="s-16">add_circle</mat-icon><span class="font-weight-600 font-size-12"> ADD SERVICE</span>
+          </a>
+          <mat-form-field appearance="outline" fxFlex="30" fxFlex.sm='99' fxFlex.xs='99' [ngClass.xl]="'pl-32'" [ngClass.lg]="'pl-32'"
+            [ngClass.xs]="'px-0'" matTooltip="Insert values separate by commas so that they appear numbered on the screen"
+          matTooltipPosition="above">
+            <mat-label>Lisences</mat-label>
+            <input matInput formControlName="lisences">
+            <mat-error>Mandatory field is required</mat-error>
+            <!-- <span class="condo-tooltip" fxFlex="5" fxLayoutAlign="start top"
+              matTooltip="Notifications for every New Project Posting">?</span> -->
+          </mat-form-field>
+          <a mat-button class="mat-flat-button condo-red-100 text-bold condo-red-100 ml-12" fxFlex="15" fxHide
+            style="margin-top:-10px;">
+            <mat-icon class="s-16">add_circle</mat-icon><span class="font-weight-600 font-size-12"> ADD LISENCE</span>
+          </a>
+        </div>
+        <div fxLayout="row" fxLayout.sm='column' fxLayout.xs='column' fxLayoutAlign.sm="start" fxLayoutAlign.xs="start"
+          fxLayoutAlign="start center" fxFlex="1 0 auto" matTooltip="Insert values separate by commas so that they appear numbered on the screen"
+          matTooltipPosition="above">
+          <mat-form-field appearance="outline" fxFlex="34" fxFlex.sm='90' fxFlex.xs='90'>
+            <mat-label>Memberships</mat-label>
+            <input matInput formControlName="memberships">
+            <!-- <span class="condo-tooltip" fxFlex="5" fxLayoutAlign="start top"  matTooltip="Notifications for every New Project Posting">?</span> -->
+          </mat-form-field>
+          <a mat-button class="mat-flat-button condo-red-100 text-bold ml-12" fxFlex="20" fxHide
+            style="margin-top:-10px;">
+            <mat-icon class="s-16">add_circle</mat-icon><span class="font-weight-600 font-size-12"> ADD
+              MEMBERSHIP</span>
+          </a>
+          <mat-form-field appearance="outline" fxFlex="30" fxFlex.xs='90' [ngClass.xs]="'pl-0'" [ngClass.xl]="'pl-32'" [ngClass.lg]="'pl-32'" matTooltip="Insert values separate by commas so that they appear numbered on the screen"
+          matTooltipPosition="above">
+            <mat-label>Products</mat-label>
+            <input matInput formControlName="products">
+            <!-- <span class="condo-tooltip" fxFlex="5" fxLayoutAlign="start top"  matTooltip="Notifications for every New Project Posting">?</span> -->
+          </mat-form-field>
+          <a mat-button class="mat-flat-button condo-red-100 text-bold condo-red-100 ml-12" fxFlex="15" fxHide
+            style="margin-top:-10px;">
+            <mat-icon class="s-16">add_circle</mat-icon><span class="font-weight-600 font-size-12"> ADD PRODUCT</span>
+          </a>
+        </div>
+        <div fxLayout="row" fxLayout.sm='column' fxLayout.xs='column' fxLayoutAlign.sm='start' fxLayoutAlign.xs='start'
+          fxLayoutAlign="start center" fxFlex="1 0 auto" matTooltip="Insert values separate by commas so that they appear numbered on the screen"
+          matTooltipPosition="above">
+          <mat-form-field appearance="outline" fxFlex="34" fxFlex.xs='90'>
+            <mat-label>Brands</mat-label>
+            <input matInput formControlName="brands">
+            <!-- <span class="condo-tooltip" fxFlex="5" fxLayoutAlign="start top"  matTooltip="Notifications for every New Project Posting">?</span> -->
+          </mat-form-field>
+          <a mat-button class="mat-flat-button condo-red-100 text-bold condo-red-100 ml-12" fxFlex="15" fxHide
+            style="margin-top:-10px;">
+            <mat-icon class="s-16">add_circle</mat-icon><span class="font-weight-600 font-size-12"> ADD BRAND</span>
+          </a>
+        </div>
+      </div>
+    </form>
+  </div>
+  <mat-dialog-actions align="end" class="px-16 mt-0 mb-4">
+    <button mat-button mat-flat-button mat-accent (click)="updateInsuranceServiceDetails()"
+      color="accent">UPDATE</button>
+    <button mat-button mat-dialog-close class="fuse-navy-50">CANCEL</button>
+  </mat-dialog-actions>
+</mat-dialog-content>

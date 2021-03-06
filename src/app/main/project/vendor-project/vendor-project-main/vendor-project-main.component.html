@@ -1,0 +1,39 @@
+<div id="profile" class="page-layout simple tabbed">
+
+
+  <div id="about" fxLayout="row wrap" [ngClass.xl]="'p-32'" [ngClass.lg]="'p-32'" [ngClass.md]="'p-32'" [ngClass.sm]="'p-16'"
+    [ngClass.xs]="'p-8'">
+
+    <div class="" fxLayout="column" fxLayoutAlign="start" fxFlex="100">
+      <mat-tab-group selectedIndex={{selectedIndex}} dynamicHeight (selectedTabChange)="tabSelectionChanged($event)">
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon aria-hidden="false" aria-label="create project" class="mr-8 zoom">sentiment_satisfied_alt
+            </mat-icon>
+            <span>PROJECTS OF INTEREST</span>
+          </ng-template>
+          <vendor-project-listing *ngIf="selectedIndex === 0" [selectedTab]="selectedIndex">
+          </vendor-project-listing>
+        </mat-tab>
+
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon aria-hidden="false" aria-label="create project" class="mr-8 zoom">clear_all</mat-icon>
+            <span>OPEN PROJECTS</span>
+          </ng-template>
+          <vendor-project-listing *ngIf="selectedIndex === 1" [selectedTab]="selectedIndex">
+          </vendor-project-listing>
+        </mat-tab>
+
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon aria-hidden="false" aria-label="create project" class="mr-8 zoom">track_changes</mat-icon>
+            <span>CLOSED PROJECTS</span>
+          </ng-template>
+          <vendor-project-listing *ngIf="selectedIndex === 2" [selectedTab]="selectedIndex">
+          </vendor-project-listing>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</div>

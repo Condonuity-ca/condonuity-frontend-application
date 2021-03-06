@@ -1,0 +1,18 @@
+<div fxLayout="row" fxLayoutAlign="space-between center">
+  <div mat-dialog-title class="">{{title}}</div>
+  <mat-dialog-actions align="end" class="mb-12">
+    <button mat-button mat-dialog-close style="margin-top:-15px;min-width: 28px !important;" class="p-0">
+      <mat-icon class="s-24 condo-red-text" mat-dialog-close>close</mat-icon>
+    </button>
+  </mat-dialog-actions>
+</div>
+
+<mat-dialog-content class="mb-32">
+  <p class="text-center mb-32 condo-gray-text word-break">{{message}}</p>
+</mat-dialog-content>
+<mat-dialog-actions align="center" class="pb-16 mr-16">
+  <button mat-button class="mat-flat-button" color="accent" mat-dialog-close="true"
+    cdkFocusInitial>{{yesButtonTitle}}</button>
+  <button *ngIf="shouldShowNoButton" mat-button mat-dialog-close="false" mat-flat-button
+    class="fuse-navy-50">{{noButtonTitle}}</button>
+</mat-dialog-actions>

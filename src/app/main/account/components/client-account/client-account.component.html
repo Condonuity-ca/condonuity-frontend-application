@@ -1,0 +1,180 @@
+<div id="profile" class="page-layout simple tabbed">
+  <div id="about" class="py-24" fxLayout="row wrap" [ngClass.xl]="'px-32'" [ngClass.lg]="'px-32'" [ngClass.md]="'px-32'" [ngClass.sm]="'px-32'"
+    [ngClass.xs]="'px-16'">
+
+    <div class="about-content" fxLayout="column" fxFlex="100">
+      <!-- <div class="message-box condo-red">
+            <div class="" fxLayout="row" fxLayoutAlign="space-between flex-start">
+                <div class="pr-16">
+                    <div class="h2">
+                        <mat-icon class="s-20 mr-4">info</mat-icon>  INFORMATION                         
+                    </div>
+                </div>
+                <div fxLayout="row">
+                    <span  class="h4 ml-16">
+                        You have only 2 projects left in your account.
+                    </span>
+                </div>               
+            </div>
+        </div> -->
+
+
+      <div class="" fxLayout="row" fxLayoutAlign="space-between flex-start" class="mt-32 mb-16">
+        <div class="">
+          <div class="h2 condo-gray-text">User Management</div>
+        </div>
+        <div *ngIf="currentUserRole == 1" fxLayout="row">
+          <button mat-flat-button class="text-bold condo-red-400 cursor" (click)="openNewUserDialog()">
+            <mat-icon class="s-16">add</mat-icon> ADD NEW USER
+          </button>
+        </div>
+      </div>
+
+
+      <div class="profile-box info-box general" fxLayout="column">
+        <!-- <ngx-datatable class="material" [rows]="userDetails" [columnMode]="'force'" [headerHeight]="48"
+          [footerHeight]="56" [rowHeight]="'auto'" [scrollbarH]="true" [selectionType]="'checkbox'" [limit]="10"> -->
+
+        <ngx-datatable fxLayout="column" fxLayoutAlign="start" style="width: 100%" class="material pr-20" [rows]="userDetails"
+    [columnMode]="'force'" [footerHeight]="50" [rowHeight]="'auto'" [scrollbarH]="true" [selectionType]="'checkbox'"
+    [limit]="10">
+
+          <ngx-datatable-column name="First Name" prop="firstName"></ngx-datatable-column>
+          <ngx-datatable-column name="Last Name" prop="lastName"></ngx-datatable-column>
+          <ngx-datatable-column name="Email" [sortable]="false"></ngx-datatable-column>
+          <ngx-datatable-column name="Role" prop="clientUserType">
+            <ng-template ngx-datatable-cell-template let-value="value">
+              <span *ngIf="value == 1"> Manager</span>
+              <span *ngIf="value == 2">Assistant Manager</span>
+              <span *ngIf="value == 3">Board Member</span>
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Administrator" prop="userRole">
+            <ng-template ngx-datatable-cell-template let-value="value">
+              <span *ngIf="value == 2"> No</span>
+              <span *ngIf="value == 1">Yes</span>
+            </ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column name="Status" prop="userAccountStatus">
+            <ng-template ngx-datatable-cell-template let-value="value">
+              <span *ngIf="value == 0" class="condo-gray-text"> Invited</span>
+              <span *ngIf="value == 1" class="condo-red-text"> Active</span>
+            </ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column *ngIf="currentUserRole == 1" name="Actions" [sortable]="false" prop="clientId">
+            <ng-template ngx-datatable-cell-template let-value="value">
+              <a class="cursor condo-gray-text" (click)="openEditUserDialog(value)">
+                <mat-icon class="s-20">edit</mat-icon>
+              </a>
+              <a (click)="openDeleteConfirmationDialog(value)" class="ml-8 cursor">
+                <mat-icon class="s-20">delete_outline</mat-icon>
+              </a>
+            </ng-template>
+          </ngx-datatable-column>
+        </ngx-datatable>
+
+      </div>
+
+
+      <billing-information [billInfo]="billInfo"></billing-information>
+
+      <!-- Next Phase -->
+      <!-- <div fxLayout="row" fxLayoutAlign="space-between flex-start" class="mt-32 mb-16">
+            <div class="">
+                <div class="h2 text-bold">Approval Process</div>
+            </div>
+            <div fxLayout="row">
+                <button mat-flat-button class="text-bold condo-red-400 h5 cursor"  (click)="submitApproval()">
+                    <mat-icon class="s-16">save</mat-icon> SAVE
+                </button>        
+            </div>
+        </div> -->
+
+
+      <!-- <div class="mat-card mat-elevation-z mr-4 mt-16" fxLayout="column">
+            <form fxLayout="column" fxLayoutAlign="start" fxFlex="1 0 auto" name="approvalForm" [formGroup]="approvalForm">
+                <div fxLayout="row" fxLayoutAlign="start flex-start" fxFlex="1 0" class="p-24">
+                    <span fxLayout="row" fxLayoutAlign="start flex-start" fxFlex="1 0 auto" formGroupName = "publishProject" >
+                        <mat-label fxFlex="20" class="mat-subheading-2 px-16">Publish Project</mat-label>
+
+                        <span fxLayout="column" fxLayoutAlign="start flex-start" fxFlex="20" >
+                            <mat-radio-group fxLayout="column" aria-label="Select an option" (change)="approveNos($event,'publish')" formControlName="publish">
+                                <mat-radio-button value="1">Yes</mat-radio-button>
+                                <mat-radio-button value="2" class="mt-16">No</mat-radio-button>
+                            </mat-radio-group>
+
+                        </span>
+                        <span fxLayout="row" *ngIf="userApproval.publish" fxLayoutAlign="start flex-start"  fxFlex="60" >
+                            How Many Users must Approve?
+                            <mat-form-field appearance="outline" fxFlex="33" class="px-16" >
+                                <mat-label>Approve Numbers</mat-label>
+                                <mat-select class="account-selection" placeholder="Approve Numbers" formControlName="publishApproval">
+                                    <mat-option  [value]="1">1 </mat-option>
+                                    <mat-option  [value]="2">2 </mat-option>
+                                    <mat-option  [value]="3">3 </mat-option>
+                                    <mat-option  [value]="4">4 </mat-option>
+                                    <mat-option  [value]="5">5 </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </span>
+                    </span>
+                </div>
+                
+                <div fxLayout="row" fxLayoutAlign="start flex-start" fxFlex="1 0" class="condo-red-200 p-24">
+                    <span fxLayout="row" fxLayoutAlign="start flex-start" fxFlex="1 0 auto" formGroupName = "vendorReview">
+                        <mat-label fxFlex="20" class="mat-subheading-2 px-16">Vendor Review</mat-label>
+                        <span fxLayout="column" fxLayoutAlign="start flex-start" fxFlex="20" >
+                            <mat-radio-group fxLayout="column" aria-label="Select an option" (change)="approveNos($event,'vendor')" formControlName="review">
+                                <mat-radio-button value="1">Yes</mat-radio-button>
+                                <mat-radio-button value="2" class="mt-16">No</mat-radio-button>
+                            </mat-radio-group>
+                        </span>
+                        <span fxLayout="row" *ngIf="userApproval.vendor" fxLayoutAlign="start flex-start"  fxFlex="60" >
+                            How Many Users must Approve?
+                            <mat-form-field appearance="outline" fxFlex="33" class="px-16" >
+                                <mat-label>Approve Numbers</mat-label>
+                                <mat-select class="account-selection" placeholder="Approve Numbers" formControlName="reviewApproval">
+                                    <mat-option  [value]="1">1 </mat-option>
+                                    <mat-option  [value]="2">2 </mat-option>
+                                    <mat-option  [value]="3">3 </mat-option>
+                                    <mat-option  [value]="4">4 </mat-option>
+                                    <mat-option  [value]="5">5 </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </span>
+                    </span>
+                </div>
+                
+                <div fxLayout="row" fxLayoutAlign="start flex-start" fxFlex="1 0" class="p-24">
+                    <span fxLayout="row" fxLayoutAlign="start flex-start" fxFlex="1 0 auto" formGroupName = "projectAward" >
+                        <mat-label fxFlex="20" class="mat-subheading-2 px-16">Project Award</mat-label>
+                        <span fxLayout="column" fxLayoutAlign="start flex-start" fxFlex="20" >
+                            <mat-radio-group fxLayout="column" aria-label="Select an option" (change)="approveNos($event,'award')" formControlName="award">
+                                <mat-radio-button value="1">Yes</mat-radio-button>
+                                <mat-radio-button value="2" class="mt-16">No</mat-radio-button>
+                            </mat-radio-group>
+
+                        </span>
+                        <span fxLayout="row" *ngIf="userApproval.award" fxLayoutAlign="start flex-start"  fxFlex="60" >
+                            How Many Users must Approve?
+                            <mat-form-field appearance="outline" fxFlex="33" class="px-16" >
+                                <mat-label>Approve Numbers</mat-label>
+                                <mat-select class="account-selection" placeholder="Approve Numbers" formControlName="awardApproval">
+                                    <mat-option  [value]="1">1 </mat-option>
+                                    <mat-option  [value]="2">2 </mat-option>
+                                    <mat-option  [value]="3">3 </mat-option>
+                                    <mat-option  [value]="4">4 </mat-option>
+                                    <mat-option  [value]="5">5 </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </span>
+                    </span>
+                </div>
+            </form>
+        </div> -->
+
+    </div>
+  </div>
+</div>

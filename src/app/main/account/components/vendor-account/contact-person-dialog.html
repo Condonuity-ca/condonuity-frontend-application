@@ -1,0 +1,45 @@
+<h2 mat-dialog-title>Edit Account Details</h2>
+<mat-dialog-content class="mat-typography">
+  <div class="profile-box info-box general" fxLayout="column">
+    <form fxLayout="column" name="contactPerson" [formGroup]="contactPerson">
+
+
+      <br>
+      <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+
+        <mat-form-field appearance="outline" fxFlex="33" class="px-16">
+          <mat-label>First Name</mat-label>
+          <input matInput formControlName="firstName">
+          <mat-icon matSuffix class="secondary-text">location_city</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" fxFlex="33" class="px-16">
+          <mat-label>Last Name</mat-label>
+          <input matInput formControlName="lastName">
+          <mat-icon matSuffix class="secondary-text">location_city</mat-icon>
+        </mat-form-field>
+
+      </div>
+      <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+
+        <mat-form-field appearance="outline" fxFlex="33" class="px-16">
+          <mat-label>Title</mat-label>
+          <input matInput formControlName="title">
+          <mat-icon matSuffix class="secondary-text">location_city</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" fxFlex="33" class="px-16">
+          <mat-label>Phone Number</mat-label>
+          <input matInput formControlName="phoneNumber">
+          <mat-icon matSuffix class="secondary-text">location_city</mat-icon>
+        </mat-form-field>
+      </div>
+
+    </form>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button [mat-dialog-close]="contactPerson.value" [disabled]="contactPerson.invalid" cdkFocusInitial
+    (click)="editCorporation()">UPDATE</button>
+  <button mat-button mat-dialog-close>CANCEL</button>
+</mat-dialog-actions>

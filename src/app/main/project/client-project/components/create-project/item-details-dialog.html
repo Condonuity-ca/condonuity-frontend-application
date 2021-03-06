@@ -1,0 +1,51 @@
+<div fxLayout="row" fxLayoutAlign="space-between center">
+  <div mat-dialog-title class="pl-12 ">ADD ITEM DETAILS</div>
+
+  <mat-dialog-actions align="end" class="px-16 mb-12">
+    <button mat-button mat-dialog-close style="margin-top:-20px;min-width: 28px !important;" class="p-0">
+      <mat-icon class="s-24 condo-red-text" mat-dialog-close>close</mat-icon>
+    </button>
+  </mat-dialog-actions>
+</div>
+<mat-dialog-content class="mat-typography">
+  <div class="px-16" fxLayout="column">
+    <form fxLayout="column" name="addItems" [formGroup]="addItems">
+
+      <div class="" fxLayout="row" fxLayout.xs="column" fxLayoutAlign.xs="start" fxLayoutAlign="start center"
+        fxFlex="1 0 auto">
+        <mat-form-field appearance="outline" fxFlex="100">
+          <mat-label>Item Description *</mat-label>
+          <input matInput formControlName="itemDescription">
+          <mat-error>Mandatory field is required</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="" fxLayout="row" fxLayout.xs="column" fxLayoutAlign.xs="start" fxLayoutAlign="start center"
+        fxFlex="1 0 auto">
+        <mat-form-field appearance="outline" fxFlex="50" fxFlex.xs="100" [ngClass.xl]="'pr-16'" [ngClass.lg]="'pr-16'" [ngClass.md]="'pr-16'"
+          [ngClass.sm]="'pr-16'" [ngClass.xs]="'pr-0'" matTooltip="Enter the quantity for this item, use numbers without
+          any text" matTooltipPosition="above">
+          <mat-label>Quantity *</mat-label>
+          <input matInput formControlName="quantity">
+          <mat-error>Quantity field must be a number</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex="50" fxFlex.xs="100" matTooltip="Indicate the unit for the entered quantity of this item, examples: square meter, m2, ft2, square
+          foot, feet, etc .." matTooltipPosition="above">
+          <mat-label>Units *</mat-label>
+          <input matInput formControlName="units">
+          <mat-error>Units field is mandatory</mat-error>
+        </mat-form-field>
+      </div>
+
+
+    </form>
+  </div>
+
+  <mat-dialog-actions align="end" class="px-16 mb-0 pb-0">
+    <button mat-button mat-flat-button mat-accent [mat-dialog-close]="addItems.value" [disabled]="addItems.invalid"
+      color="accent" [ngClass.xs]="'mb-8'">ADD ITEM</button>
+    <button mat-button mat-dialog-close class="fuse-navy-50" [ngClass.xs]="'mb-8'">CANCEL</button>
+
+  </mat-dialog-actions>
+
+</mat-dialog-content>

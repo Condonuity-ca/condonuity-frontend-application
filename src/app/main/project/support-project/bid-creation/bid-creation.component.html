@@ -1,0 +1,243 @@
+<div id="timeline" class="p-24" fxLayout="row wrap">
+
+  <!-- <div class="" fxLayout="column"> -->
+  <form fxLayout="column" fxLayoutAlign="start" fxFlex="1 0 auto" name="bidForm" [formGroup]="bidForm">
+
+    <div fxLayout="row" class="" fxLayoutAlign="start end">
+      <mat-form-field appearance="outline" class="pr-16">
+
+        <mat-label>Start Date</mat-label>
+        <input matInput [matDatepicker]="startDate" formControlName="startDate" placeholder="Choose a date" required readonly>
+        <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+        <mat-datepicker #startDate></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" fxFlex="15" class="px-16">
+        <mat-label>Duration(Days)</mat-label>
+        <input matInput formControlName="time">
+      </mat-form-field>
+
+      <div appearance="outline" fxFlex="50" class="py-24 pr-8" fxLayoutAlign="end">
+        <span class="condo-red-400 px-32 py-16 font-size-18 font-weight-500">TOTAL:
+          {{ totalEstimation | currency:'CAD'  }} </span>
+      </div>
+    </div>
+
+    <!-- <div fxLayout="row" class="mt-32" fxLayoutAlign="start center">
+
+        <mat-form-field appearance="outline" class="pr-16">
+          <mat-label>Start Date</mat-label>
+          <input matInput [matDatepicker]="startDate" formControlName="startDate" placeholder="Choose a date" required>
+          <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+          <mat-datepicker #startDate></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" fxFlex="15" class="px-16">
+          <mat-label>Duration(Days)</mat-label>
+          <input matInput formControlName="time">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" fxFlex="15" class="px-16">
+          <mat-label>Unit</mat-label>
+          <input matInput formControlName="unit">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" fxFlex="25" class="px-16">
+          <mat-label>End Date</mat-label>
+          <input matInput [matDatepicker]="endDate" formControlName="endDate" placeholder="Choose a date" required>
+          <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+          <mat-datepicker #endDate></mat-datepicker>
+        </mat-form-field>
+      </div> -->
+
+    <div class="mt-16" fxLayout="row" fxLayoutAlign="space-between center">
+      <div class="pr-16">
+        <div class="h3 font-weight-600">ITEMS SUMMARY</div>
+      </div>
+    </div>
+    <div class="" formArrayName="itemsSummary" fxLayout="column" fxLayoutAlign="start" fxFlex="1 0 auto" class="mt-24">
+      <div class="" *ngFor="let itemsDetail of bidForm.get('itemsSummary')['controls'] ; let itemIndex = index"
+        [formGroupName]="itemIndex" fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+
+        <mat-form-field appearance="outline" fxFlex="35" class="pr-16">
+          <mat-label>Item Description</mat-label>
+          <input matInput formControlName="itemDescription">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" fxFlex="35" class="px-16">
+          <mat-label>Quantity</mat-label>
+          <input matInput formControlName="quantity" (ngModelChange)="calculateEstimation()">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" fxFlex="35" class="px-16">
+          <mat-label>Unit</mat-label>
+          <input matInput formControlName="unit">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" fxFlex="35" class="px-16">
+          <mat-label>Price</mat-label>
+          <input matInput formControlName="price" (ngModelChange)="calculateEstimation()">
+        </mat-form-field>
+
+        <div appearance="outline" fxFlex="35" class="px-16">
+          <span
+            class="font-size-18 condo-red-text">{{ bidForm.controls.itemsSummary.value[itemIndex].price * bidForm.controls.itemsSummary.value[itemIndex].quantity | currency:'CAD' }}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="currentProjectStage != 3" fxLayout="row" class="mb-32">
+      <button mat-flat-button class="condo-red-100 h5 cursor" (click)="addItem()">
+        <mat-icon class="s-16">add</mat-icon> <span class="font-weight-600">ADD MORE</span>
+      </button>
+    </div>
+
+    <div class="mt-16" fxLayout="row" fxLayoutAlign="space-between center">
+      <div class="pr-16">
+        <div class="h3 font-weight-600">LABOUR SUMMARY</div>
+      </div>
+    </div>
+    <div class="" formArrayName="labourSummary" fxLayout="column" fxLayoutAlign="start" fxFlex="1 0 auto" class="mt-24">
+      <div class="" *ngFor="let labourDetail of bidForm.get('labourSummary')['controls'] ; let labourItemIndex = index"
+        [formGroupName]="labourItemIndex" fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+
+
+        <mat-form-field appearance="outline" fxFlex="35" class="pr-16">
+          <mat-label>Item Description</mat-label>
+          <input matInput formControlName="itemDescription">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" fxFlex="25" class="px-16">
+          <mat-label>Quantity</mat-label>
+          <input matInput formControlName="quantity" (ngModelChange)="calculateEstimation()">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" fxFlex="25" class="px-16">
+          <mat-label>Unit</mat-label>
+          <input matInput formControlName="unit">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" fxFlex="35" class="px-16">
+          <mat-label>Price</mat-label>
+          <input matInput formControlName="price" (ngModelChange)="calculateEstimation()">
+        </mat-form-field>
+
+        <div appearance="outline" class="px-16">
+          <span
+            class="font-size-18 condo-red-text">{{ bidForm.controls.labourSummary.value[labourItemIndex].price * bidForm.controls.labourSummary.value[labourItemIndex].quantity | currency:'CAD' }}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="currentProjectStage != 3" fxLayout="row" class="mb-32">
+      <mat-label class=""></mat-label>
+      <button mat-flat-button class="condo-red-100 h5 cursor" (click)="addLabourSummary()">
+        <mat-icon class="s-16">add</mat-icon> <span class="font-weight-600">ADD MORE</span>
+      </button>
+    </div>
+
+    <div class="mt-16" fxLayout="row" fxLayoutAlign="space-between center">
+      <div class="pr-16">
+        <div class="h3 font-weight-600">OTHER INFORMATION</div>
+      </div>
+    </div>
+
+    <div fxLayout="row" class="mt-24" fxLayoutAlign="start center">
+
+      <mat-form-field appearance="outline" fxFlex="25" class="pr-16">
+        <mat-label>Start Date</mat-label>
+        <input matInput [matDatepicker]="otherInfoStartDate" formControlName="otherInfoStartDate"
+          placeholder="Choose a date" required readonly>
+        <mat-datepicker-toggle matSuffix [for]="otherInfoStartDate"></mat-datepicker-toggle>
+        <mat-datepicker #otherInfoStartDate></mat-datepicker>
+
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" fxFlex="25" class="pr-16">
+        <mat-label>Duration</mat-label>
+        <input matInput formControlName="otherInfoDuration">
+      </mat-form-field>
+    </div>
+
+    <div fxLayout="row" class="mt-8" fxLayoutAlign="start center">
+      <mat-form-field appearance="outline" fxFlex="50" class="pr-16">
+        <mat-label>In Scope</mat-label>
+        <textarea matInput formControlName="inScope">
+                </textarea>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" fxFlex="50" class="">
+        <mat-label>Out Of Scope</mat-label>
+        <textarea matInput formControlName="outOfScope">
+                </textarea>
+      </mat-form-field>
+    </div>
+
+    <div fxLayout="row" class="mt-8" fxLayoutAlign="start center">
+      <mat-form-field appearance="outline" fxFlex="50" class="pr-16">
+        <mat-label>Prerequisite</mat-label>
+        <textarea matInput formControlName="prerequisite">
+                </textarea>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" fxFlex="50" class="">
+        <mat-label>Why Choose Me</mat-label>
+        <textarea matInput formControlName="chooseReason">
+                </textarea>
+      </mat-form-field>
+    </div>
+
+
+    <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto" class="mt-16">
+      <div class="" fxFlex="50" class="font-weight-500 condo-gray-text">
+        SUPPORTING DOCUMENTS & IMAGES
+      </div>
+
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+      <div class="file-uploader" appearance="outline" fxFlex="50" class="upload-button">
+        <div fxLayout="column">
+          <span appearance="outline" fxFlex="100" class="px-16">
+            <input hidden type="file" accept="application/pdf,image/*" multiple #fileInput />
+            <button color="accent" class="mat-flat-button" (click)="fileInput.click()" aria-label="Add file"
+              [@animate]="{value:'*', params:{delay:'300ms',scale:'0.2'}}">
+              <span class="condo-red-text  h4"><strong>
+                  <mat-icon class="s-16 font-weight-600 mat-icon" style="vertical-align: center">add_circle</mat-icon>
+                  Click here to Add Files
+                </strong></span>
+            </button>
+          </span>
+          <!--  (change)="fileEvent($event)"  <div fxFlex="100" >
+                        <h4 class="mt-24" *ngFor="let fileName of imageFileData; let i= index"><span class="condo-red-text mr-6" title="Remove File" (click)="removeFile(i)"> <mat-icon class="s-16 cursor" style="vertical-align: middle">remove_circle_outline</mat-icon> </span>  {{fileName}}  </h4>                     
+                    </div> -->
+        </div>
+      </div>
+    </div>
+
+    <div fxLayout="column" fxFlex="100" fxFlex.gt-sm="100" fxFlex.gt-md="100" class="mt-40 mb-16">
+      <div>
+        <div class="" fxLayout="row" fxLayoutAlign="space-between center">
+          <div class="pr-16">
+
+          </div>
+          <div fxLayout="row">
+            <button mat-flat-button color="primary" class="submit-button mr-16" aria-label="Continue">
+              PREVIEW
+            </button>
+            <button mat-flat-button color="primary" class="submit-button mr-16" aria-label="Continue">
+              SAVE
+            </button>
+            <button mat-flat-button color="primary" class="submit-button" aria-label="Continue" (click)="submitBid()">
+              SUBMIT
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </form>
+  <!-- </div> -->
+</div>

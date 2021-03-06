@@ -1,0 +1,128 @@
+<div class="">
+  <div fxLayout="column" id="timeline" class="pb-32" [ngClass.xl]="'py-16 px-8'" [ngClass.lg]="'py-16 px-8'" [ngClass.md]="'p-4'"
+    [ngClass.sm]="'p-24'" [ngClass.xs]="'p-16'">
+
+    <div style="" class="" [ngClass.xl]="'mr-24 mb-32 pt-32'" [ngClass.lg]="'mr-24 mb-32 pt-32'" [ngClass.md]="'mr-24 mb-32 pt-32'"
+      [ngClass.sm]="'mr-0 mb-4 pt-4'" [ngClass.xs]="'mr-4 mb-0 pt-12'" fxLayoutAlign="end end">
+      <button mat-button class="mat-flat-button" color="accent" (click)="openCreateThreadExternalDialog()">CREATE
+        THREAD</button>
+    </div>
+    <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="space-between center"
+      fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" class="mt-16" [ngClass.xl]="'mx-24'" [ngClass.lg]="'mx-24'" [ngClass.md]="'mx-24'"
+      [ngClass.sm]="'mx-4'" [ngClass.xs]="'mx-4'">
+      <div class="" [ngClass.sm]="'mb-16'" [ngClass.xs]="'mb-8'">
+        <div class="h2 condo-gray-text">Sort by </div>
+      </div>
+      <div fxLayout="row" fxLayout.xs="column">
+        <mat-button-toggle-group value="nearest" fxLayout.xs="row">
+          <div class="condo-sorting" fxLayout.xs="row wrap">
+            <mat-button-toggle value="nearest" class="mat-stroked-button mat-primary mr-12 active"
+              [ngClass.xs]="'mb-16'" (click)="sortMessages(1)">
+              SUBJECT
+            </mat-button-toggle>
+            <mat-button-toggle value="rating" class="mat-stroked-button mat-primary mr-12" [ngClass.xs]="'mb-16'"
+              (click)="sortMessages(2)">
+              USER
+            </mat-button-toggle>
+            <mat-button-toggle value="alphabetical" class="mat-stroked-button mat-primary" [ngClass.xs]="'mb-16'"
+              (click)="sortMessages(3)">
+              DATE
+            </mat-button-toggle>
+          </div>
+        </mat-button-toggle-group>
+      </div>
+    </div>
+
+
+    <div *ngFor="let message of pageOfItems" fxLayout="column">
+
+      <div fxFlex="70" style="" class="mat-card mat-elevation-z  pb-24 pt-0 b-r-4 shadow" fxFlex.sm="100"
+        fxFlex.xs="100" [ngClass.xl]="'mx-24 mt-24'" [ngClass.lg]="'mx-24 mt-24'" [ngClass.md]="'mx-24 mt-24'" [ngClass.sm]="'mb-4 mx-4 mt-24'"
+        [ngClass.xs]="'mx-4 mt-20'">
+
+        <div class="pt-8 pb-8 px-8 px-24" fxLayout="row wrap" fxLayoutAlign="" style="background:#f0f0f0"><span
+            class="condo-gray-text mr-12">To: </span>
+          <span class="condo-gray-text recipients mr-8"
+            *ngFor="let org of message.targetOrganisations;let i = index">{{org.organisationName}} </span>
+        </div>
+
+        <div class="px-24" fxLayout="column">
+          <div class="mat-card mat-elevation-z" [ngClass.xl]="'mr-0'" [ngClass.lg]="'mr-0'" [ngClass.md]="'mr-24'" [ngClass.xs]="'mr-0'">
+            <div class="" fxLayout="row" fxLayout.sm="row wrap" fxLayoutAlign="start center" fxLayout.xs="column">
+
+              <div class="" [ngClass.xl]="'w-80 h-80'" [ngClass.lg]="'w-80 h-80'" [ngClass.md]="'w-80 h-80'" [ngClass.sm]="'w-60 h-60'"
+                [ngClass.xs]="'mb-12 w-60 h-60'">
+                <img *ngIf="message.fromUser.profileImageURL && message.fromUser.profileImageURL != ''"
+                  [src]="message.fromUser.profileImageURL" class="border-radius-100" [ngClass.sm]="'mt-16 ml-20'"
+                  [ngClass.xs]="'text-center mt-16'"  style="width:74px;height:74px">
+                <img *ngIf="message.fromUser.profileImageURL == ''" class="border-radius-100"
+                  [ngClass.sm]="'mt-16 ml-20'" [ngClass.xs]="'text-center mt-16'" src="assets/images/no-pic.jpg" >
+              </div>
+              <div class="pr-16 ml-16" fxLayout="row" fxFlex="100" fxLayoutAlign="start center" fxLayout.xs="column"
+                (click)="viewMessageDetails(message)">
+                <div class="" fxFlex="100" fxFlex.xs="100">
+
+                  <div class="mt-16" fxLayout="row" fxLayout.sm="column wrap" fxLayout.xs="column wrap"
+                    fxLayoutAlign.lg="space-between top" fxLayoutAlign.md="space-between top"
+                    fxLayoutAlign.sm="start start" fxLayoutAlign.xs="center center " [ngClass.sm]="'mt-24'"
+                    [ngClass.xs]="'mt-20'">
+                    <div class="h3 font-weight-600 mr-8 wrap" fxFlex="60" fxLayout="column wrap"
+                      fxLayoutAlign="center start">{{message.threadSubject}}</div>
+                    <div class="condo-gray-text" fxLayout="column" fxLayoutAlign.lg="start end"
+                      fxLayoutAlign.md="start end" fxLayoutAlign.sm="start end" fxLayoutAlign.xs="center center"
+                      [ngClass.sm]="'mt-0 ml-16'" fxFlex="40">
+                      <div>
+                        <mat-icon aria-hidden="false" aria-label="current project"
+                          class="zoom s-20 mr-8 condo-red-text custom-icon">perm_identity</mat-icon>
+                        {{message.fromUser.firstName}} {{message.fromUser.lastName}} <span class="ml-8 mr-8">|</span>
+                        {{message.fromOrganisation.organisationName}}
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="condo-gray-text mt-8 line-height-24" fxLayoutAlign.xs="center center">
+                    {{message.threadDescription}}</div>
+                  <div class="condo-gray-text mt-8 line-height-24" fxLayout.xs="column wrap"
+                    fxLayoutAlign.xs="center center">
+                    <div class="mt-16" fxLayout="row wrap">
+                      <span *ngFor="let attachment of message.files" (click)="attachmentClicked($event, attachment)"
+                        class="mr-24 mb-16 cursor attachment-icon" style="font-size:11px">{{attachment.fileName}}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div class="" fxLayout="row" fxLayout.sm="column wrap" fxLayout.xs="column wrap"
+                    fxLayoutAlign="space-between end" fxLayoutAlign.sm="start start"
+                    fxLayoutAlign.xs="space-between center" [ngClass.sm]="'mt-24'" [ngClass.xs]="'mt-20'">
+                    <div class="h3 font-weight-600" fxLayout="row">
+                      <mat-icon aria-hidden="false" aria-label="current project"
+                        class="zoom s-16 mt-4 mr-8 condo-red-text">
+                        comment</mat-icon> {{message.comments.length}} Comments
+                    </div>
+                    <div class="condo-gray-text mt-16" fxLayout="column" fxLayoutAlign.sm="start"
+                      [ngClass.sm]="'mt-0 ml-16'">
+                      <div>
+
+                        <mat-icon aria-hidden="false" aria-label="current project" class="zoom s-16 condo-red-text">
+                          calendar_today</mat-icon>
+                        {{message.formatedCreatedDate}}
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-footer pb-0 pt-3 " [ngClass.xl]="'mx-24'" [ngClass.lg]="'mx-24'" [ngClass.md]="'mx-24'" [ngClass.sm]="'mx-12'"
+      [ngClass.xs]="'mx-4'">
+      <jw-pagination [pageSize]="15" [items]="externalMessages" (changePage)="onChangePage($event)"></jw-pagination>
+    </div>
+
+  </div>
+</div>

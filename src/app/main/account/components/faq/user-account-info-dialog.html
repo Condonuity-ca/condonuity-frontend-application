@@ -1,0 +1,80 @@
+<div fxLayout="row" fxLayoutAlign="space-between center">
+  <div mat-dialog-title class="">EDIT USER INFO</div>
+  <mat-dialog-actions align="end" class="mb-12">
+    <button mat-button mat-dialog-close style="margin-top:-20px;min-width: 28px !important;" class="p-0">
+      <mat-icon class="s-24 condo-red-text" mat-dialog-close>close</mat-icon>
+    </button>
+  </mat-dialog-actions>
+</div>
+<mat-dialog-content class="mat-typography">
+  <div class="profile-box info-box general" fxLayout="column">
+    <form fxLayout="column" name="userForm" [formGroup]="userForm">
+
+      <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto" class="mb-64">
+        <div class="w-70" style="width:90px;">
+          <img class="border-radius-100" src="assets/images/no-pic.jpg">
+        </div>
+
+        <span appearance="outline" class="">
+          <div class="file-uploader font-size-20">
+            <input hidden type="file" multiple #fileInput />
+            <button color="accent" class="mat-flat-button " (click)="fileInput.click()" aria-label="Add file"
+              [@animate]="{value:'*', params:{delay:'300ms',scale:'0.2'}}">
+              <span class="condo-red-text  h5 font-weight-600 upload-btn">UPLOAD PHOTO</span>
+            </button>
+          </div>
+        </span>
+
+        <div>
+          <span class="condo-gray-text">Max 2MB</span>
+        </div>
+
+      </div>
+      <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+
+        <mat-form-field appearance="outline" fxFlex="50" class="pr-16">
+          <mat-label>First Name</mat-label>
+          <input matInput formControlName="firstName">
+          <mat-error *ngIf="userForm.get('firstName').hasError('required')">
+            {{mandatory}}
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" fxFlex="50" class="pl-16">
+          <mat-label>Last Name</mat-label>
+          <input matInput formControlName="lastName">
+          <mat-error *ngIf="userForm.get('lastName').hasError('required')">
+            {{mandatory}}
+          </mat-error>
+        </mat-form-field>
+
+      </div>
+      <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+        <mat-form-field appearance="outline" fxFlex="50" class="pr-16">
+          <mat-label>Phone Number</mat-label>
+          <input matInput formControlName="phone">
+          <mat-error *ngIf="userForm.get('phone').hasError('required')">
+            {{mandatory}}
+          </mat-error>
+          <mat-error *ngIf="userForm.get('phone').hasError('pattern')">
+            Phone Number must be a Number
+          </mat-error>
+        </mat-form-field>
+
+
+      </div>
+
+    </form>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="start space-between" class="pb-24">
+  <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+    <button mat-flat-button color="" class="text-bold h5 cursor fuse-navy-700" (click)="openPasswordDialog()">
+      CHANGE PASSWORD
+    </button>
+  </div>
+  <button mat-button mat-flat-button mat-accent class="mr-16" color="accent" [mat-dialog-close]="userForm.value"
+    [disabled]="userForm.invalid" cdkFocusInitial (click)="editCorporation()">UPDATE</button>
+  <button mat-button mat-dialog-close class="fuse-navy-50">CANCEL</button>
+
+</mat-dialog-actions>

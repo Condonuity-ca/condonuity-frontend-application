@@ -1,0 +1,32 @@
+<div id="profile" class="page-layout simple tabbed">
+<div id="about" class="py-24" fxLayout="row wrap" [ngClass.xl]="'px-32'" [ngClass.lg]="'px-32'" [ngClass.md]="'px-32'" [ngClass.sm]="'px-32'" [ngClass.xs]="'px-16'" >
+
+    <div class="about-content" fxLayout="column" fxFlex="100">
+         <div class="mt-16" fxLayout="column" fxLayoutAlign="start" fxFlex="100">        
+            <mat-tab-group selectedIndex="0" (selectedTabChange)="changeTab($event)" dynamicHeight>
+                <mat-tab>
+                    <ng-template mat-tab-label>
+                        <mat-icon aria-hidden="false" aria-label="create project" class="mr-8 zoom">swap_vert</mat-icon>
+                        <span>TASK LIST</span>
+                    </ng-template>
+                    <task *ngIf="selectedTabIndex === 0"></task>
+                </mat-tab>
+                <mat-tab>                    
+                    <ng-template mat-tab-label>
+                        <mat-icon aria-hidden="false" aria-label="current project" class="mr-8 zoom">swap_horiz</mat-icon>
+                        <span>ANNUAL CONTRACTS</span>
+                    </ng-template>
+                    <contract-management *ngIf="selectedTabIndex === 1"></contract-management>                 
+                </mat-tab>  
+                <mat-tab>                    
+                    <ng-template mat-tab-label>
+                        <mat-icon aria-hidden="false" aria-label="current project" class="mr-8 zoom">swap_horiz</mat-icon>
+                        <span>BUILDING REPOSITORY</span>
+                    </ng-template>
+                    <building-repository *ngIf="selectedTabIndex === 2"></building-repository>                 
+                </mat-tab>  
+            </mat-tab-group>
+        </div>       
+    </div>
+</div>
+</div>

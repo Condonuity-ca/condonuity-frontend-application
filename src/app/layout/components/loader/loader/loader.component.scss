@@ -1,0 +1,40 @@
+
+
+.progress-loader1{width: 100% !important;
+    height: 100% !important;
+    z-index: 999!important;
+    position: absolute !important;
+    background: #000000;
+    opacity: 0.5;    
+}
+
+
+.loading-dots {
+  text-align: center;
+  z-index: 5;
+
+  .dot {
+    display: inline;
+    margin-left: 0.05em;
+    margin-right: 0.05em;
+    position: relative;
+    top: -1em;
+    font-size: 5.5em;
+    opacity: 0;
+    color:red;
+    animation: showHideDot 1s ease-in-out infinite;
+
+    &.one { animation-delay: 0.2s; }
+    &.two { animation-delay: 0.4s; }
+    &.three { animation-delay: 0.6s; }
+    &.four { animation-delay: 0.8s; }
+    &.five { animation-delay: 1s; }
+  }
+}
+
+@keyframes showHideDot {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  60% { opacity: 1; }
+  100% { opacity: 0; }
+}

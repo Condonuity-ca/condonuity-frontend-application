@@ -1,0 +1,268 @@
+Akash (132):
+      added user profile and registration page
+      login/register/terms and conditions design finetunes completed
+      remember me/forgot password added below to user email ID
+      removed unwanted files
+      folder and file names renamed
+      vendor profile view page designed
+      Working for responsive layout
+      Vendor Profile View page designed. Client f/b changes-Left menu image removed,
+      Login and Terms and Condition screen ui changes done.
+      Vendor Account Page designed. Left side bar design changed as per the mock-up
+      Vendor Profile Page - worked on header section and contact info
+      Client Profile- View page and Corporation Info Edit page designed.
+      Pop modal designed for vendor and client modules. Notification section hided
+      User Account Settings page designed
+      Forget Password & Corporation registration page designed
+      UI cahnges in client module and left menu user name removed
+      Vendor Edit page ui changes
+      vendor edit page designed
+      Vendor account view page design changed
+      Sorting CSS designed
+      Vendor Edit Page changes
+      Vendor Edit popup designed and Sort by text added
+      User Account Settings UI changes and requirements
+      Aminities View and Edit popup added
+      Register page design changed
+      Porfolio page designed and Notes added for upload button
+      Responsive design for accounts page
+      Responsive design for Client profile view page and account page
+      Responsive design for Client profile edit page
+      Project Creation page designed and working on project posting page
+      Project posting page designed
+      Production error fixed
+      Current Project tabs designed and working on bidding results
+      When Zooming in, the menu hamburger button--fixed
+      box height for “Company info” the same as the Main box next to it -- fixed
+      •When navigating to the profile section, only the first section should be visible. The remaining sections should be closed. -- fixed
+      Change “personal Info”  to Contact Person, Person name to Contact name -- changed
+      Change “add a line below the “Sort by” functionality to separate the top from the portfolios -- added. But looks something odd
+      Commit after Merge
+      Uploaded files and manager phone changed
+      Tags removed from insurance and added to company destails
+      Review and Detailed rating responsive issue fixed
+      Issue Fixed
+      Vendor Project page designed
+      Merging Bid creation files
+      merge conflict solved
+      bidding results and award decision page designed
+      Merge Commit
+      Browse Vendor page designed
+      Removed sortby text
+      Browse Condos page designed
+      Manage Contract page designed
+      New Contract popup designed
+      Tab design changes
+      Issue fixing and design changes in register vendor and profile pages
+      Condo corporation registration page aligment issue fixed
+      change password button color changed
+      Ask a question popup designed
+      Bid information edit and submit view page alignment changes done
+      Market Place page designed
+      Browse Vendor Design changes
+      Browse Condos responsively deesigned
+      Browse Vendor responsively deesigned
+      Responsively designed workstatus and issues fixed
+      UI changes moved from usermanagement branch to ServiceIntegration branch
+      project view, posting view responsively designed
+      Prod build issue solved
+      Project Creation page responsively designed
+      My Reviews Responsively designed for mobile view
+      Vendor Profile View page alignment issue fixed in mobile view
+      Vendor Profile View page alignment issue fixed in mobile view
+      upload documents, comments Awarding project button added and Removed information section
+      design issues fixed in responsive
+      UI fine tunes
+      added transition effect for moving one page to another-project posting
+      add user section added in vendor side
+      added icons for tabs and animated it
+      Loading icon added for login button
+      fixed design issue in vendor profile view. Projects tab icons added. Client profile edit corporate popup issue fixed
+      UI changes
+      Added pages for messages and fixed ui issues
+      created sidemenu for support users
+      created SupportUser project list and view page
+      Addedd confirmation dialog for client user account delete
+      added condition for login loading icon
+      browse condo listing alignment issue fixed
+      browse condo view details page alignment issue fixed
+      removed remember me from login email input field
+      created client messages- internal messages module
+      added external message in client message login
+      Created Client Messages - Thread Chat screen
+      alignment issue fixed in client profile page
+      error messages snack bar bg color changed
+      error messages snack bar bg color changed
+      vendor message module created and user type 3 added
+      changed the error message class name
+      designed notification box from the toolbar
+      created a dialog modal to show all the notification while clicking view all notifications
+      support user url changed
+      snackbar error message color changed
+      added preview dialog page
+      added document section
+      client aminities popup alignment changes
+      removed 450 from the URLs
+      Back to Login URL link changed
+      added register-organization URL for Terms and conditions page
+      removed id from create password page
+      added user terms agreement component for common users
+      client accept invite component created for existing user
+      management tools -task list tab/module names renamed
+      manage contract module placed inside the management tools tab as per the document
+      created module for building repository
+      removed one component from the task in tabs module
+      prod build error fixed
+      added contact us popup in footer, Reduced line height of tabs, addeduser account settings in toolbar dropdown
+      removed To input box from the internal message create thread popup
+      account page billing information section moved to bottom as per the feedbck
+      Vendor and Condos filter fields changes as informed
+      created help page for FAQ
+      added tootip to display username while mouseover on user image, added back button at the top
+      prod build issue fixed
+      commented two lines
+      added search box commonly in the toolbar
+      Removed roles from Vendor Account User popup and alignment changed, added Role in the toolbar
+      favorite moved to 1st column in listing
+      added status column
+      My Projects - Question and Answer section added
+      user account settings page design changed and search bar width increased
+      creatent page for vendor project view
+      user account page ui alignment changes and radio button designed
+      added contact us popup
+      contact us popup design changes
+
+Manav Phull (4):
+      Update azure-pipelines.yml for Azure Pipelines
+      Update azure-pipelines.yml for Azure Pipelines
+      Update azure-pipelines.yml for Azure Pipelines
+      Deleted azure-pipelines.yml
+
+Nagaraj (68):
+      Initial commit with basic angular app
+      Login Screen
+      Appended the api url in PROD env
+      removed self auth logic
+      Service urls have been updated
+      url updated
+      profile service integrated
+      profile page updated
+      Updated profile component
+      Rebased the service invokation
+      Fetch Org list updted
+      Vendor profile added
+      vendor profile view updated
+      Updated service url
+      Project listing updated
+      added toast messages
+      Menu issue fix
+      Project status updated
+      Vendor list updated
+      Condo list populated
+      Selfauth token removed
+      Updated the vendor selection logic
+      Updated condo details screen
+      Support user screen provision
+      Condo browsing logic is updated
+      Not you functionality implemented
+      fix for login loading indicator
+      password negative cases handled
+      Client account swithching from menu fix
+      vendor account updated
+      forgot password updated
+      forgot password validation updated
+      updated forgot password API
+      Fix for displaying email on the forgot password page
+      Fix for returning to login page after forgot password
+      User registration logic and Toast error messages updated.
+      client profile update logic fix
+      Client user invite is implemented
+      Merge branch 'WI/SecurityServiceIntegration' of https://dev.azure.com/TorbayTech/Condonuity/_git/condonuity-app into WI/SecurityServiceIntegration
+      Client org registarion fix
+      Merge branch 'WI/SecurityServiceIntegration' of https://dev.azure.com/TorbayTech/Condonuity/_git/condonuity-app into WI/SecurityServiceIntegration
+      delete client user updated
+      fix for delete button
+      Refreshing user list after deleting a client user
+      client user account update implementation
+      client accept invite with email link is implemented
+      Vendor registration fixes
+      Vendor profile page fix
+      fix for project creation
+      project tags api integrated
+      Marketplace API fix
+      Updated client user delete
+      market place and vendor update fix
+      Vendor user reset password implementation
+      Marketplace API updated
+      prod issue fix
+      Vendor registration tags updated
+      Client account screen details updated
+      User account view fi
+      vendor registration API updated for insurance and tags
+      prod issue fix
+      prod build issue fix
+      Update client user profile is implemented
+      client password change implemented
+      project preview updated
+      Prod fix
+      client user update fix
+      Vendor project Favorite implementation
+
+akash (3):
+      Deleted src1. Unwanted Folder
+      Deleted src.zip. Old files
+      Deleted src_30_9.zip. Old files
+
+gokul (63):
+      added account module and profile UI changes
+      Vendor Account Module and UI changes
+      Vendor Account module and User account module
+      Login and Authentication guard Services
+      Routing Modifications and Demo flow changes
+      User Account Module Modifications
+      My projects module Layout
+      Modifications in client profile modules
+      Modification on Notification tabs
+      Modification on client Account Management
+      Modifications in Client Registration,Client Profile and Client Account Modules
+      Vendor Account module and User account module
+      Merge branch 'feature/usermanagement' of https://dev.azure.com/TorbayTech/Condonuity/_git/condonuity-app into feature/usermanagement
+      Forgot Password Module
+      Vendor Registration and Routing Changes
+      Vendor Profile View Sorting functionalities Update
+      Vendor Profile Sorting and Modifications
+      Vendor Account Modifications
+      Tool Bar Modifications
+      Buid error fixed
+      Add Portfolio functionality
+      User Profile Modifications
+      Prod Fix
+      Build folder changes
+      Vendor Registation Modifications and Portfolio modifications
+      Prod Fix
+      Create Project Module Bidding List Creation
+      Create Project Fix
+      Modifications fix
+      Create Project Module Award Decision UI Branching
+      Login and Registration Validation
+      Cleint Profile,Account and User Profile Validatation
+      Vendor Profile Validation
+      Project Posting client and Vendor Setup
+      Client Org Registation Layout Change
+      Vendor Project Listing Modifications
+      Vendor Bid Creation for Projects
+      Build Issue Fix
+      Client Modifications
+      Vendor Project edit and QA component creation
+      Production Fix
+      Issues and Modifications Fix
+      Vendor Project Start Bidding and Edit Bidding
+      Layout for Filter and Marketplace Components
+      Modifications in Marketplace Layout,Creattion of Browse Vendor and Condo Layout
+      Contract Management Layout and Frontend Functionalities
+      Vendor Browser Functionalities
+      Condo Browser Functionality
+      Review Module Layout and Functionalies
+      View For Condo and Vendor Browser
+      Integrated the Email verify API
+      Registration service is 

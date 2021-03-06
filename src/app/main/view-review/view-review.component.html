@@ -1,0 +1,189 @@
+<div *ngIf="isDataAvailableToLoad" id="profile" class="page-layout simple">
+  <div id="about" class="mb-32" fxLayout="row wrap" [ngClass.xl]="'p-24 '" [ngClass.lg]="'p-8 '" [ngClass.md]="'p-8'" [ngClass.sm]="'p-8'"
+    [ngClass.xs]="'p-8'">
+
+    <div class="about-content" fxLayout="column" fxFlex="100" fxFlex.gt-sm="100" fxFlex.gt-md="100">
+
+      <div *ngIf="pageOfItems.length > 0" class="" fxLayout="row" fxLayout.xs="column" fxLayoutAlign.xs="start"
+        fxLayoutAlign="space-between flex-start" class="mt-32 mb-16 " [ngClass.xl]="'mx-24'"  [ngClass.lg]="'mx-24'" [ngClass.md]="'mx-24'"
+        [ngClass.sm]="'mx-24'" [ngClass.xs]="''">
+        <div class="" [ngClass.xs]="'mb-16'">
+          <div class="h2 condo-gray-text">Showing All Reviews</div>
+        </div>
+        <!-- Edit btn hided for version 1 -->
+        <div fxLayout="row" fxLayout.xs="column">
+          <mat-button-toggle-group value="newest" fxLayout.xs='column'>
+            <div class="condo-sorting">
+              <mat-button-toggle value="newest" class="mat-stroked-button mat-primary mr-12 active"
+                (click)="sortReviews(1)">
+                NEWEST
+              </mat-button-toggle>
+              <mat-button-toggle value="rating" class="mat-stroked-button mat-primary" (click)="sortReviews(2)">
+                RATING
+              </mat-button-toggle>
+            </div>
+          </mat-button-toggle-group>
+        </div>
+      </div>
+      <div *ngIf="pageOfItems.length > 0" fxLayout="column">
+        <div *ngFor="let review of pageOfItems;let i= index" fxLayout="column">
+
+          <div fxFlex="70" class="mat-card mat-elevation-z  mt-16 b-r-t-4" style="background: #fafafa" fxFlex.sm="100"
+            fxFlex.xs="100" [ngClass.xl]="'mx-24 py-24 px-24'" [ngClass.lg]="'mx-24 p-24'" [ngClass.md]="'mx-24 p-24'" [ngClass.sm]="'mx-24 p-24'"
+            [ngClass.xs]="'p-16'">
+            <div class="" fxLayout="column">
+              <div class="mat-card mat-elevation-z" style="background: transparent">
+                <div class="" fxLayout="row" fxLayoutAlign="start end" fxLayoutAlign.xs="start" fxLayout.xs="column">
+                  <div class="" fxFlex="100" fxFlex.xs="100" [ngClass.xl]="'pr-16 ml-24 pt-16'" [ngClass.lg]="'pr-16 ml-24'" [ngClass.md]="'pr-16 ml-24'"
+                    [ngClass.sm]="'pr-16 ml-24'" [ngClass.xs]="''">
+                    <div class="h3 font-weight-600">{{review.vendorOrganisation.companyName | uppercase}}</div>
+                  </div>
+                  <div fxLayout="column" fxFlex="50" fxLayoutAlign="end end" fxLayoutAlign.xs="start" fxFlex.xs="100"
+                    fxLayout.xs="column" [ngClass.xs]="'mt-8'">
+                    <div fxLayout="row" fxFlex.md="100" class="mt-8">
+                      <div class="h2 text-bold">{{review.rating}}</div>
+                      <div fxLayout="row">
+                        <div fxLayout="row">
+                          <div *ngFor="let rating of reviewRatingData[i]">
+                            <mat-icon *ngIf="rating == 'fullStar'" class="s-24 amber-fg">star</mat-icon>
+                            <mat-icon *ngIf="rating == 'halfStar'" class="s-24 amber-fg">star_half</mat-icon>
+                            <mat-icon *ngIf="rating == 'noStar'" class="s-24" style="color:#d1dbe2">star</mat-icon>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div fxFlex="70" class="mat-card mat-elevation-z  b-r-b-4" fxFlex.sm="100" fxFlex.xs="100"
+            [ngClass.xl]="'mx-24 p-32'" [ngClass.lg]="'mx-24 p-32'" [ngClass.md]="'mx-24 p-32'" [ngClass.sm]="'mx-24 mb-32 p-32'"
+            [ngClass.xs]="'mb-16 p-16'">
+            <div class="" fxLayout="column">
+              <div class="mat-card mat-elevation-z">
+                <div class="mat-card mat-elevation-z project-list mb-24" [ngClass.xl]="''" [ngClass.lg]="''" [ngClass.md]="'pt-32 mr-0'"
+                  [ngClass.sm]="'pt-32 mr-0'" [ngClass.xs]="'pt-16'">
+                  <div fxLayout="row wrap" fxLayout.sm="row wrap" fxLayout.xs="column" class="">
+                    <div class="mx-16" [ngClass.md]="'mb-24'" [ngClass.sm]="'mb-32'" [ngClass.xs]="'mb-24'">
+                      <div>
+                        <div class="h5 condo-gray-text mb-4">PROFESSIONALISM</div>
+                        <div fxLayout="row" fxLayoutAlign="start flex-start">
+                          <div *ngFor="let rating of proRatingData[i]">
+                            <mat-icon *ngIf="rating == 'fullStar'" class="s-24 amber-fg">star</mat-icon>
+                            <mat-icon *ngIf="rating == 'halfStar'" class="s-24 amber-fg">star_half</mat-icon>
+                            <mat-icon *ngIf="rating == 'noStar'" class="s-24" style="color:#d1dbe2">star</mat-icon>
+                          </div>
+                          <div class="ml-8 h2 text-bold">{{proRatingValue[i]}}</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="mx-16" [ngClass.md]="'mb-24'" [ngClass.sm]="'mb-32'" [ngClass.xs]="'mb-24'">
+                      <div>
+                        <div class="h5 condo-gray-text mb-4">ACCURACY</div>
+                        <div fxLayout="row" fxLayoutAlign="start flex-start">
+                          <div *ngFor="let rating of accRatingData[i]">
+                            <mat-icon *ngIf="rating == 'fullStar'" class="s-24 amber-fg">star</mat-icon>
+                            <mat-icon *ngIf="rating == 'halfStar'" class="s-24 amber-fg">star_half</mat-icon>
+                            <mat-icon *ngIf="rating == 'noStar'" class="s-24" style="color:#d1dbe2">star</mat-icon>
+                          </div>
+                          <div class="ml-8 h2 text-bold">{{accRatingValue[i]}}</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="mx-16" [ngClass.md]="'mb-24'" [ngClass.sm]="'mb-32'" [ngClass.xs]="'mb-24'">
+                      <div>
+                        <div class="h5 condo-gray-text mb-4">QUALITY</div>
+                        <div fxLayout="row" fxLayoutAlign="start flex-start">
+                          <div *ngFor="let rating of qaRatingData[i]">
+                            <mat-icon *ngIf="rating == 'fullStar'" class="s-24 amber-fg">star</mat-icon>
+                            <mat-icon *ngIf="rating == 'halfStar'" class="s-24 amber-fg">star_half</mat-icon>
+                            <mat-icon *ngIf="rating == 'noStar'" class="s-24" style="color:#d1dbe2">star</mat-icon>
+                          </div>
+                          <div class="ml-8 h2 text-bold">{{qaRatingValue[i]}}</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="mx-16" [ngClass.md]="'mb-24'" [ngClass.sm]="'mb-32'" [ngClass.xs]="'mb-24'">
+                      <div>
+                        <div class="h5 condo-gray-text mb-4">RESPONSIVENESS</div>
+                        <div fxLayout="row" fxLayoutAlign="start flex-start">
+                          <div *ngFor="let rating of resRatingData[i]">
+                            <mat-icon *ngIf="rating == 'fullStar'" class="s-24 amber-fg">star</mat-icon>
+                            <mat-icon *ngIf="rating == 'halfStar'" class="s-24 amber-fg">star_half</mat-icon>
+                            <mat-icon *ngIf="rating == 'noStar'" class="s-24" style="color:#d1dbe2">star</mat-icon>
+                          </div>
+                          <div class="ml-8 h2 text-bold">{{resRatingValue[i]}}</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div fxLayout="row wrap" class="mt-16" fxLayoutAlign="start flex-start">
+                    <div class="ml-16">
+                      <div class="h5 condo-gray-text">COMMENTS</div>
+                      <div class="h4 line-height-26"><span>{{review.reviewComments}}</span></div>
+                    </div>
+                  </div>
+
+                </div>
+
+
+                <div class="" [ngClass.xs]="'pl-16'" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start flex-start"
+                  fxLayoutAlign.xs="start">
+
+                  <div class="" fxFlex="45" fxFlex.xs="100" [ngClass.xl]="'pr-16 ml-16'" [ngClass.lg]="'pr-16 ml-16'" [ngClass.md]="'pr-16 ml-16'"
+                    [ngClass.sm]="'pr-16 ml-16'" [ngClass.xs]="'mb-16'">
+                    <div>
+                      <div class="h5 condo-gray-text">POSTED BY</div>
+                      <div class="h4"><span>{{review.clientUserFirstName}}
+                          {{review.clientUserLastName}}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="" fxFlex="35" fxFlex.xs="100" [ngClass.xl]="'pr-16 ml-24'" [ngClass.lg]="'pr-16 ml-24'" [ngClass.md]="'pr-16 ml-16'"
+                    [ngClass.sm]="'pr-16 ml-16'" [ngClass.xs]="'mb-4'">
+                    <div>
+                      <div class="h5 condo-gray-text">REVIEW DATE</div>
+                      <div class="h4"><span>{{review.reviewDate}}</span></div>
+                    </div>
+                  </div>
+                  <div fxLayout="column" fxFlex="40" fxLayoutAlign="end end" fxLayoutAlign.xs="end end" fxFlex.xs="100"
+                    fxLayout.xs="column" [ngClass.xs]="'mt-4'">
+                    <div fxLayout="row" fxFlex.md="100">
+                      <button mat-button class="mat-chip condo-red-400" cdkFocusInitial
+                        (click)="viewReviewDetails(review)"><span class="font-weight-500">VIEW DETAILS</span></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="sortedList.length == 0" class="about-content" fxLayout="column" fxFlex="100" fxFlex.gt-sm="50"
+        fxFlex.gt-md="100">
+        <div class="" fxLayout="row" fxLayoutAlign="space-between flex-start"
+          class="mat-card mat-elevation-z px-32 pt-32 pb-16 mx-24 mt-16">
+          <div class="h2 condo-gray-text">No Reviews Found</div>
+        </div>
+      </div>
+
+      <div class="card-footer pb-0 pt-3 " [ngClass.xl]="'mx-24'" [ngClass.lg]="'mx-24'" [ngClass.md]="'mx-24'" [ngClass.sm]="'mx-12'"
+        [ngClass.xs]="'mx-4'">
+        <!-- <div class="card-body">
+          <div *ngFor="let item of pageOfItems">{{item.name}}</div>
+        </div> -->
+        <jw-pagination [items]="sortedList" (changePage)="onChangePage($event)"></jw-pagination>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,90 @@
+<div fxLayout="row" fxLayoutAlign="space-between center">
+  <div mat-dialog-title class="pl-12">EDIT ADDITIONAL INFORMATION</div>
+
+  <mat-dialog-actions align="end" class="px-16 mb-12">
+    <button mat-button mat-dialog-close style="margin-top:-30px;min-width: 28px !important;" class="p-0">
+      <mat-icon class="s-24 condo-red-text" mat-dialog-close>close</mat-icon>
+    </button>
+  </mat-dialog-actions>
+
+</div>
+
+<mat-dialog-content class="mat-typography">
+  <div class="profile-box info-box general" fxLayout="column">
+    <form fxLayout="column" fxLayoutAlign="start" fxFlex="1 0 auto" name="corpEditform" [formGroup]="corpEditform">
+
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start center" fxLayoutAlign.xs="start" fxFlex="1 0 auto"
+        class="mt-8">
+        <mat-form-field appearance="outline" fxFlex="50" class="px-16">
+          <mat-label>No. Of Units</mat-label>
+          <input matInput formControlName="unitsNos" required="required">
+          <mat-error *ngIf="corpEditform.get('unitsNos').hasError('required')">
+            {{mandatory}}
+          </mat-error>
+          <mat-error *ngIf="corpEditform.get('unitsNos').hasError('pattern')">
+            No of Units must be a Number
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" fxFlex="50" class="px-16">
+          <mat-label>No. of Voting Units</mat-label>
+          <input matInput formControlName="votingUnits" required="required">
+          <mat-error *ngIf="corpEditform.get('votingUnits').hasError('required')">
+            {{mandatory}}
+          </mat-error>
+          <mat-error *ngIf="corpEditform.get('votingUnits').hasError('pattern')">
+            Please Enter Number
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start center" fxLayoutAlign.xs="start" fxFlex="1 0 auto">
+
+        <mat-form-field appearance="outline" fxFlex="50" class="px-16">
+          <mat-label>Date of Registration</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="registerDate" placeholder="Choose a date"
+            required="required" readonly>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="corpEditform.get('registerDate').hasError('required')">
+            Register Date is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" fxFlex="50" class="px-16">
+          <mat-label>Management Company</mat-label>
+          <input matInput formControlName="managementCompany" required="required">
+          <mat-error *ngIf="corpEditform.get('managementCompany').hasError('required')">
+            {{mandatory}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start center"
+        fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxFlex="1 0 auto">
+        <mat-form-field appearance="outline" fxFlex="50" class="px-16">
+          <mat-label>Manager Name</mat-label>
+          <input matInput formControlName="managerName">
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex="50" class="px-16">
+          <mat-label>Manager Email</mat-label>
+          <input matInput formControlName="managerEmail" class="condo-lower">
+          <mat-error *ngIf="corpEditform.get('managerEmail').hasError('pattern')">
+            Please Enter Valid Email ID
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" fxFlex="50" class="px-16">
+          <mat-label>Manager Phone Number</mat-label>
+          <input matInput formControlName="managerPhone">
+          <mat-error *ngIf="corpEditform.get('managerPhone').hasError('pattern')">
+            Enter a Number
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </form>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end" class="px-16 mb-4">
+  <button (click)="update()" mat-flat-button mat-accent [disabled]="corpEditform.invalid" cdkFocusInitial
+    color="accent">UPDATE</button>
+  <button mat-button mat-dialog-close mat-flat-button class="fuse-navy-50 mr-8">CANCEL</button>
+</mat-dialog-actions>

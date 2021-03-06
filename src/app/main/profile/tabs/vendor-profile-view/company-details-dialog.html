@@ -1,0 +1,194 @@
+<div fxLayout="row" fxLayoutAlign="space-between center">
+  <div mat-dialog-title class="pl-12 ">EDIT COMPANY DETAILS</div>
+
+  <mat-dialog-actions align="end" class="px-16 mb-12">
+    <button mat-button mat-dialog-close style="margin-top:-30px;min-width: 28px !important;" class="p-0">
+      <mat-icon class="s-24 condo-red-text" mat-dialog-close>close</mat-icon>
+    </button>
+  </mat-dialog-actions>
+
+</div>
+<mat-dialog-content class="mat-typography">
+  <div class="profile-box info-box general" fxLayout="column">
+    <form fxLayout="column" fxLayoutAlign="start" fxFlex="1 0 auto" name="comDetailsEditform"
+      [formGroup]="comDetailsEditform">
+
+      <div fxLayout="row wrap" fxLayoutAlign="start center" fxFlex="1 0 auto" class="" [ngClass.lg]="'mb-32'"
+        [ngClass.md]="'mb-32'" [ngClass.sm]="'mb-32'" [ngClass.xs]="'mb-12'">
+        <div class="w-80 h-80" [ngClass.xs]="'mb-12 '">
+          <img *ngIf="imgURL == null" class="border-radius-100" src="assets/images/client-no-pic.jpg"
+            style="width:80px;height:80px">
+          <img [src]="imgURL" class="border-radius-100" *ngIf="imgURL" style="width:80px;height:80px">
+
+          <!-- <img [src]="imgURL" *ngIf="imgURL">
+          <img *ngIf="imgURL == ''" class="border-radius-100" src="assets/images/no-pic.jpg"> -->
+
+        </div>
+
+
+        <span *ngIf="currentUser.userType != 3" appearance="outline" class="" [ngClass.xs]="'mt-16'">
+          <div class="file-uploader font-size-20">
+            <input hidden type="file" (change)="chooseProfileImage($event)" accept="image/*" multiple #fileInput />
+            <button color="accent" class="mat-flat-button " (click)="fileInput.click()" aria-label="Add file"
+              [@animate]="{value:'*', params:{delay:'300ms',scale:'0.2'}}">
+              <span class="condo-red-text  h5 font-weight-600 upload-btn">UPLOAD PHOTO</span>
+            </button>
+          </div>
+        </span>
+
+        <div *ngIf="currentUser.userType != 3" [ngClass.xs]="'mt-8 ml-16'">
+          <span class="condo-gray-text">Max 2MB</span>
+        </div>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+        <mat-form-field appearance="outline" fxFlex="100" class="px-16">
+          <mat-label>Company Name</mat-label>
+          <input matInput formControlName="comName" required="required">
+          <mat-error *ngIf="comDetailsEditform.get('comName').hasError('required')">
+            {{mandatory}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <!-- Tag Postion Starts -->
+      <div fxLayout="row" fxLayout.xs='column' fxLayoutAlign.xs="start" fxLayoutAlign="start center" fxFlex="1 0 auto"
+        class="px-16">
+        <mat-form-field appearance="outline" fxFlex="100" fxFlex.xs='90' class="">
+          <mat-label>Tags*</mat-label>
+
+          <mat-chip-list #chipList aria-label="Tag Selection">
+            <mat-chip *ngFor="let tag of selectedTags" [selectable]="selectable" [removable]="removable"
+              (removed)="remove(tag)">
+              {{tag.tagName}}
+              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <input [disabled]="currentUser.userType == 3" required="required" placeholder="Select Tags" #tagInput
+              [formControl]="tagCtrl" formControlName="tags" [matAutocomplete]="auto" [matChipInputFor]="chipList"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur">
+          </mat-chip-list>
+          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+            <mat-option *ngFor="let tags of filteredTags | async" [value]="tags">
+              {{tags.tagName}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+      <!-- Tag Portion Ends -->
+
+
+      <div fxLayout="row" fxLayout.xs='column' fxLayoutAlign.xs="start" fxLayoutAlign="start center" fxFlex="1 0 auto"
+        class="px-16">
+        <mat-form-field appearance="outline" fxFlex="100" fxFlex.xs='90' class="">
+          <mat-label>Serviced Cities *</mat-label>
+
+          <mat-chip-list maxLength="1" #cityChipList aria-label="City Selection" formControlName="cityChips">
+            <mat-chip *ngFor="let cityInfo of selectedCities" [selectable]="selectable" [removable]="removable"
+              (removed)="removeCity(cityInfo)">
+              {{cityInfo.city}}
+              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <input placeholder="Select Serviced Cities" #cityInput [formControl]="cityCtrl"
+              formControlName="servicedCities" [matAutocomplete]="cityAuto" [matChipInputFor]="cityChipList"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur">
+          </mat-chip-list>
+          <mat-autocomplete #cityAuto="matAutocomplete" (optionSelected)="selectCity($event)">
+            <mat-option *ngFor="let cityInfo of filteredCities | async" [value]="cityInfo">
+              {{cityInfo.city}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+
+        <!-- <mat-form-field appearance="outline" fxFlex="50" class="pl-16">
+          <mat-label>Serviced Provinces</mat-label>
+          <input readonly matInput formControlName="serviceProvinces" required>
+        </mat-form-field> -->
+      </div>
+
+
+      <!-- <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+        <mat-form-field appearance="outline" fxFlex="100" class="px-16">
+          <mat-label>Serviced Cities</mat-label>
+          <mat-select formControlName="servicedCities" multiple (selectionChange)="cityListUpdated($event.value)">
+            <mat-option *ngFor="let cityInfo of cityProvinceList" [value]="cityInfo">
+              {{cityInfo.city}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="comDetailsEditform.get('servicedCities').hasError('required')">
+            {{mandatory}}
+          </mat-error>
+        </mat-form-field>
+      </div> -->
+
+
+
+      <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+        <mat-form-field appearance="outline" fxFlex="100" class="px-16">
+          <mat-label>Description</mat-label>
+          <textarea matInput formControlName="description" required="required" maxlength="2000" class="height-200"
+            #description>  </textarea>
+
+          <mat-error *ngIf="comDetailsEditform.get('description').hasError('required')">
+            {{mandatory}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+        <div class="h5 condo-gray-text ml-16">
+          Remaining {{2000 - description.value.length}} Characters
+        </div>
+      </div>
+
+
+      <div *ngIf="isSupportUser" class="" fxLayout="row" fxLayoutAlign="space-between center">
+        <div class="pr-16 mt-8" [ngClass.lg]="'mb-32'" [ngClass.md]="'mb-32'" [ngClass.sm]="'mb-32'"
+          [ngClass.xs]="'mb-16'">
+          <div class="h3 font-weight-600">UPLOADED DOCUMENTS</div>
+        </div>
+      </div>
+
+      <div *ngIf="isSupportUser" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start top" fxLayoutAlign.xs="start"
+        fxFlex="1 0 auto">
+        <div class="file-uploader" appearance="outline" fxFlex="70" fxFlex.sm="60" fxFlex.xs="100"
+          class="upload-button">
+          <div fxLayout="column">
+            <span appearance="outline" fxFlex="100" class="px-0">
+              <input hidden type="file" (change)="appendDocumentFiles($event)" multiple #fileInput
+                accept="application/pdf,image/*" />
+              <button color="accent" class="mat-flat-button bg-transparent" (click)="fileInput.click()"
+                aria-label="Add file" [@animate]="{value:'*', params:{delay:'300ms',scale:'0.2'}}">
+                <span class="condo-red-text  h4"><strong>
+                    <mat-icon class="s-16 font-weight-600 mat-icon" style="vertical-align: center">add_circle
+                    </mat-icon>
+                    Click here to Add Files
+                  </strong></span>
+              </button>
+            </span>
+
+            <div *ngFor="let docFile of docFileList; index as i" fxFlex="100">
+              <h4 class="mt-16 ml-16"><span class="condo-red-text mr-6" title="Remove File"
+                  (click)="removeDocAttachment(i)">
+                  <mat-icon class="s-16 cursor" style="vertical-align: middle">remove_circle_outline</mat-icon>
+                </span> {{docFile.name}} - <span class="condo-gray-text">{{docFile.formatedSize}}</span> </h4>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="isSupportUser" fxLayout="column" class=" mt-12">
+        <div class="h5 condo-gray-text"> <span class="condo-red-text">*</span>
+          Supported files are images and pdfs
+        </div>
+      </div>
+
+    </form>
+  </div>
+
+  <!-- Footer Section -->
+  <mat-dialog-actions align="end" class="px-16 mt-24 mb-12">
+    <button [disabled]="comDetailsEditform.invalid" mat-button mat-flat-button mat-accent color="accent"
+      (click)="updateCompanyDetails()">UPDATE</button>
+    <button mat-button mat-dialog-close class="fuse-navy-50">CANCEL</button>
+  </mat-dialog-actions>
+  <!-- Footer Section -->
+</mat-dialog-content>

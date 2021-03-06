@@ -1,0 +1,81 @@
+<div fxLayout="row" fxLayoutAlign="space-between center">
+  <div mat-dialog-title class="pl-12">NEW INTERNAL THREAD</div>
+
+  <mat-dialog-actions align="end" class="px-16 mb-12">
+    <button mat-button mat-dialog-close style="margin-top:-20px;min-width: 28px !important;" class="p-0">
+      <mat-icon class="s-24 condo-red-text" mat-dialog-close>close</mat-icon>
+    </button>
+  </mat-dialog-actions>
+
+</div>
+<mat-dialog-content class="mat-typography">
+  <div class="profile-box info-box general" fxLayout="column">
+    <form fxLayout="column" fxLayoutAlign="start" fxFlex="1 0 auto" name="createThreadform"
+      [formGroup]="createThreadform">
+
+      <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start center"
+        fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxFlex="1 0 auto">
+        <mat-form-field appearance="outline" fxFlex="100" class="px-16">
+          <mat-label>To</mat-label>
+          <input matInput formControlName="to" required="required">
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start center"
+        fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxFlex="1 0 auto">
+        <mat-form-field appearance="outline" fxFlex="100" class="px-16">
+          <mat-label>Subject</mat-label>
+          <input matInput formControlName="subject" required="required">
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start center"
+        fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxFlex="1 0 auto" class="">
+        <mat-form-field appearance="outline" fxFlex="100" class="px-16">
+
+          <mat-label>Description</mat-label>
+          <textarea name="desciption" formControlName="other" matInput type="text" max-rows="6"
+            style="height:100px;"></textarea>
+        </mat-form-field>
+      </div>
+
+
+
+      <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start center"
+        fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxFlex="1 0 auto" class="upload-button mx-16" style="">
+
+        <span appearance="outline" fxFlex="50" class="">
+          <div class="file-uploader font-size-20">
+            <input hidden type="file" multiple>
+            <button color="accent" class="mat-flat-button " aria-label="Add file"
+              [@animate]="{value:'*', params:{delay:'300ms',scale:'0.2'}}">
+              <span class="condo-red-text  h4"><strong>
+                  <mat-icon class="s-16 font-weight-600 mat-icon" style="vertical-align: center">add_circle</mat-icon>
+                  Click here to Add Files
+                </strong></span>
+            </button>
+          </div>
+        </span>
+
+      </div>
+
+
+      <div fxLayout="column" class="mx-16 mt-12">
+        <div class="h5 condo-gray-text">
+          <span class="condo-red-text">*</span> Please upload legal documentation showing the most recent elected board
+          member names, and assigned property management company. Our registration team will contact you for
+          verification purposes before activating your profile.
+        </div>
+        <div class="h5 condo-gray-text">
+          Supported files are images and pdfs
+        </div>
+      </div>
+
+    </form>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end" class="px-16 mt-24 mb-12">
+  <button mat-button mat-flat-button mat-accent color="accent">CREATE THREAD</button>
+  <button mat-button mat-dialog-close class="fuse-navy-50">CANCEL</button>
+
+</mat-dialog-actions>

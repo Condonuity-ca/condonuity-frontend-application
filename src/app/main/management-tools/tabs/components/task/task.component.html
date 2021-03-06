@@ -1,0 +1,109 @@
+<div fxLayout="column" id="timeline">
+
+  <div class="" fxLayout="row" fxLayoutAlign="space-between flex-start" class="mt-32 mx-24">
+    <div class="ml-8">
+      <div class="h2 condo-gray-text">Filter By</div>
+    </div>
+  </div>
+  <form fxLayout="column" fxLayoutAlign.xl="start" fxLayoutAlign.lg="start" fxLayoutAlign.md="start" fxLayoutAlign.sm="start"
+    fxLayoutAlign.xs="start" fxFlex="1 0 auto" class="mb-0" name="taskListform" [formGroup]="taskListform">
+    <div class="" fxLayout.xl="row" fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="column" fxLayout.xs="column"
+     fxLayoutAlign.xl="space-between flex-start" fxLayoutAlign.lg="space-between flex-start" fxLayoutAlign.md="space-between flex-start" fxLayoutAlign.sm="start"
+      fxLayoutAlign.xs="start" class="mat-card mat-elevation-z px-8 pt-4 mx-24 mt-16">
+      <div class="" fxFlex.xl="70" fxFlex.lg="70" fxFlex.md="70" fxFlex.sm="100" fxFlex.xs="100" fxLayout.lg="row" fxLayout.md="row"
+        fxLayout.sm="column" fxLayout.xs="column">
+        <mat-form-field appearance="outline" class="" [ngClass.xl]="'pr-16'" [ngClass.lg]="'pr-16'" [ngClass.md]="'pr-16'"
+          [ngClass.sm]="'pr-0'" [ngClass.xs]="'pr-0'" fxFlex="40">
+          <mat-label>Priority</mat-label>
+          <mat-select class="account-selection" formControlName="priority" placeholder=""
+            (selectionChange)="priorityChanged($event.value)">
+            <mat-option value="1">Highest</mat-option>
+            <mat-option value="2">High</mat-option>
+            <mat-option value="3">Medium</mat-option>
+            <mat-option value="4">Low</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="" [ngClass.xl]="'pr-16'" [ngClass.lg]="'pr-16'" [ngClass.md]="'pr-16'"
+          [ngClass.sm]="'pr-0'" [ngClass.xs]="'pr-0'" fxFlex="40">
+          <mat-label>Status</mat-label>
+          <mat-select class="account-selection" formControlName="status" placeholder=""
+            (selectionChange)="statusChanged($event.value)">
+            <mat-option value="1">Open</mat-option>
+            <mat-option value="2">Deferred</mat-option>
+            <mat-option value="3">On Hold</mat-option>
+            <mat-option value="4">In Progress</mat-option>
+            <mat-option value="5">Closed</mat-option>
+            <mat-option value="6">Re-opened</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div fxLayout.xl="row" fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="row" fxLayout.xs="row wrap" fxLayoutAlign.xl="end end" fxLayoutAlign.lg="end end"
+        fxLayoutAlign.md="end end" fxLayoutAlign.sm="end end" fxLayoutAlign.xs="end end" fxFlex.xl="30" fxFlex.lg="30" fxFlex.md="30"
+        fxFlex.sm="30" fxFlex.xs="100" [ngClass.sm]="'pb-16'" [ngClass.xs]="'pb-16'">
+        <div style="margin-top:-10px;" fxFlex.xs="100">
+          <button mat-button class="mat-flat-button condo-red-300 " fxFlex.xs="100" [ngClass.xl]="'ml-16'" [ngClass.lg]="'ml-16'"
+            [ngClass.md]="'ml-16'" [ngClass.sm]="'ml-16'" [ngClass.xs]="'ml-0 mb-16'" cdkFocusInitial
+            (click)="onClickclearFilter()">CLEAR FILTER</button>
+        </div>
+
+
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="mt-8">
+  <div class="mt-24 mb-8" fxLayout.xl="row" fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="column"  fxLayout.xs="column" fxLayoutAlign="end end">
+    <button mat-button
+      class="mat-button-toggle mat-stroked-button mat-primary active mat-button-toggle-checked mat-button-toggle-appearance-standard"
+      color="accent" (click)="openCreateTaskDialog()">+ ADD NEW TASK</button>
+  </div>
+
+  <div id="timeline" class="p-24 mt-24" fxLayout="row wrap">
+
+    <!-- <ngx-datatable fxLayout="column" fxLayoutAlign="space-between flex-start" style="width: 100%" *ngIf="shouldReloadData"
+      class="material pr-20" [rows]="taskList" [columnMode]="'reorder'" [footerHeight]="50" [rowHeight]="'50'"
+      [scrollbarH]="true" [scrollbarV]="false" [selectionType]="'checkbox'" [limit]="20"
+      (activate)="openTaskCommentsDialog($event)"> -->
+
+        <ngx-datatable *ngIf="shouldReloadData" fxLayout="column" fxLayoutAlign="start" style="width: 100%" class="material pr-20" [rows]="taskList"
+    [columnMode]="'force'" [footerHeight]="50" [rowHeight]="'auto'" [scrollbarH]="true" [selectionType]="'checkbox'"
+    [limit]="20" (activate)="openTaskCommentsDialog($event)">
+
+      <ngx-datatable-column [width]="80" name="Item" prop="id"> </ngx-datatable-column>
+      <ngx-datatable-column [width]="90" name="Priority" prop="priorityText"></ngx-datatable-column>
+      <ngx-datatable-column [width]="90" name="Status" prop="statusText"></ngx-datatable-column>
+      <ngx-datatable-column [width]="200" name="Description" prop="taskDescription"></ngx-datatable-column>
+      <ngx-datatable-column [width]="150" name="Assigned To" prop="assineeDisplayName"></ngx-datatable-column>
+      <ngx-datatable-column [width]="120" name="Created By" prop="createdByUser"></ngx-datatable-column>
+      <ngx-datatable-column [width]="130" name="Created Date" prop="createdDate"></ngx-datatable-column>
+      <ngx-datatable-column [width]="150" name="Last Modified By" prop="modifiedByUser"></ngx-datatable-column>
+      <ngx-datatable-column [width]="140" name="Last Modified" prop="modifiedDisplayDate"></ngx-datatable-column>
+      <ngx-datatable-column [width]="130" name="Closure Date" prop="closureDate"></ngx-datatable-column>
+      <ngx-datatable-column name="Comments" [width]="120">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <div class="numberCircle">{{row.commentsCount}}</div>
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Action" [width]="90">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <button (click)="openEditTaskDialog($event, row)" mat-button>
+            <mat-icon>edit</mat-icon>
+          </button>
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
+    <div fxLayout="row" fxLayoutAlign="start flex-start" fxFlex="1 0 auto">
+      <div fxLayout="row" fxLayoutAlign="end" fxFlex="1 0 auto">
+        <button mat-raised-button color="primary" class="submit-button mr-16" aria-label="Continue"
+          (click)="ExportTOExcel()">
+          DOWNLOAD
+        </button>
+        <button mat-raised-button color="primary" class="submit-button" aria-label="Continue" (click)="print()">
+          PRINT
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

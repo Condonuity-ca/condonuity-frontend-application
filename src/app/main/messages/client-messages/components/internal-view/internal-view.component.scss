@@ -1,0 +1,313 @@
+@import "src/@condonuity/scss/fuse";
+
+.message-height {
+  min-height: 100px;
+  max-height: 300px;
+
+  @include media-breakpoint ('xl') {
+    min-height: 600px !important;
+    max-height: 600px;
+  }
+}
+
+.condo-tooltip {
+  color: #97a3b4 !important;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 3px 6px;
+  border-radius: 50%;
+}
+
+.recipients {
+  background: #fff !important;
+  padding: 1px 16px;
+  border-radius: 20px;
+}
+
+.chat-attachment {
+  background: #f4e8e8 !important;
+  padding: 1px 16px;
+  border-radius: 20px;
+}
+
+.condo-icons {
+  line-height: 150px;
+  position: absolute;
+  margin-top: 18px;
+}
+
+.chat-messages .message-row .avatar {
+  position: absolute;
+  left: -32px;
+  margin: 0;
+}
+
+.chat-messages .message-row.last-of-group .bubble .time {
+  display: -webkit-box;
+  display: flex;
+}
+
+.chat-messages .message-row.contact .bubble .time {
+  margin-left: 12px;
+}
+
+.chat-messages .message-row .bubble .time {
+  position: absolute;
+  display: none;
+  width: 100%;
+  font-size: 11px;
+  margin-top: 8px;
+  top: 100%;
+  left: 0;
+  white-space: nowrap;
+}
+
+.chat-messages .message-row {
+  position: relative;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+  -webkit-box-align: start;
+  align-items: flex-start;
+  -webkit-box-pack: start;
+  justify-content: flex-start;
+  padding: 0 16px 4px;
+}
+
+
+
+.chat-messages .message-row.contact.last-of-group .bubble {
+  border-bottom-left-radius: 20px;
+}
+
+.chat-messages .message-row.contact.first-of-group .bubble {
+  border-top-left-radius: 20px;
+}
+
+.chat-messages .message-row .bubble {
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+}
+
+.chat-messages .message-row.last-of-group .bubble {
+  border-bottom-left-radius: 20px;
+  padding-bottom: 13px;
+}
+
+.chat-messages .message-row.first-of-group .bubble {
+  border-top-left-radius: 20px;
+  padding-top: 13px;
+}
+
+.chat-messages .message-row.contact .bubble {
+  border-radius: 5px 20px 20px 5px;
+}
+
+.chat-messages .message-row .bubble {
+  position: relative;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  padding: 12px;
+  max-width: 100%;
+}
+
+
+
+
+
+
+.chat-messages .message-row.contact+.me,
+chat-view .chat #chat-content .chat-messages .message-row.me+.contact {
+  padding-top: 20px;
+  margin-top: 20px;
+}
+
+.chat-messages .message-row.me {
+  padding-left: 40px;
+}
+
+.message-row.me .bubble {
+  color: rgba(0, 0, 0, .7);
+  background-color: #f7f7f7;
+}
+
+.chat-messages .message-row.last-of-group .bubble {
+  border-bottom-left-radius: 20px;
+  padding-bottom: 13px;
+}
+
+.chat-messages .message-row.first-of-group .bubble {
+  border-top-left-radius: 20px;
+  padding-top: 13px;
+}
+
+.chat-messages .message-row.me .bubble {
+  margin-left: auto;
+  border-radius: 20px;
+}
+
+
+
+
+
+
+
+.chat-messages {
+  position: relative;
+  padding: 16px 15px 40px 65px;
+}
+
+.message-row.contact .bubble {
+  background-color: #fcf0f0;
+  color: #8e7172;
+}
+
+internal-view {
+  .chat #chat-content .chat-messages {
+    position: relative;
+    padding: 16px 0 40px 40px;
+  }
+
+  #about {
+
+    .about-content {
+
+      .general {
+
+        .location {
+
+          mat-icon {
+            line-height: 13px !important;
+          }
+        }
+      }
+
+      .work {
+
+        .job {
+
+          .company {
+            padding: 0 16px 0 0;
+            font-weight: 600;
+          }
+        }
+      }
+    }
+
+    .about-sidebar {
+      padding-left: 32px;
+
+      @include media-breakpoint('sm') {
+        padding: 8px
+      }
+
+      .friends {
+
+        .content {
+
+          .friend {
+            padding: 4px;
+
+            img {
+              border-radius: 4px;
+            }
+          }
+        }
+      }
+
+      .groups {
+
+        .content {
+
+          .group {
+            margin-bottom: 24px;
+
+            &:last-child {
+              margin-bottom: 0;
+            }
+
+            .logo {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              width: 48px;
+              height: 48px;
+              font-size: 21px;
+              line-height: normal;
+              border-radius: 50%;
+              margin-right: 16px;
+            }
+
+            .name {
+              font-weight: 600;
+              font-size: 15px;
+            }
+
+            .members {
+              margin-top: 8px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Profile boxes
+  .profile-box {
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 16px;
+    @include mat-elevation(2);
+
+    header {
+      padding: 16px;
+
+      .title {
+        font-size: 17px;
+        color: #d84d34;
+      }
+
+      .more {
+        cursor: pointer;
+      }
+    }
+
+    .content {
+      padding: 16px;
+    }
+
+    footer {
+      padding: 8px;
+      border-top: 1px solid;
+    }
+
+    &.info-box {
+
+      .info-line {
+        margin-bottom: 24px;
+
+        .title {
+          font-size: 15px;
+          font-weight: 600;
+          padding-bottom: 4px;
+        }
+
+        .info {}
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  .mat-grid-tile .mat-figure {
+    display: inherit !important;
+  }
+}

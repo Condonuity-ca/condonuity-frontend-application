@@ -1,0 +1,26 @@
+<div id="profile" class="page-layout simple tabbed">
+
+  <div id="about" class="pt-32 pb-32" fxLayout="row wrap" [ngClass.lg]="'pr-24 pl-32'" [ngClass.md]="'pr-24 pl-32'"
+    [ngClass.sm]="'pr-16 pl-16'" [ngClass.xs]="'pr-12 pl-12'">
+
+    <div class="about-content" fxLayout="column" fxFlex="100" fxFlex.gt-sm="100" fxFlex.gt-md="100">
+      <mat-tab-group dynamicHeight>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <img class="logo-icon mr-8" src="assets/images/client-icon.png" style="width:30px;height:30px">
+            <span>CONDOS</span>
+          </ng-template>
+
+          <user-condo></user-condo>
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <img class="mr-8" src="assets/images/vendor-icon.png" style="width:30px;height:30px">
+            <span>CONTRACTORS</span>
+          </ng-template>
+          <user-vendor></user-vendor>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</div>

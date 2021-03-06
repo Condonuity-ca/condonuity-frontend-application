@@ -1,0 +1,198 @@
+<div id="profile" class="page-layout simple">
+  <div id="about" class="p-8" fxLayout="row wrap">
+
+    <div class="about-content" fxLayout="column" fxFlex="100" fxFlex.gt-sm="100" fxFlex.gt-md="100">
+
+      <div class="" fxLayout="row" fxLayoutAlign="space-between center" class="" [ngClass.xl]="'mt-32 mx-24'" [ngClass.lg]="'mt-32 mx-24'"
+        [ngClass.md]="'mt-32 mx-24'" [ngClass.sm]="'mt-32 mx-12'" [ngClass.xs]="'mt-16 mx-8'">
+        <div class="">
+          <div class="h2 condo-gray-text">Filter By</div>
+        </div>
+      </div>
+
+
+
+      <form fxLayout.xl="column" fxLayout.lg="column" fxLayout.md="column" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start"
+        fxFlex="1 0 auto" name="filterForm" [formGroup]="filterForm" class="mb-32">
+        <div class="" fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="column" fxLayout.xs="column"
+          fxLayoutAlign.xl="space-between center" fxLayoutAlign.lg="space-between center" fxLayoutAlign.md="space-between center" fxLayoutAlign.sm="start"
+          fxLayoutAlign.xs="start" class="mat-card mat-elevation-z px-32 pb-16  mt-16" [ngClass.xl]="'pt-32 mx-24'" [ngClass.lg]="'pt-32 mx-24'" [ngClass.md]="'pt-32 mx-24'" [ngClass.sm]="'pt-32 mx-12'" [ngClass.xs]="'pt-24 mx-8'">
+          <div class="" fxFlex.xl="70" fxFlex.lg="70" fxFlex.md="70" fxFlex.sm="100" fxFlex.xs="100" fxLayout.lg="row"
+            fxLayout.md="row" fxLayout.sm="row" fxLayout.xs="column">
+
+            <mat-form-field appearance="outline" class="" [ngClass.xl]="'pr-16'" [ngClass.lg]="'pr-16'" [ngClass.md]="'pr-16'"
+              [ngClass.sm]="'pr-16'" [ngClass.xs]="'pr-0 mb-0'" fxFlex.xl="40" fxFlex.lg="40" fxFlex.md="40" fxFlex.sm="50" fxFlex.xs="40">
+              <mat-label>Location</mat-label>
+
+              <mat-chip-list maxLength="1" #cityChipList aria-label="City Selection" formControlName="cityChips">
+                <mat-chip *ngFor="let cityInfo of selectedCities" [selectable]="selectable" [removable]="removable"
+                  (removed)="removeCity(cityInfo)">
+                  {{cityInfo.cityName}}
+                  <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                </mat-chip>
+                <input placeholder="City" #cityInput [formControl]="cityCtrl" formControlName="servicedCities"
+                  [matAutocomplete]="cityAuto" [matChipInputFor]="cityChipList"
+                  [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur">
+              </mat-chip-list>
+              <mat-autocomplete #cityAuto="matAutocomplete" (optionSelected)="selectCity($event)">
+                <mat-option *ngFor="let cityInfo of filteredCities | async" [value]="cityInfo">
+                  {{cityInfo.cityName}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" [ngClass.xl]="'pr-16'" [ngClass.lg]="'pr-16'" [ngClass.md]="'pr-16'" [ngClass.sm]="'pr-16'"
+              [ngClass.xs]="'pr-0 mb-16 mt-0 xs-mt-m-20'" fxFlex="20" fxFlex.sm="25">
+              <mat-label># of Units</mat-label>
+              <input matInput formControlName="unitsFromNos">
+            </mat-form-field>
+            <div appearance="outline" [ngClass.xl]="'pr-16'" [ngClass.lg]="'pr-16'" [ngClass.md]="'pr-16'" [ngClass.sm]="'pr-16'"
+              [ngClass.xs]="'pr-0 mt-8 mb-8'" fxFlex="5" fxFlex.sm="6" fxLayoutAlign="center center" style="margin-top:-20px;">to
+            </div>
+
+            <mat-form-field appearance="outline" [ngClass.xl]="'pr-16'" [ngClass.lg]="'pr-16'" [ngClass.md]="'pr-16'" [ngClass.sm]="'pr-16'"
+              [ngClass.xs]="'pr-0 mt-16'" fxFlex="20" fxFlex.sm="25">
+              <input matInput formControlName="unitsToNos">
+            </mat-form-field>
+
+          </div>
+          <!-- Edit btn hided for version 1 -->
+
+          <div class="" fxFlex.xl="20" fxFlex.lg="30" fxFlex.md="30" fxFlex.sm="100" fxFlex.xs="100" fxLayout.xl="row" fxLayout.lg="row"
+            fxLayout.md="row" fxLayout.sm="row" fxLayout.xs="column" fxLayoutAlign.xl="space-between center" fxLayoutAlign.lg="space-between center"
+            fxLayoutAlign.md="space-between center" fxLayoutAlign.sm="end end" fxLayoutAlign.xs="end end"
+            [ngClass.sm]="'mr-16'" [ngClass.xs]="'mt-12'">
+            <div style="margin-top:-10px;" fxFlex.lg="50" fxFlex.md="50" fxFlex.xs="100">
+              <button mat-button class="mat-flat-button " color="accent" cdkFocusInitial
+                (click)="filterCondoList()">FILTER CONDO</button>
+            </div>
+            <div style="margin-top:-10px;" fxFlex.lg="50" fxFlex.md="50" fxFlex.xs="100" [ngClass.xs]="'mt-16 '">
+              <button mat-button class="mat-flat-button condo-red-300 ml-16" cdkFocusInitial
+                (click)="onClickclearFilter()">CLEAR FILTER</button>
+            </div>
+          </div>
+          <!-- Edit btn hided for version 1 -->
+        </div>
+      </form>
+
+
+      <div fxLayout.lg="row" fxLayout.md="column" fxLayout.sm="column" fxLayout.xs="row wrap"
+        fxLayoutAlign="space-between center" fxLayoutAlign.md="start" fxLayoutAlign.sm="start" fxLayoutAlign.xs="start"
+        class=" " [ngClass.lg]="'mt-24 mx-24'" [ngClass.xl]="'mt-24 mx-24'" [ngClass.md]="'mt-24 mx-24'" [ngClass.sm]="'mt-12 mx-12'"
+        [ngClass.xs]="'mt-8 mx-8'" *ngIf="pageOfItems.length > 0">
+        <div class="" [ngClass.sm]="'mb-16'" [ngClass.md]="'mb-16'" [ngClass.xs]="'mb-16'">
+          <div class="h2 condo-gray-text">Sort by {{sortType}}</div>
+        </div>
+        <!-- Edit btn hided for version 1 -->
+        <div fxLayout="row" fxLayout.xs="row ">
+          <mat-button-toggle-group value="nearest">
+            <div class="condo-sorting" fxLayout.sm="row wrap" fxLayout.xs="row wrap">
+              <mat-button-toggle value="rating" class="mat-stroked-button mat-primary mr-12 " [ngClass.sm]="'mb-16'"
+                [ngClass.xs]="'mb-16'" (click)="sortCondos(2)">
+                # OF UNITS
+              </mat-button-toggle>
+              <mat-button-toggle value="alphabetical" class="mat-stroked-button mat-primary mr-12"
+                [ngClass.sm]="'mb-16'" [ngClass.xs]="'mb-16'" (click)="sortCondos(3)">
+                ALPHABETICAL
+              </mat-button-toggle>
+              <mat-button-toggle value="preferred" class="mat-stroked-button mat-primary" [ngClass.sm]="'mb-16'"
+                [ngClass.xs]="'mb-16'" (click)="sortCondos(4)">
+                DATE OF REGISTRATION
+              </mat-button-toggle>
+            </div>
+          </mat-button-toggle-group>
+        </div>
+      </div>
+
+
+
+      <div *ngIf="pageOfItems.length > 0">
+        <div class="cursor" fxLayout="column" [ngClass.xl]="'mt-32 mb-16'" [ngClass.lg]="'mt-32 mb-16'" [ngClass.md]="'mt-32 mb-16'"
+          [ngClass.sm]="'mt-16 mb-16'" [ngClass.xs]="'mt-4 mb-16'" *ngFor="let condo of pageOfItems"
+          (click)="viewCondo(condo)">
+
+          <div fxFlex="100" class="mat-card mat-elevation-z p-24 b-r-b-4" [ngClass.xl]="'mx-24'" [ngClass.lg]="'mx-24'" [ngClass.md]="'mx-24'"
+            [ngClass.sm]="'mx-12'" [ngClass.xs]="'mx-8'" fxFlex.sm="100" fxFlex.xs="100">
+            <div class="" fxLayout="column">
+              <div class="mat-card mat-elevation-z mr-8">
+                <div class="cursor" fxLayout="row" fxLayoutAlign="start center" fxLayout.sm="column"
+                  fxLayout.xs="column" fxLayoutAlign.sm="start" fxLayoutAlign.xs="start">
+
+
+
+                  <div fxLayout.xs="column" fxLayoutAlign="start center" fxFlex="40" fxFlex.sm="50">
+                    <div class="w-80 h-80" [ngClass.xs]="'mb-12'" [ngClass.sm]="'mr-24'">
+
+                      <img *ngIf="(condo.organisationLogo == null || condo.organisationLogo == '')"
+                        class="border-radius-100" [ngClass.xs]="'text-center'" src="assets/images/no-pic.jpg"
+                        style="width:80px;height:80px;">
+
+                      <img *ngIf="condo.organisationLogo" class="border-radius-100" [ngClass.xs]="'text-center'"
+                        [src]="condo.organisationLogo" style="width:80px;height:80px;">
+
+                    </div>
+                    <div class="pr-16 " fxLayout.sm="column" fxFlex="100" fxFlex.xs="100" [ngClass.xl]="'ml-16'" [ngClass.lg]="'ml-16'"
+                      [ngClass.md]="'ml-16'" [ngClass.sm]="'ml-0'" [ngClass.xs]="'ml-16'">
+                      <div>
+                        <div class="h3 font-weight-600 text-bold  mb-8" [ngClass.xs]="'text-center'">
+                          {{condo.organisationName | uppercase}}</div>
+                        <div class="h4">
+                          <div fxLayout="row" fxFlex.md="100" fxLayoutAlign.xs="center center" class="">
+                            <div class="h4 condo-red-text" [ngClass.xs]="'text-center'">{{condo.units}} UNITS</div>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="row wrap" fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="row" fxLayout.xs="column"
+                    fxLayoutAlign.lg="start center" fxLayoutAlign.md="start center" fxLayoutAlign.sm="start center"
+                    fxLayoutAlign.xs="center center" fxFlex.xl="60" fxFlex.lg="60" fxFlex.md="60" fxFlex.sm="100" fxFlex.xs="100"
+                    [ngClass.sm]="'mt-24'">
+                    <div class="" fxFlex="50" fxFlex.sm="50" fxFlex.xs="100" [ngClass.xl]="'pr-16'" [ngClass.lg]="'pr-16'"
+                      [ngClass.md]="'pr-16'" [ngClass.sm]="'pr-16'" [ngClass.xs]="'mb-16 mt-24 text-center'">
+                      <div>
+                        <div class="h5 condo-gray-text mb-4">MANAGEMENT COMPANY</div>
+                        <div class="h4" [ngClass.xs]="'text-center'">
+                          <span>{{condo.managementCompany | uppercase}}</span></div>
+                      </div>
+                    </div>
+
+                    <div class=" " [ngClass.xl]="'pr-16 ml-24'" [ngClass.lg]="'pr-16 ml-24'" [ngClass.md]="'pr-16 ml-24'"
+                      [ngClass.sm]="'pr-16 ml-24'" [ngClass.xs]="'text-center'" fxFlex="50" fxFlex.sm="50"
+                      fxFlex.xs="100">
+                      <div>
+                        <div class="h5 condo-gray-text mb-4">LOCATION</div>
+                        <div class="h4" [ngClass.xs]="'text-center'"><span
+                            *ngFor="let city of condo.location;let i = index"><span
+                              *ngIf="i>0">,</span><span>{{city | titlecase}}</span></span></div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="condoFilterList.length == 0" class="about-content" fxLayout="column" fxFlex="100" fxFlex.gt-sm="50"
+        fxFlex.gt-md="100">
+        <div class="" fxLayout="row" fxLayoutAlign="space-between center"
+          class="mat-card mat-elevation-z px-32 pt-32 pb-16 mt-16" [ngClass.xl]="'mx-24'" [ngClass.lg]="'mx-24'" [ngClass.md]="'mx-24'"
+          [ngClass.sm]="'mx-12'" [ngClass.xs]="'mx-8'">
+          <div class="h2 condo-gray-text">No Condos Found</div>
+        </div>
+      </div>
+
+      <div class="card-footer pb-0 pt-3 " [ngClass.xl]="'mx-24'" [ngClass.lg]="'mx-24'" [ngClass.md]="'mx-24'" [ngClass.sm]="'mx-12'"
+        [ngClass.xs]="'mx-4'">
+        <jw-pagination [pageSize]="15" [items]="condoFilterList" (changePage)="onChangePage($event)"></jw-pagination>
+      </div>
+    </div>
+  </div>
+
+</div>

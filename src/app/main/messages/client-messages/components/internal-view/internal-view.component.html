@@ -1,0 +1,241 @@
+<div id="profile" class="page-layout simple tabbed page-transition-top">
+  <div id="about" class="" fxLayout="row wrap" [ngClass.lg]="'p-24 px-32'" [ngClass.md]="'p-24 px-32'"
+    [ngClass.sm]="'p-16'" [ngClass.xs]="'p-8'">
+
+
+    <div fxLayout="column" fxFlex="100" fxLayoutAlign="end end" fxLayoutAlign.xs="start" fxFlex.xs="100"
+      fxLayout.xs="column" class="mt-0 mb-8" [ngClass.xs]="'mt-16'">
+      <div fxLayout="row" fxFlex.md="100">
+        <a class="cursor" [routerLink]="['/messages/clientMessages']"> <span class="font-weight-600">
+            <mat-icon aria-hidden="false" aria-label="current project" class="zoom s-16 condo-red-text">arrow_back
+            </mat-icon> BACK TO MESSAGES
+          </span></a>
+      </div>
+    </div>
+
+    <div class="mt-8" fxLayoutAlign="start space-between" fxFlex="100">
+      <div fxLayout="column" fxFlex="100" style="background: #fafafa;" id="timeline" class="pb-16"
+        [ngClass.lg]="'pt-0 '" [ngClass.md]="'p-32'" [ngClass.sm]="'p-24'" [ngClass.xs]="'p-16'">
+        <div fxLayout="column" fxFlex="100">
+          <div fxFlex="100" class=" b-r-4  pt-0" fxFlex.sm="100" fxFlex.xs="100" [ngClass.sm]="'mb-16'">
+            <div class="" fxLayout="column">
+              <div class="" [ngClass.lg]="'mr-0'" [ngClass.md]="'mr-24'" [ngClass.xs]="'mr-0'">
+
+                <div *ngIf="message.messageType === 2" class="pt-8 pb-8 px-8 px-24" fxLayout="row" fxLayoutAlign=""
+                  style="background:#f0f0f0"><span class="condo-gray-text mr-12">To: </span>
+                  <span class="condo-gray-text recipients mr-8"
+                    *ngFor="let org of message.targetOrganisations;let i = index">{{org.organisationName}} </span>
+                </div>
+
+                <div class="px-24" fxLayout="row" fxLayout.sm="row wrap" fxLayoutAlign="start center"
+                  fxLayout.xs="column">
+
+                  <div *ngIf="message.messageType === 2" class="w-80 h-80" [ngClass.xs]="'mb-12'">
+                    <img *ngIf="message.fromUser.profileImageURL" [src]="message.fromUser.profileImageURL"
+                      class="border-radius-100" [ngClass.xs]="'text-center'" src="assets/images/no-pic.jpg">
+                    <img *ngIf="message.fromUser.profileImageURL == ''" class="border-radius-100"
+                      [ngClass.xs]="'text-center'" src="assets/images/no-pic.jpg">
+                  </div>
+
+                  <div *ngIf="message.messageType === 1" class="w-80 h-80" [ngClass.xs]="'mb-12'">
+                    <img *ngIf="message.user.profileImageURL" [src]="message.user.profileImageURL"
+                      class="border-radius-100" [ngClass.xs]="'text-center'" src="assets/images/no-pic.jpg">
+                    <img *ngIf="message.user.profileImageURL == ''" class="border-radius-100"
+                      [ngClass.xs]="'text-center'" src="assets/images/no-pic.jpg">
+                  </div>
+
+
+                  <div class="pr-16 ml-16" fxLayout="row" fxFlex="100" fxLayoutAlign="space-between end"
+                    fxLayout.xs="column">
+                    <div class="" fxFlex="100" fxFlex.xs="100">
+
+                      <div class="" fxLayout.xl="row" fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="row" fxLayout.xs="column" fxLayoutAlign.xl="space-between end" fxLayoutAlign.lg="space-between end" fxLayoutAlign.md="space-between end" fxLayoutAlign.sm="space-between end" fxLayoutAlign.xs="center center">
+                        <div class="h3 font-weight-600 mr-8" fxFlex.xl="60" fxFlex.lg="60" fxFlex.md="60" fxFlex.sm="60" fxFlex.xs="100" fxLayout="column">{{message.threadSubject}}
+                        </div>
+                        <div class="condo-gray-text" fxLayout="column" fxFlex.xl="40" fxFlex.lg="40" fxFlex.md="40" fxFlex.sm="40" fxFlex.xs="100">
+                          <div *ngIf="message.messageType ===2" class="mt-24" fxLayoutAlign="end end">
+                            <mat-icon aria-hidden="false" aria-label="current project" class="zoom s-20 condo-red-text">
+                              perm_identity</mat-icon>
+                            {{message.fromUser.firstName}} {{message.fromUser.lastName}} <span
+                              class="ml-8 mr-8">|</span>
+                            {{message.fromOrganisation.organisationName}}
+
+                          </div>
+                          <div *ngIf="message.messageType ===1" class="mt-24" fxLayoutAlign.xl="end end" fxLayoutAlign.lg="end end" fxLayoutAlign.md="end end" fxLayoutAlign.sm="end end" fxLayoutAlign.xs="center center">
+                            <mat-icon aria-hidden="false" aria-label="current project" class="zoom s-20 condo-red-text">
+                              perm_identity</mat-icon> {{message.user.firstName}}
+                            {{message.user.lastName}}
+
+                          </div>
+                        </div>
+                      </div>
+                      <div class="condo-gray-text mt-8 line-height-24" [ngClass.xs]="'text-center'">{{message.threadDescription}}</div>
+
+
+                      <div class="condo-gray-text mt-8 line-height-24" fxLayout.xs="column wrap"
+                        fxLayoutAlign.xs="center center">
+                        <div class="mt-16" fxLayout="row wrap">
+                          <span *ngFor="let attachment of message.files" (click)="attachmentClicked(attachment)"
+                            class="mr-16 mb-16 cursor attachment-icon" style="font-size:11px">
+                            <mat-icon aria-hidden="false" aria-label="current project"
+                              class="zoom s-16 condo-icons condo-gray-text " style="margin-top:4px;">get_app</mat-icon>
+                            <span class="ml-20 "> {{attachment.fileName}}</span>
+                          </span>
+                        </div>
+                      </div>
+
+
+                      <div class="" fxLayout="row" fxLayout.sm="column wrap" fxLayout.xs="column wrap"
+                        fxLayoutAlign="space-between end" fxLayoutAlign.sm="start start"
+                        fxLayoutAlign.xs="space-between center" [ngClass.sm]="'mt-24'" [ngClass.xs]="'mt-20'">
+                        <div class="h3 font-weight-600" fxLayout="row">
+                          <mat-icon aria-hidden="false" aria-label="current project"
+                            class="zoom s-16 mt-4 mr-8 condo-red-text">
+                            comment</mat-icon> {{message.comments.length}} Comments
+                        </div>
+                        <div class="condo-gray-text mt-16" fxLayout="column" fxLayoutAlign.sm="start"
+                          [ngClass.sm]="'mt-0 ml-16'">
+                          <div>
+
+                            <mat-icon aria-hidden="false" aria-label="current project" class="zoom s-16 condo-red-text">
+                              calendar_today</mat-icon>
+                            {{message.formatedCreatedDate}}
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="message" class="" fxLayout="column" fxFlex="100" fxLayoutAlign="start space-between"
+      fxLayoutAlign.xs="start">
+      <div fxLayout="column" id="timeline" class="" [ngClass.lg]="'py-16 px-8'" [ngClass.md]="'p-32'"
+        [ngClass.sm]="'p-24'" [ngClass.xs]="'p-16'">
+
+
+        <div style="overflow: auto;display:flex;flex-direction:column-reverse;" class="message-height">
+          <div class="chat-messages">
+            <div *ngFor="let commentInfo of message.comments"
+              class="message-row contact first-of-group last-of-group ng-star-inserted mt-48">
+              <img *ngIf="commentInfo.user.organisationName == null" class="avatar ng-star-inserted"
+                [src]="commentInfo.user.profileImageURL"
+                matTooltip="{{commentInfo.user.firstName}} {{commentInfo.user.lastName}}">
+              <img *ngIf="commentInfo.user.organisationName != null" class="avatar ng-star-inserted"
+                [src]="commentInfo.user.profileImageURL"
+                matTooltip="{{commentInfo.user.firstName}} {{commentInfo.user.lastName}}  {{commentInfo.user.organisationName}}">
+
+              <div class="bubble">
+                <div class="message">
+                  <div>{{commentInfo.comment}}</div>
+                  <div *ngFor="let attachment of commentInfo.files" class="" fxLayout="row wrap"
+                    (click)="attachmentClicked(attachment)">
+                    <span class="mr-24 cursor chat-attachment mt-16" style="">{{attachment.fileName}}</span>
+                  </div>
+                </div>
+                <div class="time secondary-text mb-24">{{commentInfo.user.firstName}} {{commentInfo.user.lastName}},
+                  {{commentInfo.formatedCreatedDate}}</div>
+                <!-- <div class="time secondary-text mb-24"><br>{{commentInfo.formatedCreatedDate}}</div> -->
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-8" fxLayout="column" fxLayoutAlign="start space-between" fxFlex="100">
+      <form fxLayout="column" fxLayoutAlign="start" fxFlex="1 0 auto" name="postmessageCommentForm"
+        [formGroup]="postmessageCommentForm">
+
+        <div fxLayout="column" style="" id="timeline" class="pb-32" [ngClass.lg]="'pt-0 px-8'" [ngClass.md]="'p-32'"
+          [ngClass.sm]="'p-24'" [ngClass.xs]="'p-16'">
+          <div fxLayout="column">
+            <div fxFlex="70" class=" b-r-4 px-16 pt-0" fxFlex.sm="100" fxFlex.xs="100" [ngClass.sm]="'mb-16'">
+              <div class="" fxLayout="column">
+                <div class="" [ngClass.lg]="'mr-0'" [ngClass.md]="'mr-24'" [ngClass.xs]="'mr-0'">
+                  <div class="" fxLayout="row" fxLayout.sm="row wrap" fxLayoutAlign="start center" fxLayout.xs="column">
+                    <div class="w-80 h-80" [ngClass.xs]="'mb-12'">
+                      <img *ngIf="currentUser.profileImageUrl" [src]="currentUser.profileImageUrl"
+                        class="border-radius-100" [ngClass.sm]="'mt-16 ml-20'" [ngClass.xs]="'text-center mt-16'">
+                      <img *ngIf="currentUser.profileImageUrl == ''" class="border-radius-100"
+                        [ngClass.sm]="'mt-16 ml-20'" [ngClass.xs]="'text-center mt-16'"
+                        src="assets/images/no-pic.jpg">
+                    </div>
+                    <div class="pr-16 ml-16" fxLayout="row" fxFlex="100" fxLayoutAlign="start center"
+                      fxLayout.xs="column">
+                      <div class="" fxFlex="100" fxFlex.xs="100">
+
+                        <div class="mt-16">
+                          <div fxLayout="row" fxFlex="100" fxLayout.sm="column" fxLayout.xs="column"
+                            fxLayoutAlign="start space-between" fxLayoutAlign.sm="start" fxLayoutAlign.xs="start"
+                            fxFlex="1 0 auto" class="">
+                            <mat-form-field appearance="outline" fxFlex="100" class="m-0">
+
+                              <mat-label>Type your comment</mat-label>
+                              <textarea class="m-0" name="description" formControlName="description" matInput
+                                type="text" max-rows="4" style="height:70px;"></textarea>
+                            </mat-form-field>
+                          </div>
+                        </div>
+
+
+                        <div class="condo-gray-text" fxLayout.xl="row" fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="row" fxLayout.xs="column" fxLayoutAlign="space-between end">
+                          <div class="file-uploader" appearance="outline" fxFlex="50" fxFlex.sm="60" fxFlex.xs="100"
+                            class="upload-button">
+                            <div fxLayout="column">
+                              <span appearance="outline" fxFlex="100" class="px-0">
+                                <input formControlName="docUploader" hidden type="file"
+                                  (change)="appendDocumentFiles($event)" multiple #fileInput
+                                  accept="application/pdf,image/*" />
+                                <button color="accent" class="mat-flat-button bg-transparent"
+                                  (click)="fileInput.click()" aria-label="Add file"
+                                  [@animate]="{value:'*', params:{delay:'300ms',scale:'0.2'}}">
+                                  <span class="condo-red-text  h4"><strong>
+                                      <mat-icon class="s-16 font-weight-600 mat-icon" style="vertical-align: center">
+                                        add_circle</mat-icon> Click here to Add Files
+                                    </strong></span>
+                                </button>
+                              </span>
+                              <div *ngFor="let docFile of commentAttachments; index as i" fxFlex="100">
+                                <h4 class="mt-16 ml-16"><span class="condo-red-text mr-6" title="Remove File"
+                                    (click)="removeDocAttachment(i)">
+                                    <mat-icon class="s-16 cursor" style="vertical-align: middle">remove_circle_outline
+                                    </mat-icon>
+                                  </span> {{docFile.name}} - <span
+                                    class="condo-gray-text">{{docFile.formatedSize}}</span> </h4>
+                              </div>
+
+                            </div>
+                          </div>
+
+                          <div fxLayout="row" fxFlex.md="100" fxLayoutAlign="end end">
+                            <button [disabled]="postmessageCommentForm.invalid" mat-button
+                              class="mat-chip condo-red-500 mt-16"><span class="font-weight-500"
+                                (click)="postComment()">POST COMMENT</span></button>
+                          </div>
+                        </div>
+
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+    </div>
+
+
+  </div>
+</div>

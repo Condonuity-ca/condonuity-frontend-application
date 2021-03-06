@@ -1,0 +1,33 @@
+<!-- <div #list [scrollTop]="list.scrollHeight"></div> -->
+<!-- <span id="moveTop"></span> -->
+<div id="timeline" class="p-24" fxLayout="row wrap" #scroll>
+
+  <ngx-datatable fxLayout="column" fxLayoutAlign="start" style="width: 100%" class="material pr-20" [rows]="projectList"
+    [columnMode]="'force'" [footerHeight]="50" [rowHeight]="'auto'" [scrollbarH]="true" [selectionType]="'checkbox'"
+    [limit]="20" (activate)="viewProjects($event)">
+    
+    <ngx-datatable-column [width]="110" name="Project ID" prop="projectId"></ngx-datatable-column>
+    <ngx-datatable-column name="Project Name" prop="projectName"></ngx-datatable-column>
+    <ngx-datatable-column name="Contract Type" prop="contractMessage"></ngx-datatable-column>
+    <ngx-datatable-column [width]="130" name="Date Created" prop="createdAt"></ngx-datatable-column>
+    <ngx-datatable-column [width]="140" name="Bid Close Date" prop="bidEndDate"></ngx-datatable-column>
+    <ngx-datatable-column [width]="130" name="Tags" prop="tags"></ngx-datatable-column>
+    <ngx-datatable-column [width]="100" name="Status" prop="statusMessage"></ngx-datatable-column>
+    <ngx-datatable-column [width]="100" name="# of Bids" prop="bidCount"></ngx-datatable-column>
+    <ngx-datatable-column [width]="120" name="# of Interest" prop="interestCount"></ngx-datatable-column>
+  </ngx-datatable>
+  <!-- </div> -->
+
+  <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+    <div fxLayout="row" fxLayoutAlign="end" fxFlex="1 0 auto">
+      <button mat-raised-button color="primary" class="submit-button mr-16" aria-label="Continue"
+        (click)="ExportTOExcel()">
+        <!--openDownloadDialog()-->
+        DOWNLOAD
+      </button>
+      <button mat-raised-button color="primary" class="submit-button" aria-label="Continue" (click)="print()">
+        PRINT
+      </button>
+    </div>
+  </div>
+</div>

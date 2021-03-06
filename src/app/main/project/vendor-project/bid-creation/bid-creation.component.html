@@ -1,0 +1,295 @@
+
+
+
+
+<div *ngIf="currentProjectStage == 0" class="chatImgWrapper  active" fxHide>
+  <div class="tooltip animated1 bounce1">
+    <p align="center">{{buttonName}}</p>
+  </div>
+</div>
+<div *ngIf="currentProjectStage == 0" class="static-text" (click)="scroll()">{{buttonName}}</div>
+
+<!-- <div *ngIf="currentProjectStage == 0" fxLayout="row" class="" style="" (click)="toggle()">
+  <div class="static-contain">
+    <button mat-fab class="add-event-button mat-accent static-btn bounce1" aria-label="Bid Info" (click)="scroll()">
+      <img src="assets/images/bid.png" style="width:29px;">
+    </button>
+  </div>
+</div> -->
+
+
+<div #target *ngIf="show" id="timeline" class="p-24" fxLayout="row wrap" fxLayoutAlign="start" fxFlex="100" style="border:10px solid #fce6e2">
+  <form fxLayout="column" fxLayoutAlign="start" fxFlex="100" name="bidForm" [formGroup]="bidForm" >
+
+    <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" class="" fxLayoutAlign="start end"
+      fxLayoutAlign.sm="start" fxLayoutAlign.xs="start">
+
+      <mat-form-field appearance="outline" fxFlex.xl="30" fxFlex.lg="25" fxFlex.md="25" fxFlex.sm="100" fxFlex.xs="100" class=""
+        [ngClass.xl]="'pr-16'" [ngClass.lg]="'pr-16'" [ngClass.md]="'pr-16'" [ngClass.sm]="'pr-16'" [ngClass.xs]="''" 
+        matTooltip="Indicate here your availablity date to start the work" 
+        matTooltipPosition="above">
+
+        <mat-label>Start Date*</mat-label>
+        <input matInput [matDatepicker]="startDate" [min]="bidStartDateMin" formControlName="startDate" placeholder="Choose a date" (change)="validateProjectBid()" readonly>
+        <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+        <mat-datepicker #startDate></mat-datepicker>
+        <mat-error>Date format is invalid</mat-error>
+
+        <!-- <mat-label>Start Date</mat-label>
+        [readonly]="currentProjectStage != 0" 
+        <input matInput  [matDatepicker]="startDate" [min]="bidEndDateMin"
+          formControlName="startDate" placeholder="Choose a date" required>
+        <mat-datepicker-toggle [disabled]="currentProjectStage != 0" matSuffix [for]="startDate">
+        </mat-datepicker-toggle>
+        <mat-datepicker #startDate></mat-datepicker> -->
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" fxFlex.xl="30" fxFlex.lg="25" fxFlex.md="25" fxFlex.sm="100" fxFlex.xs="100"
+        [ngClass.xl]="'pr-16'" [ngClass.lg]="'pr-16'" [ngClass.md]="'pr-16'" [ngClass.sm]="''" [ngClass.xs]="''" matTooltip="Indicate the duration of this work in number of days" matTooltipPosition="above">
+        <mat-label>Duration(Days)*</mat-label>
+        <input [readonly]="currentProjectStage != 0" type="number" min="1" max="3650"  matInput formControlName="time" (change)="validateProjectBid()">
+      </mat-form-field>
+      <div appearance="outline"  fxFlex.xl="40" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="100" fxFlex.xs="100" fxLayoutAlign.xl="end end" fxLayoutAlign.lg="end end"
+        fxLayoutAlign.md="end end" fxLayoutAlign.sm="end end" fxLayoutAlign.xs="end end" [ngClass.xl]="'py-24 pr-16'" [ngClass.lg]="'py-24 pr-16'"
+        [ngClass.md]="'py-24 pr-16'" [ngClass.sm]="''" [ngClass.xs]="''">
+        <span class="condo-red-400 px-32 py-16 font-size-18 font-weight-500">TOTAL EXCL. TAX:
+          {{ totalEstimation | currency:'CAD'  }} </span>
+      </div>
+    </div>
+
+
+    <div class="mt-16" fxLayout="row" fxLayoutAlign="space-between center">
+      <div class="pr-16">
+        <div class="h3 font-weight-600" matTooltip="One Item summary or One Labour summary is required at a minimum to submit a bid. It can be a summary of the total price if desired."
+          matTooltipPosition="above">ITEMS SUMMARY *</div>
+      </div>
+    </div>
+    <div class="" formArrayName="itemsSummary" fxLayout="column" fxLayoutAlign="start" fxFlex="1 0 auto" class="mt-24">
+      <div class="" *ngFor="let itemsDetail of bidForm.get('itemsSummary')['controls'] ; let itemIndex = index"
+        [formGroupName]="itemIndex" fxLayout.xl="row" fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="column" fxLayout.xs="column"
+        fxLayoutAlign.xl="start center" fxLayoutAlign.lg="start center" fxLayoutAlign.md="start center" fxLayoutAlign.sm="start"
+        fxLayoutAlign.xs="start" fxFlex="1 0 auto">
+ 
+        <mat-form-field appearance="outline" fxFlex.xl="30" fxFlex.lg="30" fxFlex.md="30" fxFlex.sm="100" fxFlex.xs="100"
+          [ngClass.lg]="'pr-16'" [ngClass.md]="'pr-16'" [ngClass.sm]="''" [ngClass.xs]="''">
+          <mat-label>Item Description*</mat-label>
+          <input [readonly]="currentProjectStage != 0" matInput formControlName="itemDescription" (ngModelChange)="validateProjectBid()">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" fxFlex.xl="15" fxFlex.lg="15" fxFlex.md="15" fxFlex.sm="100" fxFlex.xs="100"
+          [ngClass.xl]="'px-16'" [ngClass.lg]="'px-16'" [ngClass.md]="'px-16'" [ngClass.sm]="''" [ngClass.xs]="''" matTooltip="Enter the quantity of the item to be priced" matTooltipPosition="above">
+          <mat-label>Quantity*</mat-label>
+          <input [readonly]="currentProjectStage != 0" matInput formControlName="quantity"
+            (ngModelChange)="calculateEstimation()">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" fxFlex.xl="15" fxFlex.lg="15" fxFlex.md="15" fxFlex.sm="100" fxFlex.xs="100"
+          [ngClass.xl]="'px-16'" [ngClass.lg]="'px-16'" [ngClass.md]="'px-16'" [ngClass.sm]="''" [ngClass.xs]="''" matTooltip="Indicate the units of the item. Examples: Meter, M, m2, Feet,  Liter, m3 Etc.." matTooltipPosition="above">
+          <mat-label>Unit*</mat-label>
+          <input [readonly]="currentProjectStage != 0" matInput formControlName="unit" (ngModelChange)="validateProjectBid()">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" fxFlex.xl="15" fxFlex.lg="15" fxFlex.md="15" fxFlex.sm="100" fxFlex.xs="100"
+          [ngClass.xl]="'px-16'" [ngClass.lg]="'px-16'" [ngClass.md]="'px-16'" [ngClass.sm]="''" [ngClass.xs]="''" matTooltip="Enter the unit price Excluding Taxes" matTooltipPosition="above">
+          <mat-label>Price*</mat-label>
+          <input [readonly]="currentProjectStage != 0" matInput formControlName="price"
+            (ngModelChange)="calculateEstimation()">
+        </mat-form-field>
+
+        <div appearance="outline" fxFlex.xl="18" fxFlex.lg="18" fxFlex.md="15" fxFlex.sm="100" fxFlex.xs="100" [ngClass.xl]="'px-16'" [ngClass.lg]="'px-16'"
+          [ngClass.md]="'px-16'" [ngClass.sm]="''" [ngClass.xs]="''">
+          <span
+            class="font-size-18 condo-red-text">{{bidForm.controls.itemsSummary.value[itemIndex].price * bidForm.controls.itemsSummary.value[itemIndex].quantity | currency:'CAD' }}
+          </span>
+        </div>
+
+        <div appearance="outline" class="px-16" [ngClass.xs]="'mt-32 mb-24'"  fxFlex="7">        
+            <mat-icon *ngIf="currentProjectStage == 0" class="s-16 delete-icon"  (click)="removeItem(itemIndex)" style="">delete</mat-icon>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="currentProjectStage == 0" fxLayout="row" class="" [ngClass.xl]="'mb-32'" [ngClass.lg]="'mb-32'" [ngClass.md]="'mb-32'"
+      [ngClass.sm]="'mb-32 mt-24'" [ngClass.xs]="'mb-32 mt-24'">
+      <button mat-flat-button class="condo-red-100 h5 cursor" (click)="addItem(null)">
+        <mat-icon class="s-16">add</mat-icon> <span class="font-weight-600">ADD MORE</span>
+      </button>
+    </div>
+
+    <div class="mt-16" fxLayout="row" fxLayoutAlign="space-between center">
+      <div class="pr-16">
+        <div class="h3 font-weight-600" matTooltip="One Item summary or One Labour summary is required at a minimum to submit a bid. It can be a summary of the total price if desired."
+          matTooltipPosition="above">LABOUR SUMMARY *</div>
+      </div>
+    </div>
+    <div class="" formArrayName="labourSummary" fxLayout="column" fxLayoutAlign="start" fxFlex="1 0 auto" class="mt-24">
+      <div class="" *ngFor="let labourDetail of bidForm.get('labourSummary')['controls'] ; let labourItemIndex = index"
+        [formGroupName]="labourItemIndex" fxLayout.xl="row" fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="column" fxLayout.xs="column"
+        fxLayoutAlign.xl="start center" fxLayoutAlign.lg="start center" fxLayoutAlign.md="start center" fxLayoutAlign.sm="start"
+        fxLayoutAlign.xs="start" fxFlex="1 0 auto" >
+
+        <mat-form-field appearance="outline" fxFlex.xl="30" fxFlex.lg="30" fxFlex.md="30" fxFlex.sm="100" fxFlex.xs="100"
+          [ngClass.lg]="'pr-16'" [ngClass.md]="'pr-16'" [ngClass.sm]="''" [ngClass.xs]="''" >
+          <mat-label>Item Description*</mat-label>
+          <input [readonly]="currentProjectStage != 0" matInput formControlName="itemDescription">
+        </mat-form-field>
+		
+		
+		
+
+        <mat-form-field appearance="outline" fxFlex.xl="15" fxFlex.lg="15" fxFlex.md="15" fxFlex.sm="100" fxFlex.xs="100"
+          [ngClass.xl]="'px-16'" [ngClass.lg]="'px-16'" [ngClass.md]="'px-16'" [ngClass.sm]="''" [ngClass.xs]="''" matTooltip="Enter the quantity of the item to be priced" matTooltipPosition="above">
+          <mat-label>Quantity*</mat-label>
+          <input [readonly]="currentProjectStage != 0" matInput formControlName="quantity"
+            (ngModelChange)="calculateEstimation()">
+        </mat-form-field>
+		
+		
+
+        <mat-form-field appearance="outline" fxFlex.xl="15" fxFlex.lg="15" fxFlex.md="15" fxFlex.sm="100" fxFlex.xs="100"
+          [ngClass.xl]="'px-16'" [ngClass.lg]="'px-16'" [ngClass.md]="'px-16'" [ngClass.sm]="''" [ngClass.xs]="''" matTooltip="Indicate the units of the item. Examples: Meter, M, m2, Feet,  Liter, m3 Etc.." matTooltipPosition="above">
+          <mat-label>Unit*</mat-label>
+          <input [readonly]="currentProjectStage != 0" matInput formControlName="unit">
+        </mat-form-field>
+
+		
+
+
+        <mat-form-field appearance="outline" fxFlex.xl="15" fxFlex.lg="15" fxFlex.md="15" fxFlex.sm="100" fxFlex.xs="100"
+          [ngClass.xl]="'px-16'" [ngClass.lg]="'px-16'" [ngClass.md]="'px-16'" [ngClass.sm]="''" [ngClass.xs]="''"  matTooltip="Enter the unit price Excluding Taxes" matTooltipPosition="above">
+          <mat-label>Price*</mat-label>
+          <input [readonly]="currentProjectStage != 0" matInput formControlName="price"
+            (ngModelChange)="calculateEstimation()">
+        </mat-form-field>
+
+        <div appearance="outline" class="px-16" fxFlex="18">
+          <span
+            class="font-size-18 condo-red-text">{{ bidForm.controls.labourSummary.value[labourItemIndex].price * bidForm.controls.labourSummary.value[labourItemIndex].quantity | currency:'CAD' }}
+          </span>
+        </div>
+
+        <div appearance="outline" class="px-16" [ngClass.xs]="'mt-32 mb-24'" fxFlex="7">
+          <mat-icon *ngIf="currentProjectStage == 0" class="s-16 delete-icon"  (click)="removeLabour(labourItemIndex)" style="">delete</mat-icon>  
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="currentProjectStage == 0" fxLayout="row" class="mb-32">
+      <mat-label class=""></mat-label>
+      <button mat-flat-button class="condo-red-100 h5 cursor" (click)="addLabourSummary(null)">
+        <mat-icon class="s-16">add</mat-icon> <span class="font-weight-600">ADD MORE</span>
+      </button>
+    </div>
+
+    <div class="mt-16" fxLayout="row" fxLayoutAlign="space-between center">
+      <div class="pr-16">
+        <div class="h3 font-weight-600">OTHER INFORMATION</div>
+      </div>
+    </div>
+    <div fxLayout="row" class="mt-8 pr-20" fxLayoutAlign="start center">
+      <mat-form-field appearance="outline" fxFlex="100" class="">
+        <mat-label>In Scope*</mat-label>
+        <textarea [readonly]="currentProjectStage != 0" matInput formControlName="inScope" class="height-200" (ngModelChange)="validateProjectBid()">
+                </textarea>
+      </mat-form-field>
+    </div>
+
+    <div fxLayout="row" class="mt-8 pr-20" fxLayoutAlign="start center">
+      <mat-form-field appearance="outline" fxFlex="100" class="">
+        <mat-label>Out Of Scope</mat-label>
+        <textarea [readonly]="currentProjectStage != 0" matInput formControlName="outOfScope" class="height-200">
+                </textarea>
+      </mat-form-field>
+    </div>
+
+
+    <div fxLayout="row" class="" fxLayoutAlign="start center">
+      <mat-form-field appearance="outline" fxFlex="100" class="pr-16">
+        <mat-label>Prerequisite</mat-label>
+        <textarea [readonly]="currentProjectStage != 0" matInput formControlName="prerequisite" class="height-200">
+                </textarea>
+      </mat-form-field>
+    </div>
+
+    <div fxLayout="row" class="" fxLayoutAlign="start center">
+      <mat-form-field appearance="outline" fxFlex="100" class="">
+        <mat-label>Why Choose Me</mat-label>
+        <textarea [readonly]="currentProjectStage != 0" matInput formControlName="chooseReason" class="height-200">
+                </textarea>
+      </mat-form-field>
+    </div>
+
+
+      <div class="" fxLayout="row" fxLayoutAlign="space-between center">
+        <div class="pr-16 mt-8" [ngClass.xl]="'mb-32'" [ngClass.lg]="'mb-32'" [ngClass.md]="'mb-32'" [ngClass.sm]="'mb-32'"
+          [ngClass.xs]="'mb-16'">
+          <div class="h3 font-weight-600">SUPPORTING DOCUMENTS & IMAGES
+          </div>
+          <div class="condo-gray-text mt-8">
+          You may upload imgaes and PDF documents to support your bid. such files can be: pricing sheets, specifications, images, catalogues, etc... Max file size is 5MB
+          </div>
+        </div>
+      </div>
+
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start top" fxLayoutAlign.xs="start" fxFlex="1 0 auto">
+      <div class="file-uploader" appearance="outline" fxFlex="50" fxFlex.sm="80" fxFlex.xs="100" class="upload-button">
+        <div fxLayout="column">
+          <span *ngIf="currentProjectStage == 0" appearance="outline" fxFlex="100" class="px-0">
+            <input hidden type="file" accept="application/pdf,image/*" (change)="appendDocumentFiles($event)" multiple
+              #fileInput />
+            <button color="accent" class="mat-flat-button bg-transparent" (click)="fileInput.click()"
+              aria-label="Add file" [@animate]="{value:'*', params:{delay:'300ms',scale:'0.2'}}">
+              <span class="condo-red-text  h4"><strong>
+                  <mat-icon class="s-16 font-weight-600 mat-icon" style="vertical-align: center">add_circle</mat-icon>
+                  Click here to Add Files
+                </strong>
+              </span>
+            </button>
+          </span>
+          <div *ngFor="let docFile of bidAttachments; index as i" fxFlex="100">
+            <h4 class="mt-16 ml-16">
+              <span *ngIf="currentProjectStage == 0" class="condo-red-text mr-6" title="Remove File"
+                (click)="removeDocAttachment(i)">
+                <mat-icon class="s-16 cursor" style="vertical-align: middle">remove_circle_outline</mat-icon>
+              </span> {{docFile.name}} - <span class="condo-gray-text">{{docFile.formatedSize}}</span> 
+            </h4>
+          </div>
+
+          <div *ngIf="currentProjectStage == 1 && (bidAttachments == null || bidAttachments.length == 0)" class=""
+            fxLayout="row">
+            <div class="condo-gray-text text-italic text-center">No documents available</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div fxLayout="column" fxFlex="100" fxFlex.gt-sm="100" class="mt-40 mb-16" [ngClass.lg]="'pr-20'"
+      [ngClass.md]="'pr-20'" [ngClass.sm]="'pr-4'" [ngClass.xs]="'pr-4'">
+      <div>
+        <div class="" fxLayout="row" fxLayoutAlign="end">
+          <div class="pr-16">
+
+          </div>
+          <div fxLayout="row">
+            <button *ngIf="currentProjectStage == 0" mat-flat-button color="primary" class="submit-button mr-16"
+              aria-label="Continue" (click)="submitBid(1)">
+              SAVE
+            </button>
+            <button *ngIf="currentProjectStage == 0" [disabled]="!isValidBid" mat-flat-button color="primary" class="submit-button"
+              aria-label="Continue" (click)="submitBid(2)">
+              SUBMIT
+            </button>
+
+            <button *ngIf="currentProjectStage == 1" mat-flat-button color="primary" class="submit-button mr-16"
+              aria-label="Continue" (click)="revokeBid()">
+              WITHDRAW BID
+            </button>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </form>
+  <!-- </div> -->
+</div>

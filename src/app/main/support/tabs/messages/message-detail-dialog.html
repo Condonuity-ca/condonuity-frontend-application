@@ -1,0 +1,167 @@
+<div fxLayout="row" fxLayoutAlign="space-between center">
+  <div mat-dialog-title class="pl-12">MESSAGE INFORMATION</div>
+
+  <mat-dialog-actions align="end" class="px-16">
+    <button mat-button mat-dialog-close style="margin-top:-50px;min-width: 28px !important;" class="p-0">
+      <mat-icon class="s-24 condo-red-text" mat-dialog-close>close</mat-icon>
+    </button>
+  </mat-dialog-actions>
+
+</div>
+<mat-dialog-content class="mat-typography">
+  <div class="profile-box info-box general mt-0" fxLayout="column">
+
+    <div fxLayout="column" id="timeline" class="py-0 px-4 content" #content>
+
+      <div class="mt-8" fxLayoutAlign="start space-between" fxFlex="100">
+        <div fxLayout="column" fxFlex="100" style="background: #fafafa;" id="timeline" class="pb-16"
+          [ngClass.lg]="'pt-0 '" [ngClass.md]="'p-32'" [ngClass.sm]="'p-24'" [ngClass.xs]="'p-16'">
+          <div fxLayout="column" fxFlex="100">
+            <div fxFlex="100" class=" b-r-4  pt-0" fxFlex.sm="100" fxFlex.xs="100" [ngClass.sm]="'mb-16'">
+              <div class="" fxLayout="column">
+                <div class="" [ngClass.lg]="'mr-0'" [ngClass.md]="'mr-24'" [ngClass.xs]="'mr-0'">
+
+                  <div class="pt-8 pb-8" fxLayout="row" fxLayoutAlign="space-between center" style="background:#fff">
+                    <div style="">
+                      <span class="condo-gray-text mr-12">To: </span>
+                      <span class="condo-gray-text recipients mr-8"
+                        *ngFor="let org of message.targetOrganisations;let i = index">{{org.organisationName}} </span>
+                      <!-- <span class="condo-gray-text rec-design mr-8" style="">Organisation</span> -->
+                    </div>
+
+                    <div>
+                      <button *ngIf="message.deleteStatus == 1" mat-button class="mat-flat-button" color="accent"
+                        (click)="updateMessage(2)">HIDE MESSAGE</button>
+
+                      <button *ngIf="message.deleteStatus == 2" mat-button class="mat-flat-button condo-red-700"
+                        (click)="updateMessage(1)">UNHIDE MESSAGE</button>
+                    </div>
+                  </div>
+
+                  <div class="px-24" fxLayout="row" fxLayout.sm="row wrap" fxLayoutAlign="start center"
+                    fxLayout.xs="column">
+
+                    <div class="w-80 h-80" [ngClass.xs]="'mb-12'">
+
+                      <img *ngIf="message.fromUser.profileImageURL" [src]="message.fromUser.profileImageURL"
+                        class="border-radius-100" [ngClass.xs]="'text-center'"
+                        src="assets/images/no-pic.jpg">
+                      <img *ngIf="message.fromUser.profileImageURL == ''" class="border-radius-100"
+                        [ngClass.xs]="'text-center'" src="assets/images/no-pic.jpg">
+                    </div>
+
+
+                    <div class="pr-0 ml-16" fxLayout="row" fxFlex="100" fxLayoutAlign="start center"
+                      fxLayout.xs="column">
+                      <div class="" fxFlex="100" fxFlex.xs="100">
+
+                        <div class="" fxLayout="row" fxLayoutAlign="space-between end">
+                          <div class="h3 font-weight-600" fxLayout="column">{{message.threadSubject}} </div>
+                          <div class="condo-gray-text" fxLayout="column">
+                            <div *ngIf="message.messageType ===2" class="mt-24">
+                              <mat-icon aria-hidden="false" aria-label="current project"
+                                class="zoom s-20 pt-12 condo-red-text">perm_identity</mat-icon>
+                              {{message.fromUser.firstName}} {{message.fromUser.lastName}},
+                              {{message.fromOrganisation.organisationName}}
+                            </div>
+                            <div *ngIf="message.messageType ===1" class="mt-24">
+                              <mat-icon aria-hidden="false" aria-label="current project"
+                                class="zoom s-20 pt-12 condo-red-text">perm_identity</mat-icon>
+                              {{message.user.firstName}}
+                              {{message.user.lastName}} <span class="ml-8 mr-8">|</span>
+                              <mat-icon aria-hidden="false" aria-label="current project"
+                                class="zoom s-16 condo-red-text">
+                                calendar_today</mat-icon> {{message.formatedCreatedDate}}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="condo-gray-text mt-8 line-height-24">{{message.threadDescription}}</div>
+                        <div class="condo-gray-text mt-8 line-height-24">
+                          <span *ngFor="let attachment of message.files" (click)="attachmentClicked(attachment)"
+                            class="mr-24 cursor attachment-icon" style="">
+                            <mat-icon aria-hidden="false" aria-label="current project"
+                              class="zoom s-16 condo-icons condo-gray-text material-icons" style="">get_app</mat-icon>
+                            <span class="ml-20"> {{attachment.fileName}}</span>
+                          </span>
+
+                        </div>
+
+
+                        <div class="" fxLayout="row" fxLayout.sm="column wrap" fxLayout.xs="column wrap"
+                          fxLayoutAlign="space-between end" fxLayoutAlign.sm="start start"
+                          fxLayoutAlign.xs="space-between center" [ngClass.sm]="'mt-24'" [ngClass.xs]="'mt-20'">
+                          <div class="h3 font-weight-600" fxLayout="row">
+                            <mat-icon aria-hidden="false" aria-label="current project"
+                              class="zoom s-16 mt-4 mr-8 condo-red-text">
+                              comment</mat-icon> {{message.comments.length}} Comments
+                          </div>
+                          <div class="condo-gray-text mt-16" fxLayout="column" fxLayoutAlign.sm="start"
+                            [ngClass.sm]="'mt-0 ml-16'">
+                            <div>
+                              <div *ngIf="message.messageType ===2" class="mt-24">
+
+                                <mat-icon aria-hidden="false" aria-label="current project"
+                                  class="zoom s-16 condo-red-text">
+                                  calendar_today</mat-icon> {{message.formatedCreatedDate}}
+                              </div>
+                              <div *ngIf="message.messageType ===1" class="mt-24">
+
+                                <mat-icon aria-hidden="false" aria-label="current project"
+                                  class="zoom s-16 condo-red-text">
+                                  calendar_today</mat-icon> {{message.formatedCreatedDate}}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div *ngIf="message" class="" fxLayout="column" fxFlex="100" fxLayoutAlign="start space-between"
+        fxLayoutAlign.xs="start">
+        <div fxLayout="column" style="" id="timeline" class="" [ngClass.lg]="'pb-16 px-8'" [ngClass.md]="'p-32'"
+          [ngClass.sm]="'p-24'" [ngClass.xs]="'p-16'">
+          <div class="chat-messages">
+            <div *ngFor="let commentInfo of message.comments"
+              class="message-row contact first-of-group last-of-group ng-star-inserted mt-48">
+              <!-- <img *ngIf="commentInfo.user.organisationName == null" class="avatar ng-star-inserted"
+                [src]="commentInfo.user.profileImageURL"
+                matTooltip="{{commentInfo.user.firstName}} {{commentInfo.user.lastName}}">
+              <img *ngIf="commentInfo.user.organisationName != null" class="avatar ng-star-inserted"
+                [src]="commentInfo.user.profileImageURL"
+                matTooltip="{{commentInfo.user.firstName}} {{commentInfo.user.lastName}}  {{commentInfo.user.organisationName}}"> -->
+
+              <img *ngIf="commentInfo.user.organisationName != null" class="avatar ng-star-inserted"
+                [src]="commentInfo.user.profileImageURL">
+
+
+              <div class="bubble">
+                <div class="message">
+                  <div>{{commentInfo.comment}}</div>
+                  <div *ngFor="let attachment of commentInfo.files" class="" fxLayout="row wrap"
+                    (click)="attachmentClicked(attachment)">
+                    <span class="mr-24 cursor chat-attachment mt-16" style="">{{attachment.fileName}}</span>
+                  </div>
+                </div>
+                <div class="time secondary-text mb-24">{{commentInfo.user.firstName}} {{commentInfo.user.lastName}},
+                  {{commentInfo.formatedCreatedDate}}</div>
+                <!-- <div class="time secondary-text mb-24"><br>{{commentInfo.formatedCreatedDate}}</div> -->
+              </div>
+            </div>
+            <div id="commentEndDiv"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>

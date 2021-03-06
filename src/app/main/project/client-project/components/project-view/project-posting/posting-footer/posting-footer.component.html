@@ -1,0 +1,42 @@
+<div *ngIf="userType == 1" fxLayout="column" fxFlex="100" fxFlex.gt-sm="100" fxFlex.gt-md="100" class="mt-40 mb-16">
+    <div>
+        <div class="" fxLayout="row" fxLayoutAlign="space-between center">
+            <div class="pr-16">                       
+                <button mat-flat-button color="accent" class="submit-button" aria-label="Continue">
+                    CANCEL PROJECT
+                </button>
+            </div>
+            <div fxLayout="row" fxLayout.xs="column">
+                <button mat-flat-button color="primary"  class="submit-button mr-16" aria-label="Continue" [ngClass.xs]="'mb-16'" [routerLink]="'/projects/client/viewProjects/edit-project/'+selectedProject">
+                        EDIT
+            </button>
+            <button mat-flat-button color="primary"  class="submit-button mr-16" aria-label="Continue" [ngClass.xs]="'mb-16'">
+                SAVE
+            </button>
+            <button mat-flat-button color="primary" class="submit-button" aria-label="Continue">
+                PUBLISH
+            </button>
+        </div>               
+    </div>
+</div>
+</div> 
+
+<div *ngIf="userType == 2" fxLayout="column" fxFlex="100" fxFlex.gt-sm="100" fxFlex.gt-md="100" class="mt-40 mb-16">
+    <div>
+        <div class="" fxLayout="row" fxLayout.xs="column"  fxLayoutAlign="space-between center" fxLayoutAlign.xs="start">
+            <div class=""  fxLayout.xs="column" [ngClass.lg]="'pr-16'" [ngClass.md]="'pr-16'" [ngClass.sm]="'pr-16'" [ngClass.xs]="''">                       
+                <button mat-flat-button color="primary" class="submit-button" aria-label="Start bid" [ngClass.xs]="'mb-16'" [disabled]="!(projStatus == 0)" (click)="bidEvent('startBid')">
+                    START PROJECT BID
+                </button>
+                <button mat-flat-button color="primary" class="submit-button" aria-label="Pull Bid" [ngClass.lg]="'ml-16'" [ngClass.md]="'ml-16'" [ngClass.sm]="'ml-16'" [ngClass.xs]="'mb-16'" [disabled]="!(projStatus != 0)" (click)="bidEvent('pullBid')">
+                    PULL BID
+                </button>
+            </div>
+            <div fxLayout="row" fxLayout.xs="column">
+                <button mat-flat-button color="primary" class="submit-button" aria-label="Edit Bid" [ngClass.xs]="'mb-16'" [disabled]="!(projStatus != 0)" (click)="bidEvent('editBid')">
+                    EDIT PROJECT BID
+                </button>
+            </div>               
+        </div>
+    </div>
+</div>

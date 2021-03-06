@@ -1,0 +1,27 @@
+<div id="profile" class="page-layout simple tabbed">
+  <div id="about" class="py-24" fxLayout="row wrap" [ngClass.xl]="'px-32'" [ngClass.lg]="'px-32'" [ngClass.md]="'px-32'" [ngClass.sm]="'px-16'"
+    [ngClass.xs]="'px-16'">
+
+    <div class="about-content" fxLayout="column" fxFlex="100">
+
+      <div class="mt-16" fxLayout="column" fxLayoutAlign="start" fxFlex="100">
+        <mat-tab-group selectedIndex={{selectedTabIndex}} (selectedTabChange)="changeTab($event)" dynamicHeight>
+          <mat-tab>
+            <ng-template mat-tab-label>
+              <mat-icon aria-hidden="false" aria-label="create project" class="mr-8 zoom">swap_vert</mat-icon>
+              <span>INTERNAL MESSAGES</span>
+            </ng-template>
+            <client-internal *ngIf="selectedTabIndex === 0"></client-internal>
+          </mat-tab>
+          <mat-tab>
+            <ng-template mat-tab-label>
+              <mat-icon aria-hidden="false" aria-label="current project" class="mr-8 zoom">swap_horiz</mat-icon>
+              <span>EXTERNAL MESSAGES</span>
+            </ng-template>
+            <client-external *ngIf="selectedTabIndex === 1"></client-external>
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+    </div>
+  </div>
+</div>

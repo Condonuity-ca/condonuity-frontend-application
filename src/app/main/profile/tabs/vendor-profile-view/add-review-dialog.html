@@ -1,0 +1,190 @@
+<div fxLayout="row" fxLayoutAlign="space-between center">
+  <div mat-dialog-title class="pl-12">ADD REVIEW</div>
+
+  <mat-dialog-actions align="end" class="px-16 mb-12">
+    <button mat-button mat-dialog-close style="margin-top:-30px;min-width: 28px !important;" class="p-0">
+      <mat-icon class="s-24 condo-red-text" mat-dialog-close>close</mat-icon>
+    </button>
+  </mat-dialog-actions>
+
+</div>
+<mat-dialog-content class="mat-typography">
+  <div class="profile-box info-box general" fxLayout="column">
+    <form fxLayout="column" fxLayoutAlign="start" fxFlex="1 0 auto" name="comInfoEditform"
+      [formGroup]="comInfoEditform">
+
+      <div class="" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start center" fxLayoutAlign.xs="start">
+          <div class="" fxFlex="35" fxFlex.xs="100" [ngClass.lg]="'pr-16 ml-16'" [ngClass.md]="'pr-16 ml-24'"
+            [ngClass.sm]="'pr-16 ml-24'" [ngClass.xs]="'mb-16'">
+            <div>
+              <div class="h5 condo-gray-text">PROFESSIONALISM</div>
+            </div>
+          </div>
+          <div class="" fxFlex="55" fxFlex.xs="100" [ngClass.lg]="'pr-16 ml-24'" [ngClass.md]="'pr-16 ml-24'"
+            [ngClass.sm]="'pr-16 ml-24'" [ngClass.xs]="'mb-16'">
+            <div>
+            <fieldset class="rating">
+              <input type="radio" (change)="ratingUpdated($event)" id="star5" name="prating" value="5" /><label
+                class="full" for="star5"></label>
+              <input type="radio" (change)="ratingUpdated($event)" id="star4half" name="prating" value="4.5" /><label
+                class="half" for="star4half"></label>
+              <input type="radio" (change)="ratingUpdated($event)" id="star4" name="prating" value="4" /><label
+                class="full" for="star4"></label>
+              <input type="radio" (change)="ratingUpdated($event)" id="star3half" name="prating" value="3.5" /><label
+                class="half" for="star3half"></label>
+              <input type="radio" (change)="ratingUpdated($event)" id="star3" name="prating" value="3" /><label
+                class="full" for="star3"></label>
+              <input type="radio" (change)="ratingUpdated($event)" id="star2half" name="prating" value="2.5" /><label
+                class="half" for="star2half"></label>
+              <input type="radio" (change)="ratingUpdated($event)" id="star2" name="prating" value="2" /><label
+                class="full" for="star2"></label>
+              <input type="radio" (change)="ratingUpdated($event)" id="star1half" name="prating" value="1.5" /><label
+                class="half" for="star1half"></label>
+              <input type="radio" (change)="ratingUpdated($event)" id="star1" name="prating" value="1" /><label
+                class="full" for="star1"></label>
+              <input type="radio" (change)="ratingUpdated($event)" id="starhalf" name="prating" value="0.5" /><label
+                class="half" for="starhalf"></label>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start center" fxLayoutAlign.xs="start">
+           <div class="" fxFlex="35" fxFlex.xs="100" [ngClass.xl]="'pr-16 ml-16'" [ngClass.lg]="'pr-16 ml-16'" [ngClass.md]="'pr-16 ml-24'"
+          [ngClass.sm]="'pr-16 ml-24'" [ngClass.xs]="'mb-16'">
+          <div>
+            <div class="h5 condo-gray-text">ACCURACY</div>
+          </div>
+        </div>
+            <div class="" fxFlex="55" fxFlex.xs="100" [ngClass.xl]="'pr-16 ml-24'" [ngClass.lg]="'pr-16 ml-24'" [ngClass.md]="'pr-16 ml-24'"
+          [ngClass.sm]="'pr-16 ml-24'" [ngClass.xs]="'mb-16'">
+          <div>
+            <fieldset class="rating">
+              <input type="radio" (change)="ratingUpdated($event)" id="astar5" name="arating" value="5" /><label
+                class="full" for="astar5"></label>
+              <input type="radio" (change)="ratingUpdated($event)" id="astar4half" name="arating" value="4.5" /><label
+                class="half" for="astar4half"></label>
+              <input type="radio" (change)="ratingUpdated($event)" id="astar4" name="arating" value="4" /><label
+                class="full" for="astar4"></label>
+              <input type="radio" (change)="ratingUpdated($event)" id="astar3half" name="arating" value="3.5" /><label
+                class="half" for="astar3half"></label>
+              <input type="radio" (change)="ratingUpdated($event)" id="astar3" name="arating" value="3" /><label
+                class="full" for="astar3"></label>
+              <input type="radio" (change)="ratingUpdated($event)" id="astar2half" name="arating" value="2.5" /><label
+                class="half" for="astar2half"></label>
+              <input type="radio" (change)="ratingUpdated($event)" id="astar2" name="arating" value="2" /><label
+                class="full" for="astar2"></label>
+              <input type="radio" (change)="ratingUpdated($event)" id="astar1half" name="arating" value="1.5" /><label
+                class="half" for="astar1half"></label>
+              <input type="radio" (change)="ratingUpdated($event)" id="astar1" name="arating" value="1" /><label
+                class="full" for="astar1"></label>
+              <input type="radio" (change)="ratingUpdated($event)" id="astarhalf" name="arating" value="0.5" /><label
+                class="half" for="astarhalf"></label>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start center" fxLayoutAlign.xs="start">
+           <div class="" fxFlex="35" fxFlex.xs="100" [ngClass.xl]="'pr-16 ml-16'" [ngClass.lg]="'pr-16 ml-16'" [ngClass.md]="'pr-16 ml-24'"
+          [ngClass.sm]="'pr-16 ml-24'" [ngClass.xs]="'mb-16'">
+          <div>
+            <div class="h5 condo-gray-text">RESPONSIVENESS</div>
+          </div>
+        </div>
+            <div class="" fxFlex="55" fxFlex.xs="100" [ngClass.xl]="'pr-16 ml-24'" [ngClass.lg]="'pr-16 ml-24'" [ngClass.md]="'pr-16 ml-24'"
+          [ngClass.sm]="'pr-16 ml-24'" [ngClass.xs]="'mb-16'">
+          <div>
+            <fieldset class="rating">
+              <input type="radio" (change)="ratingUpdated($event)" id="rstar5" name="rrating" value="5" /><label
+                class="full" for="rstar5"></label>
+              <input type="radio" (change)="ratingUpdated($event)" id="rstar4half" name="rrating" value="4.5" /><label
+                class="half" for="rstar4half"></label>
+              <input type="radio" (change)="ratingUpdated($event)" id="rstar4" name="rrating" value="4" /><label
+                class="full" for="rstar4"></label>
+              <input type="radio" (change)="ratingUpdated($event)" id="rstar3half" name="rrating" value="3.5" /><label
+                class="half" for="rstar3half"></label>
+              <input type="radio" (change)="ratingUpdated($event)" id="rstar3" name="rrating" value="3" /><label
+                class="full" for="rstar3"></label>
+              <input type="radio" (change)="ratingUpdated($event)" id="rstar2half" name="rrating" value="2.5" /><label
+                class="half" for="rstar2half"></label>
+              <input type="radio" (change)="ratingUpdated($event)" id="rstar2" name="rrating" value="2" /><label
+                class="full" for="rstar2"></label>
+              <input type="radio" (change)="ratingUpdated($event)" id="rstar1half" name="rrating" value="1.5" /><label
+                class="half" for="rstar1half"></label>
+              <input type="radio" (change)="ratingUpdated($event)" id="rstar1" name="rrating" value="1" /><label
+                class="full" for="rstar1"></label>
+              <input type="radio" (change)="ratingUpdated($event)" id="rstarhalf" name="rrating" value="0.5" /><label
+                class="half" for="rstarhalf"></label>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start center" fxLayoutAlign.xs="start">
+           <div class="" fxFlex="35" fxFlex.xs="100" [ngClass.xl]="'pr-16 ml-16'" [ngClass.lg]="'pr-16 ml-16'" [ngClass.md]="'pr-16 ml-24'"
+          [ngClass.sm]="'pr-16 ml-24'" [ngClass.xs]="'mb-16'">
+          <div>
+            <div class="h5 condo-gray-text">QUALITY</div>
+          </div>
+        </div>
+            <div class="" fxFlex="55" fxFlex.xs="100" [ngClass.xl]="'pr-16 ml-24'" [ngClass.lg]="'pr-16 ml-24'" [ngClass.md]="'pr-16 ml-24'"
+          [ngClass.sm]="'pr-16 ml-24'" [ngClass.xs]="'mb-16'">
+          <div>
+            <fieldset class="rating">
+              <input type="radio" (change)="ratingUpdated($event)" id="qstar5" name="qrating" value="5" /><label
+                class="full" for="qstar5"></label>
+              <input type="radio" (change)="ratingUpdated($event)" id="qstar4half" name="qrating" value="4.5" /><label
+                class="half" for="qstar4half"></label>
+              <input type="radio" (change)="ratingUpdated($event)" id="qstar4" name="qrating" value="4" /><label
+                class="full" for="qstar4"></label>
+              <input type="radio" (change)="ratingUpdated($event)" id="qstar3half" name="qrating" value="3.5" /><label
+                class="half" for="qstar3half"></label>
+              <input type="radio" (change)="ratingUpdated($event)" id="qstar3" name="qrating" value="3" /><label
+                class="full" for="qstar3"></label>
+              <input type="radio" (change)="ratingUpdated($event)" id="qstar2half" name="qrating" value="2.5" /><label
+                class="half" for="qstar2half"></label>
+              <input type="radio" (change)="ratingUpdated($event)" id="qstar2" name="qrating" value="2" /><label
+                class="full" for="qstar2"></label>
+              <input type="radio" (change)="ratingUpdated($event)" id="qstar1half" name="qrating" value="1.5" /><label
+                class="half" for="qstar1half"></label>
+              <input type="radio" (change)="ratingUpdated($event)" id="qstar1" name="qrating" value="1" /><label
+                class="full" for="qstar1"></label>
+              <input type="radio" (change)="ratingUpdated($event)" id="qstarhalf" name="qrating" value="0.5" /><label
+                class="half" for="qstarhalf"></label>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+
+
+        <div class="mt-8" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start center"
+          fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxFlex="1 0 auto">
+          <mat-form-field appearance="outline" fxFlex="100" class="px-16">
+            <mat-label>Engagement Date</mat-label>
+            <input required matInput [matDatepicker]="engagementDate" formControlName="engagementDate" placeholder="Choose a date" readonly>
+            <mat-datepicker-toggle matSuffix [for]="engagementDate"></mat-datepicker-toggle>
+            <mat-datepicker #engagementDate></mat-datepicker>
+            <mat-error>Date format is invalid</mat-error>
+          </mat-form-field>
+        </div>
+
+      <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start center"
+        fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxFlex="1 0 auto" class="mt-8">
+        <mat-form-field appearance="outline" fxFlex="100" class="px-16">
+          <mat-label>Your Comments </mat-label>
+          <textarea formControlName="other" matInput type="text" max-rows="6" style="height:100px;"></textarea>
+        </mat-form-field>
+      </div>
+
+    </form>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end" class="px-16 mt-12 mb-4">
+  <button mat-button [disabled]="comInfoEditform.invalid" (click)="postUserReview()" mat-flat-button mat-accent cdkFocusInitial color="accent">POST
+    REVIEW</button>
+  <button mat-button mat-dialog-close class="fuse-navy-50">CANCEL</button>
+</mat-dialog-actions>

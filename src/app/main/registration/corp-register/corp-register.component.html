@@ -1,0 +1,354 @@
+<div id="register" fxLayout="column">
+  <div id="register-form-wrapper" fxLayout="column" fxLayoutAlign="center center">
+    <div id="register-form" [@animate]="{value:'*',params:{duration:'300ms',y:'100px'}}">
+      <div class="h2 mb-24 text-bold condo-gray-text">Register New Corporation</div>
+
+      <mat-vertical-stepper class="mat-elevation-z" [linear]="true">
+
+        <mat-step [stepControl]="corpInfoForm">
+          <form fxLayout="column" [formGroup]="corpInfoForm">
+            <ng-template matStepLabel>CORPORATION NAME</ng-template>
+            <div fxLayout="column" class="mt-16">
+
+              
+			  
+			  <div fxLayout.xl="row" fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="row" fxLayout.xs="column" fxLayoutAlign="start center" fxFlex="1 0 auto" class="mb-40" >
+                  <div class="w-70" style="width:90px;">
+                    <img *ngIf="imgURL == null" class="border-radius-100" style="width:70px;height:70px"
+                      src="assets/images/no-pic.jpg">
+                    <img [src]="imgURL" class="border-radius-100" *ngIf="imgURL">
+                  </div>
+
+                  <span appearance="outline" class="" [ngClass.xs]="'mt-32'">
+                    <div class="file-uploader font-size-20">
+
+                      <style>
+                        #file {
+                          display: none;
+                        }
+
+                      </style>
+                      <label class="condo-red-text  h5 font-weight-600 upload-btn ml-16 cursor mr-16">
+                        UPLOAD PHOTO<input #file type="file" accept='image/*' (change)="fileEvent(file.files)" id="file">
+                      </label>
+                    </div>
+                  </span>
+
+                  <div [ngClass.xs]="'mt-32'">
+                    <span class="condo-gray-text">Max 2MB</span>
+                  </div>
+
+                </div>
+
+              <div fxLayout.xl="row"  fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="row" fxLayout.xs="column" fxLayoutAlign="start center" fxFlex="1 0 auto">
+
+                <mat-form-field appearance="outline" fxFlex="50" [ngClass.xl]="'pr-16'" [ngClass.lg]="'pr-16'" [ngClass.md]="'pr-16'" [ngClass.sm]="'pr-16'" [ngClass.xs]="''">
+                  <mat-label>Corporation Name</mat-label>
+                  <input matInput formControlName="corpName" required>
+                  <mat-error *ngIf="corpInfoForm.get('corpName').hasError('required')">
+                    {{mandatory}}
+                  </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" fxFlex="50" class="">
+                  <mat-label>Corporation Number</mat-label>
+                  <input matInput formControlName="corpNumber" required>
+                  <mat-error *ngIf="corpInfoForm.get('corpNumber').hasError('required')">
+                    {{mandatory}}
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+              <div fxLayout.xl="row"  fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="row" fxLayout.xs="column" fxLayoutAlign="start center" fxFlex="1 0 auto">
+                <mat-form-field appearance="outline" fxFlex="25" [ngClass.xl]="'pr-16'" [ngClass.lg]="'pr-16'" [ngClass.md]="'pr-16'" [ngClass.sm]="'pr-16'" [ngClass.xs]="''">
+                  <mat-label>Address</mat-label>
+                  <input matInput formControlName="address" required>
+                  <mat-error *ngIf="corpInfoForm.get('address').hasError('required')">
+                    {{mandatory}}
+                  </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" fxFlex="25" [ngClass.xl]="'pr-16'" [ngClass.lg]="'pr-16'" [ngClass.md]="'pr-16'" [ngClass.sm]="'pr-16'" [ngClass.xs]="''">
+                  <mat-label>City</mat-label>
+
+                  <mat-select formControlName="city" (selectionChange)="citySelected($event.value)">
+                    <mat-option *ngFor="let cityInfo of cityProvinceList" [value]="cityInfo">
+                      {{cityInfo.city}}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error>Mandatory field is required</mat-error>
+                  <mat-error *ngIf="corpInfoForm.get('city').hasError('required')">
+                    {{mandatory}}
+                  </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" fxFlex="25" [ngClass.xl]="'pr-16'" [ngClass.lg]="'pr-16'" [ngClass.md]="'pr-16'" [ngClass.sm]="'pr-16'" [ngClass.xs]="''">
+                  <mat-label>Province</mat-label>
+                  <input readonly matInput formControlName="province" required>
+                  <mat-error *ngIf="corpInfoForm.get('province').hasError('required')">
+                    {{mandatory}}
+                  </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" fxFlex="25" class="">
+                  <mat-label>Postal Code</mat-label>
+                  <input matInput formControlName="postalCode" required>
+                  <mat-error *ngIf="corpInfoForm.get('postalCode').hasError('required')">
+                    {{mandatory}}
+                  </mat-error>
+                  <mat-error *ngIf="corpInfoForm.get('postalCode').hasError('pattern')">
+                    Postal code must contain 6 digit alphanumeric characters
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+              <div fxLayout.xl="row"  fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="row" fxLayout.xs="column" fxLayoutAlign="start center" fxFlex="1 0 auto">
+                <mat-form-field appearance="outline" fxFlex="25" [ngClass.xl]="'pr-16'" [ngClass.lg]="'pr-16'" [ngClass.md]="'pr-16'" [ngClass.sm]="'pr-16'" [ngClass.xs]="''">
+                  <mat-label>Phone Number</mat-label>
+                  <input matInput formControlName="phoneNumber" required>
+                  <mat-error *ngIf="corpInfoForm.get('phoneNumber').hasError('required')">
+                    {{mandatory}}
+                  </mat-error>
+                  <mat-error *ngIf="corpInfoForm.get('phoneNumber').hasError('pattern')">
+                    Please Enter a Number
+                  </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" fxFlex="25" [ngClass.xl]="'pr-16'" [ngClass.lg]="'pr-16'" [ngClass.md]="'pr-16'" [ngClass.sm]="'pr-16'" [ngClass.xs]="''">
+                  <mat-label>Fax</mat-label>
+                  <input matInput formControlName="fax">
+                  <mat-error *ngIf="corpInfoForm.get('fax').hasError('pattern')">
+                    Fax must be a Number
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div fxLayout.xl="row"  fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="row" fxLayout.xs="column" fxLayoutAlign="start center" fxFlex="1 0 auto">
+                <mat-form-field appearance="outline" fxFlex="50" [ngClass.xl]="'pr-16'" [ngClass.lg]="'pr-16'" [ngClass.md]="'pr-16'" [ngClass.sm]="'pr-16'" [ngClass.xs]="''">
+                  <mat-label>General Email</mat-label>
+                  <input matInput formControlName="generalMail" required>
+                  <mat-error *ngIf="corpInfoForm.get('generalMail').hasError('required')">
+                    {{mandatory}}
+                  </mat-error>
+                  <mat-error *ngIf="corpInfoForm.get('generalMail').hasError('pattern')">
+                    Please Enter Valid Email ID
+                  </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" fxFlex="25" [ngClass.xl]="'pr-16'" [ngClass.lg]="'pr-16'" [ngClass.md]="'pr-16'" [ngClass.sm]="'pr-16'" [ngClass.xs]="''">
+                  <mat-label>Management Email</mat-label>
+                  <input matInput formControlName="managementMail">
+                  <mat-error *ngIf="corpInfoForm.get('managementMail').hasError('pattern')">
+                    Please Enter Valid Email ID
+                  </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" fxFlex="25" class="">
+                  <mat-label>Board Email</mat-label>
+                  <input matInput formControlName="boardMail">
+                  <mat-error *ngIf="corpInfoForm.get('boardMail').hasError('pattern')">
+                    Please Enter Valid Email ID
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start center" fxLayoutAlign.xs="start"
+                fxFlex="1 0 auto" class="mt-32">
+                <div class="" fxFlex="100" fxFlex.xs="100" class=" font-weight-500 condo-gray-text">
+                  SUPPORTING DOCUMENTS AND IMAGES
+                </div>
+              </div>
+
+              <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start top" fxLayoutAlign.xs="start"
+                fxFlex="1 0 auto">
+                <div class="file-uploader" appearance="outline" fxFlex="64" fxFlex.xs="100" class="upload-button">
+                  <div fxLayout="column">
+                    <span appearance="outline" fxFlex="100" class="px-16">
+                      <input formControlName="docUploader" hidden type="file" accept="application/pdf,image/*"
+                        (change)="appendDocumentFiles($event)" multiple #fileInput />
+                      <button color="accent" class="mat-flat-button p-0 bg-transparent"
+                        (click)="fileInput.value='';fileInput.click()" aria-label="Add file"
+                        [@animate]="{value:'*', params:{delay:'300ms',scale:'0.2'}}">
+                        <span class="condo-red-text h4"><strong>
+                            <mat-icon class="s-16 font-weight-600 mat-icon" style="vertical-align: center">add_circle
+                            </mat-icon> Click here to Add Files
+                          </strong></span>
+                      </button>
+                    </span>
+                    <div *ngFor="let docFile of docFileList; index as i" fxFlex="100">
+                      <h4 class="mt-12 ml-16"><span class="condo-red-text mr-6" title="Remove File"
+                          (click)="removeDocAttachment(i)">
+                          <mat-icon class="s-16 cursor" style="vertical-align: middle">remove_circle_outline</mat-icon>
+                        </span> {{docFile.name}} - <span class="condo-gray-text">{{docFile.formatedSize}}</span> </h4>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <mat-error *ngIf="corpInfoForm.get('docUploader').hasError('required')">
+                * File Upload is Mandatory
+              </mat-error>
+
+              <div fxLayout="column" class="mx-16 mt-12">
+                <div class="h5 condo-gray-text">
+                  <span class="condo-red-text">*</span> Upload a copy of the latest periodic information certificate (or
+                  your condominium declaration documents) as a proof of representation, Our registration team will
+                  contact you for verification purposes before activating your profile.
+                </div>
+                <div class="h5 condo-gray-text">
+                  Supported files are images and pdfs
+                </div>
+              </div>
+
+              <div fxLayout="row" fxLayoutAlign="end">
+                <button mat-raised-button matStepperNext type="button" color="accent"
+                  [disabled]="corpInfoForm.invalid || docFileList.length === 0" [ngClass.xs]="'mt-16'">
+                  NEXT
+                </button>
+              </div>
+            </div>
+          </form>
+        </mat-step>
+
+        <!--Form 2--->
+
+        <mat-step [stepControl]="otherInfoForm">
+          <form fxLayout="column" [formGroup]="otherInfoForm">
+            <ng-template matStepLabel>ADDITIONAL INFORMATION</ng-template>
+            <div class="mat-card mat-elevation-z  mr-24 mt-12" fxLayout="column">
+              <div class="" fxLayout="column">
+                <div fxLayout.xl="row" fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="row" fxLayout.xs="column" fxLayoutAlign="start center" fxFlex="1 0 auto">
+                  <mat-form-field appearance="outline" fxFlex="33"  [ngClass.xl]="'pr-16'" [ngClass.lg]="'pr-16'" [ngClass.md]="'pr-16'" [ngClass.sm]="'pr-16'" [ngClass.xs]="''">
+                    <mat-label>No. Of Units</mat-label>
+                    <input matInput formControlName="unitsNos" required>
+                    <mat-error *ngIf="otherInfoForm.get('unitsNos').hasError('required')">
+                      {{mandatory}}
+                    </mat-error>
+                    <mat-error *ngIf="otherInfoForm.get('unitsNos').hasError('pattern')">
+                      Number of Units must be a Number
+                    </mat-error>
+                  </mat-form-field>
+
+                  <mat-form-field appearance="outline" fxFlex="30" [ngClass.xl]="'pr-16'" [ngClass.lg]="'pr-16'" [ngClass.md]="'pr-16'" [ngClass.sm]="'pr-16'" [ngClass.xs]="''">
+                    <mat-label>No. of Voting Units</mat-label>
+                    <input matInput formControlName="votingUnits" required>
+                    <mat-error *ngIf="otherInfoForm.get('votingUnits').hasError('required')">
+                      {{mandatory}}
+                    </mat-error>
+                    <mat-error *ngIf="otherInfoForm.get('votingUnits').hasError('pattern')">
+                      Please Enter Number
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+
+                <div fxLayout.xl="row" fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="row" fxLayout.xs="column" fxLayoutAlign="start center" fxFlex="1 0 auto">
+                  <mat-form-field appearance="outline" fxFlex="33" [ngClass.xl]="'pr-16'" [ngClass.lg]="'pr-16'" [ngClass.md]="'pr-16'" [ngClass.sm]="'pr-16'" [ngClass.xs]="''">
+                    <mat-label>Date of Registration</mat-label>
+                    <input matInput [max]="maxRegDate" readonly [matDatepicker]="picker" formControlName="registerDate"
+                      placeholder="Choose a date" required>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                    <mat-error *ngIf="otherInfoForm.get('registerDate').hasError('required')">
+                      {{mandatory}}
+                    </mat-error>
+                  </mat-form-field>
+
+                  <mat-form-field appearance="outline" fxFlex="67" class="">
+                    <mat-label>Management Company</mat-label>
+                    <input matInput formControlName="managementCompany" required>
+                    <mat-error *ngIf="otherInfoForm.get('managementCompany').hasError('required')">
+                      {{mandatory}}
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div fxLayout.xl="row" fxLayout.lg="row" fxLayout.md="row" fxLayout.sm="row" fxLayout.xs="column" fxLayoutAlign="start center" fxFlex="1 0 auto">
+                  <mat-form-field appearance="outline" fxFlex="33" [ngClass.xl]="'pr-16'" [ngClass.lg]="'pr-16'" [ngClass.md]="'pr-16'" [ngClass.sm]="'pr-16'" [ngClass.xs]="''">
+                    <mat-label>Manager Name</mat-label>
+                    <input matInput formControlName="managerName">
+                  </mat-form-field>
+
+                  <mat-form-field appearance="outline" fxFlex="33" [ngClass.xl]="'pr-16'" [ngClass.lg]="'pr-16'" [ngClass.md]="'pr-16'" [ngClass.sm]="'pr-16'" [ngClass.xs]="''">
+                    <mat-label>Manager Email</mat-label>
+                    <input matInput formControlName="managerEmail">
+                    <mat-error *ngIf="otherInfoForm.get('managerEmail').hasError('pattern')">
+                      Please Enter Valid Email ID
+                    </mat-error>
+                  </mat-form-field>
+                  <mat-form-field appearance="outline" fxFlex="34" class="">
+                    <mat-label>Manager Phone</mat-label>
+                    <input matInput formControlName="managerPhone">
+                    <mat-error *ngIf="otherInfoForm.get('managerPhone').hasError('pattern')">
+                      Phone Number must be a Number
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="end" class="mr-24">
+              <button class="mr-8" mat-raised-button matStepperPrevious type="button" color="accent">
+                PREVIOUS
+              </button>
+              <button [disabled]="otherInfoForm.invalid" mat-raised-button matStepperNext type="button" color="accent">
+                NEXT
+              </button>
+            </div>
+          </form>
+        </mat-step>
+
+        <!--Form 3---->
+
+        <mat-step [stepControl]="aminitiesInfoForm">
+          <form fxLayout="column" [formGroup]="aminitiesInfoForm">
+            <ng-template matStepLabel>AMENITIES INFORMATION</ng-template>
+            <div class="mat-card mat-elevation-z pt-12 mr-24">
+              <div class="" fxLayout="column">
+
+                <mat-form-field appearance="outline" fxFlex="100">
+                  <mat-chip-list #chipList aria-label="Amenity Selection" required="required">
+                    <mat-chip *ngFor="let amenity of selectedAmenities" [selectable]="selectable"
+                      [removable]="removable" (removed)="remove(amenity)">
+                      {{amenity.amenitiesName}}
+                      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                    </mat-chip>
+                    <input placeholder="Select Amenities" #tagInput [formControl]="tagCtrl" formControlName="amenity"
+                      [matAutocomplete]="auto" [matChipInputFor]="chipList"
+                      [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur">
+                  </mat-chip-list>
+                  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                    <mat-option *ngFor="let amenity of filteredAmenities | async" [value]="amenity">
+                      {{amenity.amenitiesName}}
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field>
+
+                <div fxLayout="row wrap" fxLayout.xs="column" class="my-16" [ngClass.xs]="'mb-0'"
+                  fxLayoutAlign="start center" fxLayoutAlign.xs="start" fxFlex="1 0 auto">
+
+                  <div *ngFor="let aminity of selectedAmenities" fxFlex="20" fxFlex.sm="33" fxFlex.xs="90"
+                    [ngClass.lg]="'mb-32'" [ngClass.md]="'mb-32'" [ngClass.sm]="'mb-32'" [ngClass.xs]="'mb-24'">
+                    <div class="h5 condo-gray-text mb-4 text-center"><img class="border-radius-100"
+                        src="{{aminity.imageSource}}"></div>
+                    <div class="h4 text-center condo-gray-text mt-8">{{aminity.amenitiesName}}</div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="end" class="mr-24">
+              <button mat-raised-button color="accent" class="" aria-label="Proceed"
+                [disabled]="aminitiesInfoForm.invalid" (click)="registerClientOrganisation()">
+                PROCEED TO VERIFY
+              </button>
+            </div>
+          </form>
+
+        </mat-step>
+      </mat-vertical-stepper>
+      <div fxLayout="row" fxLayoutAlign="start start" class="mt-16 cancel-btn">
+        <button mat-raised-button color="accent" class="" aria-label="Cancel" [routerLink]="'/auth/login'"
+          (click)="clearRegisterData()">
+          CANCEL
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+</div>

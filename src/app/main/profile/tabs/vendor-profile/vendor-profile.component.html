@@ -1,0 +1,502 @@
+<div id="profile" class="page-layout simple tabbed">
+
+  <div id="about" class="p-20 pr-24 pl-32 pt-32 pb-32" fxLayout="row wrap">
+
+    <div class="about-content" fxLayout="column" fxFlex="100" fxFlex.gt-sm="100" fxFlex.gt-md="100">
+
+
+      <form class="" fxLayout="column" fxLayoutAlign="start" fxFlex="1 0 auto" name="registerForm"
+        [formGroup]="registerForm" (ngSubmit)="submitVendor()">
+        <mat-accordion class="example-headers-align mat-elevation-z expanded" multi>
+
+
+          <mat-expansion-panel class="mt-24 mat-elevation-z" expanded>
+            <mat-expansion-panel-header class="condo-red-300">
+              <mat-panel-title class="h3 font-weight-600">
+                VENDOR INFORMATION
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+
+
+            <div class="mat-card mat-elevation-z pt-32 mr-24 project-list">
+
+              <div fxLayout="column">
+
+                <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto" class="pt-16">
+                  <mat-form-field appearance="outline" fxFlex="40" class="">
+                    <mat-label>Company Name</mat-label>
+                    <input matInput formControlName="vendorName" required>
+                    <mat-error>Mandatory field is required</mat-error>
+                  </mat-form-field>
+                </div>
+
+
+
+                <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+                  <mat-form-field appearance="outline" fxFlex="20">
+                    <mat-label>Date Established</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="establishDate" placeholder="Choose a date"
+                      required="required" readonly>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                    <mat-error>Mandatory field is required</mat-error>
+                  </mat-form-field>
+
+                  <mat-form-field appearance="outline" fxFlex="20" class="pl-32 pr-0">
+                    <mat-label>Total Employees</mat-label>
+                    <input matInput formControlName="totalEmp">
+                  </mat-form-field>
+
+                  <mat-form-field appearance="outline" fxFlex="33" class="px-32">
+                    <mat-label>Yearly Sales</mat-label>
+                    <input matInput formControlName="yearSales">
+                  </mat-form-field>
+                </div>
+
+                <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+                  <mat-form-field appearance="outline" fxFlex="40">
+
+                    <mat-label>Description</mat-label>
+                    <textarea name="desciption" formControlName="desciption" matInput type="text" max-rows="4"
+                      required="required"></textarea>
+                    <mat-error>Mandatory field is required</mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+
+
+            </div>
+          </mat-expansion-panel>
+
+
+
+
+          <mat-expansion-panel class="mt-24 mat-elevation-z" expanded>
+            <mat-expansion-panel-header class="condo-red-300">
+              <mat-panel-title class="h3 font-weight-600">
+                CONTACT INFORMATION
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+
+
+            <div class="mat-card mat-elevation-z pt-32 mr-24 project-list">
+
+              <div class="" fxLayout="column">
+
+                <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+
+
+
+                  <mat-form-field appearance="outline" fxFlex="40" class="pr-16">
+                    <mat-label>Company Legal Name</mat-label>
+                    <input matInput formControlName="compLegalName" required>
+
+                    <mat-error>Mandatory field is required</mat-error>
+                  </mat-form-field>
+                </div>
+
+                <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+
+
+
+                  <mat-form-field appearance="outline" fxFlex="25" class="pr-16">
+                    <mat-label>Street Address</mat-label>
+                    <input matInput formControlName="streetAddr" required>
+                    <mat-error>Mandatory field is required</mat-error>
+                  </mat-form-field>
+
+                  <mat-form-field appearance="outline" fxFlex="25" class="px-16">
+                    <mat-label>Province</mat-label>
+                    <input matInput formControlName="province" required>
+                    <mat-error>Mandatory field is required</mat-error>
+                  </mat-form-field>
+
+                  <mat-form-field appearance="outline" fxFlex="25" class="px-16">
+                    <mat-label>City</mat-label>
+                    <input matInput formControlName="city" required>
+                    <mat-error>Mandatory field is required</mat-error>
+                  </mat-form-field>
+
+                  <mat-form-field appearance="outline" fxFlex="25" class="pl-16">
+                    <mat-label>Postal Code</mat-label>
+                    <input matInput formControlName="postalCode" required>
+                    <mat-error>Postal code must contain 6 digit alphanumeric characters</mat-error>
+                  </mat-form-field>
+
+                </div>
+
+                <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+                  <mat-form-field appearance="outline" fxFlex="25" class="pr-16">
+                    <mat-label>Phone Number</mat-label>
+                    <input matInput formControlName="phone" required>
+                    <mat-error>Mandatory field is required</mat-error>
+                  </mat-form-field>
+
+                  <mat-form-field appearance="outline" fxFlex="25" class="px-16">
+                    <mat-label>Email</mat-label>
+                    <input matInput formControlName="email" required>
+                    <mat-error>Mandatory field is required</mat-error>
+                  </mat-form-field>
+
+                  <mat-form-field appearance="outline" fxFlex="25" class="px-16">
+                    <mat-label>Fax</mat-label>
+                    <input matInput formControlName="fax">
+                  </mat-form-field>
+
+                  <mat-form-field appearance="outline" fxFlex="25" class="pl-16">
+                    <mat-label>Website</mat-label>
+                    <input matInput formControlName="website">
+                  </mat-form-field>
+                </div>
+
+                <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+
+                  <mat-form-field appearance="outline" fxFlex="25" class="pr-16">
+                    <mat-label>Contact Person</mat-label>
+                    <input matInput formControlName="contactPer">
+                  </mat-form-field>
+
+                  <mat-form-field appearance="outline" fxFlex="25" class="px-16">
+                    <mat-label>Phone Number</mat-label>
+                    <input matInput formControlName="phone">
+                  </mat-form-field>
+
+                  <mat-form-field appearance="outline" fxFlex="25" class="px-16">
+                    <mat-label>Email</mat-label>
+                    <input matInput formControlName="email">
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+
+          </mat-expansion-panel>
+
+          <mat-expansion-panel class="mat-elevation-z mt-24" expanded>
+            <mat-expansion-panel-header class="condo-red-300">
+              <mat-panel-title class="h3 font-weight-600">
+                INSURANCE, SERVICES AND CERTIFICATIONS
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <div class="mat-card mat-elevation-z pt-12 mr-24 project-list">
+
+              <div fxLayout="column" class="">
+
+
+
+
+
+                <div class="mat-card mat-elevation-z mb-32" fxLayout="column">
+                  <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto" class="pt-16">
+                    <mat-checkbox appearance="outline" fxFlex="15" class="px-16" (change)="manageInsurance($event)"
+                      formControlName="insured">Insured</mat-checkbox>
+                    <div class="pt-16 input-group-bg" fxLayout="row" fxFlex="1 0 auto">
+
+                      <mat-form-field appearance="outline" fxFlex="33" class="px-16">
+                        <mat-label>Insurance Company</mat-label>
+                        <input matInput formControlName="insuranceCompany">
+                        <mat-error>Mandatory field is required</mat-error>
+                      </mat-form-field>
+
+                      <mat-form-field appearance="outline" fxFlex="33" class="px-16">
+                        <mat-label>Liablity</mat-label>
+                        <input matInput formControlName="liability">
+                        <mat-error>Mandatory field is required</mat-error>
+                      </mat-form-field>
+
+                      <mat-form-field appearance="outline" fxFlex="33" class="px-16">
+                        <mat-label>Expiry Date</mat-label>
+                        <input matInput [matDatepicker]="expPicker" formControlName="expiryDate"
+                          placeholder="Choose a date" readonly>
+                        <mat-datepicker-toggle matSuffix [for]="expPicker"></mat-datepicker-toggle>
+                        <mat-datepicker #expPicker></mat-datepicker>
+                        <mat-error>Mandatory field is required</mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+                  <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto" class="pt-32">
+                    <mat-checkbox appearance="outline" fxFlex="15" class="px-16" formControlName="bonded">Bonded
+                    </mat-checkbox>
+                  </div>
+
+                  <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto" class="pt-16">
+                    <mat-checkbox appearance="outline" fxFlex="15" class="px-16" (change)="manageWsib($event)" required
+                      formControlName="wsib">WSIB</mat-checkbox>
+
+                    <div class="pt-16 input-group-bg" fxLayout="row" fxFlex="40">
+                      <mat-form-field appearance="outline" fxFlex="60" class="px-16">
+                        <mat-label>WSIB</mat-label>
+                        <input matInput formControlName="wsibId">
+                        <mat-error>Mandatory field is required</mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+                <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto" class="pt-16">
+
+                  <mat-form-field appearance="outline" fxFlex="50" class="">
+                    <mat-label>Tags*</mat-label>
+                    <mat-chip-list #chipList aria-label="Tag Selection">
+                      <mat-chip *ngFor="let tag of selectedTags" [selectable]="selectable" [removable]="removable"
+                        (removed)="remove(tag)">
+                        {{tag.tagName}}
+                        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                      </mat-chip>
+                      <input required="required" placeholder="Select Tags" #tagInput [formControl]="tagCtrl"
+                        formControlName="tags" [matAutocomplete]="auto" [matChipInputFor]="chipList"
+                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur">
+                    </mat-chip-list>
+                    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                      <mat-option *ngFor="let tags of filteredTags | async" [value]="tags">
+                        {{tags.tagName}}
+                      </mat-option>
+                    </mat-autocomplete>
+                    <a matSuffix href="contactus" target="_blank" title="Request New Tag"
+                      class="font-size-12 font-weight-600">
+                      <span style="">REQUEST NEW TAG ADDITION</span>
+                    </a>
+
+                  </mat-form-field>
+
+                  <mat-form-field appearance="outline" fxFlex="40" class="px-32">
+                    <mat-label>Serviced Cities</mat-label>
+                    <mat-select formControlName="servicedCities" multiple>
+                      <mat-option *ngFor="let cities of cityNames" [value]="cities">{{cities.cityName}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+
+                <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+
+                  <mat-form-field appearance="outline" fxFlex="34">
+                    <mat-label>Services</mat-label>
+                    <input matInput formControlName="services" required>
+
+                    <mat-error>Mandatory field is required</mat-error>
+                  </mat-form-field>
+
+
+                  <a mat-button class="mat-flat-button condo-red-100 text-bold condo-red-100 ml-12" fxFlex="15"
+                    style="margin-top:-10px;">
+                    <mat-icon class="s-16">add_circle</mat-icon><span class="font-weight-600 font-size-12"> ADD
+                      SERVICE</span>
+                  </a>
+
+                  <mat-form-field appearance="outline" fxFlex="20" class="pl-32">
+                    <mat-label>Lisences</mat-label>
+                    <input matInput formControlName="lisences">
+                    <mat-error>Mandatory field is required</mat-error>
+                  </mat-form-field>
+
+                  <a mat-button class="mat-flat-button condo-red-100 text-bold condo-red-100 ml-12" fxFlex="15"
+                    style="margin-top:-10px;">
+                    <mat-icon class="s-16">add_circle</mat-icon><span class="font-weight-600 font-size-12"> ADD
+                      LISENCE</span>
+                  </a>
+                </div>
+
+
+
+                <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+
+                  <mat-form-field appearance="outline" fxFlex="34">
+                    <mat-label>Memberships</mat-label>
+                    <input matInput formControlName="memberships" required>
+                    <mat-error>Mandatory field is required</mat-error>
+                  </mat-form-field>
+
+
+                  <a mat-button class="mat-flat-button condo-red-100 text-bold condo-red-100 ml-12" fxFlex="20"
+                    style="margin-top:-10px;">
+                    <mat-icon class="s-16">add_circle</mat-icon><span class="font-weight-600 font-size-12"> ADD
+                      MEMBERSHIP</span>
+                  </a>
+
+                  <mat-form-field appearance="outline" fxFlex="20" class="pl-32">
+                    <mat-label>Products</mat-label>
+                    <input matInput formControlName="products">
+                    <mat-error>Mandatory field is required</mat-error>
+                  </mat-form-field>
+
+                  <a mat-button class="mat-flat-button condo-red-100 text-bold condo-red-100 ml-12" fxFlex="15"
+                    style="margin-top:-10px;">
+                    <mat-icon class="s-16">add_circle</mat-icon><span class="font-weight-600 font-size-12"> ADD
+                      PRODUCT</span>
+                  </a>
+                </div>
+
+
+
+
+                <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+
+                  <mat-form-field appearance="outline" fxFlex="34">
+                    <mat-label>Brands</mat-label>
+                    <input matInput formControlName="brands" required>
+                    <mat-error>Mandatory field is required</mat-error>
+                  </mat-form-field>
+
+                  <a mat-button class="mat-flat-button condo-red-100 text-bold condo-red-100 ml-12" fxFlex="15"
+                    style="margin-top:-10px;">
+                    <mat-icon class="s-16">add_circle</mat-icon><span class="font-weight-600 font-size-12"> ADD
+                      BRAND</span>
+                  </a>
+
+                </div>
+
+
+
+
+
+
+
+
+
+              </div>
+            </div>
+
+
+
+
+          </mat-expansion-panel>
+
+        </mat-accordion>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="mt-32" fxLayout="column" formArrayName="portfolio">
+
+
+
+
+
+          <div class="" fxLayout="row" fxLayoutAlign="space-between center" class="">
+            <div class="">
+              <div class="h2 condo-gray-text">PORTFOLIO</div>
+            </div>
+            <div fxLayout="row">
+              <a mat-button class="mat-flat-button condo-red-400 text-bold" (click)="portfolioDetails()">
+                <mat-icon>add</mat-icon>ADD PORTFOLIO
+              </a>
+            </div>
+          </div>
+
+
+          <div class="mat-card mat-elevation-z  mt-32" fxLayout="column"
+            *ngFor="let port of registerForm.get('portfolio')['controls'] ; let portIndex = index"
+            [formGroupName]="portIndex">
+            <div class="px-32 py-16 condo-red-300">
+              <div class="h3 font-weight-600"><span>PROJECT {{portIndex +1 }}</span></div>
+            </div>
+
+            <div fxLayout="column" class="p-32 pt-32">
+              <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+                <mat-form-field appearance="outline" fxFlex="33" class="px-16">
+                  <mat-label>Project Name</mat-label>
+                  <input matInput formControlName="projectName" required>
+                  <mat-error>Mandatory field is required</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" fxFlex="33" class="px-16">
+                  <mat-label>City</mat-label>
+                  <input matInput formControlName="city" required>
+                  <mat-error>Mandatory field is required</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" fxFlex="33" class="px-16">
+                  <mat-label>Client</mat-label>
+                  <input matInput formControlName="client" required>
+                  <mat-error>Mandatory field is required</mat-error>
+                </mat-form-field>
+              </div>
+              <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+                <mat-form-field appearance="outline" fxFlex="66" class="px-16">
+
+                  <mat-label>Description</mat-label>
+                  <textarea name="description" formControlName="description" matInput type="text"
+                    max-rows="4"></textarea>
+                </mat-form-field>
+              </div>
+              <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+                <mat-form-field appearance="outline" fxFlex="33" class="px-16">
+                  <mat-label>Duration</mat-label>
+                  <input matInput formControlName="duration" required>
+                  <mat-error>Mandatory field is required</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" fxFlex="33" class="px-16">
+                  <mat-label>Date</mat-label>
+                  <input matInput [matDatepicker]="projPicker" formControlName="projDate" placeholder="Choose a date" readonly>
+                  <mat-datepicker-toggle matSuffix [for]="projPicker"></mat-datepicker-toggle>
+                  <mat-datepicker #projPicker></mat-datepicker>
+                  <mat-error>Mandatory field is required</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" fxFlex="33" class="px-16">
+                  <mat-label>Cost</mat-label>
+                  <input matInput formControlName="cost" required>
+                  <mat-error>Mandatory field is required</mat-error>
+                </mat-form-field>
+              </div>
+
+              <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+
+                <div class="file-uploader   " appearance="outline" fxFlex="33" class="px-16">
+                  <input hidden type="file" formControlName="images" #fileInput />
+                  <mat-label>Images</mat-label>
+                  <button mat-fab color="warn" class="add-file-button" (click)="fileInput.click()" aria-label="Add file"
+                    [@animate]="{value:'*', params:{delay:'300ms',scale:'0.2'}}">
+                    <mat-icon>add</mat-icon>
+                  </button>
+                </div>
+
+                <div class="file-uploader   " appearance="outline" fxFlex="33" class="px-16">
+                  <input hidden type="file" accept="application/pdf,image/*" formControlName="supportDocs"
+                    #supportDocs />
+                  <mat-label>Supporting Docs</mat-label>
+                  <button mat-fab color="warn" class="add-file-button" (click)="supportDocs.click()"
+                    aria-label="Add file" [@animate]="{value:'*', params:{delay:'300ms',scale:'0.2'}}">
+                    <mat-icon>add</mat-icon>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
+
+        <div fxLayout="row" fxLayoutAlign="space-between center" class="mt-24">
+          <div></div>
+          <div fxLayout="row">
+            <button mat-raised-button color="warn" class="submit-button" aria-label="Continue">
+              COMPLETE
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+
+
+  </div>
+</div>

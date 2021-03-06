@@ -1,0 +1,32 @@
+<div id="profile" class="page-layout simple">
+  <div id="about" class="p-8" fxLayout="row wrap">
+
+    <div class="about-content" fxLayout="column" fxFlex="100" fxFlex.gt-sm="100" fxFlex.gt-md="100">
+
+      <div class="mb-32 " [ngClass.lg]="'mx-24 mt-32'" [ngClass.md]="'mx-24 mt-32'" [ngClass.sm]="'mx-12 mt-16'"
+        [ngClass.xs]="'mx-0 mt-16'" fxLayout="column" fxLayoutAlign="start" fxFlex="100">
+        <mat-tab-group selectedIndex={{selectedTabIndex}} (selectedTabChange)="changeTab($event)" dynamicHeight>
+
+          <mat-tab>
+            <ng-template mat-tab-label>
+              <img class="logo-icon mr-8" src="assets/images/client-icon.png" style="width:30px;height:30px">
+              <span>CONDOS</span>
+            </ng-template>
+            <client-condo [newcondolist]="newCondoList" *ngIf="selectedTabIndex === 0 && isDataReady">
+            </client-condo>
+          </mat-tab>
+
+          <mat-tab>
+            <ng-template mat-tab-label>
+              <img class="mr-8" src="assets/images/vendor-icon.png" style="width:30px;height:30px">
+              <span>CONTRACTORS</span>
+            </ng-template>
+            <client-vendor [newvendorlist]="newVendorList" *ngIf="selectedTabIndex === 1 && isDataReady">
+            </client-vendor>
+          </mat-tab>
+        </mat-tab-group>
+
+      </div>
+    </div>
+  </div>
+</div>

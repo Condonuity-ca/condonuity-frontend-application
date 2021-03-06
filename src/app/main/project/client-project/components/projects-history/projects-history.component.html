@@ -1,0 +1,38 @@
+<div id="timeline" class="p-24" fxLayout="row wrap">
+
+  <!-- <div class="timeline-content" fxLayout="column" fxFlex="100" fxFlex.gt-sm="55" fxFlex.gt-md="65"> -->
+
+
+  <ngx-datatable fxLayout="column" fxLayoutAlign="start" style="width: 100%" class="material pr-20" [rows]="projectList"
+    [columnMode]="'force'" [footerHeight]="50" [rowHeight]="'auto'" [scrollbarH]="true" [selectionType]="'checkbox'"
+    [limit]="10" (activate)="viewProjects($event)">
+    <ngx-datatable-column [width]="110" name="Project ID" prop="projectId"></ngx-datatable-column>
+    <ngx-datatable-column [width]="140" name="Project Name" prop="projectName"></ngx-datatable-column>
+    <ngx-datatable-column [width]="140" name="Contract Type" prop="contractMessage"></ngx-datatable-column>
+    <ngx-datatable-column [width]="140" name="Date Created" prop="createdAt"></ngx-datatable-column>
+    <ngx-datatable-column [width]="140" name="Bid Close Date" prop="bidEndDate"></ngx-datatable-column>
+    <ngx-datatable-column [width]="110" name="Tags" prop="tags"></ngx-datatable-column>
+    <ngx-datatable-column [width]="100" name="Status" prop="statusCode">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+          <div *ngIf="row.statusMessage == 'Bidding Closed'" class="condo-red-text">{{row.statusMessage}}</div>
+          <div *ngIf="row.statusMessage != 'Bidding Closed'">{{row.statusMessage}}</div>
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column [width]="100" name="# of Bids" prop="bidCount"></ngx-datatable-column>
+    <ngx-datatable-column [width]="120" name="# of Interest" prop="interestCount"></ngx-datatable-column>
+  </ngx-datatable>
+  <!-- </div> -->
+
+  <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+    <div fxLayout="row" fxLayoutAlign="end" fxFlex="1 0 auto">
+      <button mat-raised-button color="primary" class="submit-button mr-16" aria-label="Continue"
+        (click)="ExportTOExcel()">
+        DOWNLOAD
+      </button>
+      <button mat-raised-button color="primary" class="submit-button" aria-label="Continue" (click)="print()">
+        PRINT
+      </button>
+
+    </div>
+  </div>
+</div>

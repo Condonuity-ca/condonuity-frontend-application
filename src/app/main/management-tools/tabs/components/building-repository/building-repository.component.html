@@ -1,0 +1,120 @@
+<div fxLayout="column" id="timeline">
+  <form fxLayout="column" fxLayoutAlign="start" fxFlex="1 0 auto" class="mb-0" name="buildingRepoform"
+    [formGroup]="buildingRepoform">
+    <div class="" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign.sm="start"
+      fxLayoutAlign.xs="start" fxLayoutAlign="space-between center"
+      class="mat-card mat-elevation-z px-8 pt-32 mx-8 mt-16">
+      <div class="" fxFlex.xl="80" fxFlex.lg="80" fxFlex.md="80" fxFlex.sm="80" fxFlex.xs="100" fxLayout.xl="row" fxLayout.lg="row" fxLayout.md="row"
+        fxLayout.sm="column" fxLayout.xs="column">
+
+        <mat-form-field appearance="outline" fxFlex="25" class="px-16">
+          <mat-label>Unit Type</mat-label>
+          <mat-select class="account-selection" formControlName="unitType" placeholder=""
+            (selectionChange)="unitTypeChanged($event.value)">
+            <mat-option value="1">Locker </mat-option>
+            <mat-option value="2">Residential </mat-option>
+            <mat-option value="3">Parking </mat-option>
+            <mat-option value="4">Commercial </mat-option>
+            <mat-option value="5">Common Element </mat-option>
+            <mat-option value="6">Other </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" fxFlex="25" class="px-16">
+          <mat-label>Person Type</mat-label>
+          <mat-select class="account-selection" formControlName="personType" placeholder=""
+            (selectionChange)="personTypeChanged($event.value)">
+            <mat-option value="1">Owner </mat-option>
+            <mat-option value="2">Occupant </mat-option>
+            <mat-option value="3">Tenant </mat-option>
+            <mat-option value="4">Other </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" fxFlex="25" class="px-16">
+          <mat-label>Lien</mat-label>
+          <mat-select class="account-selection" formControlName="lien" placeholder=""
+            (selectionChange)="lienChanged($event.value)">
+            <mat-option value="1">Yes</mat-option>
+            <mat-option value="2">No</mat-option>
+            <mat-option value="3">Other</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" fxFlex="25" class="px-16">
+          <mat-label>Status</mat-label>
+          <mat-select class="account-selection" formControlName="status" placeholder=""
+            (selectionChange)="statusChanged($event.value)">
+            <mat-option value="1">Owner Occupied </mat-option>
+            <mat-option value="2">Leased </mat-option>
+            <mat-option value="3">Vacant </mat-option>
+            <mat-option value="4">Other </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="" fxFlex.xl="20" fxFlex.lg="20" fxFlex.md="20" fxFlex.sm="20" fxFlex.xs="20" fxLayout.sm="row wrap"
+        fxLayout.xs="column" style="margin-top:-10px;" [ngClass.sm]="'mb-16 mr-16'" [ngClass.xs]="'mb-16 mr-16'"
+        fxLayoutAlign.sm="end end" fxLayoutAlign.xs="end end">
+
+        <button mat-button class="mat-flat-button condo-red-300 ml-16" cdkFocusInitial
+          (click)="onClickclearFilter()">CLEAR FILTER</button>
+      </div>
+
+    </div>
+  </form>
+
+</div>
+
+<div class="mt-8">
+  <div class="mt-24 mb-8" fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayoutAlign="end end">
+    <button mat-button class="mat-button-toggle mat-stroked-button mat-primary active mat-button-toggle-checked mat-button-toggle-appearance-standard"
+      color="accent" (click)="openCreateBuildingRepositoryDialog()"> + NEW
+      RECORD</button>
+  </div>
+  <div id="timeline" class="p-24" fxLayout.xl="row wrap"  fxLayout.lg="row wrap" fxLayout.md="row wrap" fxLayout.sm="row wrap"
+    fxLayout.xs="row wrap">
+
+    <!-- <ngx-datatable fxLayout="column" fxLayoutAlign="space-between center" style="width: 100%" class="material pr-20"
+      [rows]="buildingRepoList" [columnMode]="'reorder'" [footerHeight]="50" [rowHeight]="'50'" [scrollbarH]="true"
+      [scrollbarV]="false" [selectionType]="'checkbox'" [limit]="20"
+      (activate)="openViewBuildingRepositoryDialog($event)"> -->
+
+              <ngx-datatable fxLayout="column" fxLayoutAlign="start" style="width: 100%" class="material pr-20" [rows]="buildingRepoList"
+    [columnMode]="'force'" [footerHeight]="50" [rowHeight]="'auto'" [scrollbarH]="true" [selectionType]="'checkbox'"
+    [limit]="20" [sorts]="[{prop: 'unitNumber', dir: 'asc'}]" (activate)="openViewBuildingRepositoryDialog($event)">
+
+      <ngx-datatable-column [width]="90" name="Unit#" prop="unitNumber"></ngx-datatable-column>
+      <ngx-datatable-column [width]="90" name="Type" prop="unitTypeDisplayText"></ngx-datatable-column>
+      <ngx-datatable-column [width]="90" name="Status" prop="tenantStatusDisplayText"></ngx-datatable-column>
+      <ngx-datatable-column [width]="90" name="Lien" prop="lienTypeDisplayText"></ngx-datatable-column>
+      <ngx-datatable-column [width]="110" name="Lien Date" prop="lienDisplayDate"></ngx-datatable-column>
+      <ngx-datatable-column [width]="90" name="Name" prop="firstName"></ngx-datatable-column>
+      <ngx-datatable-column [width]="130" name="Person Type" prop="personTenantTypeDisplayText"></ngx-datatable-column>
+      <ngx-datatable-column [width]="160" name="Contact Number" prop="displayContactNumber"></ngx-datatable-column>
+      <ngx-datatable-column [width]="90" name="Email" prop="displayContactEmail"></ngx-datatable-column>
+      <ngx-datatable-column name="Action" [width]="90">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <button (click)="openEditBuildingRepositoryDialog($event, row)" mat-button>
+            <mat-icon>edit</mat-icon>
+          </button>
+        </ng-template>
+      </ngx-datatable-column>
+
+    </ngx-datatable>
+    <!-- </div> -->
+
+    <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+      <div fxLayout="row" fxLayoutAlign="end" fxFlex="1 0 auto">
+        <button mat-raised-button color="primary" class="submit-button mr-16" aria-label="Continue"
+          (click)="ExportTOExcel()">
+          DOWNLOAD
+        </button>
+        <button mat-raised-button color="primary" class="submit-button" aria-label="Continue" (click)="print()">
+          PRINT
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
