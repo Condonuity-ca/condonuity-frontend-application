@@ -67,6 +67,7 @@ export class VendorRegisterComponent implements OnInit, OnDestroy {
   private hash: string;
 
   private isInsuranceAvailable: boolean = false;
+  private isWsibAvailable: boolean = false;
   private isBonded: boolean;
 
   public imagePath;
@@ -587,6 +588,11 @@ export class VendorRegisterComponent implements OnInit, OnDestroy {
       this.insuranceForm.get('insuranceCompany').disable();
       this.insuranceForm.get('liability').disable();
       this.insuranceForm.get('expiryDate').disable();
+
+      this.insuranceForm.get('insuranceCompany').setValue("");
+      this.insuranceForm.get('liability').setValue("");
+      this.insuranceForm.get('expiryDate').setValue("");
+
     }
   }
 
@@ -595,10 +601,12 @@ export class VendorRegisterComponent implements OnInit, OnDestroy {
   }
 
   manageWsib($event: any) {
+    this.isWsibAvailable = $event.checked;
     if ($event.checked == true) {
       this.insuranceForm.get('wsibId').enable();
     } else {
       this.insuranceForm.get('wsibId').disable();
+      this.insuranceForm.get('wsibId').setValue("");
     }
   }
 
@@ -660,6 +668,7 @@ export class VendorRegisterComponent implements OnInit, OnDestroy {
 
 
   registerVendorOrganisation() {
+    debugger;
 
     let formatedTags = this.selectedTags.map((tag: any) => {
       return {

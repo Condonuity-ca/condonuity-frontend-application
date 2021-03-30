@@ -478,8 +478,8 @@
                       <mat-form-field appearance="outline" fxFlex="60" [ngClass.xl]="'px-16'" [ngClass.lg]="'px-16'"
                         [ngClass.md]="'px-16'" [ngClass.sm]="'px-16'" [ngClass.xs]="'px-4'">
                         <mat-label>WSIB</mat-label>
-                        <input matInput formControlName="wsibId">
-                        <mat-error>Mandatory field is required</mat-error>
+                        <input matInput formControlName="wsibId" required="isWsibAvailable">
+                        <mat-error *ngIf="insuranceForm.get('wsibId').hasError('required')">Mandatory field is required</mat-error>
                       </mat-form-field>
                     </div>
                   </div>
@@ -497,7 +497,6 @@
 
                     <mat-error>Mandatory field is required</mat-error>
                   </mat-form-field>
-
                   <!--  <a mat-button class="mat-flat-button condo-red-100 text-bold condo-red-100 ml-12"  fxFlex="15" style="margin-top:-10px;">
                                     <mat-icon class="s-16" >add_circle</mat-icon><span class="font-weight-600 font-size-12"> ADD SERVICE</span>
                                 </a>-->
@@ -551,7 +550,7 @@
               <button class="mr-8" mat-raised-button matStepperPrevious type="button" color="accent">
                 PREVIOUS
               </button>
-              <button mat-raised-button matStepperNext type="button" color="accent"
+              <button mat-raised-button [disabled]="insuranceForm.invalid" matStepperNext type="button" color="accent"
                 (click)='registerVendorOrganisation()'>
                 FINISH
               </button>
