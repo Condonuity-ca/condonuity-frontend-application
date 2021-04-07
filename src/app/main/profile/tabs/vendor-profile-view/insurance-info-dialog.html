@@ -134,7 +134,7 @@
     </form>
   </div>
   <mat-dialog-actions align="end" class="px-16 mt-0 mb-4">
-    <button mat-button mat-flat-button mat-accent (click)="updateInsuranceServiceDetails()"
+    <button mat-button mat-flat-button mat-accent [disabled]="insuranceInfoEditform.invalid" (click)="updateInsuranceServiceDetails()"
       color="accent">UPDATE</button>
     <button mat-button mat-dialog-close class="fuse-navy-50">CANCEL</button>
   </mat-dialog-actions>

@@ -722,8 +722,6 @@ export class VendorProfileViewComponent implements OnInit, OnDestroy {
           this.vendorDetails.vendorTags = [];
         }
 
-
-
         if (response.vendorInsurances.length > 0) {
           this.vendorDetails.insureDetails = response.vendorInsurances[0];
           if (this.vendorDetails.insureDetails.insurancePolicyExpiryDate != null) {
@@ -733,7 +731,12 @@ export class VendorProfileViewComponent implements OnInit, OnDestroy {
           if (isNaN(insuredValue)) {
             this.vendorDetails.insureDetails.insuranceLiability = '0';
           }
-          this.vendorDetails.insureDetails.insurance = true;
+          if(this.vendorDetails.insureDetails.insuranceLiability != null && this.vendorDetails.insureDetails.insuranceLiability > 0) {
+            this.vendorDetails.insureDetails.insurance = true;
+          } else {
+            this.vendorDetails.insureDetails.insurance = false;
+          }
+          
         } else {
           this.vendorDetails.insureDetails = [];
           this.vendorDetails.insureDetails.insurance = false;
