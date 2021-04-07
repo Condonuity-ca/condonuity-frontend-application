@@ -22,13 +22,13 @@
               <mat-form-field appearance="outline" fxFlex="33" fxFlex.sm='90' fxFlex.xs='90' [ngClass.xs]="'px-16'"
                 class="px-16">
                 <mat-label>Insurance Company</mat-label>
-                <input matInput formControlName="insuranceCompany">
+                <input matInput formControlName="insuranceCompany" required="isInsured">
                 <mat-error>Mandatory field is required</mat-error>
               </mat-form-field>
               <mat-form-field appearance="outline" fxFlex="33" fxFlex.sm='90' fxFlex.xs='90' [ngClass.xs]="'px-16'"
                 class="px-16">
                 <mat-label>Liablity</mat-label>
-                <input type="number" matInput formControlName="liability">
+                <input type="number" matInput formControlName="liability" required="isInsured">
                 <span matPrefix>$&nbsp;</span>
 
                 <mat-error>Mandatory field is required</mat-error>
@@ -36,7 +36,7 @@
               <mat-form-field appearance="outline" fxFlex="33" fxFlex.sm='90' fxFlex.xs='90' [ngClass.xs]="'px-16'"
                 class="px-16">
                 <mat-label>Expiry Date</mat-label>
-                <input matInput [matDatepicker]="expPicker" formControlName="expiryDate" placeholder="Choose a date" readonly>
+                <input matInput [matDatepicker]="expPicker" formControlName="expiryDate" required="isInsured" placeholder="Choose a date" readonly>
                 <mat-datepicker-toggle matSuffix [for]="expPicker"></mat-datepicker-toggle>
                 <mat-datepicker #expPicker></mat-datepicker>
                 <mat-error>Mandatory field is required</mat-error>
@@ -74,8 +74,6 @@
           matTooltipPosition="above">
             <mat-label>Services</mat-label>
             <input matInput formControlName="services">
-            <!-- <span class="condo-tooltip" fxFlex="5" fxLayoutAlign="start top"
-              matTooltip="Notifications for every New Project Posting">?</span> -->
           </mat-form-field>
           <a mat-button class="mat-flat-button condo-red-100 text-bold condo-red-100 ml-12" fxFlex="15" fxHide
             style="margin-top:-10px;">

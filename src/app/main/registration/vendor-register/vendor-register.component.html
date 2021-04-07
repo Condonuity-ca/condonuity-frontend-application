@@ -1,13 +1,6 @@
 <div id="register" fxLayout="column">
   <div id="register-form-wrapper" fxLayout="column" fxLayoutAlign="center center">
     <div id="register-form" class="bg-white" [@animate]="{value:'*',params:{duration:'300ms',y:'100px'}}">
-      <!-- 
-                   <div class="about-content" fxLayout="column" fxFlex="100" fxFlex.gt-sm="100" fxFlex.gt-md="100">
-
-            <div class="h2 mb-24 text-bold">Register New Vendor</div>
-
-            <vendor-profile></vendor-profile>
-</div> -->
       <div class="h2 mb-24 text-bold condo-gray-text">New Contractor Registration</div>
       <mat-vertical-stepper class="mat-elevation-z" [linear]="true">
 
@@ -48,10 +41,6 @@
                 </div>
 
                 <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto" class="pt-16">
-                  <!-- <mat-form-field appearance="outline" fxFlex="50" class="pr-8">
-                    <mat-label>Company Name</mat-label>
-                    <input matInput formControlName="vendorName" required>
-                  </mat-form-field> -->
 
                   <mat-form-field appearance="outline" class="" [ngClass.lg]="'pr-16'" [ngClass.md]="'pr-16'"
                     [ngClass.sm]="'pr-16'" [ngClass.xs]="'pr-0'" fxFlex.lg="40" fxFlex.md="40" fxFlex.sm="50"
@@ -81,31 +70,6 @@
 
 
                 <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
-
-
-                  <!-- <mat-form-field appearance="outline" fxFlex="100">
-                    <mat-label>Tags *</mat-label>
-                    <mat-chip-list #chipList aria-label="Tag Selection" formControlName="tagChips">
-                      <mat-chip *ngFor="let tag of selectedTags" [selectable]="selectable" [removable]="removable"
-                        (removed)="remove(tag)">
-                        {{tag.tagName}}
-                        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-                      </mat-chip>
-                      <input placeholder="Select Tags" #tagInput [formControl]="tagCtrl" formControlName="tags"
-                        [matAutocomplete]="auto" [matChipInputFor]="chipList"
-                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
-                        (focusout)="tagInputFocusOut()">
-                    </mat-chip-list>
-                    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-                      <mat-option *ngFor="let tags of filteredTags | async" [value]="tags">
-                        {{tags.tagName}}
-                      </mat-option>
-                    </mat-autocomplete>
-                    <mat-error>Minimum 1 valid tag is required</mat-error>
-
-                  </mat-form-field> -->
-
-
                   <mat-form-field appearance="outline" fxFlex="100">
                     <mat-label>Tags *</mat-label>
 
@@ -165,7 +129,7 @@
 
                 <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
                   <mat-form-field appearance="outline" fxFlex="100">
-                    <mat-label>Description</mat-label>
+                    <mat-label>Description (Special characters are not allowed)</mat-label>
                     <textarea name="description" formControlName="description" matInput type="text" max-rows="4"
                       required="required" class="height-200"></textarea>
                     <mat-error>Description about company is mandatory</mat-error>
@@ -186,7 +150,7 @@
                   <mat-form-field appearance="outline" fxFlex="33" fxFlex.xs="100" [ngClass.xl]="'px-16'"
                     [ngClass.lg]="'px-16'" [ngClass.md]="'px-16'" [ngClass.sm]="'px-16'" [ngClass.xs]="'px-0'">
                     <mat-label>Total Employees</mat-label>
-                    <input type="number" matInput formControlName="totalEmp">
+                    <input matInput formControlName="totalEmp">
                     <mat-error *ngIf="vendorInfoForm.get('totalEmp').hasError('pattern')">
                       Enter a Number
                     </mat-error>
@@ -194,21 +158,13 @@
 
                   <mat-form-field appearance="outline" fxFlex="34" fxFlex.xs="100" class="">
                     <mat-label>Yearly Sales</mat-label>
-                    <input type="number" matInput formControlName="yearSales" class="">
+                    <input matInput formControlName="yearSales" class="">
                     <span matPrefix class="">$&nbsp;</span>
                     <mat-error *ngIf="vendorInfoForm.get('yearSales').hasError('pattern')">
                       Please Enter a valid Number
                     </mat-error>
                   </mat-form-field>
                 </div>
-                <!-- <div class="" fxLayout="row" fxLayout.xs="column" fxLayoutAlign.xs="start" fxLayoutAlign="space-between center">
-                                <div class="pr-16">                
-                                    <div class="h3 font-weight-600">UPLOAD YOUR DOCUMENTS</div>
-                                    <div class="condo-gray-text mt-8">
-                                            Upload all supporting documents like business card, certifications and recognitions to let the condo reach you faster. 
-                                    </div>
-                                </div>
-                            </div> -->
 
                 <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start center" fxLayoutAlign.xs="start"
                   fxFlex="1 0 auto" class="mt-32">

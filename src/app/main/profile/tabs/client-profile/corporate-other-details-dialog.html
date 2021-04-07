@@ -74,7 +74,7 @@
 
         <mat-form-field appearance="outline" fxFlex="50" class="px-16">
           <mat-label>Manager Phone Number</mat-label>
-          <input type="number" matInput formControlName="managerPhone">
+          <input matInput formControlName="managerPhone">
           <mat-error *ngIf="corpEditform.get('managerPhone').hasError('pattern')">
             Enter a Number
           </mat-error>

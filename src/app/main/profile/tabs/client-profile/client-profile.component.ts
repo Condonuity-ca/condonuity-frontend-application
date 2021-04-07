@@ -989,7 +989,7 @@ export class CorporateOtherDetailsDialog {
       managementCompany: [this.corpDetails.organisation.managementCompany, Validators.required],
       managerName: [this.corpDetails.organisation.managerName],
       managerEmail: [this.corpDetails.organisation.managerEmail, [Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/)]],
-      managerPhone: [this.corpDetails.organisation.managerPhone, [Validators.pattern('^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$')]],
+      managerPhone: [this.corpDetails.organisation.managerPhone],
     });
   }
 

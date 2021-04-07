@@ -2056,6 +2056,7 @@ export class InsuranceInfoDialog {
 
   }
 
+
   manageInsurance($event: any) {
     this.isInsured = $event.checked;
     if ($event.checked == true) {
@@ -2066,6 +2067,10 @@ export class InsuranceInfoDialog {
       this.insuranceInfoEditform.get('insuranceCompany').disable();
       this.insuranceInfoEditform.get('liability').disable();
       this.insuranceInfoEditform.get('expiryDate').disable();
+
+      this.insuranceInfoEditform.get('insuranceCompany').setValue("");
+      this.insuranceInfoEditform.get('liability').setValue("");
+      this.insuranceInfoEditform.get('expiryDate').setValue("");
     }
   }
 

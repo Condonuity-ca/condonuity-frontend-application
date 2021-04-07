@@ -98,32 +98,11 @@
             </mat-option>
           </mat-autocomplete>
         </mat-form-field>
-
-        <!-- <mat-form-field appearance="outline" fxFlex="50" class="pl-16">
-          <mat-label>Serviced Provinces</mat-label>
-          <input readonly matInput formControlName="serviceProvinces" required>
-        </mat-form-field> -->
       </div>
-
-
-      <!-- <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
-        <mat-form-field appearance="outline" fxFlex="100" class="px-16">
-          <mat-label>Serviced Cities</mat-label>
-          <mat-select formControlName="servicedCities" multiple (selectionChange)="cityListUpdated($event.value)">
-            <mat-option *ngFor="let cityInfo of cityProvinceList" [value]="cityInfo">
-              {{cityInfo.city}}</mat-option>
-          </mat-select>
-          <mat-error *ngIf="comDetailsEditform.get('servicedCities').hasError('required')">
-            {{mandatory}}
-          </mat-error>
-        </mat-form-field>
-      </div> -->
-
-
 
       <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
         <mat-form-field appearance="outline" fxFlex="100" class="px-16">
-          <mat-label>Description</mat-label>
+          <mat-label>Description (Special characters are not allowed)</mat-label>
           <textarea matInput formControlName="description" required="required" maxlength="2000" class="height-200"
             #description>  </textarea>
 
